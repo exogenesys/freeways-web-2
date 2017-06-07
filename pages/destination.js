@@ -33,16 +33,15 @@ import Trips from '../components/DestinationTrips'
 import initStore from '../utils/store'
 import Forecast from 'react-forecast'
 
-import Cosmic from '../models/cosmic'
 
 class Index extends React.Component {
 	static async getInitialProps() {
-		return await Cosmic.getDestination('ladakh');
+		// return await Cosmic.getDestination('ladakh');
 	}
 
 	render() {
-		const destination = this.props.object.metafield
-		console.log(destination);
+		// const destination = this.props.object.metafield
+		// console.log(destination);
 
 		return (
 			<div>
@@ -53,7 +52,7 @@ class Index extends React.Component {
 						<Sticky innerZ={99999999999}>
 							<Menu/>
 						</Sticky>
-						<Introduction intro={destination.introduction.value} best_time={destination.best_time_to_visit} time_to_explore={destination.time_to_explore} budget={destination.average_budget_per_person}/>
+						<Introduction/>
 						<Places/>
 						<Experiences/>
 						<Trips/>

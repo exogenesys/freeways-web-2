@@ -19,7 +19,7 @@ import configureLoadingProgressBar from '../utils/routing'
 
 class Index extends React.Component {
 	static async getInitialProps() {
-		return await Cosmic.getPage('destinations');
+		// return await Cosmic.getPage('destinations');
 	}
 
   constructor (props) {

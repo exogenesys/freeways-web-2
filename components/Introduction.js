@@ -15,26 +15,37 @@ export default class Footer extends React.Component {
 					textAlign: 'center',
 					color: '#333'
 				}}>
-				{this.props.intro}
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
 				</p>
 				<br/>
 				<br/>
 				<br/>
-				<Grid columns={4}>
+				<Grid columns={3}>
 					<Grid.Row centered>
+											<Grid.Column>
+					<Popup trigger={< Statistic size = "small" value='₹1500' label = 'Average budget per person' />} hideOnScroll inverted wide position='bottom center'>
+						<Popup.Header>
+							Average budget
+						</Popup.Header>
+						<Popup.Content>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+						</Popup.Content>
+					</Popup>
+
+					</Grid.Column>
 
 						<Grid.Column>
+						<Popup trigger={< Statistic size = "small" value='2-3 Days' label = 'Days to explore' />} hideOnScroll inverted wide position='bottom center'>
+							<Popup.Header>
+								Average budget
+							</Popup.Header>
+							<Popup.Content>
+								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+							</Popup.Content>
+						</Popup>
 						</Grid.Column>
-						<Grid.Column>
-							<Popup trigger={< Statistic size = "small" value='₹{this.props.budget}' label = 'Average budget per person' />} hideOnScroll inverted wide position='bottom center'>
-								<Popup.Header>
-									Average budget
-								</Popup.Header>
-								<Popup.Content>
-									Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-								</Popup.Content>
-							</Popup>
-						</Grid.Column>
+
 						<Grid.Column>
 							<Popup trigger={< Statistic size = "small" value = '23°C' label = 'Weather' />} hideOnScroll inverted wide position='bottom center'>
 								<Popup.Header>
@@ -45,6 +56,7 @@ export default class Footer extends React.Component {
 								</Popup.Content>
 							</Popup>
 						</Grid.Column>
+
 					</Grid.Row>
 				</Grid>
 				<br/>
