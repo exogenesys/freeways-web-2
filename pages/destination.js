@@ -34,21 +34,17 @@ import initStore from '../utils/store'
 import Forecast from 'react-forecast'
 import Router from 'next/router'
 
-
 class Index extends React.Component {
 
-	constructor(props){
+	constructor(props) {
 		super(props);
 	}
 
 	static async getInitialProps({query}) {
-
-		 const destID = query[Object.keys(query)[0]]; // Getting the required String from Query object
-		 console.log(destID);
-		 const res = await fetch('http://lighght-dev.herokuapp.com/api/destination/'+ destID);
-     const data = await res.json();
-		 console.log(data);
-		 return {data};
+		const res = await fetch('http://lighght-dev.herokuapp.com/api/destination/' + query.slug);
+		const data = await res.json();
+		console.log(data);
+		return {data};
 	}
 
 	render() {
@@ -62,7 +58,7 @@ class Index extends React.Component {
 
 				<Container fluid>
 
-					<Cover cover = {destData} />
+					<Cover cover={destData}/>
 
 					<Container >
 
@@ -70,25 +66,25 @@ class Index extends React.Component {
 							<Menu/>
 						</Sticky>
 
-						<Introduction intro = {destData} />
+						<Introduction intro={destData}/>
 
-						<Places place = {destData} />
+						<Places place={destData}/>
 
-						<Experiences exp = {destData} />
+						<Experiences exp={destData}/>
 
-						<Trips trips = {destData} />
+						<Trips trips={destData}/>
 
-						<MustKnow mustknow = {destData} />
+						<MustKnow mustknow={destData}/>
 
-						<MustCarry mustcarry = {destData} />
+						<MustCarry mustcarry={destData}/>
 
-						<Languages />
+						<Languages/>
 
-						<HowToReach htor = {destData} />
+						<HowToReach htor={destData}/>
 
-						<GettingAround gtaround = {destData} />
+						<GettingAround gtaround={destData}/>
 
-						<NearByDestinations />
+						<NearByDestinations/>
 
 						<br/>
 						<br/>

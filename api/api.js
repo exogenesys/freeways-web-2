@@ -19,7 +19,7 @@ mongoose.connect("mongodb://saulgoodman:hackerman@ds163561.mlab.com:63561/freewa
 
 console.log("hello from api");
 
-Router.get("/trips/:slug", (req, res) => {
+Router.get("/trip/:slug", (req, res) => {
 	console.log("hello from ttrips");
 	trips.find({
 		slug: req.params.slug
@@ -44,7 +44,7 @@ Router.get("/destination/:slug", (req, res) => {
 	});
 });
 
-Router.get("/places/:slug", (req, res) => {
+Router.get("/place/:slug", (req, res) => {
 	places.find({
 		slug: req.params.slug
 	}, (err, data) => {
@@ -56,7 +56,7 @@ Router.get("/places/:slug", (req, res) => {
 	});
 });
 
-Router.get("/experiences/:slug", (req, res) => {
+Router.get("/experience/:slug", (req, res) => {
 	experiences.find({
 		slug: req.params.slug
 	}, (err, data) => {

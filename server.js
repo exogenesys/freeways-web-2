@@ -2,13 +2,10 @@ const express = require('express');
 const path = require('path');
 const next = require('next');
 const api = require("./api/api.js");
-const routes = require('./routes/routes');
-
-// routes
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({dir: '.', dev});
-const handle = routes.getRequestHandler(app);
+const handle = app.getRequestHandler();
 
 const PORT = process.env.PORT || 3000;
 
@@ -20,7 +17,29 @@ app.prepare().then(_ => {
 
 	server.use('/api', api);
 
-	server.get('*', (req, res) => handle(req, res));
+	server.get('/destination/:slug', (req, res) => {
+  	const params = { slug: req.params.slug }
+  	return app.render(req, res, '/destination', params);
+	});
+
+	server.get('/place/:slug', (req, res) => {
+		const params = { slug: req.params.slug }
+		return app.render(req, res, '/place', params);
+	});
+
+	server.get('/experience/:slug', (req, res) => {
+  	const params = { slug: req.params.slug }
+  	return app.render(req, res, '/experience', params);
+	});
+
+	server.get('/trip/:slug', (req, res) => {
+  	const params = { slug: req.params.slug }
+  	return app.render(req, res, '/trip', params);
+	});
+
+	server.get('*', (req, res) => {
+		return app.render(req, res, '/');
+	});
 
 	server.listen(PORT, err => {
 		if (err)

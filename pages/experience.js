@@ -34,12 +34,8 @@ import route from '../routes/routes'
 class Index extends React.Component {
 
 	static async getInitialProps({query}) {
-
-		const expID = query[Object.keys(query)[0]];
-		console.log(expID);
-		const res = await fetch('http://lighght-dev.herokuapp.com/api/experiences/'+ expID);
+		const res = await fetch('http://lighght-dev.herokuapp.com/api/experience/'+ query.slug);
 		const data = await res.json();
-		console.log(data);
 		return {data};
 	}
 
