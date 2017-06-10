@@ -13,8 +13,6 @@ import {
 import RecommendationCard from '../components/RecommendationCard'
 import InterestMenu from '../components/InterestMenu'
 
-
-
 export default class Places extends Component {
 	state = {}
 
@@ -35,7 +33,7 @@ export default class Places extends Component {
 				<Grid>
 					<Grid.Row>
 						<Grid.Column width={4}>
-							<RecommendationCard/>
+							<RecommendationCard title={this.props.place[0].title}/>
 						</Grid.Column>
 						<Grid.Column width={4}>
 							<RecommendationCard/>
@@ -47,6 +45,7 @@ export default class Places extends Component {
 							<RecommendationCard/>
 						</Grid.Column>
 					</Grid.Row>
+
 					<Grid.Row>
 						<Grid.Column width={4}>
 							<RecommendationCard/>
@@ -61,6 +60,7 @@ export default class Places extends Component {
 							<RecommendationCard/>
 						</Grid.Column>
 					</Grid.Row>
+
 				</Grid>
 				<br/>
 				<br/>

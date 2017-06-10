@@ -31,31 +31,35 @@ import initStore from '../utils/store'
 import Forecast from 'react-forecast'
 
 class Index extends React.Component {
-	static async getInitialProps({store}) {
-		// Adding a default/initialState can be done as follows:
-		// store.dispatch({type: 'ADD_TODO', text: 'It works!'});
-		// const res = await fetch('https://api.github.com/repos/ooade/NextSimpleStarter');
-		// const json = await res.json();
-		// return {stars: json.stargazers_count};
+	static async getInitialProps({query}) {
+
+		const tripID = query[Object.keys(query)[0]];
+		console.log(tripID);
+		const res = await fetch('http://lighght-dev.herokuapp.com/api/trips/'+ tripID);
+		const data = await res.json();
+		console.log(data);
+		return {data};
 	}
 
 	render() {
+
+		const tripData = this.props.data;
 
 		return (
 			<div>
 				<TopBar/>
 				<Container fluid>
-					<Cover/>
+					<Cover cover = {tripData} />
 					<Container >
 						<Sticky innerZ={99999999999}>
 							<Menu/>
 						</Sticky>
-						<Introduction/>
-						<Constituents />
-						<Itinerary/>
-						<MustKnow/>
-						<MustCarry/>
-						<NearByDestinations/>
+						<Introduction intro = {tripData} />
+						<Constituents cons = {tripData} />
+						<Itinerary itin = {tripData} />
+						<MustKnow mustknow = {tripData} />
+						<MustCarry mustcarry = {tripData} />
+						<NearByDestinations nbydest = {tripData} />
 						<Comments/>
 						<br/>
 						<br/>
