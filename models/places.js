@@ -3,6 +3,14 @@ var Schema = mongoose.Schema;
 
 var placeSchema = new Schema({
 
+    slug:{
+      type:String
+    },
+
+    title:{
+      type:String
+    },
+
     name: {
       type: String
     },
@@ -15,11 +23,11 @@ var placeSchema = new Schema({
       type: String
     },
 
-    bestTimeToVisit: {
+    best_time_to_visit: {
       type: String
     },
 
-    bestTimeToVisitMoreInfo: {
+    best_time_to_visit_more_information: {
       type: String
     },
 
@@ -33,43 +41,43 @@ var placeSchema = new Schema({
       type: String
     },
 
-    howToReachByCar: {
+    how_to_reach_by_car: {
       type: String
     },
 
-    howToReachByTrain: {
+    how_to_reach_by_train: {
       type: String
     },
 
-    howToReachByBus: {
+    how_to_reach_by_train: {
       type: String
     },
 
-    howToReachByPlane: {
+    how_to_reach_by_plane: {
       type: String
     },
 
-    howToReachByWalk: {
+    how_to_reach_by_walk: {
       type : String
     },
 
-    mustCarry: [{
-      type: Schema.Types.ObjectId, ref: 'MustCarry'
+    must_carry: [{
+      type: Schema.Types.ObjectId, ref: 'mustCarry'
     }],
 
     experiences: [{
-      type : Schema.Types.ObjectId, ref: 'Experience'
+      type : Schema.Types.ObjectId, ref: 'experiences'
     }],
 
     trips: [{
-      type : Schema.Types.ObjectId, ref: 'Trip'
+      type : Schema.Types.ObjectId, ref: 'Trips'
     }],
 
-    coverPhoto: {
+    cover_photo: {
       type : String
     },
 
-    mustKnow: {
+    must_know: {
       type : String
     },
 

@@ -3,11 +3,15 @@ var Schema = mongoose.Schema;
 
 var experienceSchema = new Schema({
 
-    bestTimeToVisit: {
+    slug:String,
+
+    title:String,
+
+    best_time_to_visit: {
       type: String
     },
 
-    bestTimeToVisitMoreInfo: {
+    best_time_to_visit_more_information: {
       type: String
     },
 
@@ -15,11 +19,11 @@ var experienceSchema = new Schema({
 
     caption: {
       type: String
-    }
+    },
 
     information: {
       type: String
-    }
+    },
 
     latitude: {
       type: String
@@ -29,29 +33,29 @@ var experienceSchema = new Schema({
       type: String
     },
 
-    mustKnow: {
+    must_know: {
       type: String
-    }
+    },
 
-    howToReachByWalk: {
+    how_to_reach_by_walk: {
       type : String
     },
 
-    mustCarry: [{
-      type: Schema.Types.ObjectId, ref: 'MustCarry'
+    must_carry: [{
+      type: Schema.Types.ObjectId, ref: 'mustCarry'
     }],
 
-    coverPhoto: {
+    cover_photo: {
       type : String
     },
 
     usualTimings: {
       type: String
-    }
+    },
 
     daysOff: {
       type: String
-    }
+    },
 
     keyWords: {
       type : String
@@ -62,6 +66,6 @@ var experienceSchema = new Schema({
 });
 
 
-var places = mongoose.model('Place', placeSchema);
+var experiences = mongoose.model('experiences', experienceSchema);
 
-module.exports = places;
+module.exports = experiences;

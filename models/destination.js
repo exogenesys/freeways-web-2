@@ -3,11 +3,17 @@ var Schema = mongoose.Schema;
 
 var destinationSchema = new Schema({
 
-    bestTimeToVisit: {
+    slug:{
+      type:String
+    },
+
+    title:String,
+
+    best_time_to_visit: {
       type: String
     },
 
-    bestTimeToVisitMoreInfo: {
+    best_time_to_visit_more_information: {
       type: String
     },
 
@@ -19,11 +25,11 @@ var destinationSchema = new Schema({
       type: String
     },
 
-    timeToExplore: {
+    time_to_explore: {
       type: String
     },
 
-    avgBudgetPerPerson: {
+    average_budget_per_person: {
       type: String
     },
 
@@ -35,28 +41,29 @@ var destinationSchema = new Schema({
       type: String
     },
 
-    mustKnow: {
+    must_know: {
       type: String
     },
 
-    howToReachByCar: {
+    how_to_reach_by_car: {
       type: String
     },
 
-    howToReachByBus: {
+    how_to_reach_by_bus: {
       type: String
     },
 
-    howToReachByPlane: {
+
+    how_to_reach_by_plane: {
       type: String
     },
 
-    howToReachByTrain: {
+    how_to_reach_by_train: {
       type: String
     },
 
-    mustCarry: [{
-      type: Schema.Types.ObjectId, ref: 'MustCarry'
+    must_carry: [{
+      type: Schema.Types.ObjectId, ref: 'mustCarry'
     }],
 
     places: [{
@@ -64,15 +71,15 @@ var destinationSchema = new Schema({
     }],
 
     experiences: [{
-      type : Schema.Types.ObjectId, ref: 'Experience'
+      type : Schema.Types.ObjectId, ref: 'experiences'
     }],
 
     trips: [{
-      type : Schema.Types.ObjectId, ref: 'Trip'
+      type : Schema.Types.ObjectId, ref: 'Trips'
     }],
 
     languages: [{
-      type : Schema.Types.ObjectId, ref: 'Language'
+      type : Schema.Types.ObjectId, ref: 'languages'
     }],
 
     coverPhoto: {
@@ -85,29 +92,7 @@ var destinationSchema = new Schema({
 
     keyWords: {
       type : String
-    },
-
-    comments: [{
-
-      type : String
-
-      userID: {
-        type: Schema.Types.ObjectId
-      },
-
-      parentComment: {
-        type: Schema.Types.ObjectId
-        default: false
-      },
-
-      childComment: {
-        type: [{
-          type: Schema.Types.ObjectId
-        }],
-        default:false
-      }
-    }]
-
+    }
   },{
     timestamps: true
 });

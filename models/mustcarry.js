@@ -2,6 +2,13 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var mustCarrySchema = new Schema({
+    slug:{
+      type:String
+    },
+
+    title:{
+      type:String,
+    },
 
     name: {
       type: String
@@ -14,12 +21,12 @@ var mustCarrySchema = new Schema({
     information: {
       type: String
     }
-    
+
   },{
     timestamps: true
 });
 
 
-var mustcarry = mongoose.model('MustCarry', mustCarrySchema);
+var mustCarry = mongoose.model('mustCarry', mustCarrySchema);
 
-module.exports = mustcarry;
+module.exports = mustCarry;
