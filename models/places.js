@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 var placeSchema = new Schema({
 
     slug:{
-      type:String
+      type:String, unique: true
     },
 
     title:{

@@ -3,16 +3,17 @@ var Schema = mongoose.Schema;
 
 var commonphrasesSchema = new Schema({
 
-    name: {
-      type: String
-    },
+	slug: {
+		type: String,
+		unique: true
+	},
+	name: {
+		type: String
+	},
 
-    commonphrases : [String]
+	commonphrases: [String]
 
-  },{
-    timestamps: true
-});
-
+}, {timestamps: true});
 
 var cphrases = mongoose.model('CommonPhrases', commonphrasesSchema);
 

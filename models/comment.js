@@ -1,29 +1,32 @@
 var mongoose = require('mongoose'),
-Schema = mongoose.Schema;
+	Schema = mongoose.Schema;
 
 var CommentSchema = new Schema({
 
-  type : String
+	type: String,
 
-  userID: {
-    type: Schema.Types.ObjectId
-  },
+	slug: {
+		type: String,
+		unique: true
+	},
 
-  parentComment: {
-    type: Schema.Types.ObjectId
-    default: false
-  },
+	userID: {
+		type: Schema.Types.ObjectId
+	},
 
-  childComment: {
-    type: [{
-      type: Schema.Types.ObjectId
-    }],
-    default:false
-  }
+	parentComment: {
+		type: Schema.Types.ObjectId default: false
+	},
 
-  },{
-        timestamps: true
-});
+	childComment: {
+		type: [
+			{
+				type: Schema.Types.ObjectId
+			}
+		],
+		default: false
+	}
 
+}, {timestamps: true});
 
 module.exports = mongoose.model('Comments', CommentSchema);

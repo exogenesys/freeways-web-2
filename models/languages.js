@@ -2,7 +2,9 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var languageSchema = new Schema({
-    slug:String,
+    slug:{
+      type:String, unique: true
+    },
     name : String,
     commonPhrases : [{
       phrase : String,

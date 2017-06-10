@@ -3,7 +3,9 @@ var Schema = mongoose.Schema;
 
 var tripSchema = new Schema({
 
-  slug:String,
+  slug:{
+    type:String, unique: true
+  },
 
   title:String,
 

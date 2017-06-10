@@ -3,7 +3,8 @@ var Schema = mongoose.Schema;
 
 var mustCarrySchema = new Schema({
     slug:{
-      type:String
+      type:String, unique: true
+      
     },
 
     title:{

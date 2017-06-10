@@ -3,7 +3,9 @@ var Schema = mongoose.Schema;
 
 var experienceSchema = new Schema({
 
-    slug:String,
+    slug:{
+      type:String, unique: true
+    },
 
     title:String,
 

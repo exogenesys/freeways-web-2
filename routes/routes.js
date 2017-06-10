@@ -5,6 +5,8 @@ const routes = module.exports = nextRoutes()
 // Destinamtion Route
 routes.add('destination', '/destination/:destID', 'destination')
 
+//Home Route
+routes.add('index', '/')
 
 // Experience Route
 routes.add('experience', '/experience/:expID', 'experience')
