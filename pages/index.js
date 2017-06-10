@@ -1,6 +1,5 @@
 import 'isomorphic-fetch';
 import React from 'react';
-import Cosmic from '../models/cosmic'
 import withRedux from 'next-redux-wrapper';
 
 import {Button, Card, Image, Header, Container} from 'semantic-ui-react'
@@ -18,8 +17,11 @@ import initStore from '../utils/store';
 import configureLoadingProgressBar from '../utils/routing'
 
 class Index extends React.Component {
+
 	static async getInitialProps() {
-		// return await Cosmic.getPage('destinations');
+		// const res = await fetch('https://api.cosmicjs.com/v1/freeways/object-type/destinations/search?metafield_key=introduction&metafield_value=green');
+		// const json = await res.json();
+		// return json;
 	}
 
   constructor (props) {
@@ -27,6 +29,7 @@ class Index extends React.Component {
   }
 
 	render() {
+		// const data = this.props.object
 		return (
 			<div>
 				<TopBar/>

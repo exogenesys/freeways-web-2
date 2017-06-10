@@ -2,7 +2,10 @@ import React from 'react'
 import {Segment, Header, Grid, Statistic, Popup} from 'semantic-ui-react'
 import Forecast from 'react-forecast'
 
-const Footer = () => (
+const Footer = (props) => {
+
+	return (
+
 	<Segment basic>
 		<Header size='huge'>Introduction</Header>
 		<br/>
@@ -17,6 +20,7 @@ const Footer = () => (
 		<br/>
 		<br/>
 		<br/>
+
 		<Grid columns={4}>
 			<Grid.Row centered>
 				<Grid.Column>
@@ -65,6 +69,6 @@ const Footer = () => (
 		<br/>
 		<br/>
 	</Segment>
-)
+)}
 
 export default Footer

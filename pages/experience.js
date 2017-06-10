@@ -29,33 +29,45 @@ import Trips from '../components/DestinationTrips'
 import Comments from '../components/Comments'
 import initStore from '../utils/store'
 import Forecast from 'react-forecast'
+import route from '../routes/routes'
 
 class Index extends React.Component {
-	static async getInitialProps({store}) {
-		// Adding a default/initialState can be done as follows:
-		// store.dispatch({type: 'ADD_TODO', text: 'It works!'});
-		// const res = await fetch('https://api.github.com/repos/ooade/NextSimpleStarter');
-		// const json = await res.json();
-		// return {stars: json.stargazers_count};
+
+	static async getInitialProps({query}) {
+
+		const expID = query[Object.keys(query)[0]];
+		console.log(expID);
+		const res = await fetch('http://lighght-dev.herokuapp.com/api/experiences/'+ expID);
+		const data = await res.json();
+		console.log(data);
+		return {data};
 	}
 
 	render() {
 
+		const expData = this.props.data;
+
 		return (
+
 			<div>
+
 				<TopBar/>
+
 				<Container fluid>
-					<Cover/>
+
+					<Cover cover = {expData}/>
 					<Container >
+
 						<Sticky innerZ={99999999999}>
 							<Menu/>
 						</Sticky>
-						<Introduction/>
-						<MustKnow/>
-						<MustCarry/>
-						<HowToReach/>
-						<Trips/>
-						<Comments/>
+
+						<Introduction intro = {expData} />
+						<MustKnow mustknow = {expData} />
+						<MustCarry mustcarry = {expData} />
+						<HowToReach htor = {expData} />
+						<Trips trips = {expData}/>
+						<Comments />
 						<br/>
 						<br/>
 					</Container>

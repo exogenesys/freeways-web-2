@@ -10,8 +10,11 @@ import {
 	Popup
 } from 'semantic-ui-react'
 
-const MustCarry = () => (
-	<Segment basic>
+const MustCarry = (props) => {
+
+	return(
+
+		<Segment basic>
 		<Header size='huge'>Things You Gotto Carry</Header>
 		<br/>
 
@@ -64,6 +67,6 @@ const MustCarry = () => (
 		<br/>
 
 	</ Segment>
-)
+)}
 
 export default MustCarry

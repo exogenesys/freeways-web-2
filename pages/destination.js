@@ -32,40 +32,71 @@ import Experiences from '../components/DestinationExperiences'
 import Trips from '../components/DestinationTrips'
 import initStore from '../utils/store'
 import Forecast from 'react-forecast'
+import route from '../routes/routes'
 
 
 class Index extends React.Component {
-	static async getInitialProps() {
-		// return await Cosmic.getDestination('ladakh');
+
+	constructor(props){
+		super(props);
+	}
+
+	static async getInitialProps({query}) {
+
+		 const destID = query[Object.keys(query)[0]]; // Getting the required String from Query object
+		 console.log(destID);
+		 const res = await fetch('http://lighght-dev.herokuapp.com/api/destination/'+ destID);
+     const data = await res.json();
+		 console.log(data);
+		 return {data};
 	}
 
 	render() {
-		// const destination = this.props.object.metafield
-		// console.log(destination);
+
+		const destData = this.props.data;
 
 		return (
+
 			<div>
 				<TopBar/>
+
 				<Container fluid>
-					<Cover/>
+
+					<Cover cover = {destData} />
+
 					<Container >
+
 						<Sticky innerZ={99999999999}>
 							<Menu/>
 						</Sticky>
-						<Introduction/>
-						<Places/>
-						<Experiences/>
-						<Trips/>
-						<MustKnow/>
-						<MustCarry/>
-						<Languages/>
-						<HowToReach/>
-						<GettingAround/>
-						<NearByDestinations/>
+
+						<Introduction intro = {destData} />
+
+						<Places place = {destData} />
+
+						<Experiences exp = {destData} />
+
+						<Trips trips = {destData} />
+
+						<MustKnow mustknow = {destData} />
+
+						<MustCarry mustcarry = {destData} />
+
+						<Languages />
+
+						<HowToReach htor = {destData} />
+
+						<GettingAround gtaround = {destData} />
+
+						<NearByDestinations />
+
 						<br/>
 						<br/>
+
 					</Container>
+
 					<Footer/>
+
 				</Container>
 			</div>
 		);
