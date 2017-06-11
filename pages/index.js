@@ -19,7 +19,7 @@ import configureLoadingProgressBar from '../utils/routing'
 class Index extends React.Component {
 
 	static async getInitialProps() {
-		const res = await fetch('http://lighght-dev.herokuapp.com/api/home');
+		const res = await fetch('http://lighght.herokuapp.com/api/home');
 		const data = await res.json();
 		console.log(data);
 		return {data};

@@ -41,7 +41,7 @@ class Index extends React.Component {
 	}
 
 	static async getInitialProps({query}) {
-		const res = await fetch('http://lighght-dev.herokuapp.com/api/destination/' + query.slug);
+		const res = await fetch('http://lighght.herokuapp.com/api/destination/' + query.slug);
 		const data = await res.json();
 		console.log(data);
 		return {data};

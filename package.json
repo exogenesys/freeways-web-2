@@ -29,7 +29,8 @@
     "semantic-ui-react": "^0.68.4",
     "token": "^0.1.0",
     "request": "latest",
-    "request-promise": "latest"
+    "request-promise": "latest",
+    "sw-precache-webpack-plugin": "^0.11.0"
   },
   "scripts": {
     "dev": "node server",
@@ -38,6 +39,5 @@
     "start": "NODE_ENV=production node server"
   },
   "devDependencies": {
-    "sw-precache-webpack-plugin": "^0.11.0"
   }
 }
