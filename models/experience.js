@@ -43,9 +43,7 @@ var experienceSchema = new Schema({
       type : String
     },
 
-    must_carry: [{
-      type: Schema.Types.ObjectId, ref: 'mustCarry'
-    }],
+    must_carry: [String],
 
     cover_photo: {
       type : String

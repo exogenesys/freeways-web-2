@@ -12,29 +12,24 @@ const extra = (
 const RecommendationCard = (props) => {
 	console.log(props);
 	return (
-		<Link
-		href={props.type + '/'  + props.data.slug}>
-			<Card style={{
-				marginBottom: '10px',
-				marginTop: '10px'
-			}}>
-				<Image src="https://placeimg.com/400/300/girls"/>
-				<Card.Content>
+		<Card>
+			<Image src="https://placeimg.com/400/300/girls"/>
+			<Card.Content>
 
-					<Card.Header>
-						{props.data.title}
-					</Card.Header>
-					<Card.Meta>
-						2-5 Days
-					</Card.Meta>
-					<Card.Description>
-						{props.data.title}
-					</Card.Description>
-					<Card.Content extra></Card.Content>
+				<Card.Header>
+					{props.data.title}
+				</Card.Header>
+				<Card.Meta>
+					2-5 Days
+				</Card.Meta>
+				<Card.Description>
+					{props.data.title}
+				</Card.Description>
+				<Card.Content extra></Card.Content>
 
-				</Card.Content>
-			</Card>
-		</Link>
+			</Card.Content>
+		</Card>
+
 	)
 }
 

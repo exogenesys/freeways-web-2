@@ -62,25 +62,15 @@ var destinationSchema = new Schema({
       type: String
     },
 
-    must_carry: [{
-      type: Schema.Types.ObjectId, ref: 'mustCarry'
-    }],
+    must_carry: [String],
 
-    places: [{
-      type: Schema.Types.ObjectId, ref: 'Place'
-    }],
+    places: [String],
 
-    experiences: [{
-      type : Schema.Types.ObjectId, ref: 'experiences'
-    }],
+    experiences: [String],
 
-    trips: [{
-      type : Schema.Types.ObjectId, ref: 'Trips'
-    }],
+    trips: [String],
 
-    languages: [{
-      type : Schema.Types.ObjectId, ref: 'languages'
-    }],
+    languages: [String],
 
     coverPhoto: {
       type : String

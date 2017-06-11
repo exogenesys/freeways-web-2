@@ -61,17 +61,11 @@ var placeSchema = new Schema({
       type : String
     },
 
-    must_carry: [{
-      type: Schema.Types.ObjectId, ref: 'mustCarry'
-    }],
+    must_carry: [String],
 
-    experiences: [{
-      type : Schema.Types.ObjectId, ref: 'experiences'
-    }],
+    experiences: [String],
 
-    trips: [{
-      type : Schema.Types.ObjectId, ref: 'Trips'
-    }],
+    trips: [String],
 
     cover_photo: {
       type : String
