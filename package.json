@@ -4,7 +4,7 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.16.2",
-    "cosmicjs": "^2.39.91",
+    "cors":"latest"
     "express": "^4.14.0",
     "faker": "^4.1.0",
     "jsonwebtoken": "^7.4.1",

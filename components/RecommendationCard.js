@@ -12,22 +12,23 @@ const extra = (
 const RecommendationCard = (props) => {
 	console.log(props);
 	return (
-		<Card>
-			<Image src="https://placeimg.com/400/300/girls"/>
-			<Card.Content>
-				<Card.Header>
-					{props.data.title}
-				</Card.Header>
-				<Card.Meta>
-					{props.data.caption}
-				</Card.Meta>
-				<Card.Description>
-					{props.data.time_to_explore}
-				</Card.Description>
-				<Card.Content extra></Card.Content>
-			</Card.Content>
-		</Card>
-
+		<Link href={{ pathname: props.type, query: { slug: props.data.slug } }}>
+			<Card>
+				<Image src="https://placeimg.com/400/300/girls"/>
+				<Card.Content>
+					<Card.Header>
+						{props.data.title}
+					</Card.Header>
+					<Card.Meta>
+						{props.data.caption}
+					</Card.Meta>
+					<Card.Description>
+						{props.data.time_to_explore}
+					</Card.Description>
+					<Card.Content extra></Card.Content>
+				</Card.Content>
+			</Card>
+		</Link>
 	)
 }
 

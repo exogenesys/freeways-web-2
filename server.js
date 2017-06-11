@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const next = require('next');
 const api = require("./api/api.js");
+const cors = require('cors')
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({dir: '.', dev});
@@ -15,30 +16,33 @@ app.prepare().then(_ => {
 	// serve service worker
 	server.get('/sw.js', (req, res) => res.sendFile(path.resolve('./.next/sw.js')));
 
+	server.use(cors())
+
 	server.use('/api', api);
 
-	server.get('/destination/:slug', (req, res) => {
-  	const params = { slug: req.params.slug }
-  	return app.render(req, res, '/destination', params);
-	});
-
-	server.get('/place/:slug', (req, res) => {
-		const params = { slug: req.params.slug }
-		return app.render(req, res, '/place', params);
-	});
-
-	server.get('/experience/:slug', (req, res) => {
-  	const params = { slug: req.params.slug }
-  	return app.render(req, res, '/experience', params);
-	});
-
-	server.get('/trip/:slug', (req, res) => {
-  	const params = { slug: req.params.slug }
-  	return app.render(req, res, '/trip', params);
-	});
+	// server.get('/destination/:slug', (req, res) => {
+  // 	const params = { slug: req.params.slug }
+  // 	return app.render(req, res, '/destination', params);
+	// });
+	//
+	// server.get('/place/:slug', (req, res) => {
+	// 	const params = { slug: req.params.slug }
+	// 	return app.render(req, res, '/place', params);
+	// });
+	//
+	// server.get('/experience/:slug', (req, res) => {
+  // 	const params = { slug: req.params.slug }
+  // 	return app.render(req, res, '/experience', params);
+	// });
+	//
+	// server.get('/trip/:slug', (req, res) => {
+  // 	const params = { slug: req.params.slug }
+  // 	return app.render(req, res, '/trip', params);
+	// });
 
 	server.get('*', (req, res) => {
-		return app.render(req, res, '/');
+		// return app.render(req, res, '/');
+		return handle(req, res);
 	});
 
 	server.listen(PORT, err => {
