@@ -42,24 +42,7 @@ class RecommendationCards extends React.Component {
 		}
 		return (
 			<Slider {...settings}>
-				<div>
-					<RecommendationCard/>
-				</div>
-				<div>
-					<RecommendationCard/>
-				</div>
-				<div>
-					<RecommendationCard/>
-				</div>
-				<div>
-					<RecommendationCard/>
-				</div>
-				<div>
-					<RecommendationCard/>
-				</div>
-				<div>
-					<RecommendationCard/>
-				</div>
+			{ this.props.data.map((obj) => 			<div><RecommendationCard type={this.props.type} data={obj}/></div>) }
 			</Slider>
 		);
 	}

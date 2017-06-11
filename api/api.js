@@ -19,6 +19,52 @@ mongoose.connect("mongodb://saulgoodman:hackerman@ds163561.mlab.com:63561/freewa
 
 console.log("hello from api");
 
+Router.get('/home', (req, res) => {
+	console.log('hello from home');
+	var obj = {	};
+	trips
+	.find()
+	.select('slug title caption')
+	.limit(10)
+	.exec(function(err, trips) {
+		if (err){
+			console.log('error finding trips for home')
+		} else {
+			obj.trips = trips;
+
+			destinations
+			.find()
+			.select('slug title caption')
+			.limit(10)
+			.exec(function(err, destinations) {
+				if (err){
+					console.log('error finding destinations for home')
+				} else {
+					obj.destinations = destinations;
+
+					experiences
+					.find()
+					.select('slug title caption')
+					.limit(10)
+					.exec(function(err, experiences) {
+						if (err){
+							console.log('error finding experiences for home')
+						} else {
+							obj.experiences = experiences;
+							console.log(obj);
+							res.send(obj);
+						}
+					})
+
+
+				}
+			})
+
+
+		}
+	})
+});
+
 Router.get("/trip/:slug", (req, res) => {
 	console.log("hello from ttrips");
 	trips.find({
@@ -96,133 +142,132 @@ Router.get("/fresh", (req, res) => {
 	const url = 'http://api.cosmicjs.com/v1/freewaays'
 	const url2 = 'http://api.cosmicjs.com/v1/freeways'
 	console.log("fresh");
-		rp(url).then(function(body) {
-			buckets = JSON.parse(body)
-			data = {};
-			fdata = {};
-			buckets.bucket.objects.forEach(function(v) {
-				data[v.type_slug] = [];
-				fdata[v.type_slug] = [];
-			})
+	rp(url).then(function(body) {
+		buckets = JSON.parse(body)
+		data = {};
+		fdata = {};
+		buckets.bucket.objects.forEach(function(v) {
+			data[v.type_slug] = [];
+			fdata[v.type_slug] = [];
+		})
 
-			buckets.bucket.objects.forEach(function(v) {
-				if (Object.keys(data).indexOf(v.type_slug) != -1) {
-					data[v.type_slug].push(v)
-				}
-			});
+		buckets.bucket.objects.forEach(function(v) {
+			if (Object.keys(data).indexOf(v.type_slug) != -1) {
+				data[v.type_slug].push(v)
+			}
+		});
 
-			Object.keys(data).forEach(function(v) {
-				data[v].forEach(function(i) {
-					fdata[v].push({
-						slug: i.slug,
-						title: i.title,
-						_id: mongoose.Types.ObjectId(i._id)
-					});
+		Object.keys(data).forEach(function(v) {
+			data[v].forEach(function(i) {
+				fdata[v].push({
+					slug: i.slug,
+					title: i.title,
+					_id: mongoose.Types.ObjectId(i._id)
+				});
 
-					if (i.metadata !== null) {
-						Object.keys(i.metadata).forEach(function(j) {
-							len = fdata[v].length;
-							if (typeof i.metadata[j] === 'object') {
-								if ([j] == 'places') {
-									Object.keys(i.metadata[j]).forEach(function(k) {
-										fdata[v][len - 1][j] = [];
-										fdata[v][len - 1][j].push(mongoose.Types.ObjectId(i.metadata[j][k]._id));
-										//console.log(fdata[v][len-1][j]);
+				if (i.metadata !== null) {
+					Object.keys(i.metadata).forEach(function(j) {
+						len = fdata[v].length;
+						if (typeof i.metadata[j] === 'object') {
+							if ([j] == 'places') {
+								Object.keys(i.metadata[j]).forEach(function(k) {
+									fdata[v][len - 1][j] = [];
+									fdata[v][len - 1][j].push(mongoose.Types.ObjectId(i.metadata[j][k]._id));
+									//console.log(fdata[v][len-1][j]);
 
-									});
-								} else {
-									fdata[v][len - 1][j] = i.metadata[j];
-								}
+								});
 							} else {
 								fdata[v][len - 1][j] = i.metadata[j];
 							}
-						})
-					}
-
-				})
-			})
-
-			//console.log(fdata);
-			console.log(Object.keys(fdata['languages'][0]));
-			fdata["languages"].forEach(function(l) {
-				if (Object.keys(l).indexOf('common_phrases') != -1)
-					l["common_phrases"].forEach(function(v) {
-						delete v.metafields;
-						delete v.bucket;
-						delete v.type_slug;
-						delete v.status;
-						delete v.content;
-						delete v.created_at;
-						delete v.created_by;
-						delete v.created;
-						delete v.modified_by;
-						delete v.modified_at;
-
-						Object.keys(v.metadata).forEach(function(i) {
-							v[i] = v.metadata[i];
-						})
-
-						delete v.metadata;
-						delete v._id;
-						delete v.slug;
-						delete v.language;
+						} else {
+							fdata[v][len - 1][j] = i.metadata[j];
+						}
 					})
-			})
-
-			mustCarry.collection.insert(fdata['must-carries'], function(err, data) {
-				if (err) {
-					console.error("error took place while adding mustCarry");
-				} else {
-					console.log("success while adding mustCarry");
 				}
-			});
 
-			languages.collection.insert(fdata['languages'], function(err, data) {
-				if (err) {
-					console.error("error took place");
-				} else {
-					console.log("success while adding languages");
-				}
 			})
+		})
 
+		//console.log(fdata);
+		console.log(Object.keys(fdata['languages'][0]));
+		fdata["languages"].forEach(function(l) {
+			if (Object.keys(l).indexOf('common_phrases') != -1)
+				l["common_phrases"].forEach(function(v) {
+					delete v.metafields;
+					delete v.bucket;
+					delete v.type_slug;
+					delete v.status;
+					delete v.content;
+					delete v.created_at;
+					delete v.created_by;
+					delete v.created;
+					delete v.modified_by;
+					delete v.modified_at;
 
-			for (var i = 0; i < fdata['places'].length; i++) {
-				places.collection.insert(fdata['places'][i], function(err, data) {
-					if (err) {
-						console.error("error took place while adding places", err);
-					} else {
-						console.log("success while adding places");
-					}
+					Object.keys(v.metadata).forEach(function(i) {
+						v[i] = v.metadata[i];
+					})
+
+					delete v.metadata;
+					delete v._id;
+					delete v.slug;
+					delete v.language;
 				})
-			}
+		})
 
-			destinations.collection.insert(fdata['destinations'], function(err, data) {
+		mustCarry.collection.insert(fdata['must-carries'], function(err, data) {
+			if (err) {
+				console.error("error took place while adding mustCarry");
+			} else {
+				console.log("success while adding mustCarry");
+			}
+		});
+
+		languages.collection.insert(fdata['languages'], function(err, data) {
+			if (err) {
+				console.error("error took place");
+			} else {
+				console.log("success while adding languages");
+			}
+		})
+
+		for (var i = 0; i < fdata['places'].length; i++) {
+			places.collection.insert(fdata['places'][i], function(err, data) {
 				if (err) {
-					console.error("error destinations");
+					console.error("error took place while adding places", err);
 				} else {
-					console.log("success while adding destinations");
+					console.log("success while adding places");
 				}
 			})
+		}
 
-			trips.collection.insert(fdata['trips'], function(err, data) {
-				if (err) {
-					console.error("error in trips");
-				} else {
-					console.log("success while adding trips");
-				}
-			});
+		destinations.collection.insert(fdata['destinations'], function(err, data) {
+			if (err) {
+				console.error("error destinations");
+			} else {
+				console.log("success while adding destinations");
+			}
+		})
 
-			experiences.collection.insert(fdata['experiences'], function(err, data) {
-				if (err) {
-					console.error("error in experiences");
-				} else {
-					console.log("success while adding experiences");
-				}
-			});
-
-			res.send("fresh data has been added to the database")
-
+		trips.collection.insert(fdata['trips'], function(err, data) {
+			if (err) {
+				console.error("error in trips");
+			} else {
+				console.log("success while adding trips");
+			}
 		});
+
+		experiences.collection.insert(fdata['experiences'], function(err, data) {
+			if (err) {
+				console.error("error in experiences");
+			} else {
+				console.log("success while adding experiences");
+			}
+		});
+
+		res.send("fresh data has been added to the database")
+
+	});
 });
 
 module.exports = Router

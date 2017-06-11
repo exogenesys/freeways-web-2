@@ -19,9 +19,10 @@ import configureLoadingProgressBar from '../utils/routing'
 class Index extends React.Component {
 
 	static async getInitialProps() {
-		// const res = await fetch('https://api.cosmicjs.com/v1/freeways/object-type/destinations/search?metafield_key=introduction&metafield_value=green');
-		// const json = await res.json();
-		// return json;
+		const res = await fetch('http://localhost:3000/api/home');
+		const data = await res.json();
+		console.log(data);
+		return {data};
 	}
 
   constructor (props) {
@@ -29,7 +30,9 @@ class Index extends React.Component {
   }
 
 	render() {
-		// const data = this.props.object
+
+		const home = this.props.data;
+
 		return (
 			<div>
 				<TopBar/>
@@ -40,17 +43,19 @@ class Index extends React.Component {
 						<br/><br/>
 						<Header size='huge'>Trending Trips</Header>
 						<br/><br/>
-						<RecommendationCards/>
+						<RecommendationCards data={home.trips} type='trip'/>
 						<br/><br/>
 						<br/><br/>
 						<Header size='huge'>Trending Destinations</Header>
 						<br/><br/>
-						<RecommendationCards/>
+						<RecommendationCards data={home.destinations} type='destination'/>
 						<br/><br/>
 						<br/><br/>
-						<Header size='huge'>Trending Experieces</Header>
+						<Header size='huge'>Trending Experiences</Header>
 						<br/><br/>
-						<RecommendationCards/>
+						<RecommendationCards data={home.experiences} type='experience'/>
+						<br/><br/>
+						<br/><br/>
 					</Container>
 					<Footer/>
 				</Container>

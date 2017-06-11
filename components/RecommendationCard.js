@@ -11,7 +11,7 @@ const extra = (
 const RecommendationCard = (props) => {
 console.log(props);
 	return(
-	<Card href='#card-example-link-card' style={{
+	<Card href={props.type + '/' + props.data.slug} style={{
 		marginBottom: '10px',
 		marginTop: '10px'
 	}}>
@@ -19,14 +19,17 @@ console.log(props);
 		<Card.Content>
 
 			<Card.Header>
-				{//props.title[0]}
+				{
+					props.data.title
 			  }
 			</Card.Header>
 			<Card.Meta>
 				2-5 Days
 			</Card.Meta>
 			<Card.Description>
-			Lorem ipsum dolor sit amet
+			{
+				props.data.title
+			}
 			</Card.Description>
 			<Card.Content extra></Card.Content>
 
