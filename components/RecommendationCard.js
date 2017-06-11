@@ -22,15 +22,13 @@ const RecommendationCard = (props) => {
 				<Card.Content>
 
 					<Card.Header>
-						{props.data.title
-}
+						{props.data.title}
 					</Card.Header>
 					<Card.Meta>
 						2-5 Days
 					</Card.Meta>
 					<Card.Description>
-						{props.data.title
-}
+						{props.data.title}
 					</Card.Description>
 					<Card.Content extra></Card.Content>
 

@@ -1,5 +1,6 @@
 import 'isomorphic-fetch';
 import React from 'react';
+import axios from 'axios';
 import withRedux from 'next-redux-wrapper';
 
 import {Button, Card, Image, Header, Container} from 'semantic-ui-react'
@@ -8,6 +9,7 @@ import TopBar from '../components/TopBar'
 
 import RecommendationCards from '../components/RecommendationCards'
 import RecommendationBricks from '../components/RecommendationBricks'
+
 import Cover from '../components/Cover'
 
 import Footer from '../components/Footer'
@@ -18,16 +20,16 @@ import configureLoadingProgressBar from '../utils/routing'
 
 class Index extends React.Component {
 
+	constructor (props) {
+		super(props)
+	}
+
 	static async getInitialProps() {
-		const res = await fetch('http://lighght.herokuapp.com/api/home');
-		const data = await res.json();
-		console.log(data);
+		const res = await axios.get('http://lighght-dev.herokuapp.com/api/home');
+		const data = res.data;
 		return {data};
 	}
 
-  constructor (props) {
-    super(props)
-  }
 
 	render() {
 
