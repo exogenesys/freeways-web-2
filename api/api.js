@@ -25,7 +25,7 @@ Router.get('/home', (req, res) => {
 	var obj = {	};
 	trips
 	.find()
-	.select('slug title caption')
+	.select('slug title caption time_to_explore')
 	.limit(10)
 	.exec(function(err, trips) {
 		if (err){
@@ -35,7 +35,7 @@ Router.get('/home', (req, res) => {
 
 			destinations
 			.find()
-			.select('slug title caption')
+			.select('slug title caption  time_to_explore')
 			.limit(10)
 			.exec(function(err, destinations) {
 				if (err){
@@ -45,7 +45,7 @@ Router.get('/home', (req, res) => {
 
 					experiences
 					.find()
-					.select('slug title caption')
+					.select('slug title caption time_to_explore')
 					.limit(10)
 					.exec(function(err, experiences) {
 						if (err){
@@ -78,6 +78,21 @@ Router.get('/placesslug', (req, res) => {
 			console.log('error finding trips for home')
 		} else {
 			res.send(places)
+		}
+	})
+});
+
+Router.get('/exslug', (req, res) => {
+	console.log('hello from home');
+	var obj = {	};
+	experiences
+	.find()
+	.select('slug title')
+	.exec(function(err, experiences) {
+		if (err){
+			console.log('error finding experiences for home')
+		} else {
+			res.send(experiences)
 		}
 	})
 });

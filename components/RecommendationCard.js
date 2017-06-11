@@ -15,18 +15,16 @@ const RecommendationCard = (props) => {
 		<Card>
 			<Image src="https://placeimg.com/400/300/girls"/>
 			<Card.Content>
-
 				<Card.Header>
 					{props.data.title}
 				</Card.Header>
 				<Card.Meta>
-					2-5 Days
+					{props.data.caption}
 				</Card.Meta>
 				<Card.Description>
-					{props.data.title}
+					{props.data.time_to_explore}
 				</Card.Description>
 				<Card.Content extra></Card.Content>
-
 			</Card.Content>
 		</Card>
 
