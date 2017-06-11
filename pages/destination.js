@@ -55,44 +55,26 @@ class Index extends React.Component {
 
 			<div>
 				<TopBar/>
-
 				<Container fluid>
-
 					<Cover cover={destData}/>
-
 					<Container >
-
 						<Sticky innerZ={99999999999}>
 							<Menu/>
 						</Sticky>
-
 						<Introduction intro={destData}/>
-
-						<Places place={destData}/>
-
+{/*						<Places place={destData}/>
 						<Experiences exp={destData}/>
-
-						<Trips trips={destData}/>
-
+						<Trips trips={destData}/>                */}
 						<MustKnow mustknow={destData}/>
-
 						<MustCarry mustcarry={destData}/>
-
 						<Languages/>
-
 						<HowToReach htor={destData}/>
-
 						<GettingAround gtaround={destData}/>
-
-						<NearByDestinations/>
-
+		{/*					<NearByDestinations/>*/}
 						<br/>
 						<br/>
-
 					</Container>
-
 					<Footer/>
-
 				</Container>
 			</div>
 		);

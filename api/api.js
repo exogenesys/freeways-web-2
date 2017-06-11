@@ -142,7 +142,7 @@ Router.get("/fresh", (req, res) => {
 	const url = 'http://api.cosmicjs.com/v1/freewaays'
 	const url2 = 'http://api.cosmicjs.com/v1/freeways'
 	console.log("fresh");
-	rp(url).then(function(body) {
+	rp(url2).then(function(body) {
 		buckets = JSON.parse(body)
 		data = {};
 		fdata = {};
@@ -215,6 +215,7 @@ Router.get("/fresh", (req, res) => {
 				})
 		})
 
+
 		mustCarry.collection.insert(fdata['must-carries'], function(err, data) {
 			if (err) {
 				console.error("error took place while adding mustCarry");
@@ -241,13 +242,16 @@ Router.get("/fresh", (req, res) => {
 			})
 		}
 
-		destinations.collection.insert(fdata['destinations'], function(err, data) {
-			if (err) {
-				console.error("error destinations");
-			} else {
-				console.log("success while adding destinations");
-			}
-		})
+
+		for (var i = 0; i < fdata['destinations'].length; i++) {
+			destinations.collection.insert(fdata['destinations'][i], function(err, data) {
+				if (err) {
+					console.error("error took place while adding destinations", err);
+				} else {
+					console.log("success while adding places");
+				}
+			})
+		}
 
 		trips.collection.insert(fdata['trips'], function(err, data) {
 			if (err) {
@@ -257,13 +261,15 @@ Router.get("/fresh", (req, res) => {
 			}
 		});
 
-		experiences.collection.insert(fdata['experiences'], function(err, data) {
-			if (err) {
-				console.error("error in experiences");
-			} else {
-				console.log("success while adding experiences");
-			}
-		});
+		for (var i = 0; i < fdata['experiences'].length; i++) {
+			experiences.collection.insert(fdata['experiences'][i], function(err, data) {
+				if (err) {
+					console.error("error took place while adding experiences", err);
+				} else {
+					console.log("success while adding places");
+				}
+			})
+		}
 
 		res.send("fresh data has been added to the database")
 
