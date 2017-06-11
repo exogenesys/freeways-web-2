@@ -19,6 +19,7 @@ mongoose.connect("mongodb://saulgoodman:hackerman@ds163561.mlab.com:63561/freewa
 
 console.log("hello from api");
 
+
 Router.get('/home', (req, res) => {
 	console.log('hello from home');
 	var obj = {	};
@@ -65,6 +66,23 @@ Router.get('/home', (req, res) => {
 	})
 });
 
+
+Router.get('/placesslug', (req, res) => {
+	console.log('hello from home');
+	var obj = {	};
+	places
+	.find()
+	.select('slug title')
+	.exec(function(err, places) {
+		if (err){
+			console.log('error finding trips for home')
+		} else {
+			res.send(places)
+		}
+	})
+});
+
+
 Router.get("/trip/:slug", (req, res) => {
 	console.log("hello from ttrips");
 	trips.find({
@@ -89,6 +107,7 @@ Router.get("/destination/:slug", (req, res) => {
 		}
 	});
 });
+
 
 Router.get("/place/:slug", (req, res) => {
 	places.find({
