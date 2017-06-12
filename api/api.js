@@ -22,19 +22,19 @@ console.log("hello from api");
 Router.get('/home', (req, res) => {
 	console.log('hello from home');
 	var obj = {};
-	trips.find().select('slug title caption time_to_explore').limit(10).exec(function(err, trips) {
+	trips.find().select('slug title caption time_to_explore img').limit(10).exec(function(err, trips) {
 		if (err) {
 			console.log('error finding trips for home')
 		} else {
 			obj.trips = trips;
 
-			destinations.find().select('slug title caption  time_to_explore').limit(10).exec(function(err, destinations) {
+			destinations.find().select('slug title caption time_to_explore img').limit(10).exec(function(err, destinations) {
 				if (err) {
 					console.log('error finding destinations for home')
 				} else {
 					obj.destinations = destinations;
 
-					experiences.find().select('slug title caption time_to_explore').limit(10).exec(function(err, experiences) {
+					experiences.find().select('slug title caption time_to_explore img').limit(10).exec(function(err, experiences) {
 						if (err) {
 							console.log('error finding experiences for home')
 						} else {
