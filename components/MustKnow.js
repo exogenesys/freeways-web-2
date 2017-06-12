@@ -6,7 +6,7 @@ const MustCarry = (props) => {
 	return(
 
 	<Segment basic>
-		<Header size='huge'>Things You Gotto Know</Header>
+		<Header size='huge' id="guide">Things You Gotto Know</Header>
 		<br/>
 
 		<List divided inverted relaxed>

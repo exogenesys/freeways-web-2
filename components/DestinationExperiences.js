@@ -37,7 +37,7 @@ export default class Experiences extends Component {
 
 		return (
 			<Segment basic>
-				<Header size='huge'>Experiences</Header>
+				<Header size='huge' id="exp">Experiences</Header>
 				<br/>
 				<InterestMenu/>
 				<br/>

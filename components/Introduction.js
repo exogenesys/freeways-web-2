@@ -8,7 +8,7 @@ export default class Footer extends React.Component {
 
 		return (
 			<Segment basic>
-				<Header size='huge'>Introduction</Header>
+				<Header size='huge' id="intro">Introduction</Header>
 				<br/>
 				<br/>
 

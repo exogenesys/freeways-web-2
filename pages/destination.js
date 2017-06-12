@@ -42,12 +42,12 @@ class Index extends React.Component {
 	}
 
 	static async getInitialProps({query}) {
-		const res = await axios.get('http://lighght-dev.herokuapp.com/api/destination/'  + query.slug);
+		const res = await axios.get('http://lighght.herokuapp.com/api/destination/'  + query.slug);
 		const data = res.data;
 		console.log(data);
 		return {data};
 
-		// const res = await fetch('http://lighght-dev.herokuapp.com/api/destination/' + query.slug);
+		// const res = await fetch('http://lighght.herokuapp.com/api/destination/' + query.slug);
 		// const data = await res.json();
 		// return {data};
 	}
@@ -65,11 +65,11 @@ class Index extends React.Component {
 						<Sticky innerZ={99999999999}>
 							<Menu/>
 						</Sticky>
-						<Introduction intro={z.destination.introduction}/>
-						<Places places={z.places}/>
+						<Introduction intro={z.destination.introduction} />
+						<Places places={z.places} />
 						<Experiences exp={z.experiences}/>
 {/*						<Trips trips={z.destination}/>                */}
-						<MustKnow must_know={z.destination.must_know}/>
+						<MustKnow must_know={z.destination.must_know} />
 						<MustCarry must_carry={z.destination.must_carry}/>
 {/*						<Languages/> */}
 						<HowToReach car={z.destination.how_to_reach_by_car}

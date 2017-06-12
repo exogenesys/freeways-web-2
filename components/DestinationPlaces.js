@@ -43,7 +43,7 @@ export default class Places extends Component {
 
 		return (
 			<Segment basic>
-				<Header size='huge'>Places</Header>
+				<Header size='huge' id="places">Places</Header>
 				<br/>
 				<InterestMenu/>
 				<br/>

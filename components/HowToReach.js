@@ -6,7 +6,7 @@ import {
 	Grid,
 	List,
 	Button,
-	Icon,
+	Icon
 } from 'semantic-ui-react'
 
 export default class HowToReach extends Component {
@@ -18,6 +18,75 @@ export default class HowToReach extends Component {
 	render() {
 		const {activeItem} = this.state
 
+		var text = '';
+
+		switch (activeItem) {
+			case 'car':
+				text = this.props.car;
+				break;
+			case 'bus':
+				text = this.props.bus;
+				break;
+			case 'train':
+				text = this.props.train;
+				break;
+			case 'plane':
+				text = this.props.plane;
+				break;
+			default:
+		}
+
+		var items = [];
+
+		if (this.props.car !== '') {
+			items.push(
+				<Menu.Item name='car' active={activeItem === 'car'} onClick={this.handleItemClick}>
+					<div style={{
+						float: 'left'
+					}}>
+						<Icon name='car'/>
+						&nbsp;&nbsp;Car
+					</div>
+				</Menu.Item>
+			);
+		}
+		if (this.props.bus !== '') {
+			items.push(
+				<Menu.Item name='bus' active={activeItem === 'bus'} onClick={this.handleItemClick}>
+					<div style={{
+						float: 'left'
+					}}>
+						<Icon name='bus'/>
+						&nbsp;&nbsp;Bus
+					</div>
+				</Menu.Item>
+			);
+		}
+		if (this.props.train !== '') {
+			items.push(
+				<Menu.Item name='train' active={activeItem === 'train'} onClick={this.handleItemClick}>
+					<div style={{
+						float: 'left'
+					}}>
+						<Icon name='train'/>
+						&nbsp;&nbsp;Train
+					</div>
+				</Menu.Item>
+			);
+		}
+		if (this.props.plane !== '') {
+			items.push(
+				<Menu.Item name='plane' active={activeItem === 'plane'} onClick={this.handleItemClick}>
+					<div style={{
+						float: 'left'
+					}}>
+						<Icon name='plane'/>
+						&nbsp;&nbsp;Plane
+					</div>
+				</Menu.Item>
+			);
+		}
+
 		return (
 
 			<Segment basic>
@@ -28,34 +97,7 @@ export default class HowToReach extends Component {
 					<Grid.Row>
 						<Grid.Column width={3}>
 							<Menu pointing secondary vertical>
-
-								<Menu.Item name='car' active={activeItem === 'car'}  onClick={this.handleItemClick}>
-									<div style={{float: 'left'}}>
-									<Icon name='car'/>
-										&nbsp;&nbsp;Car
-									</div>
-								</Menu.Item>
-
-								<Menu.Item name='bus' active={activeItem === 'bus'}  onClick={this.handleItemClick}>
-									<div style={{float: 'left'}}>
-									<Icon name='bus' />
-										&nbsp;&nbsp;Bus
-									</div>
-								</Menu.Item>
-
-								<Menu.Item name='train' active={activeItem === 'train'} onClick={this.handleItemClick}>
-									<div style={{float: 'left'}}>
-									<Icon name='train' />
-										&nbsp;&nbsp;Train
-									</div>
-								</Menu.Item>
-
-								<Menu.Item name='plane' active={activeItem === 'plane'} onClick={this.handleItemClick}>
-									<div style={{float: 'left'}}>
-									<Icon name='plane' />
-										&nbsp;&nbsp;Airplane
-									</div>
-								</Menu.Item>
+							{items}
 							</Menu>
 
 						</Grid.Column>
@@ -68,7 +110,7 @@ export default class HowToReach extends Component {
 									marginTop: '-27px'
 								}}>
 
-									Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+									{text}
 
 								</p>
 							</Segment>
