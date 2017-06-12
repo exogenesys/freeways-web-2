@@ -99,7 +99,7 @@ Router.get("/destination/:slug", (req, res) => {
 				"slug": {
 					"$in": data[0].places
 				}
-			}).select('title name caption tags').exec(function(err, _places) {
+			}).select('slug title name caption tags').exec(function(err, _places) {
 				if(err) {
 					console.error(err);
 				} else {
@@ -107,7 +107,7 @@ Router.get("/destination/:slug", (req, res) => {
 						"slug": {
 							"$in": data[0].experiences
 						}
-					}).select('title name caption tags').exec(function(err, _experiences) {
+					}).select('slug title name caption tags').exec(function(err, _experiences) {
 						if(err) {
 							console.error(err);
 						} else {
