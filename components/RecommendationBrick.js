@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
-import {Image, Card, Header, Icon} from 'semantic-ui-react'
+import {Card, Header, Icon} from 'semantic-ui-react'
+import {Image} from 'cloudinary-react';
 
 export default class Brick extends React.Component {
 	render() {
@@ -15,7 +16,7 @@ export default class Brick extends React.Component {
 						<Card.Header style={{
 							color: 'white'
 						}}>
-							{this.props.data.slug}
+							{this.props.data.title}
 							<br/>
 						</Card.Header>
 						<Card.Description style={{
@@ -24,6 +25,7 @@ export default class Brick extends React.Component {
 							<p style={{
 								fontSize: '16px'
 							}}>
+							{this.props.data.caption}
 								<br/>
 								<br/>
 								<br/>
@@ -32,7 +34,8 @@ export default class Brick extends React.Component {
 						</Card.Description>
 						<Card.Meta style={{
 							color: 'white'
-						}}></Card.Meta>
+						}}>
+						</Card.Meta>
 					</Card.Content>
 					<Card.Content extra style={{
 						color: 'white'

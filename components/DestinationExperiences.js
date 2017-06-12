@@ -22,11 +22,8 @@ export default class Experiences extends Component {
 			rows = [];
 		while (j * 4 + i < this.props.exp.length) {
 			while (i < 4 && j * 4 + i < this.props.exp.length) {
-				var obj = {
-					slug: this.props.exp[j * 4 + i]
-				}
 				cols.push(
-					<Grid.Column width={4}><RecommendationBrick type='experience' data={obj}/></Grid.Column>
+					<Grid.Column width={4}><RecommendationBrick type='experience' data={this.props.exp[j * 4 + i]}/></Grid.Column>
 				);
 				i++;
 			}

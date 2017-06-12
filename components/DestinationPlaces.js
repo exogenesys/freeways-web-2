@@ -26,11 +26,8 @@ export default class Places extends Component {
 			rows = [];
 		while (j * 4 + i < this.props.places.length) {
 			while (i < 4 && j * 4 + i < this.props.places.length) {
-				var obj = {
-					slug: this.props.places[j * 4 + i]
-				}
 				cols.push(
-					<Grid.Column width={4}><RecommendationBrick type='place' data={obj}/></Grid.Column>
+					<Grid.Column width={4}><RecommendationBrick type='place' data={this.props.places[j * 4 + i]}/></Grid.Column>
 				);
 				i++;
 			}

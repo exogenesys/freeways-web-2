@@ -4,7 +4,9 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.16.2",
-    "cors":"latest",
+    "cloudinary": "^1.9.0",
+    "cloudinary-react": "^1.0.4",
+    "cors": "latest",
     "express": "^4.14.0",
     "faker": "^4.1.0",
     "jsonwebtoken": "^7.4.1",
