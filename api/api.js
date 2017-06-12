@@ -19,36 +19,23 @@ mongoose.connect("mongodb://saulgoodman:hackerman@ds163561.mlab.com:63561/freewa
 
 console.log("hello from api");
 
-
 Router.get('/home', (req, res) => {
 	console.log('hello from home');
-	var obj = {	};
-	trips
-	.find()
-	.select('slug title caption time_to_explore')
-	.limit(10)
-	.exec(function(err, trips) {
-		if (err){
+	var obj = {};
+	trips.find().select('slug title caption time_to_explore').limit(10).exec(function(err, trips) {
+		if (err) {
 			console.log('error finding trips for home')
 		} else {
 			obj.trips = trips;
 
-			destinations
-			.find()
-			.select('slug title caption  time_to_explore')
-			.limit(10)
-			.exec(function(err, destinations) {
-				if (err){
+			destinations.find().select('slug title caption  time_to_explore').limit(10).exec(function(err, destinations) {
+				if (err) {
 					console.log('error finding destinations for home')
 				} else {
 					obj.destinations = destinations;
 
-					experiences
-					.find()
-					.select('slug title caption time_to_explore')
-					.limit(10)
-					.exec(function(err, experiences) {
-						if (err){
+					experiences.find().select('slug title caption time_to_explore').limit(10).exec(function(err, experiences) {
+						if (err) {
 							console.log('error finding experiences for home')
 						} else {
 							obj.experiences = experiences;
@@ -57,24 +44,18 @@ Router.get('/home', (req, res) => {
 						}
 					})
 
-
 				}
 			})
-
 
 		}
 	})
 });
 
-
 Router.get('/placesslug', (req, res) => {
 	console.log('hello from home');
-	var obj = {	};
-	places
-	.find()
-	.select('slug title')
-	.exec(function(err, places) {
-		if (err){
+	var obj = {};
+	places.find().select('slug title').exec(function(err, places) {
+		if (err) {
 			console.log('error finding trips for home')
 		} else {
 			res.send(places)
@@ -84,19 +65,15 @@ Router.get('/placesslug', (req, res) => {
 
 Router.get('/exslug', (req, res) => {
 	console.log('hello from home');
-	var obj = {	};
-	experiences
-	.find()
-	.select('slug title')
-	.exec(function(err, experiences) {
-		if (err){
+	var obj = {};
+	experiences.find().select('slug title').exec(function(err, experiences) {
+		if (err) {
 			console.log('error finding experiences for home')
 		} else {
 			res.send(experiences)
 		}
 	})
 });
-
 
 Router.get("/trip/:slug", (req, res) => {
 	console.log("hello from ttrips");
@@ -118,11 +95,35 @@ Router.get("/destination/:slug", (req, res) => {
 		if (err) {
 			console.error("error looking up destination data " + err.stack);
 		} else {
-			res.send(data);
+			places.find({
+				"slug": {
+					"$in": data[0].places
+				}
+			}).select('title name caption tags').exec(function(err, _places) {
+				if(err) {
+					console.error(err);
+				} else {
+					experiences.find({
+						"slug": {
+							"$in": data[0].experiences
+						}
+					}).select('title name caption tags').exec(function(err, _experiences) {
+						if(err) {
+							console.error(err);
+						} else {
+							var obj = {
+								destination : data[0],
+								places: _places,
+								experiences: _experiences,
+							}
+							res.send(obj);
+						}
+					});
+				}
+			});
 		}
 	});
 });
-
 
 Router.get("/place/:slug", (req, res) => {
 	places.find({
@@ -249,7 +250,6 @@ Router.get("/fresh", (req, res) => {
 				})
 		})
 
-
 		mustCarry.collection.insert(fdata['must-carries'], function(err, data) {
 			if (err) {
 				console.error("error took place while adding mustCarry");
@@ -275,7 +275,6 @@ Router.get("/fresh", (req, res) => {
 				}
 			})
 		}
-
 
 		for (var i = 0; i < fdata['destinations'].length; i++) {
 			destinations.collection.insert(fdata['destinations'][i], function(err, data) {

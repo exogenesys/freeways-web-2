@@ -39,7 +39,7 @@ export default class GettingAround extends Component {
 					color: '#333'
 				}}>
 
-				{this.props.gtaround[0].getting_around}
+				{this.props.gtaround}
 
 				</p>
 

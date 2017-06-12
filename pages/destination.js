@@ -44,37 +44,40 @@ class Index extends React.Component {
 	static async getInitialProps({query}) {
 		const res = await axios.get('http://lighght-dev.herokuapp.com/api/destination/'  + query.slug);
 		const data = res.data;
+		console.log(data);
 		return {data};
 
 		// const res = await fetch('http://lighght-dev.herokuapp.com/api/destination/' + query.slug);
 		// const data = await res.json();
-		// console.log(data);
 		// return {data};
 	}
 
 	render() {
 
-		const destData = this.props.data;
-
+		const z = this.props.data;
 		return (
 
 			<div>
 				<TopBar/>
 				<Container fluid>
-					<Cover cover={destData}/>
-					<Container >
+					<Cover caption={z.destination.caption} title={z.destination.title}/>
+					<Container>
 						<Sticky innerZ={99999999999}>
 							<Menu/>
 						</Sticky>
-						<Introduction intro={destData}/>
-{/*						<Places place={destData}/>
-						<Experiences exp={destData}/>
-						<Trips trips={destData}/>                */}
-						<MustKnow mustknow={destData}/>
-						<MustCarry mustcarry={destData}/>
-						<Languages/>
-						<HowToReach htor={destData}/>
-						<GettingAround gtaround={destData}/>
+						<Introduction intro={z.destination.introduction}/>
+						<Places places={z.places}/>
+						<Experiences exp={z.experiences}/>
+{/*						<Trips trips={z.destination}/>                */}
+						<MustKnow must_know={z.destination.must_know}/>
+						<MustCarry must_carry={z.destination.must_carry}/>
+{/*						<Languages/> */}
+						<HowToReach car={z.destination.how_to_reach_by_car}
+												train={z.destination.how_to_reach_by_train}
+												bus={z.destination.how_to_reach_by_bus}
+												plane={z.destination.how_to_reach_by_plane} />
+
+						<GettingAround gtaround={z.destination.getting_around}/>
 		{/*					<NearByDestinations/>*/}
 						<br/>
 						<br/>

@@ -8,7 +8,7 @@ import {Button, Card, Image, Header, Container} from 'semantic-ui-react'
 import TopBar from '../components/TopBar'
 
 import RecommendationCards from '../components/RecommendationCards'
-import RecommendationBricks from '../components/RecommendationBricks'
+// import RecommendationBricks from '../components/RecommendationBricks'
 
 import Cover from '../components/Cover'
 
@@ -41,7 +41,6 @@ class Index extends React.Component {
 				<Container fluid>
 					<Cover/>
 					<Container >
-						<RecommendationBricks/>
 						<br/><br/>
 						<Header size='huge'>Trending Trips</Header>
 						<br/><br/>

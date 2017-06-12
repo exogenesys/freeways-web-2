@@ -17,25 +17,11 @@ const MustCarry = (props) => {
 						color: '#333'
 					}}>
 
-						{props.mustknow[0].must_know}
+						{props.must_know}
 
 					</p>
 				</List.Content>
 			</List.Item>
-
-			<List.Item>
-				<List.Content>
-					<p style={{
-						fontSize: '20px',
-						color: '#333'
-					}}>
-
-						{props.mustknow[0].must_know}
-						
-					</p>
-				</List.Content>
-			</List.Item>
-
 		</List>
 	</Segment>
 

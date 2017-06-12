@@ -10,7 +10,7 @@ import {
 	Card
 } from 'semantic-ui-react'
 
-import RecommendationCard from '../components/RecommendationCard'
+import RecommendationBrick from '../components/RecommendationBrick'
 import InterestMenu from '../components/InterestMenu'
 
 export default class Places extends Component {
@@ -20,47 +20,38 @@ export default class Places extends Component {
 
 	render() {
 
-		const {activeItem} = this.state
+		var i = 0,
+			j = 0;
+		var cols = [],
+			rows = [];
+		while (j * 4 + i < this.props.places.length) {
+			while (i < 4 && j * 4 + i < this.props.places.length) {
+				var obj = {
+					slug: this.props.places[j * 4 + i]
+				}
+				cols.push(
+					<Grid.Column width={4}><RecommendationBrick type='place' data={obj}/></Grid.Column>
+				);
+				i++;
+			}
+			rows.push(
+				<Grid.Row>{cols}</Grid.Row>
+			)
+			i = 0
+			cols = [];
+			j++
+		}
 
+		const {activeItem} = this.state
 
 		return (
 			<Segment basic>
 				<Header size='huge'>Places</Header>
 				<br/>
-				<InterestMenu />
+				<InterestMenu/>
 				<br/>
-
 				<Grid>
-					<Grid.Row>
-						<Grid.Column width={4}>
-							<RecommendationCard title={this.props.place[0].title}/>
-						</Grid.Column>
-						<Grid.Column width={4}>
-							<RecommendationCard/>
-						</Grid.Column>
-						<Grid.Column width={4}>
-							<RecommendationCard/>
-						</Grid.Column>
-						<Grid.Column width={4}>
-							<RecommendationCard/>
-						</Grid.Column>
-					</Grid.Row>
-
-					<Grid.Row>
-						<Grid.Column width={4}>
-							<RecommendationCard/>
-						</Grid.Column>
-						<Grid.Column width={4}>
-							<RecommendationCard/>
-						</Grid.Column>
-						<Grid.Column width={4}>
-							<RecommendationCard/>
-						</Grid.Column>
-						<Grid.Column width={4}>
-							<RecommendationCard/>
-						</Grid.Column>
-					</Grid.Row>
-
+					{rows}
 				</Grid>
 				<br/>
 				<br/>

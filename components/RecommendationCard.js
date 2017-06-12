@@ -10,13 +10,12 @@ const extra = (
 )
 
 const RecommendationCard = (props) => {
-	console.log(props);
 	return (
 		<Link href={{ pathname: props.type, query: { slug: props.data.slug } }}>
 			<Card>
 				<Image src="https://placeimg.com/400/300/girls"/>
 				<Card.Content>
-					<Card.Header>
+{/*					<Card.Header>
 						{props.data.title}
 					</Card.Header>
 					<Card.Meta>
@@ -25,7 +24,7 @@ const RecommendationCard = (props) => {
 					<Card.Description>
 						{props.data.time_to_explore}
 					</Card.Description>
-					<Card.Content extra></Card.Content>
+*/}					<Card.Content extra></Card.Content>
 				</Card.Content>
 			</Card>
 		</Link>

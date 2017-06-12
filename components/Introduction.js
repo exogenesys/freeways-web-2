@@ -18,7 +18,7 @@ export default class Footer extends React.Component {
 					color: '#333'
 				}}>
 
-				{this.props.intro[0].introduction}
+				{this.props.intro}
 
 				</p>
 				<br/>

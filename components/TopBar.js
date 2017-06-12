@@ -11,25 +11,19 @@ export default class TopBar extends Component {
 		Router.push('/' + name)
 	}
 
-
-
 	render() {
 		const {activeItem} = this.state
 
 		return (
 			<div>
 				<Menu stackable borderless>
-
-					<Menu.Item header>Freeways</Menu.Item>
-
+					<Menu.Item header onClick={this.handleItemClick} name='' style={{fontSize:'19px', color:'#F2711C'}}>freeways</Menu.Item>
 				</Menu>
-
 			</div>
 
 		)
 	}
 }
-
 
 //Add these when auth and trips ready
 
