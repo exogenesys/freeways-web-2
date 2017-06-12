@@ -75,6 +75,7 @@ Router.get('/exslug', (req, res) => {
 	})
 });
 
+
 Router.get("/trip/:slug", (req, res) => {
 	console.log("hello from ttrips");
 	trips.find({
@@ -99,7 +100,7 @@ Router.get("/destination/:slug", (req, res) => {
 				"slug": {
 					"$in": data[0].places
 				}
-			}).select('slug title name caption tags').exec(function(err, _places) {
+			}).select('slug title name caption tags img').exec(function(err, _places) {
 				if(err) {
 					console.error(err);
 				} else {
@@ -107,7 +108,7 @@ Router.get("/destination/:slug", (req, res) => {
 						"slug": {
 							"$in": data[0].experiences
 						}
-					}).select('slug title name caption tags').exec(function(err, _experiences) {
+					}).select('slug title name caption tags img').exec(function(err, _experiences) {
 						if(err) {
 							console.error(err);
 						} else {
@@ -172,6 +173,18 @@ Router.get("/languages/:slug", (req, res) => {
 		}
 	});
 });
+
+Router.get('/img', (req, res)=>{
+	var data  = 'http://res.cloudinary.com/freeways/image/list/dude.json'
+	var array = [];
+	rp(data).then(function(body) {
+		res = JSON.parse(body);
+		 array = res.resources.map(function(obj){
+			console.log('http://res.cloudinary.com/freeways/image/upload/v' + obj.version + '/' + obj.public_id + '.' + obj.format);
+		})
+	})
+});
+
 
 Router.get("/fresh", (req, res) => {
 	const url = 'http://api.cosmicjs.com/v1/freewaays'

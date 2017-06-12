@@ -11,6 +11,10 @@ var placeSchema = new Schema({
       type:String
     },
 
+    img:{
+      type:String
+    },
+
     name: {
       type: String
     },

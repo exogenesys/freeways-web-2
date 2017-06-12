@@ -3,90 +3,91 @@ var Schema = mongoose.Schema;
 
 var destinationSchema = new Schema({
 
-    slug:{
-      type:String, unique: true
-    },
+	slug: {
+		type: String,
+		unique: true
+	},
 
-    title:String,
+	title: String,
 
-    best_time_to_visit: {
-      type: String
-    },
+	img: {
+		type: String
+	},
 
-    best_time_to_visit_more_information: {
-      type: String
-    },
+	best_time_to_visit: {
+		type: String
+	},
 
-    caption: {
-      type: String
-    },
+	best_time_to_visit_more_information: {
+		type: String
+	},
 
-    introduction: {
-      type: String
-    },
+	caption: {
+		type: String
+	},
 
-    time_to_explore: {
-      type: String
-    },
+	introduction: {
+		type: String
+	},
 
-    average_budget_per_person: {
-      type: String
-    },
+	time_to_explore: {
+		type: String
+	},
 
-    latitude: {
-      type: String
-    },
+	average_budget_per_person: {
+		type: String
+	},
 
-    longitude: {
-      type: String
-    },
+	latitude: {
+		type: String
+	},
 
-    must_know: {
-      type: String
-    },
+	longitude: {
+		type: String
+	},
 
-    how_to_reach_by_car: {
-      type: String
-    },
+	must_know: {
+		type: String
+	},
 
-    how_to_reach_by_bus: {
-      type: String
-    },
+	how_to_reach_by_car: {
+		type: String
+	},
 
+	how_to_reach_by_bus: {
+		type: String
+	},
 
-    how_to_reach_by_plane: {
-      type: String
-    },
+	how_to_reach_by_plane: {
+		type: String
+	},
 
-    how_to_reach_by_train: {
-      type: String
-    },
+	how_to_reach_by_train: {
+		type: String
+	},
 
-    must_carry: [String],
+	must_carry: [String],
 
-    places: [String],
+	places: [String],
 
-    experiences: [String],
+	experiences: [String],
 
-    trips: [String],
+	trips: [String],
 
-    languages: [String],
+	languages: [String],
 
-    coverPhoto: {
-      type : String
-    },
+	coverPhoto: {
+		type: String
+	},
 
-    gettingAround: {
-      type : String
-    },
+	gettingAround: {
+		type: String
+	},
 
-    keyWords: {
-      type : String
-    }
-  },{
-    timestamps: true
-});
-
+	keyWords: {
+		type: String
+	}
+}, {timestamps: true});
 
 var destination = mongoose.model('Destination', destinationSchema);
 
