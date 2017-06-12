@@ -60,7 +60,7 @@ class Index extends React.Component {
 			<div>
 				<TopBar/>
 				<Container fluid>
-					<Cover caption={z.destination.caption} title={z.destination.title}/>
+					<Cover caption={z.destination.caption} title={z.destination.title} img={z.destination.img}/>
 					<Container>
 						<Sticky innerZ={99999999999}>
 							<Menu/>

@@ -2,18 +2,24 @@ import React from 'react'
 import {Segment, Header, Grid} from 'semantic-ui-react'
 import SearchHome from '../components/SearchHome'
 
-const CoverStyle = {
-	height: "500px",
-	backgroundImage: "url('../static/img/shimla.jpg')",
-	backgroundSize: "cover",
-	backgroundRepeat: 'no-repeat',
-	backgroundPosition: 'center center',
-	display: 'flex',
-	justifyContent: 'center',
-	alignItems: 'center'
-}
 
 const Cover = (props) => {
+
+	if (props.img == ''){
+		props.img = 'static/img/shimla.jpg'
+	}
+
+	const CoverStyle = {
+		height: "600px",
+		backgroundImage: "url('" +  props.img   + "')",
+		backgroundSize: "cover",
+		backgroundRepeat: 'no-repeat',
+		backgroundPosition: 'center center',
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center'
+	}
+
 
 	return (
 	<Segment basic vertical style={CoverStyle}>

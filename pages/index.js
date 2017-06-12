@@ -20,7 +20,7 @@ import configureLoadingProgressBar from '../utils/routing'
 
 class Index extends React.Component {
 
-	constructor (props) {
+	constructor(props) {
 		super(props)
 	}
 
@@ -29,7 +29,6 @@ class Index extends React.Component {
 		const data = res.data;
 		return {data};
 	}
-
 
 	render() {
 

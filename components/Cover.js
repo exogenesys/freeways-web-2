@@ -3,7 +3,7 @@ import { Segment, Header, Grid } from 'semantic-ui-react'
 import SearchHome from '../components/SearchHome'
 
 const CoverStyle = {
-  height: "700px",
+  height: "600px",
   backgroundImage: "url('http://res.cloudinary.com/freeways/image/upload/v1497250181/camping1.png')",
   backgroundSize: "cover",
   backgroundRepeat:   'no-repeat',

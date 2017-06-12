@@ -17,30 +17,30 @@ export default class Experiences extends Component {
 				<Grid>
 					<Grid.Row>
 						<Grid.Column width={4}>
-							<RecommendationBrick img={'girls'}/>
+							<RecommendationBrick img={'nature4'}/>
 						</Grid.Column>
 						<Grid.Column width={4}>
-							<RecommendationBrick img={'girls'}/>
+							<RecommendationBrick img={'nature4'}/>
 						</Grid.Column>
 						<Grid.Column width={4}>
-							<RecommendationBrick img={'girls'}/>
+							<RecommendationBrick img={'nature4'}/>
 						</Grid.Column>
 						<Grid.Column width={4}>
-							<RecommendationBrick img={'girls'}/>
+							<RecommendationBrick img={'nature4'}/>
 						</Grid.Column>
 					</Grid.Row>
 					<Grid.Row>
 						<Grid.Column width={4}>
-							<RecommendationBrick img={'girls'}/>
+							<RecommendationBrick img={'nature4'}/>
 						</Grid.Column>
 						<Grid.Column width={4}>
-							<RecommendationBrick img={'girls'}/>
+							<RecommendationBrick img={'nature4'}/>
 						</Grid.Column>
 						<Grid.Column width={4}>
-							<RecommendationBrick img={'girls'}/>
+							<RecommendationBrick img={'nature4'}/>
 						</Grid.Column>
 						<Grid.Column width={4}>
-							<RecommendationBrick img={'girls'}/>
+							<RecommendationBrick img={'nature4'}/>
 						</Grid.Column>
 					</Grid.Row>
 				</Grid>

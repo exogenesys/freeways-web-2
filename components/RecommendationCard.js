@@ -13,7 +13,7 @@ const RecommendationCard = (props) => {
 	return (
 		<Link href={{ pathname: props.type, query: { slug: props.data.slug } }}>
 			<Card>
-				<Image src="https://placeimg.com/400/300/girls"/>
+				<Image src={props.data.img == null ? "https://placeimg.com/400/300/nature" : props.data.img }/>
 				<Card.Content>
 					<Card.Header>
 						{props.data.title}
