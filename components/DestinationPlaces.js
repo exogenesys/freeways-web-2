@@ -46,7 +46,6 @@ export default class Places extends Component {
 				<Header size='huge' id="places">Places</Header>
 				<br/>
 				<InterestMenu/>
-				<br/>
 				<Grid>
 					{rows}
 				</Grid>

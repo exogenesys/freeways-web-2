@@ -80,11 +80,15 @@ var destinationSchema = new Schema({
 		type: String
 	},
 
-	gettingAround: {
+	getting_around_options: {
+		type: [String]
+	},
+
+	getting_around: {
 		type: String
 	},
 
-	keyWords: {
+	keywords: {
 		type: String
 	}
 }, {timestamps: true});
