@@ -35,6 +35,8 @@ import initStore from '../utils/store'
 import Forecast from 'react-forecast'
 import Router from 'next/router'
 
+
+
 class Index extends React.Component {
 
 	constructor(props) {

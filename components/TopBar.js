@@ -2,6 +2,19 @@ import React, {Component} from 'react'
 import {Menu, Button, Grid} from 'semantic-ui-react'
 import Router from 'next/router'
 import {browserHistory} from 'react-router';
+import NProgress from 'nprogress'
+
+Router.onRouteChangeStart = (url) => {
+  console.log(`Loading: ${url}`)
+  NProgress.start()
+}
+
+Router.onRouteChangeComplete = () => NProgress.done()
+Router.onRouteChangeError = () => NProgress.done()
+
+const linkStyle = {
+  margin: '0 10px 0 0'
+}
 
 export default class TopBar extends Component {
 	state = {}
