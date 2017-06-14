@@ -23,7 +23,7 @@ import Languages from '../components/Languages'
 import Footer from '../components/Footer'
 import Introduction from '../components/PlacesIntroduction'
 import MustCarry from '../components/MustCarry'
-import HowToReach from '../components/HowToReach'
+import HowToReach from '../components/HowToReach2'
 import MustKnow from '../components/MustKnow'
 import Trips from '../components/DestinationTrips'
 import Comments from '../components/Comments'
@@ -41,7 +41,7 @@ class Index extends React.Component {
 	render() {
 
 		const z = this.props.data;
-console.log(z);
+		console.log(z);
 		return (
 
 			<div>
@@ -52,12 +52,13 @@ console.log(z);
 						<Sticky innerZ={99999999999}>
 							<Menu/>
 						</Sticky>
-						<Introduction intro={z.experiences.introduction}/>
+						<Introduction intro={z.experiences.information}/>
 						<MustKnow must_know={z.experiences.must_know}/>
 						<MustCarry must_carry={z.experiences.must_carry}/>
 						<HowToReach how_to_reach={z.experiences.how_to_reach}/>
-						{/*	<Trips trips = {expData}/>
-							<Comments />*/}
+					{/*		<Trips trips = {z.trips}/>
+							<Comments />
+						*/}
 						<br/>
 						<br/>
 					</Container>

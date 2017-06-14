@@ -39,7 +39,6 @@ Router.get('/home', (req, res) => {
 							console.log('error finding experiences for home')
 						} else {
 							obj.experiences = experiences;
-							console.log(obj);
 							res.send(obj);
 						}
 					})
@@ -53,7 +52,7 @@ Router.get('/home', (req, res) => {
 
 Router.get('/places', (req, res) => {
 	console.log('hello from home');
-	places.find().exec(function(err, places) {
+	places.find().select('slug img title caption introduction best_time_to_visit best_time_to_visit_more_information latitude longitude how_to_reach_by_bus how_to_reach_by_car how_to_reach_by_plane how_to_reach_by_train must_know how_to_reach_by_walk keywords').exec(function(err, places) {
 		if (err) {
 			console.log('error finding trips for home')
 		} else {
@@ -64,7 +63,7 @@ Router.get('/places', (req, res) => {
 
 Router.get('/experiences', (req, res) => {
 	console.log('hello from home');
-	experiences.find().exec(function(err, experiences) {
+	experiences.find().select('slug img title caption information best_time_to_visit best_time_to_visit_more_information latitude longitude usual_timings days_off timing_more_information how_to_reach_by_bus how_to_reach_by_car how_to_reach_by_plane how_to_reach_by_train must_know how_to_reach_by_walk keywords').exec(function(err, experiences) {
 		if (err) {
 			console.log('error finding trips for home')
 		} else {
@@ -165,7 +164,8 @@ Router.get("/place/:slug", (req, res) => {
 					console.error(err);
 				} else {
 					var x = data[0].toObject();
-					x.how_to_reach = x.how_to_reach_by_bus  + x.how_to_reach_by_car  + x.how_to_reach_by_airplane  + x.how_to_reach_by_train;
+
+					x.how_to_reach = isEmpty(x.how_to_reach_by_bus) + isEmpty(x.how_to_reach_by_car)  + isEmpty(x.how_to_reach_by_airplane)  + isEmpty(x.how_to_reach_by_train);
 					delete x.how_to_reach_by_bus;
 					delete x.how_to_reach_by_car;
 					delete x.how_to_reach_by_airplane;
@@ -373,5 +373,12 @@ Router.get("/fresh", (req, res) => {
 
 	});
 });
+
+function isEmpty(val){
+    if (val === undefined || val == null || val.length <= 0)
+    	val = '';
+
+    return val
+}
 
 module.exports = Router

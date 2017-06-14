@@ -9,8 +9,10 @@ export default class Brick extends React.Component {
 			<Link href={{ pathname: this.props.type, query: { slug: this.props.data.slug }}}>
 
 				<Card fluid style={{
-					backgroundImage: "linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.2)), url(\'https://placeimg.com/400/400/" + this.props.img + "\')",
-					boxShadow: '3px 3px 5px 0px #D4D4D5, 0 0 1px 1px #D4D4D5'
+					backgroundImage: "linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.2)), url(\'" + this.props.data.img + "\')",
+					boxShadow: '3px 3px 5px 0px #D4D4D5, 0 0 1px 1px #D4D4D5',
+					backgroundSize: 'cover',
+				    backgroundPosition: 'center center'
 				}}>
 					<Card.Content>
 						<Card.Header style={{

@@ -113,7 +113,6 @@ export default class HowToReach extends Component {
 								}}>
 
 									{renderHTML(text)}
-
 								</p>
 							</Segment>
 						</Grid.Column>

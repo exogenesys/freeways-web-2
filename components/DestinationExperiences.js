@@ -13,9 +13,9 @@ import RecommendationBrick from '../components/RecommendationBrick'
 import InterestMenu from '../components/InterestMenu'
 
 export default class Experiences extends Component {
-
 	render() {
 
+		console.log(this.props.exp)	
 		var i = 0,
 			j = 0;
 		var cols = [],
