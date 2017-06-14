@@ -51,6 +51,29 @@ Router.get('/home', (req, res) => {
 	})
 });
 
+Router.get('/places', (req, res) => {
+	console.log('hello from home');
+	places.find().exec(function(err, places) {
+		if (err) {
+			console.log('error finding trips for home')
+		} else {
+			res.send(places)
+		}
+	})
+});
+
+Router.get('/experiences', (req, res) => {
+	console.log('hello from home');
+	experiences.find().exec(function(err, experiences) {
+		if (err) {
+			console.log('error finding trips for home')
+		} else {
+			res.send(experiences)
+		}
+	})
+});
+
+
 Router.get('/placesslug', (req, res) => {
 	console.log('hello from home');
 	var obj = {};
