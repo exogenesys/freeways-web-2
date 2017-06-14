@@ -48,7 +48,7 @@ class Index extends React.Component {
 				<TopBar/>
 				<Container fluid>
 					<Cover caption={z.places.caption} title={z.places.title} img={z.places.img}/>
-					<Container >
+					<Container>
 						<Sticky innerZ={99999999999}>
 							<Menu/>
 						</Sticky>
@@ -56,10 +56,7 @@ class Index extends React.Component {
 						<Experiences exp={z.experiences}/>
 						<MustKnow must_know={z.places.must_know} />
 						<MustCarry must_carry={z.places.must_carry} />
-						<HowToReach car={z.places.how_to_reach_by_car}
-												train={z.places.how_to_reach_by_train}
-												bus={z.places.how_to_reach_by_bus}
-												plane={z.places.how_to_reach_by_plane} />
+						<HowToReach how_to_reach={z.places.how_to_reach} />
 					</Container>
 					<Footer/>
 				</Container>

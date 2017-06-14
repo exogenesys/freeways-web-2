@@ -164,8 +164,14 @@ Router.get("/place/:slug", (req, res) => {
 				if(err) {
 					console.error(err);
 				} else {
+					var x = data[0].toObject();
+					x.how_to_reach = x.how_to_reach_by_bus  + x.how_to_reach_by_car  + x.how_to_reach_by_airplane  + x.how_to_reach_by_train;
+					delete x.how_to_reach_by_bus;
+					delete x.how_to_reach_by_car;
+					delete x.how_to_reach_by_airplane;
+					delete x.how_to_reach_by_train;
 					var obj = {
-						places : data[0],
+						places : x,
 						experiences: _experiences,
 					}
 					res.send(obj);
@@ -182,7 +188,16 @@ Router.get("/experience/:slug", (req, res) => {
 		if (err) {
 			console.error("error took place while looking up experiences");
 		} else {
-			res.send(data);
+			var x = data[0].toObject();
+			x.how_to_reach = x.how_to_reach_by_bus  + x.how_to_reach_by_car  + x.how_to_reach_by_airplane  + x.how_to_reach_by_train;
+			delete x.how_to_reach_by_bus;
+			delete x.how_to_reach_by_car;
+			delete x.how_to_reach_by_airplane;
+			delete x.how_to_reach_by_train;
+			var obj = {
+				'experiences' : x
+			}
+			res.send(obj);
 		}
 	});
 });

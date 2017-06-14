@@ -33,36 +33,31 @@ import Forecast from 'react-forecast'
 class Index extends React.Component {
 
 	static async getInitialProps({query}) {
-		const res = await fetch('http://lighght.herokuapp.com/api/experience/'+ query.slug);
+		const res = await fetch('http://lighght.herokuapp.com/api/experience/' + query.slug);
 		const data = await res.json();
 		return {data};
 	}
 
 	render() {
 
-		const expData = this.props.data;
-
+		const z = this.props.data;
+console.log(z);
 		return (
 
 			<div>
-
 				<TopBar/>
-
 				<Container fluid>
-
-					<Cover cover = {expData}/>
+					<Cover caption={z.experiences.caption} title={z.experiences.title} img={z.experiences.img}/>
 					<Container >
-
 						<Sticky innerZ={99999999999}>
 							<Menu/>
 						</Sticky>
-
-						<Introduction intro = {expData} />
-						<MustKnow mustknow = {expData} />
-						<MustCarry mustcarry = {expData} />
-						<HowToReach htor = {expData} />
-						<Trips trips = {expData}/>
-						<Comments />
+						<Introduction intro={z.experiences.introduction}/>
+						<MustKnow must_know={z.experiences.must_know}/>
+						<MustCarry must_carry={z.experiences.must_carry}/>
+						<HowToReach how_to_reach={z.experiences.how_to_reach}/>
+						{/*	<Trips trips = {expData}/>
+							<Comments />*/}
 						<br/>
 						<br/>
 					</Container>
