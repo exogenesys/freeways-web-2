@@ -43,8 +43,8 @@ const Cover = (props) => {
 					<em size='huge' style={{
 						color: 'rgba(255,255,255,0.95)',
             fontSize: '24px',
+						fontWeight: '900'
 					}}>{props.caption}</em>
-            fontWeight: '900'
 				</Grid.Column>
 			</Grid.Row>
 		</Grid>

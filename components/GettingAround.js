@@ -8,6 +8,8 @@ import {
 	Label,
 	Icon
 } from 'semantic-ui-react'
+import renderHTML from 'react-render-html'
+
 
 export default class GettingAround extends Component {
 
@@ -34,14 +36,14 @@ export default class GettingAround extends Component {
 				</Label>
 				</Segment>
 				<Segment basic>
-				<p style={{
+				<div style={{
 					fontSize: '18px',
 					color: '#333'
 				}}>
 
-				{this.props.gtaround}
+				{renderHTML(this.props.gtaround)}
 
-				</p>
+				</div>
 
 				</Segment>
 			</Segment>

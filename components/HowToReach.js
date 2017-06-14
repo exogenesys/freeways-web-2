@@ -8,6 +8,8 @@ import {
 	Button,
 	Icon
 } from 'semantic-ui-react'
+import renderHTML from 'react-render-html'
+
 
 export default class HowToReach extends Component {
 	state = {
@@ -110,7 +112,7 @@ export default class HowToReach extends Component {
 									marginTop: '-27px'
 								}}>
 
-									{text}
+									{renderHTML(text)}
 
 								</p>
 							</Segment>

@@ -34,31 +34,39 @@ import Forecast from 'react-forecast'
 
 class Index extends React.Component {
 	static async getInitialProps({query}) {
-		const res = await axios.get('http://lighght.herokuapp.com/api/place/'  + query.slug);
-		const data = res.data;
+		const res = await axios.get('http://lighght.herokuapp.com/api/place/' + query.slug);
+		const data = res.data[0];
 		return {data};
 	}
 
 	render() {
+		// 		<MustKnow/>
+		// 		<MustCarry/>
+		// 		<HowToReach/>
+		// 		<Trips/>
+		// 		<Comments/>
+		// 		<br/>
+		// 		<br/>
+
+		const z = this.props.data;
 
 		return (
 			<div>
 				<TopBar/>
 				<Container fluid>
-					<Cover/>
+					<Cover caption={z.places.caption} title={z.places.title} img={z.places.img}/>
 					<Container >
 						<Sticky innerZ={99999999999}>
 							<Menu/>
 						</Sticky>
-						<Introduction/>
-						<MustKnow/>
-						<MustCarry/>
-						<HowToReach/>
-						<Experiences/>
-						<Trips/>
-						<Comments/>
-						<br/>
-						<br/>
+						<Introduction intro={z.places.introduction}/>
+						<Experiences exp={z.experiences}/>
+						<MustKnow must_know={z.places.must_know} />
+						<MustCarry must_carry={z.places.must_carry} />
+						<HowToReach car={z.places.how_to_reach_by_car}
+												train={z.places.how_to_reach_by_train}
+												bus={z.places.how_to_reach_by_bus}
+												plane={z.places.how_to_reach_by_plane} />
 					</Container>
 					<Footer/>
 				</Container>

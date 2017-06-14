@@ -1,6 +1,8 @@
 import React from 'react'
 import {Segment, Header, Grid, Statistic, Popup} from 'semantic-ui-react'
 import Forecast from 'react-forecast'
+import renderHTML from 'react-render-html'
+
 
 export default class Footer extends React.Component {
 
@@ -12,15 +14,15 @@ export default class Footer extends React.Component {
 				<br/>
 				<br/>
 
-				<p style={{
+				<div style={{
 					fontSize: '20px',
 					textAlign: 'center',
 					color: '#333'
 				}}>
 
-				{this.props.intro}
+				{renderHTML(this.props.intro)}
 
-				</p>
+				</div>
 				<br/>
 				<br/>
 				<br/>

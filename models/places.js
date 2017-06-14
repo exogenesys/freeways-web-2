@@ -19,6 +19,10 @@ var placeSchema = new Schema({
       type: String
     },
 
+    time_to_explore: {
+  		type: String
+  	},
+
     caption: {
       type: String
     },
@@ -79,7 +83,7 @@ var placeSchema = new Schema({
       type : String
     },
 
-    keyWords: {
+    keywords: {
       type : String
     }
 

@@ -133,7 +133,21 @@ Router.get("/place/:slug", (req, res) => {
 		if (err) {
 			console.error("error took place while looking up places");
 		} else {
-			res.send(data);
+			experiences.find({
+				"slug": {
+					"$in": data[0].experiences
+				}
+			}).select('slug title name caption tags img').exec(function(err, _experiences) {
+				if(err) {
+					console.error(err);
+				} else {
+					var obj = {
+						places : data[0],
+						experiences: _experiences,
+					}
+					res.send(obj);
+				}
+			});
 		}
 	});
 });

@@ -1,5 +1,6 @@
 import React from 'react'
 import {Header, Segment, List} from 'semantic-ui-react'
+import renderHTML from 'react-render-html'
 
 const MustCarry = (props) => {
 
@@ -17,7 +18,7 @@ const MustCarry = (props) => {
 						color: '#333'
 					}}>
 
-						{props.must_know}
+						{renderHTML(props.must_know)}
 
 					</p>
 				</List.Content>

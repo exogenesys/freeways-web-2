@@ -14,6 +14,11 @@ var destinationSchema = new Schema({
 		type: String
 	},
 
+	destination : {
+		type: String
+	},
+
+
 	best_time_to_visit: {
 		type: String
 	},

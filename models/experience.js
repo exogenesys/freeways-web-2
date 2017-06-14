@@ -21,6 +21,10 @@ var experienceSchema = new Schema({
       type: String
     },
 
+    time_to_explore: {
+  		type: String
+  	},
+
     tags : [String] ,
 
     caption: {
