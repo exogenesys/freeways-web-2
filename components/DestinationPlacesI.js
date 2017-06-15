@@ -10,58 +10,25 @@ import {
 	Card
 } from 'semantic-ui-react'
 
-import RecommendationBrick from '../components/RecommendationBrick'
+import AbsGrid from 'react-absolute-grid'
+
+import RecommendationBrick from '../components/RecommendationBrickI'
 
 export default class Places extends Component {
 	state = {}
 
 	handleItemClick = (e, {name}) => {
-
-		var updatedList = this.state.initialItems;
-		updatedList = updatedList.filter(function(place) {
-			return place.tags.indexOf(name) != -1;
-		});
-
-		console.log(name)
-
-		this.setState({activeItem: name, items : updatedList})
+		this.setState({activeItem: name})
 	}
-
-	constructor(props){
-		super(props);
-		this.state =  {
-			initialItems :  this.props.places,
-			items : []
-		}
-	}
-
-	componentWillMount
 
 
 	render() {
-
-		var i = 0,
-			j = 0;
-		var cols = [],
-			rows = [];
-		while (j * 4 + i < this.props.places.length) {
-			while (i < 4 && j * 4 + i < this.props.places.length) {
-				cols.push(
-					<Grid.Column width={4}><RecommendationBrick type='place' data={this.props.places[j * 4 + i]}/></Grid.Column>
-				);
-				i++;
-			}
-			rows.push(
-				<Grid.Row>{cols}</Grid.Row>
-			)
-			i = 0
-			cols = [];
-			j++
-		}
-
 		const {activeItem} = this.state
 
+		const Grid = AbsGrid(RecommendationBrick, {type:'place'});
+
 		return (
+
 			<Segment basic>
 				<Header size='huge' id="places">Places</Header>
 				<br/>
@@ -88,12 +55,10 @@ export default class Places extends Component {
       </Menu.Menu>
       </Menu>
 
-				<Grid>
-					{rows}
-				</Grid>
+      			<Grid items={this.props.places} responsive='true' itemWidth='256'/>
 				<br/>
 				<br/>
-			</Segment>
+				</Segment>
 
 		)
 	}

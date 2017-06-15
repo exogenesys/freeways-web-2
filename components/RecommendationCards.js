@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Card, Icon} from 'semantic-ui-react'
-import RecommendationCard from '../components/RecommendationCard'
+import RecommendationBrick from '../components/RecommendationBrick'
 import Slider from 'react-slick'
 
 
@@ -18,7 +18,7 @@ class RecommendationCards extends React.Component {
 			slidesToScroll: 2,
 			arrows: true,
 			autoplay: true,
-			autoplaySpeed: 0,
+			autoplaySpeed: 100,
 			pauseOnHover: true,
 			responsive: [
 				{
@@ -36,13 +36,13 @@ class RecommendationCards extends React.Component {
 			swipe: true,
 			swipeToSlide: true,
 			accessibility: true,
-			adaptiveHeight: true,
+			adaptiveHeight: false,
 			draggable: true,
 		}
 		return (
 			<div>
 			{this.props.data.length > 0 ? 	<Slider {...settings}>
-				{ this.props.data.map((obj,i) => 	<div><RecommendationCard type={this.props.type} data={obj}/></div>) }
+				{ this.props.data.map((obj,i) => 	<div><RecommendationBrick type={this.props.type} data={obj}/></div>) }
 				</Slider> : null 	}
 			</div>
 		);
