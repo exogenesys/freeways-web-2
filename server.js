@@ -10,6 +10,7 @@ const handle = app.getRequestHandler();
 
 const PORT = process.env.PORT || 3000;
 
+
 app.prepare().then(_ => {
 	const server = express()
 
@@ -19,6 +20,10 @@ app.prepare().then(_ => {
 	server.use(cors())
 
 	server.use('/api', api);
+
+	
+	console.log('first')
+
 
 	// server.get('/destination/:slug', (req, res) => {
   // 	const params = { slug: req.params.slug }
@@ -51,7 +56,9 @@ app.prepare().then(_ => {
 
 		console.log(`> App running on port ${PORT}`);
 	});
-});
+}).catch(function(){
+	console.log('promise not kept')
+})
 
 // module.exports = auth;
 

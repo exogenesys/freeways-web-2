@@ -7,7 +7,8 @@ import {
 	List,
 	Image,
 	Icon,
-	Card
+	Card,
+	Search
 } from 'semantic-ui-react'
 
 import RecommendationBrick from '../components/RecommendationBrick'
@@ -16,78 +17,112 @@ export default class Places extends Component {
 	state = {}
 
 	handleItemClick = (e, {name}) => {
+		if(this.state.activeItem === name){
+			this.setState({activeItem: '', items: this.props.places, value: ''})
+		} else {
+			this.setState({items: [], isLoading: true});
+			let updatedList = this.props.places;
+			updatedList = updatedList.filter(function(place) {
+				return (place.tags.map(function(tag) {
+					return tag.toLowerCase();
+				})).indexOf(name) != -1;
+			});
+			this.setState({activeItem: name, items: updatedList, isLoading: false, value: ''})
+		}
 
-		var updatedList = this.state.initialItems;
-		updatedList = updatedList.filter(function(place) {
-			return place.tags.indexOf(name) != -1;
-		});
-
-		console.log(name)
-
-		this.setState({activeItem: name, items : updatedList})
 	}
 
-	constructor(props){
+	handleSearchChange = (e, value) => {
+		this.setState({items: [], isLoading: true, activeItem: ''});
+		let list = this.props.places;
+		list = list.filter(function(place) {
+			return ((place.title.toLowerCase()).includes(value.toLowerCase()))
+		})
+		this.setState({value, items: list, isLoading: false})
+
+	}
+
+	constructor(props) {
 		super(props);
-		this.state =  {
-			initialItems :  this.props.places,
-			items : []
+		this.state = {
+			// activeItem :  this.props.places,
+			activeItem: '',
+			items: this.props.places,
+			value: '',
+			isLoading: false
 		}
 	}
-
-	componentWillMount
-
 
 	render() {
 
-		var i = 0,
-			j = 0;
-		var cols = [],
+		let cols = [],
 			rows = [];
-		while (j * 4 + i < this.props.places.length) {
-			while (i < 4 && j * 4 + i < this.props.places.length) {
-				cols.push(
-					<Grid.Column width={4}><RecommendationBrick type='place' data={this.props.places[j * 4 + i]}/></Grid.Column>
-				);
-				i++;
-			}
+
+		if (this.state.items.length < 1) {
 			rows.push(
-				<Grid.Row>{cols}</Grid.Row>
-			)
-			i = 0
-			cols = [];
-			j++
+					<Image src="http://res.cloudinary.com/freeways/image/upload/c_scale,w_228/v1497606494/no_results_found.png" centered disabled/>
+			);
+		} else {
+			let i = 0,
+				j = 0;
+			while (j * 4 + i < this.state.items.length) {
+				while (i < 4 && j * 4 + i < this.state.items.length) {
+					cols.push(
+						<Grid.Column width={4}><RecommendationBrick type='place' data={this.state.items[j * 4 + i]}/></Grid.Column>
+					);
+					i++;
+				}
+				rows.push(
+					<Grid.Row>{cols}</Grid.Row>
+				)
+				i = 0
+				cols = [];
+				j++
+			}
 		}
 
-		const {activeItem} = this.state
+		const {activeItem, value, isLoading} = this.state
 
 		return (
 			<Segment basic>
 				<Header size='huge' id="places">Places</Header>
 				<br/>
-				      <Menu	inverted style = {{
-				background: '#FFF',
-				border: '0.5px solid rgba(34,36,38,.1)',
-				borderRadius: '.28571429rem',
-			}}>
-        <Menu.Item style={{color:'rgba(0,0,0,.87)'}} color={'red'} name='adventurous' active={activeItem === 'adventurous'} content='Adventurous' onClick={this.handleItemClick}/>
-        <Menu.Item style={{color:'rgba(0,0,0,.87)'}} color={'blue'} name='relaxing' active={activeItem === 'relaxing'} content='Relaxing' onClick={this.handleItemClick}/>
-        <Menu.Item style={{color:'rgba(0,0,0,.87)'}} color={'orange'} name='cultural' active={activeItem === 'cultural'} content='Cultural' onClick={this.handleItemClick}/>
-        <Menu.Item style={{color:'rgba(0,0,0,.87)'}} color={'pink'} name='foodndrink' active={activeItem === 'foodndrink'} content='Food & Drinks' onClick={this.handleItemClick}/>
-        <Menu.Item style={{color:'rgba(0,0,0,.87)'}} color={'green'} name='religious' active={activeItem === 'religious'} content='Religious' onClick={this.handleItemClick}/>
-        <Menu.Item style={{color:'rgba(0,0,0,.87)'}} color={'red'} name='offbeat' active={activeItem === 'offbeat'} content='Offbeat' onClick={this.handleItemClick}/>
-        <Menu.Item style={{color:'rgba(0,0,0,.87)'}} color={'purple'} name='Nightlife' active={activeItem === 'Nightlife'} content='Nightlife' onClick={this.handleItemClick}/>
-        <Menu.Menu position='right'>
-        <div className='ui right aligned category search item'>
-          <div className='ui transparent icon input'>
-            <input className='prompt' type='text' placeholder='Search trips in Manali...'/>
-            <i className='search link icon' />
-          </div>
-          <div className='results'></div>
-        </div>
-      </Menu.Menu>
-      </Menu>
-
+				<Menu inverted style={{
+					background: '#FFF',
+					border: '0.5px solid rgba(34,36,38,.1)',
+					borderRadius: '.28571429rem'
+				}}>
+					<Menu.Item style={{
+						color: 'rgba(0,0,0,.87)'
+					}} color={'red'} name='adventurous' active={activeItem === 'adventurous'} content='Adventurous' onClick={this.handleItemClick}/>
+					<Menu.Item style={{
+						color: 'rgba(0,0,0,.87)'
+					}} color={'blue'} name='relaxing' active={activeItem === 'relaxing'} content='Relaxing' onClick={this.handleItemClick}/>
+					<Menu.Item style={{
+						color: 'rgba(0,0,0,.87)'
+					}} color={'orange'} name='cultural' active={activeItem === 'cultural'} content='Cultural' onClick={this.handleItemClick}/>
+					<Menu.Item style={{
+						color: 'rgba(0,0,0,.87)'
+					}} color={'pink'} name='foodndrink' active={activeItem === 'foodndrink'} content='Food & Drinks' onClick={this.handleItemClick}/>
+					<Menu.Item style={{
+						color: 'rgba(0,0,0,.87)'
+					}} color={'green'} name='religious' active={activeItem === 'religious'} content='Religious' onClick={this.handleItemClick}/>
+					<Menu.Item style={{
+						color: 'rgba(0,0,0,.87)'
+					}} color={'red'} name='offbeat' active={activeItem === 'offbeat'} content='Offbeat' onClick={this.handleItemClick}/>
+					<Menu.Item style={{
+						color: 'rgba(0,0,0,.87)'
+					}} color={'purple'} name='nightlife' active={activeItem === 'nightlife'} content='Nightlife' onClick={this.handleItemClick}/>
+					<Menu.Menu position='right'>
+						<div className='ui right aligned category search item'>
+							<div className='ui transparent icon input'>
+								<Search loading={isLoading} onSearchChange={this.handleSearchChange} placeholder='Search trips in Manali...' value={value} open={false}/>
+							</div>
+							<div className='results'></div>
+						</div>
+					</Menu.Menu>
+				</Menu>
+				<br/>
 				<Grid>
 					{rows}
 				</Grid>
