@@ -11,6 +11,7 @@ const trips = require('../models/trip.js');
 const experiences = require("../models/experience.js");
 const destinations = require("../models/destination.js");
 const languages = require("../models/languages.js");
+const searchKeys = require("../models/searchKeys.js");
 const mustCarry = require("../models/mustcarry.js");
 
 const Router = express.Router();
@@ -123,7 +124,7 @@ Router.get("/destination/:slug", (req, res) => {
 					"$in": data[0].places
 				}
 			}).select('slug title name caption tags img').exec(function(err, _places) {
-				if(err) {
+				if (err) {
 					console.error(err);
 				} else {
 					experiences.find({
@@ -131,11 +132,11 @@ Router.get("/destination/:slug", (req, res) => {
 							"$in": data[0].experiences
 						}
 					}).select('slug title name caption tags img').exec(function(err, _experiences) {
-						if(err) {
+						if (err) {
 							console.error(err);
 						} else {
 							var obj = {
-								destination : data[0],
+								destination: data[0],
 								places: _places,
 								experiences: _experiences,
 							}
@@ -160,18 +161,18 @@ Router.get("/place/:slug", (req, res) => {
 					"$in": data[0].experiences
 				}
 			}).select('slug title name caption tags img').exec(function(err, _experiences) {
-				if(err) {
+				if (err) {
 					console.error(err);
 				} else {
 					var x = data[0].toObject();
 
-					x.how_to_reach = isEmpty(x.how_to_reach_by_bus) + isEmpty(x.how_to_reach_by_car)  + isEmpty(x.how_to_reach_by_airplane)  + isEmpty(x.how_to_reach_by_train);
+					x.how_to_reach = isEmpty(x.how_to_reach_by_bus) + isEmpty(x.how_to_reach_by_car) + isEmpty(x.how_to_reach_by_airplane) + isEmpty(x.how_to_reach_by_train);
 					delete x.how_to_reach_by_bus;
 					delete x.how_to_reach_by_car;
 					delete x.how_to_reach_by_airplane;
 					delete x.how_to_reach_by_train;
 					var obj = {
-						places : x,
+						places: x,
 						experiences: _experiences,
 					}
 					res.send(obj);
@@ -189,13 +190,13 @@ Router.get("/experience/:slug", (req, res) => {
 			console.error("error took place while looking up experiences");
 		} else {
 			var x = data[0].toObject();
-			x.how_to_reach = x.how_to_reach_by_bus  + x.how_to_reach_by_car  + x.how_to_reach_by_airplane  + x.how_to_reach_by_train;
+			x.how_to_reach = x.how_to_reach_by_bus + x.how_to_reach_by_car + x.how_to_reach_by_airplane + x.how_to_reach_by_train;
 			delete x.how_to_reach_by_bus;
 			delete x.how_to_reach_by_car;
 			delete x.how_to_reach_by_airplane;
 			delete x.how_to_reach_by_train;
 			var obj = {
-				'experiences' : x
+				'experiences': x
 			}
 			res.send(obj);
 		}
@@ -226,15 +227,94 @@ Router.get("/languages/:slug", (req, res) => {
 	});
 });
 
-Router.get('/img', (req, res)=>{
-	var data  = 'http://res.cloudinary.com/freeways/image/list/dude.json'
+Router.get('/img', (req, res) => {
+	var data = 'http://res.cloudinary.com/freeways/image/list/dude.json'
 	var array = [];
 	rp(data).then(function(body) {
 		res = JSON.parse(body);
-		 array = res.resources.map(function(obj){
+		array = res.resources.map(function(obj) {
 			console.log('http://res.cloudinary.com/freeways/image/upload/v' + obj.version + '/' + obj.public_id + '.' + obj.format);
 		})
 	})
+});
+
+Router.get('/dataimport', (req, res) => {
+
+	console.log('hello from ImportData');
+	var obj = [];
+
+	trips.find().select('slug title keywords img').exec(function(err, trips) {
+		if (err) {
+			console.log('error finding trips for import')
+		} else {
+			obj.push(trips);
+
+			destinations.find().select('slug title keywords img').exec(function(err, destinations) {
+				if (err) {
+					console.log('error finding destinations for import')
+				} else {
+					obj.push(destinations);
+
+					experiences.find().select('slug title keywords img').exec(function(err, experiences) {
+						if (err) {
+							console.log('error finding experiences for import')
+						} else {
+							obj.push(experiences);
+							console.log(obj);
+
+							places.find().select('slug title keywords img').exec(function(err, places) {
+								if (err) {
+									console.log('error finding places for import')
+								} else {
+									obj.push(places);
+									console.log(obj);
+
+									for (var i = 0; i < obj.length; i++) {
+										searchKey.collection.insert(obj[i], function(err, data) {
+											if (err) {
+												console.error("Error While Adding to SearchSchema", err);
+											} else {
+												console.log("Succes on Adding To SearchSchema");
+											}
+										})
+									}
+
+									res.send('Sending Data');
+								}
+							})
+
+						}
+					})
+
+				}
+			})
+		}
+	})
+});
+
+Router.get('/search/:keywords', function(req, res) {
+
+	var query = searchKeys.find({
+			$text: {
+				$search: req.params.keywords
+			}
+		}, {
+			score: {
+				$meta: "textScore"
+			}
+		})
+		.sort({
+			score: {
+				$meta: "textScore"
+			}
+		})
+		.exec(function(err, output) {
+			if (err) {
+				res.send(500, err);
+			} else {
+				res.send(output);
+			}
+		});
 });
 
 
@@ -374,11 +454,11 @@ Router.get("/fresh", (req, res) => {
 	});
 });
 
-function isEmpty(val){
-    if (val === undefined || val == null || val.length <= 0)
-    	val = '';
+function isEmpty(val) {
+	if (val === undefined || val == null || val.length <= 0)
+		val = '';
 
-    return val
+	return val
 }
 
 module.exports = Router

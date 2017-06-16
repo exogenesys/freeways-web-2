@@ -1,17 +1,10 @@
-import _ from 'lodash'
-import faker from 'faker'
 import React, { Component } from 'react'
+import axios from 'axios';
 import { Search, Grid, Header } from 'semantic-ui-react'
 
-const source = _.times(5, () => ({
-  title: faker.company.companyName(),
-  description: faker.company.catchPhrase(),
-  image: faker.internet.avatar(),
-  price: faker.finance.amount(0, 100, 2, '$'),
-}))
-
+const source = 'http://localhost:3000/api/search/'
 const SearchHomeStyle = {
-  // width: '500px'
+  width: '500px'
 }
 
 
@@ -27,18 +20,17 @@ export default class SearchHome extends Component {
   handleSearchChange = (e, value) => {
     this.setState({ isLoading: true, value })
 
-    setTimeout(() => {
+    axios.get(source + value).then(function (res) {
       if (this.state.value.length < 1) return this.resetComponent()
-
-      const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
-      const isMatch = (result) => re.test(result.title)
 
       this.setState({
         isLoading: false,
-        results: _.filter(source, isMatch),
+        results: res,
       })
-    }, 500)
+    });
+
   }
+
 
   render() {
     const { isLoading, value, results } = this.state
