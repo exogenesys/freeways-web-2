@@ -308,6 +308,8 @@ Router.get('/search/:keywords', function(req, res) {
 				$meta: "textScore"
 			}
 		})
+		.select('title slug img')
+		.limit(8)
 		.exec(function(err, output) {
 			if (err) {
 				res.send(500, err);
