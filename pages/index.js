@@ -5,6 +5,8 @@ import withRedux from 'next-redux-wrapper';
 
 import {Button, Card, Image, Header, Container} from 'semantic-ui-react'
 
+import Layout from '../components/Layout'
+
 import TopBar from '../components/TopBar'
 
 import RecommendationCards from '../components/RecommendationCards'
@@ -37,7 +39,7 @@ class Index extends React.Component {
 		const home = this.props.data;
 
 		return (
-			<div>
+			<Layout>
 				<TopBar/>
 				<Container fluid>
 					<Cover/>
@@ -61,7 +63,7 @@ class Index extends React.Component {
 					</Container>
 					<Footer/>
 				</Container>
-			</div>
+			</Layout>
 		)
 	}
 }

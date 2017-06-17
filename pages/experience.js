@@ -16,6 +16,7 @@ import {
 	List
 } from 'semantic-ui-react'
 
+import Layout from '../components/Layout'
 import TopBar from '../components/TopBar'
 import Cover from '../components/DestinationCover'
 import Menu from '../components/ExperienceMenu'
@@ -44,7 +45,7 @@ class Index extends React.Component {
 		console.log(z);
 		return (
 
-			<div>
+			<Layout>
 				<TopBar/>
 				<Container fluid>
 					<Cover caption={z.experiences.caption} title={z.experiences.title} img={z.experiences.img}/>
@@ -64,7 +65,7 @@ class Index extends React.Component {
 					</Container>
 					<Footer/>
 				</Container>
-			</div>
+			</Layout>
 		);
 	}
 }

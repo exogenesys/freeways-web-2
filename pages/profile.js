@@ -11,6 +11,8 @@ import {
 	Reveal
 } from 'semantic-ui-react'
 
+import Layout from '../components/Layout'
+
 import TopBar from '../components/TopBar'
 
 import BeenThereDoneThat from '../components/BeenThereDoneThat'
@@ -31,7 +33,7 @@ class Index extends React.Component {
 	render() {
 
 		return (
-			<div>
+			<Layout>
 				<TopBar/>
 				<Container fluid>
 					<Container >
@@ -67,7 +69,7 @@ class Index extends React.Component {
 					</Container>
 					<Footer/>
 				</Container>
-			</div>
+			</Layout>
 		);
 	}
 }
