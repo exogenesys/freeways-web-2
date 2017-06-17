@@ -28,7 +28,6 @@ export default class TopBar extends Component {
 	}
 
 	componentDidMount() {
-		console.log('GA should init right about now')
 		if (!window.GA_INITIALIZED) {
 			initGA()
 			window.GA_INITIALIZED = true
