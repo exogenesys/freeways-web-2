@@ -28,13 +28,11 @@ export default class TopBar extends Component {
 	}
 
 	componentDidMount() {
-		() => {
-			if (!window.GA_INITIALIZED) {
-				initGA()
-				window.GA_INITIALIZED = true
-			}
-			logPageView()
+		if (!window.GA_INITIALIZED) {
+			initGA()
+			window.GA_INITIALIZED = true
 		}
+		logPageView()
 	}
 
 	render() {
