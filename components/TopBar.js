@@ -3,21 +3,31 @@ import {Menu, Button, Grid} from 'semantic-ui-react'
 import Router from 'next/router'
 import {browserHistory} from 'react-router';
 import NProgress from 'nprogress'
+import {initGA, logPageView} from '../utils/analytics'
+
 
 Router.onRouteChangeStart = (url) => {
-  console.log(`Loading: ${url}`)
-  NProgress.start()
+	console.log(`Loading: ${url}`)
+	NProgress.start()
 }
 
 Router.onRouteChangeComplete = () => NProgress.done()
 Router.onRouteChangeError = () => NProgress.done()
 
 const linkStyle = {
-  margin: '0 10px 0 0'
+	margin: '0 10px 0 0'
 }
 
 export default class TopBar extends Component {
 	state = {}
+
+	componentDidMount() {
+		if (!window.GA_INITIALIZED) {
+			initGA()
+			window.GA_INITIALIZED = true
+		}
+		logPageView()
+	}
 
 	handleItemClick = (e, {name}) => {
 		this.setState({activeItem: name})
@@ -30,7 +40,10 @@ export default class TopBar extends Component {
 		return (
 			<div>
 				<Menu stackable borderless>
-					<Menu.Item header onClick={this.handleItemClick} name='' style={{fontSize:'19px', color:'#F2711C'}}>freeways</Menu.Item>
+					<Menu.Item header onClick={this.handleItemClick} name='' style={{
+						fontSize: '19px',
+						color: '#F2711C'
+					}}>freeways</Menu.Item>
 				</Menu>
 			</div>
 
