@@ -7,7 +7,6 @@ import Slider from 'react-slick'
 class RecommendationCards extends React.Component {
 
 	render() {
-		console.log(this.props.data.length);
 		const LeftArrowButton = () => { <Icon name = 'arrow circle left' /> }
 		const RightArrowButton = () => { <Icon name = 'arrow circle right' /> }
 		var settings = {

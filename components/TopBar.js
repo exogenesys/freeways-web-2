@@ -21,17 +21,19 @@ const linkStyle = {
 export default class TopBar extends Component {
 	state = {}
 
+
+	handleItemClick = (e, {name}) => {
+		this.setState({activeItem: name})
+		Router.push('/' + name)
+	}
+
 	componentDidMount() {
+		console.log('GA should init right about now')
 		if (!window.GA_INITIALIZED) {
 			initGA()
 			window.GA_INITIALIZED = true
 		}
 		logPageView()
-	}
-
-	handleItemClick = (e, {name}) => {
-		this.setState({activeItem: name})
-		Router.push('/' + name)
 	}
 
 	render() {
