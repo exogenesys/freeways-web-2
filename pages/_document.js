@@ -1,9 +1,18 @@
 import React from 'react';
 import Document, {Head, Main, NextScript} from 'next/document';
 import Router from 'next/router'
+import {initGA, logPageView} from '../utils/analytics'
+
 
 export default class MyDocument extends Document {
 	render() {
+		componentDidMount () {
+      if (!window.GA_INITIALIZED) {
+        initGA()
+        window.GA_INITIALIZED = true
+    }
+    logPageView()
+  }
 
 		return (
 			<html style={{

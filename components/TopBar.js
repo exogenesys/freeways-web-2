@@ -3,7 +3,6 @@ import {Menu, Button, Grid} from 'semantic-ui-react'
 import Router from 'next/router'
 import {browserHistory} from 'react-router';
 import NProgress from 'nprogress'
-import {initGA, logPageView} from '../utils/analytics'
 
 
 Router.onRouteChangeStart = (url) => {
@@ -25,14 +24,6 @@ export default class TopBar extends Component {
 	handleItemClick = (e, {name}) => {
 		this.setState({activeItem: name})
 		Router.push('/' + name)
-	}
-
-	componentDidMount() {
-		if (!window.GA_INITIALIZED) {
-			initGA()
-			window.GA_INITIALIZED = true
-		}
-		logPageView()
 	}
 
 	render() {
