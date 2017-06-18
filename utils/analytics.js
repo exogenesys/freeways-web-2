@@ -1,12 +1,10 @@
 import ReactGA from 'react-ga'
 
 export const initGA = () => {
-	console.log('GA Init')
 	ReactGA.initialize('UA-84262726-1')
 }
 
 export const logPageView = () => {
-	console.log(`Logging pageview for ${window.location.pathname} ` + `${window.location.search}`)
 	ReactGA.set({page: window.location.pathname + window.location.search })
 	ReactGA.pageview(window.location.pathname + window.location.search )
 }
@@ -22,3 +20,5 @@ export const logException = (description = '', fatal = false) => {
 		ReactGA.exception({description, fatal})
 	}
 }
+
+export default undefined
