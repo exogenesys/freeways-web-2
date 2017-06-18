@@ -8,7 +8,7 @@ import {
 	Header
 } from 'semantic-ui-react'
 
-const source = 'http://localhost:3000/api/search/'
+const source = 'http://freeways.in/api/search/'
 const SearchHomeStyle = {
 	// width: '500px'
 }
