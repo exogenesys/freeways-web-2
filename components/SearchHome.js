@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import axios from 'axios';
-import Link from 'next/link'
+import Router from 'next/router'
 import {Search, Grid, Header, Label} from 'semantic-ui-react'
 
 const source = '/api/search/'
@@ -16,7 +16,15 @@ export default class SearchHome extends Component {
 
 	resetComponent = () => this.setState({isLoading: false, results: [], value: ''})
 
-	handleResultSelect = (e, result) => this.setState({value: result.title})
+	handleResultSelect = (e, result) => {
+		this.setState({value: result.title})
+		Router.push({
+			pathname: '/' + result.type,
+			query: {
+				slug: result.slug
+			}
+		})
+	}
 
 	handleSearchChange = (e, value) => {
 		this.setState({isLoading: true, value})
@@ -32,16 +40,9 @@ export default class SearchHome extends Component {
 	render() {
 		const {isLoading, value, results} = this.state
 		const resultRenderer = ({slug, title, type}) => (
-			<Link href={{
-				pathname: type,
-				query: {
-					slug: slug
-				}
-			}}>
-				<div>
-					{title}
-				</div>
-			</Link>
+			<div>
+				{title}
+			</div>
 		)
 
 		resultRenderer.propTypes = {
