@@ -247,7 +247,7 @@ Router.get('/dataimport', (req, res) => {
 		if (err) {
 			console.log('error finding trips for import')
 		} else {
-			trips = trips.map(function(trip){
+			var trips = trips.toObject().map(function(trip){
 				trip.type = 'trip'
 				return trip
 			});
@@ -256,21 +256,31 @@ Router.get('/dataimport', (req, res) => {
 				if (err) {
 					console.log('error finding destinations for import')
 				} else {
+					var destinations = destinations.toObject().map(function(destination){
+						destination.type = 'destination'
+						return destination
+					});
 					obj.push(destinations);
 
 					experiences.find().select('slug title keywords img').exec(function(err, experiences) {
 						if (err) {
 							console.log('error finding experiences for import')
 						} else {
+							var experiences = experiences.toObject().map(function(experience){
+								experience.type = 'experience'
+								return experience
+							});
 							obj.push(experiences);
-							console.log(obj);
 
 							places.find().select('slug title keywords img').exec(function(err, places) {
 								if (err) {
 									console.log('error finding places for import')
 								} else {
+									var places = places.toObject().map(function(place){
+										place.type = 'place'
+										return place
+									});
 									obj.push(places);
-									console.log(obj);
 
 									for (var i = 0; i < obj.length; i++) {
 										searchKeys.collection.insert(obj[i], function(err, data) {

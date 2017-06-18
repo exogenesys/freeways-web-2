@@ -20,8 +20,6 @@ import initStore from '../utils/store';
 
 import configureLoadingProgressBar from '../utils/routing'
 
-
-
 class Index extends React.Component {
 
 	constructor(props) {
