@@ -53,7 +53,7 @@ class Index extends React.Component {
 	}
 
 	static async getInitialProps({query}) {
-		const res = await axios.get('/api/destination/'  + query.slug);
+		const res = await axios.get('http://freeways.in/api/destination/'  + query.slug);
 		const data = res.data;
 		return {data};
 	}
