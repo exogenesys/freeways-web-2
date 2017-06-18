@@ -16,6 +16,8 @@ var searchSchema = new Schema({
     type: String
   },
 
+  img : String,
+
   keywords: [String],
 
 
