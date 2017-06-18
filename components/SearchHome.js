@@ -32,7 +32,7 @@ export default class SearchHome extends Component {
 	render() {
 		const {isLoading, value, results} = this.state
 
-		const resultRenderer = ({slug, title}) => (
+		const resultRenderer = ({slug, title, type}) => (
 			<Link href={{
 				pathname: type,
 				query: {
@@ -47,7 +47,8 @@ export default class SearchHome extends Component {
 
 		resultRenderer.propTypes = {
 			title: PropTypes.string,
-			slug: PropTypes.string
+			slug: PropTypes.string,
+			type: PropTypes.string
 		}
 
 		return (<Search loading={isLoading} resultRenderer={resultRenderer} onResultSelect={this.handleResultSelect} onSearchChange={this.handleSearchChange} results={results} value={value} size={'huge'} style={SearchHomeStyle} { ...this.props } fluid/>)

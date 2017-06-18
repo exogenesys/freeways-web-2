@@ -243,44 +243,44 @@ Router.get('/dataimport', (req, res) => {
 	console.log('hello from ImportData');
 	var obj = [];
 
-	trips.find().select('slug title keywords img').exec(function(err, trips) {
+	trips.find().lean().select('slug title keywords img').exec(function(err, _trips) {
 		if (err) {
 			console.log('error finding trips for import')
 		} else {
-			var trips = trips.toObject().map(function(trip){
+			var d = _trips.map(function(trip){
 				trip.type = 'trip'
 				return trip
 			});
-			obj.push(trips);
-			destinations.find().select('slug title keywords img').exec(function(err, destinations) {
+			obj.push(d);
+			destinations.find().lean().select('slug title keywords img').exec(function(err, _destinations) {
 				if (err) {
 					console.log('error finding destinations for import')
 				} else {
-					var destinations = destinations.toObject().map(function(destination){
+					var c = _destinations.map(function(destination){
 						destination.type = 'destination'
 						return destination
 					});
-					obj.push(destinations);
+					obj.push(c);
 
-					experiences.find().select('slug title keywords img').exec(function(err, experiences) {
+					experiences.find().lean().select('slug title keywords img').exec(function(err, _experiences) {
 						if (err) {
 							console.log('error finding experiences for import')
 						} else {
-							var experiences = experiences.toObject().map(function(experience){
+							var a = _experiences.map(function(experience){
 								experience.type = 'experience'
 								return experience
 							});
-							obj.push(experiences);
+							obj.push(a);
 
-							places.find().select('slug title keywords img').exec(function(err, places) {
+							places.find().lean().select('slug title keywords img').exec(function(err, _places) {
 								if (err) {
 									console.log('error finding places for import')
 								} else {
-									var places = places.toObject().map(function(place){
+									var b = _places.map(function(place){
 										place.type = 'place'
 										return place
 									});
-									obj.push(places);
+									obj.push(b);
 
 									for (var i = 0; i < obj.length; i++) {
 										searchKeys.collection.insert(obj[i], function(err, data) {
@@ -331,7 +331,7 @@ Router.get('/search/:keywords', function(req, res) {
 				$meta: "textScore"
 			}
 		})
-		.select('title slug img')
+		.select('title slug img type')
 		.limit(8)
 		.exec(function(err, output) {
 			if (err) {
