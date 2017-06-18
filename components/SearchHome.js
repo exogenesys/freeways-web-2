@@ -35,8 +35,10 @@ export default class SearchHome extends Component {
 			value
 		})
 
-		if (value.length < 1) return this.resetComponent()
+		if (value.length < 1) return this.resetComponent();
+		// console.log('SearchHome[DEBUG]: ' + source + value);
 		axios.get(source + value).then((res) => {
+			// console.log('SearchHome[DEBUG]:' + res);
 			this.setState({
 				isLoading: false,
 				results: res.data,

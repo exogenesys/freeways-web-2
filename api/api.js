@@ -247,8 +247,11 @@ Router.get('/dataimport', (req, res) => {
 		if (err) {
 			console.log('error finding trips for import')
 		} else {
+			trips = trips.map(function(trip){
+				trip.type = 'trip'
+				return trip
+			});			
 			obj.push(trips);
-
 			destinations.find().select('slug title keywords img').exec(function(err, destinations) {
 				if (err) {
 					console.log('error finding destinations for import')
@@ -293,11 +296,21 @@ Router.get('/dataimport', (req, res) => {
 });
 
 Router.get('/search/:keywords', function(req, res) {
-
+	var re = '^' + req.params.keywords + '.*';
+	// console.log('API[DEBUG]: ' + re);
 	var query = searchKeys.find({
-			$text: {
-				$search: req.params.keywords
-			}
+			$or: [
+				{
+					title: {
+						$regex: re
+					}
+				},
+				{
+					keywords: {
+						$regex: re
+					}
+				}
+			]		
 		}, {
 			score: {
 				$meta: "textScore"
@@ -313,6 +326,7 @@ Router.get('/search/:keywords', function(req, res) {
 		.exec(function(err, output) {
 			if (err) {
 				res.send(500, err);
+				// console.log(err);
 			} else {
 				res.send(output);
 			}
