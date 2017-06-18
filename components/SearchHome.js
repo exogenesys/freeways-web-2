@@ -31,7 +31,6 @@ export default class SearchHome extends Component {
 
 	render() {
 		const {isLoading, value, results} = this.state
-
 		const resultRenderer = ({slug, title, type}) => (
 			<Link href={{
 				pathname: type,

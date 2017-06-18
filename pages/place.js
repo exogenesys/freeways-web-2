@@ -35,7 +35,7 @@ import Forecast from 'react-forecast'
 
 class Index extends React.Component {
 	static async getInitialProps({query}) {
-		const res = await axios.get('http://lighght.herokuapp.com/api/place/' + query.slug);
+		const res = await axios.get('/api/place/' + query.slug);
 		const data = res.data;
 		return {data};
 	}

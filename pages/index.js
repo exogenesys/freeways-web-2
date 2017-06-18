@@ -27,7 +27,7 @@ class Index extends React.Component {
 	}
 
 	static async getInitialProps() {
-		const res = await axios.get('http://lighght.herokuapp.com/api/home');
+		const res = await axios.get('/api/home');
 		const data = res.data;
 		return {data};
 	}

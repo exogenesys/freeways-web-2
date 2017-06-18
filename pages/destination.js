@@ -42,35 +42,35 @@ class Index extends React.Component {
 
 	constructor(props) {
 		super(props);
-		
+
 		// state maintains the height of elements
 		// as well as the activeitem to pass on to 'Menu'
-		this.state = {			
-			activeItem: 'about'						
+		this.state = {
+			activeItem: 'about'
 		};
 
 		this.handleScroll = this.handleScroll.bind(this);
 	}
 
 	static async getInitialProps({query}) {
-		const res = await axios.get('http://lighght.herokuapp.com/api/destination/'  + query.slug);
+		const res = await axios.get('/api/destination/'  + query.slug);
 		const data = res.data;
 		return {data};
 	}
 
 	handleScroll() {
-		// console.log(this.refs.guide.getBoundingClientRect()); 
+		// console.log(this.refs.guide.getBoundingClientRect());
 		// handle the scoll event to set the active link
-		// max neg is active 
+		// max neg is active
 		const items = ['about', 'places', 'exp', 'guide']
 		var topheights = [this.refs.about, this.refs.places, this.refs.exp, this.refs.guide]
-					.map((ref) => ref.getBoundingClientRect().top);		
-		// get the maximum negative 
+					.map((ref) => ref.getBoundingClientRect().top);
+		// get the maximum negative
 		var max = -2000,
 			ind = -1;
 		for(var i = 0; i < 4; i++) {
 			if(topheights[i] < 0 && topheights[i] > max) {
-				// update max 
+				// update max
 				max = topheights[i];
 				ind = i;
 			}
@@ -86,7 +86,7 @@ class Index extends React.Component {
 	componentDidMount() {
 		window.addEventListener('scroll', this.handleScroll);
 	}
-	
+
 	render() {
 
 		const z = this.props.data;
@@ -108,7 +108,7 @@ class Index extends React.Component {
 						</div>
 						<div ref='exp'>
 							<Experiences exp={z.experiences}/>
-						</div>						
+						</div>
 {/*						<Trips trips={z.destination}/>                */}
 						<div ref='guide'>
 							<MustKnow must_know={z.destination.must_know} />
