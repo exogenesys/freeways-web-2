@@ -250,7 +250,7 @@ Router.get('/dataimport', (req, res) => {
 			trips = trips.map(function(trip){
 				trip.type = 'trip'
 				return trip
-			});			
+			});
 			obj.push(trips);
 			destinations.find().select('slug title keywords img').exec(function(err, destinations) {
 				if (err) {
@@ -273,7 +273,7 @@ Router.get('/dataimport', (req, res) => {
 									console.log(obj);
 
 									for (var i = 0; i < obj.length; i++) {
-										searchKey.collection.insert(obj[i], function(err, data) {
+										searchKeys.collection.insert(obj[i], function(err, data) {
 											if (err) {
 												console.error("Error While Adding to SearchSchema", err);
 											} else {
@@ -310,7 +310,7 @@ Router.get('/search/:keywords', function(req, res) {
 						$regex: re
 					}
 				}
-			]		
+			]
 		}, {
 			score: {
 				$meta: "textScore"
