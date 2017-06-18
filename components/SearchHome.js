@@ -4,7 +4,7 @@ import axios from 'axios';
 import Link from 'next/link'
 import {Search, Grid, Header, Label} from 'semantic-ui-react'
 
-const source = 'http://freeways.in/api/search/'
+const source = '/api/search/'
 const SearchHomeStyle = {
 	// width: '500px'
 }
