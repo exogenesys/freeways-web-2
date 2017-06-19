@@ -2,14 +2,19 @@ import React from 'react'
 import Link from 'next/link'
 import {Card, Header, Icon} from 'semantic-ui-react'
 import {Image} from 'cloudinary-react';
+import helper from '../utils/helper';
+import constants from '../utils/constants'
 
 export default class Brick extends React.Component {
-	render() {
+	render() {		
+		var imgurl = helper.buildImgUrl(this.props.data.img, 
+							constants.IMG_HEIGHT_RB, 
+							constants.IMG_QUALITY_RB);
 		return (
 			<Link href={{ pathname: this.props.type, query: { slug: this.props.data.slug }}}>
 
 				<Card fluid style={{
-					backgroundImage: "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), url(\'" + this.props.data.img + "\')",
+					backgroundImage: "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), url(\'" + imgurl + "\')",
 					boxShadow: '3px 3px 5px 0px #D4D4D5, 0 0 1px 1px #D4D4D5',
 					backgroundSize: 'cover',
 					minHeight:"256px",

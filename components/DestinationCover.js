@@ -1,17 +1,22 @@
 import React from 'react'
 import {Segment, Header, Grid} from 'semantic-ui-react'
 import SearchHome from '../components/SearchHome'
-
+import helper from '../utils/helper'
+import constants from '../utils/constants'
 
 const Cover = (props) => {
 
 	if (props.img == ''){
 		props.img = 'static/img/shimla.jpg'
 	}
+	
+	var imgurl = helper.buildImgUrl(props.img, 
+		constants.IMG_HEIGHT_DC, 
+		constants.IMG_QUALITY_DC);
 
 	const CoverStyle = {
 		height: "600px",
-		backgroundImage: "url('" +  props.img   + "')",
+		backgroundImage: "url('" +  imgurl   + "')",
 		backgroundSize: "cover",
 		backgroundRepeat: 'no-repeat',
 		backgroundPosition: 'center center',
