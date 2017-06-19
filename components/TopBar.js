@@ -18,7 +18,7 @@ const linkStyle = {
 	margin: '0 10px 0 0'
 }
 
-export default class TopBar extends React.Component {
+export default class TopBar extends Component {
 
 	state = {}
 

@@ -73,7 +73,6 @@ Router.get('/experiences', (req, res) => {
 	})
 });
 
-
 Router.get('/placesslug', (req, res) => {
 	console.log('hello from home');
 	var obj = {};
@@ -97,7 +96,6 @@ Router.get('/exslug', (req, res) => {
 		}
 	})
 });
-
 
 Router.get("/trip/:slug", (req, res) => {
 	console.log("hello from ttrips");
@@ -138,7 +136,7 @@ Router.get("/destination/:slug", (req, res) => {
 							var obj = {
 								destination: data[0],
 								places: _places,
-								experiences: _experiences,
+								experiences: _experiences
 							}
 							res.send(obj);
 						}
@@ -173,7 +171,7 @@ Router.get("/place/:slug", (req, res) => {
 					delete x.how_to_reach_by_train;
 					var obj = {
 						places: x,
-						experiences: _experiences,
+						experiences: _experiences
 					}
 					res.send(obj);
 				}
@@ -247,7 +245,7 @@ Router.get('/dataimport', (req, res) => {
 		if (err) {
 			console.log('error finding trips for import')
 		} else {
-			var d = _trips.map(function(trip){
+			var d = _trips.map(function(trip) {
 				trip.type = 'trip'
 				return trip
 			});
@@ -256,7 +254,7 @@ Router.get('/dataimport', (req, res) => {
 				if (err) {
 					console.log('error finding destinations for import')
 				} else {
-					var c = _destinations.map(function(destination){
+					var c = _destinations.map(function(destination) {
 						destination.type = 'destination'
 						return destination
 					});
@@ -266,7 +264,7 @@ Router.get('/dataimport', (req, res) => {
 						if (err) {
 							console.log('error finding experiences for import')
 						} else {
-							var a = _experiences.map(function(experience){
+							var a = _experiences.map(function(experience) {
 								experience.type = 'experience'
 								return experience
 							});
@@ -276,7 +274,7 @@ Router.get('/dataimport', (req, res) => {
 								if (err) {
 									console.log('error finding places for import')
 								} else {
-									var b = _places.map(function(place){
+									var b = _places.map(function(place) {
 										place.type = 'place'
 										return place
 									});
@@ -308,41 +306,39 @@ Router.get('/dataimport', (req, res) => {
 Router.get('/search/:keywords', function(req, res) {
 	var re = new RegExp('^' + req.params.keywords + '.*', 'i');
 	// console.log('API[DEBUG]: ' + re);
-	var query = searchKeys.find({
-			$or: [
-				{
-					title: {
-						$regex: re
-					}
-				},
-				{
-					keywords: {
-						$regex: re
-					}
-				}
-			]
-		}, {
-			score: {
-				$meta: "textScore"
-			}
-		})
-		.sort({
-			score: {
-				$meta: "textScore"
-			}
-		})
-		.select('title slug img type')
-		.limit(8)
-		.exec(function(err, output) {
-			if (err) {
-				res.send(500, err);
-				// console.log(err);
-			} else {
-				res.send(output);
-			}
-		});
-});
 
+	var query = searchKeys.find({
+		$or: [
+			{
+				title: {
+					$regex: re
+				}
+			}, {
+				keywords: {
+					$regex: re
+				}
+			}
+		],
+		type : {
+			$ne : 'trip'
+		}
+	}, {
+		score: {
+			$meta: "textScore"
+		}
+	}).sort({
+		score: {
+			$meta: "textScore"
+		}
+	}).select('title slug img type').limit(8).exec(function(err, output) {
+		if (err) {
+			res.send(500, err);
+			// console.log(err);
+		} else {
+			res.send(output);
+		}
+	});
+});
 
 Router.get("/fresh", (req, res) => {
 	const url = 'http://api.cosmicjs.com/v1/freewaays'

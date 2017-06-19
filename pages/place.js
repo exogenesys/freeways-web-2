@@ -31,7 +31,6 @@ import Experiences from '../components/DestinationExperiences'
 import Trips from '../components/DestinationTrips'
 import Comments from '../components/Comments'
 import initStore from '../utils/store'
-import Forecast from 'react-forecast'
 
 const ifRoot = 'false';
 

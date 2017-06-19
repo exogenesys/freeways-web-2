@@ -29,7 +29,6 @@ import MustKnow from '../components/MustKnow'
 import Trips from '../components/DestinationTrips'
 import Comments from '../components/Comments'
 import initStore from '../utils/store'
-import Forecast from 'react-forecast'
 
 class Index extends React.Component {
 

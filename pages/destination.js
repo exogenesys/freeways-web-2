@@ -33,7 +33,6 @@ import Places from '../components/DestinationPlaces'
 import Experiences from '../components/DestinationExperiences'
 import Trips from '../components/DestinationTrips'
 import initStore from '../utils/store'
-import Forecast from 'react-forecast'
 import Router from 'next/router'
 
 class Index extends React.Component {

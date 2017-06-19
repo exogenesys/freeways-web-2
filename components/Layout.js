@@ -11,6 +11,7 @@ export default class Layout extends React.Component {
     }
     logPageView()
   }
+
 	render() {
 		return (
 			<div>

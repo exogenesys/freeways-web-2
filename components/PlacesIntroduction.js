@@ -1,6 +1,5 @@
 import React from 'react'
 import {Segment, Header, Grid, Statistic, Popup} from 'semantic-ui-react'
-import Forecast from 'react-forecast'
 import renderHTML from 'react-render-html'
 
 export default class PlacesIntroduction extends React.Component {
@@ -61,7 +60,6 @@ export default class PlacesIntroduction extends React.Component {
 									Weather
 								</Popup.Header>
 								<Popup.Content>
-									<Forecast latitude={31.1048} longitude={77.1734} name='Shimla'/>
 								</Popup.Content>
 							</Popup>
 						</Grid.Column>

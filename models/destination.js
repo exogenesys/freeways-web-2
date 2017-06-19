@@ -42,7 +42,7 @@ var destinationSchema = new Schema({
 	average_budget_per_person: {
 		type: String
 	},
-
+	
 	latitude: {
 		type: String
 	},

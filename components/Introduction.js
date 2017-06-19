@@ -1,6 +1,5 @@
 import React from 'react'
 import {Segment, Header, Grid, Statistic, Popup} from 'semantic-ui-react'
-import Forecast from 'react-forecast'
 import renderHTML from 'react-render-html'
 
 
@@ -58,7 +57,6 @@ export default class Footer extends React.Component {
 									Weather
 								</Popup.Header>
 								<Popup.Content>
-									<Forecast latitude={this.props.intro[0].latitude} longitude={this.props.intro[0].longitude} name={this.props.intro[0].title}/>
 								</Popup.Content>
 							</Popup>
 						</Grid.Column>
