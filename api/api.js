@@ -306,7 +306,7 @@ Router.get('/dataimport', (req, res) => {
 });
 
 Router.get('/search/:keywords', function(req, res) {
-	var re = '^' + req.params.keywords + '.*';
+	var re = new RegExp('^' + req.params.keywords + '.*', 'i');
 	// console.log('API[DEBUG]: ' + re);
 	var query = searchKeys.find({
 			$or: [
