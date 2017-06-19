@@ -33,6 +33,8 @@ import Comments from '../components/Comments'
 import initStore from '../utils/store'
 import Forecast from 'react-forecast'
 
+const ifRoot = 'false';
+
 class Index extends React.Component {
 	static async getInitialProps({query}) {
 		const res = await axios.get('http://www.freeways.in/api/place/' + query.slug);
@@ -46,7 +48,7 @@ class Index extends React.Component {
 
 		return (
 			<Layout>
-				<TopBar/>
+				<TopBar root={false}/>
 				<Container fluid>
 					<Cover caption={z.places.caption} title={z.places.title} img={z.places.img}/>
 					<Container>

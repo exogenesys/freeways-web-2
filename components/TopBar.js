@@ -1,9 +1,10 @@
-import React, {Component} from 'react'
-import {Menu, Button, Grid} from 'semantic-ui-react'
-import Router from 'next/router'
+import React, {Component} from 'react';
+import {Menu, Button, Grid} from 'semantic-ui-react';
+import {Router, withRouter} from 'next/router';
 import {browserHistory} from 'react-router';
-import NProgress from 'nprogress'
+import NProgress from 'nprogress';
 
+import NavSearch from './navSearch';
 
 Router.onRouteChangeStart = (url) => {
 	console.log(`Loading: ${url}`)
@@ -17,9 +18,9 @@ const linkStyle = {
 	margin: '0 10px 0 0'
 }
 
-export default class TopBar extends Component {
-	state = {}
+export default class TopBar extends React.Component {
 
+	state = {}
 
 	handleItemClick = (e, {name}) => {
 		this.setState({activeItem: name})
@@ -27,15 +28,25 @@ export default class TopBar extends Component {
 	}
 
 	render() {
-		const {activeItem} = this.state
+		const {activeItem} = this.state;
+
+		let bar = null;
+
+		console.log(this.props.root)
+		if(!this.props.root){
+			bar = <Menu.Item position='right'>
+							<NavSearch />
+						</Menu.Item>
+		}
 
 		return (
 			<div>
 				<Menu stackable borderless>
 					<Menu.Item header onClick={this.handleItemClick} name='' style={{
-						fontSize: '19px',
+						Size: 'small',
 						color: '#F2711C'
 					}}>freeways</Menu.Item>
+					{bar}
 				</Menu>
 			</div>
 

@@ -36,8 +36,6 @@ import initStore from '../utils/store'
 import Forecast from 'react-forecast'
 import Router from 'next/router'
 
-
-
 class Index extends React.Component {
 
 	constructor(props) {
@@ -93,7 +91,7 @@ class Index extends React.Component {
 		return (
 
 			<Layout>
-				<TopBar/>
+				<TopBar root={false}/>
 				<Container fluid>
 					<Cover caption={z.destination.caption} title={z.destination.title} img={z.destination.img}/>
 					<Container>

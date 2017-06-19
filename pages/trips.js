@@ -16,8 +16,7 @@ import Footer from '../components/Footer'
 
 import initStore from '../utils/store';
 
-
-
+const ifRoot = 'false';
 
 class Index extends React.Component {
 	static async getInitialProps({ query }) {
@@ -29,7 +28,7 @@ class Index extends React.Component {
 
 		return (
 			<Layout>
-				<TopBar />
+				<TopBar root={false} />
 				<Container fluid>
 				  <Container >
 						<RecommendationBricks  />

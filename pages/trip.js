@@ -31,6 +31,8 @@ import NearByDestinations from '../components/NearByDestinations'
 import initStore from '../utils/store'
 import Forecast from 'react-forecast'
 
+const ifRoot = 'false';
+
 class Index extends React.Component {
 	static async getInitialProps({query}) {
 		const res = await fetch('/api/trip/' + query.slug);
@@ -45,7 +47,7 @@ class Index extends React.Component {
 
 		return (
 			<Layout>
-				<TopBar/>
+				<TopBar root={false} />
 				<Container fluid>
 					<Cover cover = {tripData} />
 					<Container >

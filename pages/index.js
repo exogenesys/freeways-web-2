@@ -18,7 +18,7 @@ import Footer from '../components/Footer'
 
 import initStore from '../utils/store';
 
-import configureLoadingProgressBar from '../utils/routing'
+import configureLoadingProgressBar from '../utils/routing';
 
 class Index extends React.Component {
 
@@ -38,7 +38,7 @@ class Index extends React.Component {
 
 		return (
 			<Layout>
-				<TopBar/>
+				<TopBar root={true}/>
 				<Container fluid>
 					<Cover/>
 					<Container >

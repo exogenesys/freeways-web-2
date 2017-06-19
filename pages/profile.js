@@ -34,7 +34,7 @@ class Index extends React.Component {
 
 		return (
 			<Layout>
-				<TopBar/>
+				<TopBar root={false}/>
 				<Container fluid>
 					<Container >
 						<br/>
