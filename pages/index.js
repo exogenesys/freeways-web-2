@@ -5,6 +5,8 @@ import withRedux from 'next-redux-wrapper';
 
 import {Button, Card, Image, Header, Container} from 'semantic-ui-react'
 
+import Layout from '../components/Layout'
+
 import TopBar from '../components/TopBar'
 
 import RecommendationCards from '../components/RecommendationCards'
@@ -18,8 +20,6 @@ import initStore from '../utils/store';
 
 import configureLoadingProgressBar from '../utils/routing'
 
-
-
 class Index extends React.Component {
 
 	constructor(props) {
@@ -27,7 +27,7 @@ class Index extends React.Component {
 	}
 
 	static async getInitialProps() {
-		const res = await axios.get('http://lighght.herokuapp.com/api/home');
+		const res = await axios.get('http://www.freeways.in/api/home/');
 		const data = res.data;
 		return {data};
 	}
@@ -37,7 +37,7 @@ class Index extends React.Component {
 		const home = this.props.data;
 
 		return (
-			<div>
+			<Layout>
 				<TopBar/>
 				<Container fluid>
 					<Cover/>
@@ -61,7 +61,7 @@ class Index extends React.Component {
 					</Container>
 					<Footer/>
 				</Container>
-			</div>
+			</Layout>
 		)
 	}
 }

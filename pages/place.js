@@ -17,6 +17,7 @@ import {
 	List
 } from 'semantic-ui-react'
 
+import Layout from '../components/Layout'
 import TopBar from '../components/TopBar'
 import Cover from '../components/DestinationCover'
 import Menu from '../components/PlacesMenu'
@@ -34,7 +35,7 @@ import Forecast from 'react-forecast'
 
 class Index extends React.Component {
 	static async getInitialProps({query}) {
-		const res = await axios.get('http://lighght.herokuapp.com/api/place/' + query.slug);
+		const res = await axios.get('http://www.freeways.in/api/place/' + query.slug);
 		const data = res.data;
 		return {data};
 	}
@@ -44,7 +45,7 @@ class Index extends React.Component {
 		const z = this.props.data;
 
 		return (
-			<div>
+			<Layout>
 				<TopBar/>
 				<Container fluid>
 					<Cover caption={z.places.caption} title={z.places.title} img={z.places.img}/>
@@ -60,7 +61,7 @@ class Index extends React.Component {
 					</Container>
 					<Footer/>
 				</Container>
-			</div>
+			</Layout>
 		);
 	}
 }

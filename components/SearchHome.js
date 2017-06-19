@@ -1,59 +1,56 @@
-import _ from 'lodash'
-import faker from 'faker'
-import React, { Component } from 'react'
-import { Search, Grid, Header } from 'semantic-ui-react'
+import React, {Component} from 'react'
+import PropTypes from 'prop-types'
+import axios from 'axios';
+import Router from 'next/router'
+import {Search, Grid, Header, Label} from 'semantic-ui-react'
 
-const source = _.times(5, () => ({
-  title: faker.company.companyName(),
-  description: faker.company.catchPhrase(),
-  image: faker.internet.avatar(),
-  price: faker.finance.amount(0, 100, 2, '$'),
-}))
-
+const source = '/api/search/'
 const SearchHomeStyle = {
-  // width: '500px'
+	// width: '500px'
 }
 
-
 export default class SearchHome extends Component {
-  componentWillMount() {
-    this.resetComponent()
-  }
+	componentWillMount() {
+		this.resetComponent()
+	}
 
-  resetComponent = () => this.setState({ isLoading: false, results: [], value: '' })
+	resetComponent = () => this.setState({isLoading: false, results: [], value: ''})
 
-  handleResultSelect = (e, result) => this.setState({ value: result.title })
+	handleResultSelect = (e, result) => {
+		this.setState({value: result.title})
+		Router.push({
+			pathname: '/' + result.type,
+			query: {
+				slug: result.slug
+			}
+		})
+	}
 
-  handleSearchChange = (e, value) => {
-    this.setState({ isLoading: true, value })
+	handleSearchChange = (e, value) => {
+		this.setState({isLoading: true, value})
 
-    setTimeout(() => {
-      if (this.state.value.length < 1) return this.resetComponent()
+		if (value.length < 1)
+			return this.resetComponent()
+		axios.get(source + value).then((res) => {
+			this.setState({isLoading: false, results: res.data})
+		});
 
-      const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
-      const isMatch = (result) => re.test(result.title)
+	}
 
-      this.setState({
-        isLoading: false,
-        results: _.filter(source, isMatch),
-      })
-    }, 500)
-  }
+	render() {
+		const {isLoading, value, results} = this.state
+		const resultRenderer = ({slug, title, type}) => (
+			<div>
+				{title}
+			</div>
+		)
 
-  render() {
-    const { isLoading, value, results } = this.state
+		resultRenderer.propTypes = {
+			title: PropTypes.string,
+			slug: PropTypes.string,
+			type: PropTypes.string
+		}
 
-    return (
-      <Search
-        loading={isLoading}
-        onResultSelect={this.handleResultSelect}
-        onSearchChange={this.handleSearchChange}
-        results={results}
-        value={value}
-        size={'huge'}
-        style={ SearchHomeStyle }
-        {...this.props}
-      />
-    )
-  }
+		return (<Search loading={isLoading} resultRenderer={resultRenderer} onResultSelect={this.handleResultSelect} onSearchChange={this.handleSearchChange} results={results} value={value} size={'huge'} style={SearchHomeStyle} { ...this.props } fluid/>)
+	}
 }

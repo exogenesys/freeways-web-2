@@ -21,6 +21,7 @@
     "react-absolute-grid": "^3.0.0",
     "react-dom": "15.5.4",
     "react-forecast": "0.0.7",
+    "react-ga": "^2.2.0",
     "react-masonry-component": "latest",
     "react-redux": "^5.0.2",
     "react-render-html": "^0.1.6",

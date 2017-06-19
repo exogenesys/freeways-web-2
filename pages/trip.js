@@ -16,6 +16,7 @@ import {
 	List
 } from 'semantic-ui-react'
 
+import Layout from '../components/Layout'
 import TopBar from '../components/TopBar'
 import Cover from '../components/DestinationCover'
 import Menu from '../components/TripMenu'
@@ -32,7 +33,7 @@ import Forecast from 'react-forecast'
 
 class Index extends React.Component {
 	static async getInitialProps({query}) {
-		const res = await fetch('http://lighght.herokuapp.com/api/trip/' + query.slug);
+		const res = await fetch('/api/trip/' + query.slug);
 		const data = await res.json();
 		console.log(data);
 		return {data};
@@ -43,7 +44,7 @@ class Index extends React.Component {
 		const tripData = this.props.data;
 
 		return (
-			<div>
+			<Layout>
 				<TopBar/>
 				<Container fluid>
 					<Cover cover = {tripData} />
@@ -63,7 +64,7 @@ class Index extends React.Component {
 					</Container>
 					<Footer/>
 				</Container>
-			</div>
+			</Layout>
 		);
 	}
 }
