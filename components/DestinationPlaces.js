@@ -14,7 +14,6 @@ import {
 import RecommendationBrick from '../components/RecommendationBrick'
 
 export default class Places extends Component {
-	state = {}
 
 	handleItemClick = (e, {name}) => {
 		if(this.state.activeItem === name){
@@ -51,6 +50,19 @@ export default class Places extends Component {
 			value: '',
 			isLoading: false
 		}
+	}	
+
+	// if the component receives new props while 
+	// mounted, just update the state with new props
+	componentWillReceiveProps(nextProps) {
+		if (this.props == nextProps) 
+			return;
+		this.setState({
+			activeItem: '',
+			items: nextProps.places,
+			value: '',
+			isLoading: false
+		});	
 	}
 
 	render() {

@@ -51,6 +51,15 @@ export default class SearchHome extends Component {
 			type: PropTypes.string
 		}
 
-		return (<Search loading={isLoading} resultRenderer={resultRenderer} onResultSelect={this.handleResultSelect} onSearchChange={this.handleSearchChange} results={results} size='small' value={value} style={SearchHomeStyle} { ...this.props } fluid/>)
+		return (<Search 
+			loading={isLoading} 
+			resultRenderer={resultRenderer} 
+			onResultSelect={this.handleResultSelect} 
+			onSearchChange={this.handleSearchChange} 
+			results={results} 
+			size='small' 
+			value={value} 
+			style={SearchHomeStyle} { ...this.props } fluid
+		/>)
 	}
 }

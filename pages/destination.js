@@ -83,7 +83,7 @@ class Index extends React.Component {
 	componentDidMount() {
 		window.addEventListener('scroll', this.handleScroll);
 	}
-
+	
 	render() {
 
 		const z = this.props.data;
