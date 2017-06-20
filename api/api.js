@@ -132,7 +132,7 @@ Router.get("/destination/:slug", (req, res,next) => {
 							console.error(err);
 						} else {
 
-							rp('http://api.openweathermap.org/data/2.5/weather?lat='+data[0].latitude+'&lon='+data[0].longitude+'&appid=e6c33eefa2e93035fbc5bb2964d35603').then((response) => {
+							rp('http://api.openweathermap.org/data/2.5/weather?lat='+data.latitude+'&lon='+data.longitude+'&appid=e6c33eefa2e93035fbc5bb2964d35603').then((response) => {
 								const weather = JSON.parse(response)
 								const obj = {
 									destination: data,
