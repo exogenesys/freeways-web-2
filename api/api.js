@@ -131,12 +131,18 @@ Router.get("/destination/:slug", (req, res,next) => {
 						if (err) {
 							console.error(err);
 						} else {
-							var obj = {
-								destination: data,
-								places: _places,
-								experiences: _experiences
-							}
-							res.send(obj);
+
+							rp('http://api.openweathermap.org/data/2.5/weather?lat='+data[0].latitude+'&lon='+data[0].longitude+'&appid=e6c33eefa2e93035fbc5bb2964d35603').then((response) => {
+								const weather = JSON.parse(response)
+								const obj = {
+									destination: data,
+									places: _places,
+									experiences: _experiences,
+									weather: Math.round(weather.main.temp - 273.15)
+								}
+								res.send(obj);
+
+								});
 						}
 					});
 				}
@@ -308,19 +314,17 @@ Router.get('/search/:keywords', function(req, res) {
 	// console.log('API[DEBUG]: ' + re);
 
 	var query = searchKeys.find({
-		$or: [
-			{
-				title: {
-					$regex: re
-				}
-			}, {
-				keywords: {
-					$regex: re
-				}
+		$or: [{
+			title: {
+				$regex: re
 			}
-		],
-		type : {
-			$ne : 'trip'
+		}, {
+			keywords: {
+				$regex: re
+			}
+		}],
+		type: {
+			$ne: 'trip'
 		}
 	}, {
 		score: {
@@ -483,4 +487,4 @@ function isEmpty(val) {
 	return val
 }
 
-module.exports = Router
+	module.exports = Router
