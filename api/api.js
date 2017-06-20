@@ -13,6 +13,7 @@ const destinations = require("../models/destination.js");
 const languages = require("../models/languages.js");
 const searchKeys = require("../models/searchKeys.js");
 const mustCarry = require("../models/mustcarry.js");
+const nearByLoc = require("../models/nearBy.js");
 
 const Router = express.Router();
 

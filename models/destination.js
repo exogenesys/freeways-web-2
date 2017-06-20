@@ -42,14 +42,10 @@ var destinationSchema = new Schema({
 	average_budget_per_person: {
 		type: String
 	},
-	
-	latitude: {
-		type: String
-	},
 
-	longitude: {
-		type: String
-	},
+	loc: [{
+      type: Schema.Types.ObjectId, ref: 'NearByLoc'
+  }],
 
 	must_know: {
 		type: String

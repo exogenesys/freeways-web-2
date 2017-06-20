@@ -41,13 +41,9 @@ var placeSchema = new Schema({
 
     tags : [String] ,
 
-    latitude: {
-      type: String
-    },
-
-    longitude: {
-      type: String
-    },
+    loc: [{
+        type: Schema.Types.ObjectId, ref: 'NearByLoc'
+    }],
 
     how_to_reach_by_car: {
       type: String

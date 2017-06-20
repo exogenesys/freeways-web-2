@@ -16,7 +16,11 @@ var searchSchema = new Schema({
     type: String
   },
 
-  keywords: [String],
+  img: {
+    type: String
+  },
+
+  keywords: [String]
 
 
 }, {timestamps: true});
