@@ -47,7 +47,7 @@ export default class Footer extends React.Component {
 						</Grid.Column>
 
 						<Grid.Column>
-							<Popup trigger={<Statistic size = "small" value ={this.props.weather} label = 'Weather' />} hideOnScroll inverted wide position='bottom center'>
+							<Popup trigger={<Statistic size = "small" value ={this.props.weather + '°'} label = 'Weather' />} hideOnScroll inverted wide position='bottom center'>
 								<Popup.Header>
 									Weather
 								</Popup.Header>

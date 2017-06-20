@@ -140,7 +140,7 @@ Router.get("/destination/:slug", (req, res) => {
 									destination: data[0],
 									places: _places,
 									experiences: _experiences,
-									weather: weather.main.temp
+									weather: Math.round(weather.main.temp - 273.15) 
 								}
 								res.send(obj);
 
