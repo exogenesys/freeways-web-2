@@ -2,10 +2,11 @@ import React from 'react'
 import {Segment, Header, Grid, Statistic, Popup} from 'semantic-ui-react'
 import renderHTML from 'react-render-html'
 
-
 export default class Footer extends React.Component {
 
 	render() {
+
+		console.log(this.props.weather);
 
 		return (
 			<Segment basic>
@@ -19,7 +20,7 @@ export default class Footer extends React.Component {
 					color: '#333'
 				}}>
 
-				{renderHTML(this.props.intro)}
+					{renderHTML(this.props.intro)}
 
 				</div>
 				<br/>
@@ -29,46 +30,38 @@ export default class Footer extends React.Component {
 				<Grid columns={3}>
 
 					<Grid.Row centered>
-					<Grid.Column>
-					<Popup trigger={< Statistic size = "small" value={"₹"+this.props.intro[0].average_budget_per_person} label = 'Average budget per person' />} hideOnScroll inverted wide position='bottom center'>
-						<Popup.Header>
-							Average budget
-						</Popup.Header>
-						<Popup.Content>
-							{this.props.intro[0].introduction}
-						</Popup.Content>
-					</Popup>
-					</Grid.Column>
-
 						<Grid.Column>
-						<Popup trigger={< Statistic size = "small" value={this.props.intro[0].time_to_explore} label = 'Days to explore' />} hideOnScroll inverted wide position='bottom center'>
-							<Popup.Header>
-								Average budget
-							</Popup.Header>
-							<Popup.Content>
-								{this.props.intro[0].introduction}
-							</Popup.Content>
-						</Popup>
+							<Popup trigger={< Statistic size = "small" value = {
+								this.props.best_time
+							}
+							label = 'Best time to visit' />} hideOnScroll inverted wide position='bottom center'>
+								<Popup.Header>
+									Best Time To Visit
+								</Popup.Header>
+								<Popup.Content>
+									{renderHTML(this.props.best_time_more_info)}
+								</Popup.Content>
+							</Popup>
+						</Grid.Column>
+						<Grid.Column>
+							<Statistic size="small" value={this.props.time_to_explore} label='Days to explore'/>
 						</Grid.Column>
 
 						<Grid.Column>
-							<Popup trigger={< Statistic size = "small" value = '23°C' label = 'Weather' />} hideOnScroll inverted wide position='bottom center'>
+							<Popup trigger={<Statistic size = "small" value ={this.props.weather} label = 'Weather' />} hideOnScroll inverted wide position='bottom center'>
 								<Popup.Header>
 									Weather
 								</Popup.Header>
-								<Popup.Content>
-								</Popup.Content>
+								<Popup.Content></Popup.Content>
 							</Popup>
 						</Grid.Column>
 
 					</Grid.Row>
 
 				</Grid>
-
+				< br/>
 				<br/>
-				<br/>
-				<br/>
-
+				< br/>
 			</Segment>
 		);
 	}

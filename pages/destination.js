@@ -50,7 +50,8 @@ class Index extends React.Component {
 	}
 
 	static async getInitialProps({query}) {
-		const res = await axios.get('http://www.freeways.in/api/destination/'  + query.slug);
+		const res = await axios.get('http://www.freeways.in/api/destination/' + query.slug);
+
 		const data = res.data;
 		return {data};
 	}
@@ -60,21 +61,20 @@ class Index extends React.Component {
 		// handle the scoll event to set the active link
 		// max neg is active
 		const items = ['about', 'places', 'exp', 'guide']
-		var topheights = [this.refs.about, this.refs.places, this.refs.exp, this.refs.guide]
-					.map((ref) => ref.getBoundingClientRect().top);
+		var topheights = [this.refs.about, this.refs.places, this.refs.exp, this.refs.guide].map((ref) => ref.getBoundingClientRect().top);
 		// get the maximum negative
 		var max = -2000,
 			ind = -1;
-		for(var i = 0; i < 4; i++) {
-			if(topheights[i] < 0 && topheights[i] > max) {
+		for (var i = 0; i < 4; i++) {
+			if (topheights[i] < 0 && topheights[i] > max) {
 				// update max
 				max = topheights[i];
 				ind = i;
 			}
 		}
-		if(ind > -1)
+		if (ind > -1)
 			this.setState({activeItem: items[ind]});
-	}
+		}
 
 	componentWillUnmount() {
 		window.removeEventListener('scroll', this.handleScroll);
@@ -83,10 +83,11 @@ class Index extends React.Component {
 	componentDidMount() {
 		window.addEventListener('scroll', this.handleScroll);
 	}
-	
+
 	render() {
 
 		const z = this.props.data;
+		console.log(z.weather);
 		return (
 
 			<Layout>
@@ -98,27 +99,23 @@ class Index extends React.Component {
 							<Menu activeItem={this.state.activeItem}/>
 						</Sticky>
 						<div ref='about'>
-							<Introduction intro={z.destination.introduction} />
+							<Introduction intro={z.destination.introduction} best_time={z.destination.best_time_to_visit} best_time_more_info={z.destination.best_time_to_visit_more_information} time_to_explore={z.destination.time_to_explore} weather={z.weather}/>
 						</div>
 						<div ref='places'>
-							<Places places={z.places} />
+							<Places places={z.places}/>
 						</div>
 						<div ref='exp'>
 							<Experiences exp={z.experiences}/>
 						</div>
-{/*						<Trips trips={z.destination}/>                */}
+						{/*						<Trips trips={z.destination}/>                */}
 						<div ref='guide'>
-							<MustKnow must_know={z.destination.must_know} />
-							<MustCarry must_carry={z.destination.must_carry}/>
-	{/*						<Languages/> */}
-							<HowToReach car={z.destination.how_to_reach_by_car}
-													train={z.destination.how_to_reach_by_train}
-													bus={z.destination.how_to_reach_by_bus}
-													plane={z.destination.how_to_reach_by_plane} />
+							<MustKnow must_know={z.destination.must_know}/>
+							<MustCarry must_carry={z.destination.must_carry}/> {/*						<Languages/> */}
+							<HowToReach car={z.destination.how_to_reach_by_car} train={z.destination.how_to_reach_by_train} bus={z.destination.how_to_reach_by_bus} plane={z.destination.how_to_reach_by_plane}/>
 
 							<GettingAround gtaround={z.destination.getting_around}/>
 						</div>
-		{/*					<NearByDestinations/>*/}
+						{/*					<NearByDestinations/>*/}
 						<br/>
 						<br/>
 					</Container>
