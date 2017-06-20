@@ -36,7 +36,7 @@ const ifRoot = 'false';
 
 class Index extends React.Component {
 	static async getInitialProps({query}) {
-		const res = await axios.get('http://www.freeways.in/api/place/' + query.slug);
+		const res = await axios.get('http://localhost:3000/api/place/' + query.slug);
 		const data = res.data;
 		return {data};
 	}
