@@ -87,7 +87,6 @@ class Index extends React.Component {
 	render() {
 
 		const z = this.props.data;
-		console.log(z.weather);
 		return (
 
 			<Layout>

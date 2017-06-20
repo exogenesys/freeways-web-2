@@ -6,7 +6,6 @@ export default class Footer extends React.Component {
 
 	render() {
 
-		console.log(this.props.weather);
 
 		return (
 			<Segment basic>
