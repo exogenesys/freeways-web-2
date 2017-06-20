@@ -103,7 +103,7 @@ Router.get("/trip/:slug", (req, res) => {
 	trips.findOne({
 		slug: req.params.slug
 	}, (err, data) => {
-		if (err || data==null) {
+		if (err || data == null) {
 			console.error("error looking up trip data");
 		} else {
 			res.send(data);
@@ -111,29 +111,28 @@ Router.get("/trip/:slug", (req, res) => {
 	});
 });
 
-Router.get("/destination/:slug", (req, res,next) => {
+Router.get("/destination/:slug", (req, res, next) => {
 	destinations.findOne({
 		slug: req.params.slug
-	}, (err, data) => {
-		if (err || data==null) {
+	}).lean().exec((err, data) => {
+		if (err || data == null) {
 			console.error("error looking up destination data ");
 			next(err)
 		} else {
-			places.find({
-				"slug": data.places
-			}).select('slug title name caption tags img').exec(function(err, _places) {
-				if (err) {
-					console.error(err);
-				} else {
-					experiences.find({
-						"slug":data.experiences
-					}).select('slug title name caption tags img').exec(function(err, _experiences) {
-						if (err) {
-							console.error(err);
-						} else {
-
-							rp('http://api.openweathermap.org/data/2.5/weather?lat='+data.latitude+'&lon='+data.longitude+'&appid=e6c33eefa2e93035fbc5bb2964d35603').then((response) => {
-								const weather = JSON.parse(response)
+			rp('http://api.openweathermap.org/data/2.5/weather?lat=' + data.latitude + '&lon=' + data.longitude + '&appid=e6c33eefa2e93035fbc5bb2964d35603').then((response) => {
+				const weather = JSON.parse(response)
+				places.find({
+					"slug": data.places
+				}).select('slug title name caption tags img').exec(function(err, _places) {
+					if (err) {
+						console.error(err);
+					} else {
+						experiences.find({
+							"slug": data.experiences
+						}).select('slug title name caption tags img').exec(function(err, _experiences) {
+							if (err) {
+								console.error(err);
+							} else {
 								const obj = {
 									destination: data,
 									places: _places,
@@ -141,12 +140,12 @@ Router.get("/destination/:slug", (req, res,next) => {
 									weather: Math.round(weather.main.temp - 273.15)
 								}
 								res.send(obj);
-
-								});
-						}
-					});
-				}
+							}
+						});
+					}
+				});
 			});
+
 		}
 	});
 });
@@ -155,13 +154,13 @@ Router.get("/place/:slug", (req, res) => {
 	places.findOne({
 		slug: req.params.slug
 	}, (err, data) => {
-		if (err || data==null) {
+		if (err || data == null) {
 			console.error("error took place while looking up places");
 			next(Error("this place does not exist"));
 
 		} else {
 			experiences.find({
-				"slug":data.experiences
+				"slug": data.experiences
 
 			}).select('slug title name caption tags img').exec(function(err, _experiences) {
 				if (err) {
@@ -189,7 +188,7 @@ Router.get("/experience/:slug", (req, res, next) => {
 	experiences.findOne({
 		slug: req.params.slug
 	}, (err, data) => {
-		if (err || data==null) {
+		if (err || data == null) {
 			console.error("error took place while looking up experiences");
 			next(err);
 		} else {
@@ -487,4 +486,4 @@ function isEmpty(val) {
 	return val
 }
 
-	module.exports = Router
+module.exports = Router
