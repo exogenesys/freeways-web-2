@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Menu, Button, Grid} from 'semantic-ui-react';
-import {Router} from 'next/router';
+import Router from 'next/router';
 import {browserHistory} from 'react-router';
 
 import NavSearch from './navSearch';
