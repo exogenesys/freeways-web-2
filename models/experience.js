@@ -35,9 +35,9 @@ var experienceSchema = new Schema({
       type: String
     },
 
-    loc: [{
+    loc: {
         type: Schema.Types.ObjectId, ref: 'NearByLoc'
-    }],
+    },
 
     must_know: {
       type: String

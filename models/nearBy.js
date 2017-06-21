@@ -7,6 +7,8 @@ var NearBySchema = new Schema({
       type:String
     },
 
+    type: String,
+
     loc: {
     type: [Number],  // [<longitude>, <latitude>]
     index: '2d'      // create the geospatial index

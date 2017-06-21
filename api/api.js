@@ -237,6 +237,7 @@ Router.get('/img', (req, res) => {
 	})
 });
 
+
 Router.get('/dataimport', (req, res) => {
 
 	console.log('hello from ImportData');
@@ -304,6 +305,163 @@ Router.get('/dataimport', (req, res) => {
 	})
 });
 
+
+Router.get('/customgeo/:lon/:lat/:distance/:limit/', (req, res) => {
+
+	var limit = Number(req.params.limit) || 100;
+	// get the max distance or set it to 8 kilometers
+	var maxDistance = Number(req.params.distance) || 500;
+	// we need to convert the distance to radians
+	// the raduis of Earth is approximately 6371 kilometers
+	maxDistance /= 6371;
+	// get coordinates [ <longitude> , <latitude> ]
+
+		var coords = [];
+		coords[0] = req.params.lon || 0;
+		coords[1] = req.params.lat || 0;
+
+		nearByLoc.find({
+			loc: {
+				$near: coords,
+				$maxDistance: maxDistance
+			}
+		}).limit(limit).exec(function(err, custom) {
+
+			if (err) {
+				return res.send(500, err);
+			}
+			res.send(200, custom);
+		});
+});
+
+
+Router.get('/geosearch/:slug/:distance/:limit/', (req, res) => {
+
+	var limit = Number(req.params.limit) || 100;
+	// get the max distance or set it to 8 kilometers
+	var maxDistance = Number(req.params.distance) || 500;
+	// we need to convert the distance to radians
+	// the raduis of Earth is approximately 6371 kilometers
+	maxDistance /= 6371;
+	// get coordinates [ <longitude> , <latitude> ]
+
+	nearByLoc.findOne({
+		slug: req.params.slug
+	}).exec(function(err, location) {
+
+		if (err) {
+			return res.send(500, err);
+		}
+
+		var coords = [];
+		coords[0] = location.loc[0] || 0;
+		coords[1] = location.loc[1] || 0;
+
+		nearByLoc.find({
+			loc: {
+				$near: coords,
+				$maxDistance: maxDistance
+			}
+		}).limit(limit).exec(function(err, locations) {
+
+			if (err) {
+				return res.send(500, err);
+			}
+			res.send(200, locations);
+		});
+
+	});
+
+});
+
+
+Router.get('/geoimport', (req, res) => {
+
+	console.log('hello from GeoImport');
+	var nearby = [];
+
+			destinations.find().lean().select('slug latitude longitude').exec(function(err, _destinations) {
+				if (err) {
+					console.log('error finding loc in destinations')
+				} else {
+					var c = _destinations.map(function(destination) {
+						destination.type = 'destination'
+						destination.loc = [Number(destination.longitude), Number(destination.latitude)]
+						delete destination.longitude
+						delete destination.latitude
+						return destination
+					});
+					nearby.push(c);
+
+					experiences.find().lean().select('slug latitude longitude').exec(function(err, _experiences) {
+						if (err) {
+							console.log('error finding loc in experiences')
+						} else {
+							var a = _experiences.map(function(experience) {
+								experience.type = 'experience'
+								experience.loc = [Number(experience.longitude), Number(experience.latitude)]
+								delete experience.longitude
+								delete experience.latitude
+								return experience
+							});
+							nearby.push(a);
+
+							places.find().lean().select('slug latitude longitude').exec(function(err, _places) {
+								if (err) {
+									console.log('error finding loc in places')
+								} else {
+									var b = _places.map(function(place) {
+										place.type = 'place'
+										place.loc = [Number(place.longitude), Number(place.latitude)]
+										delete place.longitude
+										delete place.latitude
+										return place
+									});
+									nearby.push(b);
+
+									for (var i = 0; i < nearby.length; i++) {
+										nearByLoc.collection.insert(nearby[i], function(err, data) {
+											if (err) {
+												console.error("Error While Adding to NearBySchema", err);
+
+											} else {
+												console.log("Succes on Adding To NearBySchema");
+												console.log(typeof data);
+												console.log(data.ops[0].type);
+												//console.log(data);
+												// switch (data.type) {
+												// 	case "experience":
+												// 		console.log("in exp",data.type)
+												// 		experiences.findOne({"slug":data.slug}).exec((err,edata)=>{
+												// 			edata.loc=data._id
+												// 			edata.save((err,updatedExp)=>{
+												// 				if(err)
+												// 					console.error("error took place while adding ref to experiences");
+												// 				else {
+												// 					console.log("updated exp",updatedExp);
+												// 					}
+												// 				})
+												// 			})
+												// 		break;
+												// 	default:
+												//
+												// }
+											}
+										})
+									}
+
+									res.send('Sending Data');
+								}
+							})
+
+						}
+					})
+
+				}
+			})
+});
+
+
 Router.get('/search/:keywords', function(req, res) {
 	var re = new RegExp('^' + req.params.keywords + '.*', 'i');
 	// console.log('API[DEBUG]: ' + re);
@@ -340,6 +498,7 @@ Router.get('/search/:keywords', function(req, res) {
 		}
 	});
 });
+
 
 Router.get("/fresh", (req, res) => {
 	const url = 'http://api.cosmicjs.com/v1/freewaays'
