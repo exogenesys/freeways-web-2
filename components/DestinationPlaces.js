@@ -16,7 +16,7 @@ import RecommendationBrick from '../components/RecommendationBrick'
 export default class Places extends Component {
 
 	handleItemClick = (e, {name}) => {
-		if(this.state.activeItem === name){
+		if (this.state.activeItem === name) {
 			this.setState({activeItem: '', items: this.props.places, value: ''})
 		} else {
 			this.setState({items: [], isLoading: true});
@@ -50,19 +50,14 @@ export default class Places extends Component {
 			value: '',
 			isLoading: false
 		}
-	}	
+	}
 
-	// if the component receives new props while 
+	// if the component receives new props while
 	// mounted, just update the state with new props
 	componentWillReceiveProps(nextProps) {
-		if (this.props == nextProps) 
+		if (this.props.places == nextProps.places)
 			return;
-		this.setState({
-			activeItem: '',
-			items: nextProps.places,
-			value: '',
-			isLoading: false
-		});	
+		this.setState({activeItem: '', items: nextProps.places, value: '', isLoading: false});
 	}
 
 	render() {
@@ -71,21 +66,25 @@ export default class Places extends Component {
 			rows = [];
 
 		if (this.state.items.length < 1) {
-			rows.push(
-					<Image src="http://res.cloudinary.com/freeways/image/upload/c_scale,w_228/v1497606494/no_results_found.png" centered disabled/>
-			);
+			rows.push(<Image src="http://res.cloudinary.com/freeways/image/upload/c_scale,w_228/v1497606494/no_results_found.png" centered disabled/>);
 		} else {
 			let i = 0,
 				j = 0;
 			while (j * 4 + i < this.state.items.length) {
 				while (i < 4 && j * 4 + i < this.state.items.length) {
 					cols.push(
-						<Grid.Column width={4}><RecommendationBrick type='place' data={this.state.items[j * 4 + i]}/></Grid.Column>
+						<Grid.Column computer={4} tablet={8} mobile={8} style={{
+							marginTop: '14px',
+							paddingLeft: '0.5em',
+							paddingRight: '0.5em'
+						}}><RecommendationBrick type='place' data={this.state.items[j * 4 + i]}/></Grid.Column>
 					);
 					i++;
 				}
 				rows.push(
-					<Grid.Row>{cols}</Grid.Row>
+					<Grid.Row style={{
+						marginBottom: '-27px'
+					}}>{cols}</Grid.Row>
 				)
 				i = 0
 				cols = [];
@@ -96,45 +95,87 @@ export default class Places extends Component {
 		const {activeItem, value, isLoading} = this.state
 
 		return (
-			<Segment basic>
+			<Segment basic style={{
+				marginLeft: '-8px',
+				marginRight: '-8px'
+			}}>
 				<Header size='huge' id="places">Places</Header>
-				<br/>
-				<Menu inverted style={{
-					background: '#FFF',
-					border: '0.5px solid rgba(34,36,38,.1)',
-					borderRadius: '.28571429rem'
-				}}>
-					<Menu.Item style={{
-						color: 'rgba(0,0,0,.87)'
-					}} color={'red'} name='adventurous' active={activeItem === 'adventurous'} content='Adventurous' onClick={this.handleItemClick}/>
-					<Menu.Item style={{
-						color: 'rgba(0,0,0,.87)'
-					}} color={'blue'} name='relaxing' active={activeItem === 'relaxing'} content='Relaxing' onClick={this.handleItemClick}/>
-					<Menu.Item style={{
-						color: 'rgba(0,0,0,.87)'
-					}} color={'orange'} name='cultural' active={activeItem === 'cultural'} content='Cultural' onClick={this.handleItemClick}/>
-					<Menu.Item style={{
-						color: 'rgba(0,0,0,.87)'
-					}} color={'pink'} name='foodndrink' active={activeItem === 'foodndrink'} content='Food & Drinks' onClick={this.handleItemClick}/>
-					<Menu.Item style={{
-						color: 'rgba(0,0,0,.87)'
-					}} color={'green'} name='spritual' active={activeItem === 'spritual'} content='Spiritual' onClick={this.handleItemClick}/>
-					<Menu.Item style={{
-						color: 'rgba(0,0,0,.87)'
-					}} color={'red'} name='offbeat' active={activeItem === 'offbeat'} content='Offbeat' onClick={this.handleItemClick}/>
-					<Menu.Item style={{
-						color: 'rgba(0,0,0,.87)'
-					}} color={'purple'} name='nightlife' active={activeItem === 'nightlife'} content='Nightlife' onClick={this.handleItemClick}/>
-					<Menu.Menu position='right'>
-						<div className='ui right aligned category search item'>
-							<div className='ui transparent icon input'>
-								<Search loading={isLoading} onSearchChange={this.handleSearchChange} placeholder='Search trips in Manali...' value={value} open={false}/>
-							</div>
-							<div className='results'></div>
-						</div>
-					</Menu.Menu>
-				</Menu>
-				<br/>
+				<Grid>
+					<Grid.Row only="computer">
+						<Grid.Column width={16}>
+							<br/>
+							<Menu inverted style={{
+								background: '#FFF',
+								border: '0.5px solid rgba(34,36,38,.1)',
+								borderRadius: '.28571429rem'
+							}}>
+								<Menu.Item style={{
+									color: 'rgba(0,0,0,.87)'
+								}} color={'red'} name='adventurous' active={activeItem === 'adventurous'} content='Adventurous' onClick={this.handleItemClick}/>
+								<Menu.Item style={{
+									color: 'rgba(0,0,0,.87)'
+								}} color={'blue'} name='relaxing' active={activeItem === 'relaxing'} content='Relaxing' onClick={this.handleItemClick}/>
+								<Menu.Item style={{
+									color: 'rgba(0,0,0,.87)'
+								}} color={'orange'} name='cultural' active={activeItem === 'cultural'} content='Cultural' onClick={this.handleItemClick}/>
+								<Menu.Item style={{
+									color: 'rgba(0,0,0,.87)'
+								}} color={'pink'} name='foodndrink' active={activeItem === 'foodndrink'} content='Food & Drinks' onClick={this.handleItemClick}/>
+								<Menu.Item style={{
+									color: 'rgba(0,0,0,.87)'
+								}} color={'green'} name='spritual' active={activeItem === 'spritual'} content='Spiritual' onClick={this.handleItemClick}/>
+								<Menu.Item style={{
+									color: 'rgba(0,0,0,.87)'
+								}} color={'red'} name='offbeat' active={activeItem === 'offbeat'} content='Offbeat' onClick={this.handleItemClick}/>
+								<Menu.Item style={{
+									color: 'rgba(0,0,0,.87)'
+								}} color={'purple'} name='nightlife' active={activeItem === 'nightlife'} content='Nightlife' onClick={this.handleItemClick}/>
+								<Menu.Menu position='right'>
+									<div className='ui right aligned category search item'>
+										<div className='ui transparent icon input'>
+											<Search loading={isLoading} onSearchChange={this.handleSearchChange} placeholder='Search trips in Manali...' value={value} open={false}/>
+										</div>
+										<div className='results'></div>
+									</div>
+								</Menu.Menu>
+							</Menu>
+						</Grid.Column>
+					</Grid.Row>
+					<Grid.Row only="mobile tablet">
+						<Menu inverted style={{
+							background: '#FFF',
+							border: '0.5px solid rgba(34,36,38,.1)',
+							borderRadius: '.28571429rem',
+							overflowX: 'auto',
+							marginLeft: '-8px',
+							marginRight: '-8px',
+							marginBottom: '-20px',
+							minHeight: '4em'
+						}}>
+							<Menu.Item style={{
+								color: 'rgba(0,0,0,.87)'
+							}} color={'red'} name='adventurous' active={activeItem === 'adventurous'} content='Adventurous' onClick={this.handleItemClick}/>
+							<Menu.Item style={{
+								color: 'rgba(0,0,0,.87)'
+							}} color={'blue'} name='relaxing' active={activeItem === 'relaxing'} content='Relaxing' onClick={this.handleItemClick}/>
+							<Menu.Item style={{
+								color: 'rgba(0,0,0,.87)'
+							}} color={'orange'} name='cultural' active={activeItem === 'cultural'} content='Cultural' onClick={this.handleItemClick}/>
+							<Menu.Item style={{
+								color: 'rgba(0,0,0,.87)'
+							}} color={'pink'} name='foodndrink' active={activeItem === 'foodndrink'} content='Food & Drinks' onClick={this.handleItemClick}/>
+							<Menu.Item style={{
+								color: 'rgba(0,0,0,.87)'
+							}} color={'green'} name='spritual' active={activeItem === 'spritual'} content='Spiritual' onClick={this.handleItemClick}/>
+							<Menu.Item style={{
+								color: 'rgba(0,0,0,.87)'
+							}} color={'red'} name='offbeat' active={activeItem === 'offbeat'} content='Offbeat' onClick={this.handleItemClick}/>
+							<Menu.Item style={{
+								color: 'rgba(0,0,0,.87)'
+							}} color={'purple'} name='nightlife' active={activeItem === 'nightlife'} content='Nightlife' onClick={this.handleItemClick}/>
+						</Menu>
+					</Grid.Row>
+				</Grid>
 				<Grid>
 					{rows}
 				</Grid>

@@ -9,9 +9,9 @@ const Cover = (props) => {
 	if (props.img == ''){
 		props.img = 'static/img/shimla.jpg'
 	}
-	
-	var imgurl = helper.buildImgUrl(props.img, 
-		constants.IMG_HEIGHT_DC, 
+
+	var imgurl = helper.buildImgUrl(props.img,
+		constants.IMG_HEIGHT_DC,
 		constants.IMG_QUALITY_DC);
 
 	const CoverStyle = {
@@ -28,7 +28,7 @@ const Cover = (props) => {
 
 	return (
 	<Segment basic vertical style={CoverStyle}>
-		<Grid>
+		<Grid style={{margin:'0px'}}>
 			<Grid.Row>
 				<Grid.Column>
 					<Header size='huge' style={{
@@ -48,7 +48,7 @@ const Cover = (props) => {
 					<em size='huge' style={{
 						color: 'rgba(255,255,255,0.95)',
             fontSize: '24px',
-						fontWeight: '900'
+						fontWeight: '900',
 					}}>{props.caption}</em>
 				</Grid.Column>
 			</Grid.Row>

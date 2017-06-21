@@ -21,7 +21,11 @@ app.prepare().then(_ => {
 
 	server.use('/api', api);
 
-	
+	server.use((err,req,res,next)=>{
+		console.log("error has happened something broke");
+		res.status(500).send("something broke")
+	})
+
 	console.log('first')
 
 

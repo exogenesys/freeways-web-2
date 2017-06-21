@@ -10,7 +10,6 @@ import {
 } from 'semantic-ui-react'
 import renderHTML from 'react-render-html'
 
-
 export default class HowToReach extends Component {
 	state = {
 		activeItem: 'car'
@@ -95,23 +94,22 @@ export default class HowToReach extends Component {
 				<Header size='huge'>How To Reach</Header>
 				<br/>
 
-				<Grid columns={4}>
+				<Grid columns={2}>
 					<Grid.Row>
-						<Grid.Column width={3}>
-							<Menu pointing secondary vertical>
-							{items}
+						<Grid.Column width={16}>
+							<Menu pointing secondary>
+								{items}
 							</Menu>
-
 						</Grid.Column>
-
-						<Grid.Column width={13}>
+						</Grid.Row>
+						<Grid.Row>
+						<Grid.Column width={16}>
 							<Segment basic>
 								<p style={{
 									fontSize: '18px',
 									color: '#333',
 									marginTop: '-27px'
 								}}>
-
 									{renderHTML(text)}
 								</p>
 							</Segment>

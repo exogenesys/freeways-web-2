@@ -1,22 +1,9 @@
 import React, {Component} from 'react';
 import {Menu, Button, Grid} from 'semantic-ui-react';
-import {Router, withRouter} from 'next/router';
+import Router from 'next/router';
 import {browserHistory} from 'react-router';
-import NProgress from 'nprogress';
 
 import NavSearch from './navSearch';
-
-Router.onRouteChangeStart = (url) => {
-	console.log(`Loading: ${url}`)
-	NProgress.start()
-}
-
-Router.onRouteChangeComplete = () => NProgress.done()
-Router.onRouteChangeError = () => NProgress.done()
-
-const linkStyle = {
-	margin: '0 10px 0 0'
-}
 
 export default class TopBar extends Component {
 
@@ -32,16 +19,17 @@ export default class TopBar extends Component {
 
 		let bar = null;
 
-		console.log(this.props.root)
-		if(!this.props.root){
+		if (!this.props.root) {
 			bar = <Menu.Item position='right'>
-							<NavSearch />
-						</Menu.Item>
+					<div className='ui transparent input'>
+						<NavSearch/>
+					</div>
+			</Menu.Item>
 		}
 
 		return (
 			<div>
-				<Menu stackable borderless>
+				<Menu>
 					<Menu.Item header onClick={this.handleItemClick} name='' style={{
 						Size: 'small',
 						color: '#F2711C'
@@ -49,7 +37,6 @@ export default class TopBar extends Component {
 					{bar}
 				</Menu>
 			</div>
-
 		)
 	}
 }
