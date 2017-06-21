@@ -28,7 +28,7 @@ const Cover = (props) => {
 
 	return (
 	<Segment basic vertical style={CoverStyle}>
-		<Grid>
+		<Grid style={{margin:'0px'}}>
 			<Grid.Row>
 				<Grid.Column>
 					<Header size='huge' style={{
@@ -49,7 +49,6 @@ const Cover = (props) => {
 						color: 'rgba(255,255,255,0.95)',
             fontSize: '24px',
 						fontWeight: '900',
-						margin: '-50px'
 					}}>{props.caption}</em>
 				</Grid.Column>
 			</Grid.Row>

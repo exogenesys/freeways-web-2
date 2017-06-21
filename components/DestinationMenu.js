@@ -24,7 +24,9 @@ export default class DestinationMenu extends Component {
 						<Sticky innerZ={99999999999}>
 							<Segment basic style={{
 								background: '#FFF',
-								zIndex: '999999999'
+								zIndex: '999999999',
+								marginRight: '-15px',
+								marginLeft: '-15px'
 							}}>
 								<Menu pointing secondary size='massive' widths={5} style={{
 									marginBottom: '-14px'

@@ -16,7 +16,7 @@ const CoverStyle = {
 
 const Cover = () => (
   <Segment basic vertical style={ CoverStyle }>
-  <Grid>
+  <Grid style={{margin:'0px'}}>
     <Grid.Row>
       <Grid.Column>
         <Header size='huge' style={{ color: '#FFF', textAlign: 'center', fontSize: '38px' }}>Our planet is waiting for you.</Header>

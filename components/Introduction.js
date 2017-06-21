@@ -10,8 +10,6 @@ export default class Footer extends React.Component {
 			<Segment basic>
 				<Header size='huge' id="intro">Introduction</Header>
 				<br/>
-				<br/>
-
 				<div style={{
 					fontSize: '20px',
 					textAlign: 'center',
@@ -28,7 +26,7 @@ export default class Footer extends React.Component {
 				<Grid>
 					<Grid.Row centered>
 						<Grid.Column mobile={8} computer={4} tablet={4}>
-							<Popup trigger={< Statistic style={{margin:'20px'}} size = "tiny" value = {
+							<Popup trigger={< Statistic style = {{margin:'20px'}}size = "tiny" value = {
 								this.props.best_time
 							}
 							label = 'Best time to visit' />} hideOnScroll inverted wide position='bottom center'>
@@ -41,13 +39,17 @@ export default class Footer extends React.Component {
 							</Popup>
 						</Grid.Column>
 						<Grid.Column mobile={8} computer={4} tablet={4}>
-							<Statistic style={{margin:'20px'}} size="tiny" value={this.props.time_to_explore} label='Days to explore'/>
+							<Statistic style={{
+								margin: '20px'
+							}} size="tiny" value={this.props.time_to_explore} label='Days to explore'/>
 						</Grid.Column>
 						<Grid.Column mobile={8} computer={4} tablet={4}>
-							<Statistic style={{margin:'20px'}} size="tiny" value={'₹ ' + this.props.average_budget_per_person} label='Average Budget Per Person'/>
+							<Statistic style={{
+								margin: '20px'
+							}} size="tiny" value={'₹ ' + this.props.average_budget_per_person} label='Average Budget Per Person'/>
 						</Grid.Column>
 						<Grid.Column mobile={8} computer={4} tablet={4}>
-							<Popup trigger={< Statistic style={{margin:'20px'}} size = "tiny" value = {
+							<Popup trigger={< Statistic style = {{margin:'20px'}}size = "tiny" value = {
 								this.props.weather + '°'
 							}
 							label = 'Weather' />} hideOnScroll inverted wide position='bottom center'>
@@ -59,9 +61,9 @@ export default class Footer extends React.Component {
 						</Grid.Column>
 					</Grid.Row>
 				</Grid>
-				< br/>
 				<br/>
-				< br/>
+				<br/>
+				<br/>
 			</Segment>
 		);
 	}

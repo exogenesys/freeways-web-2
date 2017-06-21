@@ -15,7 +15,7 @@ var settings = {
 	infinite: true,
 	speed: 500,
 	slidesToScroll: 2,
-	arrows: true,
+	arrows: false,
 	autoplay: true,
 	autoplaySpeed: 100,
 	pauseOnHover: true,

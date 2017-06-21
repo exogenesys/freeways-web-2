@@ -73,12 +73,18 @@ export default class Places extends Component {
 			while (j * 4 + i < this.state.items.length) {
 				while (i < 4 && j * 4 + i < this.state.items.length) {
 					cols.push(
-						<Grid.Column computer={4} tablet={8} mobile={8} style={{marginTop:'10px', paddingLeft:'0.3em', paddingRight:'0.3em'}}><RecommendationBrick type='place' data={this.state.items[j * 4 + i]}/></Grid.Column>
+						<Grid.Column computer={4} tablet={8} mobile={8} style={{
+							marginTop: '14px',
+							paddingLeft: '0.5em',
+							paddingRight: '0.5em'
+						}}><RecommendationBrick type='place' data={this.state.items[j * 4 + i]}/></Grid.Column>
 					);
 					i++;
 				}
 				rows.push(
-					<Grid.Row style={{marginBottom:'-27px'}}>{cols}</Grid.Row>
+					<Grid.Row style={{
+						marginBottom: '-27px'
+					}}>{cols}</Grid.Row>
 				)
 				i = 0
 				cols = [];
@@ -90,50 +96,86 @@ export default class Places extends Component {
 
 		return (
 			<Segment basic style={{
-				marginLeft:'-8px',
-				marginRight:'-8px'
+				marginLeft: '-8px',
+				marginRight: '-8px'
 			}}>
 				<Header size='huge' id="places">Places</Header>
-				<br/>
-				<Menu inverted style={{
-					background: '#FFF',
-					border: '0.5px solid rgba(34,36,38,.1)',
-					borderRadius: '.28571429rem',
-					overflowX: 'auto',
-					marginLeft: '-15px',
-					marginRight: '-15px'
-				}}>
-					<Menu.Item style={{
-						color: 'rgba(0,0,0,.87)'
-					}} color={'red'} name='adventurous' active={activeItem === 'adventurous'} content='Adventurous' onClick={this.handleItemClick}/>
-					<Menu.Item style={{
-						color: 'rgba(0,0,0,.87)'
-					}} color={'blue'} name='relaxing' active={activeItem === 'relaxing'} content='Relaxing' onClick={this.handleItemClick}/>
-					<Menu.Item style={{
-						color: 'rgba(0,0,0,.87)'
-					}} color={'orange'} name='cultural' active={activeItem === 'cultural'} content='Cultural' onClick={this.handleItemClick}/>
-					<Menu.Item style={{
-						color: 'rgba(0,0,0,.87)'
-					}} color={'pink'} name='foodndrink' active={activeItem === 'foodndrink'} content='Food & Drinks' onClick={this.handleItemClick}/>
-					<Menu.Item style={{
-						color: 'rgba(0,0,0,.87)'
-					}} color={'green'} name='spritual' active={activeItem === 'spritual'} content='Spiritual' onClick={this.handleItemClick}/>
-					<Menu.Item style={{
-						color: 'rgba(0,0,0,.87)'
-					}} color={'red'} name='offbeat' active={activeItem === 'offbeat'} content='Offbeat' onClick={this.handleItemClick}/>
-					<Menu.Item style={{
-						color: 'rgba(0,0,0,.87)'
-					}} color={'purple'} name='nightlife' active={activeItem === 'nightlife'} content='Nightlife' onClick={this.handleItemClick}/>
-					<Menu.Menu position='right'>
-						<div className='ui right aligned category search item'>
-							<div className='ui transparent icon input'>
-								<Search loading={isLoading} onSearchChange={this.handleSearchChange} placeholder='Search trips in Manali...' value={value} open={false}/>
-							</div>
-							<div className='results'></div>
-						</div>
-					</Menu.Menu>
-				</Menu>
-				<br/>
+				<Grid>
+					<Grid.Row only="computer">
+						<Grid.Column width={16}>
+							<br/>
+							<Menu inverted style={{
+								background: '#FFF',
+								border: '0.5px solid rgba(34,36,38,.1)',
+								borderRadius: '.28571429rem'
+							}}>
+								<Menu.Item style={{
+									color: 'rgba(0,0,0,.87)'
+								}} color={'red'} name='adventurous' active={activeItem === 'adventurous'} content='Adventurous' onClick={this.handleItemClick}/>
+								<Menu.Item style={{
+									color: 'rgba(0,0,0,.87)'
+								}} color={'blue'} name='relaxing' active={activeItem === 'relaxing'} content='Relaxing' onClick={this.handleItemClick}/>
+								<Menu.Item style={{
+									color: 'rgba(0,0,0,.87)'
+								}} color={'orange'} name='cultural' active={activeItem === 'cultural'} content='Cultural' onClick={this.handleItemClick}/>
+								<Menu.Item style={{
+									color: 'rgba(0,0,0,.87)'
+								}} color={'pink'} name='foodndrink' active={activeItem === 'foodndrink'} content='Food & Drinks' onClick={this.handleItemClick}/>
+								<Menu.Item style={{
+									color: 'rgba(0,0,0,.87)'
+								}} color={'green'} name='spritual' active={activeItem === 'spritual'} content='Spiritual' onClick={this.handleItemClick}/>
+								<Menu.Item style={{
+									color: 'rgba(0,0,0,.87)'
+								}} color={'red'} name='offbeat' active={activeItem === 'offbeat'} content='Offbeat' onClick={this.handleItemClick}/>
+								<Menu.Item style={{
+									color: 'rgba(0,0,0,.87)'
+								}} color={'purple'} name='nightlife' active={activeItem === 'nightlife'} content='Nightlife' onClick={this.handleItemClick}/>
+								<Menu.Menu position='right'>
+									<div className='ui right aligned category search item'>
+										<div className='ui transparent icon input'>
+											<Search loading={isLoading} onSearchChange={this.handleSearchChange} placeholder='Search trips in Manali...' value={value} open={false}/>
+										</div>
+										<div className='results'></div>
+									</div>
+								</Menu.Menu>
+							</Menu>
+						</Grid.Column>
+					</Grid.Row>
+					<Grid.Row only="mobile tablet">
+						<Menu inverted style={{
+							background: '#FFF',
+							border: '0.5px solid rgba(34,36,38,.1)',
+							borderRadius: '.28571429rem',
+							overflowX: 'auto',
+							marginLeft: '-8px',
+							marginRight: '-8px',
+							marginBottom: '-20px',
+							minHeight: '4em'
+						}}>
+							<Menu.Item style={{
+								color: 'rgba(0,0,0,.87)'
+							}} color={'red'} name='adventurous' active={activeItem === 'adventurous'} content='Adventurous' onClick={this.handleItemClick}/>
+							<Menu.Item style={{
+								color: 'rgba(0,0,0,.87)'
+							}} color={'blue'} name='relaxing' active={activeItem === 'relaxing'} content='Relaxing' onClick={this.handleItemClick}/>
+							<Menu.Item style={{
+								color: 'rgba(0,0,0,.87)'
+							}} color={'orange'} name='cultural' active={activeItem === 'cultural'} content='Cultural' onClick={this.handleItemClick}/>
+							<Menu.Item style={{
+								color: 'rgba(0,0,0,.87)'
+							}} color={'pink'} name='foodndrink' active={activeItem === 'foodndrink'} content='Food & Drinks' onClick={this.handleItemClick}/>
+							<Menu.Item style={{
+								color: 'rgba(0,0,0,.87)'
+							}} color={'green'} name='spritual' active={activeItem === 'spritual'} content='Spiritual' onClick={this.handleItemClick}/>
+							<Menu.Item style={{
+								color: 'rgba(0,0,0,.87)'
+							}} color={'red'} name='offbeat' active={activeItem === 'offbeat'} content='Offbeat' onClick={this.handleItemClick}/>
+							<Menu.Item style={{
+								color: 'rgba(0,0,0,.87)'
+							}} color={'purple'} name='nightlife' active={activeItem === 'nightlife'} content='Nightlife' onClick={this.handleItemClick}/>
+						</Menu>
+					</Grid.Row>
+				</Grid>
 				<Grid>
 					{rows}
 				</Grid>
