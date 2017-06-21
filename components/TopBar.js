@@ -5,7 +5,6 @@ import {browserHistory} from 'react-router';
 
 import NavSearch from './navSearch';
 
-
 export default class TopBar extends Component {
 
 	state = {}
@@ -20,15 +19,17 @@ export default class TopBar extends Component {
 
 		let bar = null;
 
-		if(!this.props.root){
+		if (!this.props.root) {
 			bar = <Menu.Item position='right'>
-							<NavSearch />
-						</Menu.Item>
+					<div className='ui transparent input'>
+						<NavSearch/>
+					</div>
+			</Menu.Item>
 		}
 
 		return (
 			<div>
-				<Menu stackable borderless>
+				<Menu>
 					<Menu.Item header onClick={this.handleItemClick} name='' style={{
 						Size: 'small',
 						color: '#F2711C'
@@ -36,7 +37,6 @@ export default class TopBar extends Component {
 					{bar}
 				</Menu>
 			</div>
-
 		)
 	}
 }

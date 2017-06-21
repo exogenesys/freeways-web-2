@@ -6,7 +6,6 @@ export default class Footer extends React.Component {
 
 	render() {
 
-
 		return (
 			<Segment basic>
 				<Header size='huge' id="intro">Introduction</Header>
@@ -26,11 +25,10 @@ export default class Footer extends React.Component {
 				<br/>
 				<br/>
 
-				<Grid columns={3}>
-
+				<Grid>
 					<Grid.Row centered>
-						<Grid.Column>
-							<Popup trigger={< Statistic size = "small" value = {
+						<Grid.Column mobile={8} computer={4} tablet={4}>
+							<Popup trigger={< Statistic style={{margin:'20px'}} size = "tiny" value = {
 								this.props.best_time
 							}
 							label = 'Best time to visit' />} hideOnScroll inverted wide position='bottom center'>
@@ -42,21 +40,24 @@ export default class Footer extends React.Component {
 								</Popup.Content>
 							</Popup>
 						</Grid.Column>
-						<Grid.Column>
-							<Statistic size="small" value={this.props.time_to_explore} label='Days to explore'/>
+						<Grid.Column mobile={8} computer={4} tablet={4}>
+							<Statistic style={{margin:'20px'}} size="tiny" value={this.props.time_to_explore} label='Days to explore'/>
 						</Grid.Column>
-
-						<Grid.Column>
-							<Popup trigger={<Statistic size = "small" value ={this.props.weather + '°'} label = 'Weather' />} hideOnScroll inverted wide position='bottom center'>
+						<Grid.Column mobile={8} computer={4} tablet={4}>
+							<Statistic style={{margin:'20px'}} size="tiny" value={'₹ ' + this.props.average_budget_per_person} label='Average Budget Per Person'/>
+						</Grid.Column>
+						<Grid.Column mobile={8} computer={4} tablet={4}>
+							<Popup trigger={< Statistic style={{margin:'20px'}} size = "tiny" value = {
+								this.props.weather + '°'
+							}
+							label = 'Weather' />} hideOnScroll inverted wide position='bottom center'>
 								<Popup.Header>
 									Weather
 								</Popup.Header>
 								<Popup.Content></Popup.Content>
 							</Popup>
 						</Grid.Column>
-
 					</Grid.Row>
-
 				</Grid>
 				< br/>
 				<br/>

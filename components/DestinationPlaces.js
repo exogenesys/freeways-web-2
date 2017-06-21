@@ -16,7 +16,7 @@ import RecommendationBrick from '../components/RecommendationBrick'
 export default class Places extends Component {
 
 	handleItemClick = (e, {name}) => {
-		if(this.state.activeItem === name){
+		if (this.state.activeItem === name) {
 			this.setState({activeItem: '', items: this.props.places, value: ''})
 		} else {
 			this.setState({items: [], isLoading: true});
@@ -50,19 +50,14 @@ export default class Places extends Component {
 			value: '',
 			isLoading: false
 		}
-	}	
+	}
 
-	// if the component receives new props while 
+	// if the component receives new props while
 	// mounted, just update the state with new props
 	componentWillReceiveProps(nextProps) {
-		if (this.props == nextProps) 
+		if (this.props.places == nextProps.places)
 			return;
-		this.setState({
-			activeItem: '',
-			items: nextProps.places,
-			value: '',
-			isLoading: false
-		});	
+		this.setState({activeItem: '', items: nextProps.places, value: '', isLoading: false});
 	}
 
 	render() {
@@ -71,21 +66,19 @@ export default class Places extends Component {
 			rows = [];
 
 		if (this.state.items.length < 1) {
-			rows.push(
-					<Image src="http://res.cloudinary.com/freeways/image/upload/c_scale,w_228/v1497606494/no_results_found.png" centered disabled/>
-			);
+			rows.push(<Image src="http://res.cloudinary.com/freeways/image/upload/c_scale,w_228/v1497606494/no_results_found.png" centered disabled/>);
 		} else {
 			let i = 0,
 				j = 0;
 			while (j * 4 + i < this.state.items.length) {
 				while (i < 4 && j * 4 + i < this.state.items.length) {
 					cols.push(
-						<Grid.Column width={4}><RecommendationBrick type='place' data={this.state.items[j * 4 + i]}/></Grid.Column>
+						<Grid.Column computer={4} tablet={8} mobile={8} style={{marginTop:'10px', paddingLeft:'0.3em', paddingRight:'0.3em'}}><RecommendationBrick type='place' data={this.state.items[j * 4 + i]}/></Grid.Column>
 					);
 					i++;
 				}
 				rows.push(
-					<Grid.Row>{cols}</Grid.Row>
+					<Grid.Row style={{marginBottom:'-27px'}}>{cols}</Grid.Row>
 				)
 				i = 0
 				cols = [];
@@ -96,13 +89,19 @@ export default class Places extends Component {
 		const {activeItem, value, isLoading} = this.state
 
 		return (
-			<Segment basic>
+			<Segment basic style={{
+				marginLeft:'-8px',
+				marginRight:'-8px'
+			}}>
 				<Header size='huge' id="places">Places</Header>
 				<br/>
 				<Menu inverted style={{
 					background: '#FFF',
 					border: '0.5px solid rgba(34,36,38,.1)',
-					borderRadius: '.28571429rem'
+					borderRadius: '.28571429rem',
+					overflowX: 'auto',
+					marginLeft: '-15px',
+					marginRight: '-15px'
 				}}>
 					<Menu.Item style={{
 						color: 'rgba(0,0,0,.87)'
