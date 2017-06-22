@@ -120,10 +120,10 @@ export default class Places extends Component {
 								}} color={'orange'} name='cultural' active={activeItem === 'cultural'} content='Cultural' onClick={this.handleItemClick}/>
 								<Menu.Item style={{
 									color: 'rgba(0,0,0,.87)'
-								}} color={'pink'} name='foodndrink' active={activeItem === 'foodndrink'} content='Food & Drinks' onClick={this.handleItemClick}/>
+								}} color={'pink'} name='food & drinks' active={activeItem === 'food & drinks'} content='Food & Drinks' onClick={this.handleItemClick}/>
 								<Menu.Item style={{
 									color: 'rgba(0,0,0,.87)'
-								}} color={'green'} name='spritual' active={activeItem === 'spritual'} content='Spiritual' onClick={this.handleItemClick}/>
+								}} color={'green'} name='spiritual' active={activeItem === 'spiritual'} content='Spiritual' onClick={this.handleItemClick}/>
 								<Menu.Item style={{
 									color: 'rgba(0,0,0,.87)'
 								}} color={'red'} name='offbeat' active={activeItem === 'offbeat'} content='Offbeat' onClick={this.handleItemClick}/>

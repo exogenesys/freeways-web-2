@@ -10,40 +10,79 @@ import {
 } from 'semantic-ui-react'
 import renderHTML from 'react-render-html'
 
-
 export default class GettingAround extends Component {
 
 	render() {
+
+		let options = []
+
+		const data = {
+			'bus': {
+				icon: 'bus',
+				title: 'Bus'
+			},
+			'car': {
+				icon: 'car',
+				title: 'Car'
+			},
+			'taxi': {
+				icon: 'taxi',
+				title: 'Taxi'
+			},
+			'train': {
+				icon: 'train',
+				title: 'Train'
+			},
+			'bike rental': {
+				icon: 'motorcycle',
+				title: 'Bike Rental'
+			},
+			'self drive car rental': {
+				icon: 'car',
+				title: 'Self Drive Rental Car'
+			},
+			'ferry': {
+				icon: 'ship',
+				title: 'Ferry'
+			},
+			'metro': {
+				icon: 'subway',
+				title: 'Metro'
+			},
+			'auto': {
+				icon: 'rocket',
+				title: 'Auto Rickshaw'
+			}
+		}
+
+		options = this.props.gtoptions.map((service) => {
+			if(data[service.toLowerCase()]){
+				return (
+					<Label size='large' color="black">
+					<Icon name={data[service.toLowerCase()]['icon']}/>
+					{data[service.toLowerCase()]['title']}
+					</Label>
+				)
+			}
+		});
 
 		return (
 
 			<Segment basic>
 				<Header size='huge'>Getting Around</Header>
 				<Segment basic centered>
-				<Header size='medium'>Available mode of getting around</Header>
-				<br />
-				<Label as='a' circular basic size='huge' color='red'>
-					<Icon name='car'/>
-					Bus
-				</Label>
-				<Label as='a' circular basic size='huge' color='green'>
-					<Icon name='train'/>
-					Metro
-				</Label>
-				<Label as='a' circular basic size='huge' color='yellow'>
-					<Icon name='taxi'/>
-					Taxi
-				</Label>
+					<Header size='medium'>Available mode of getting around</Header>
+					<br/> {options}
 				</Segment>
 				<Segment basic>
-				<div style={{
-					fontSize: '18px',
-					color: '#333'
-				}}>
+					<div style={{
+						fontSize: '18px',
+						color: '#333'
+					}}>
 
-				{renderHTML(this.props.gtaround)}
+						{renderHTML(this.props.gtaround)}
 
-				</div>
+					</div>
 
 				</Segment>
 			</Segment>
