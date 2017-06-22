@@ -58,7 +58,7 @@ export default class GettingAround extends Component {
 		options = this.props.gtoptions.map((service) => {
 			if(data[service.toLowerCase()]){
 				return (
-					<Label size='large' color="black">
+					<Label basic size='large' color="black">
 					<Icon name={data[service.toLowerCase()]['icon']}/>
 					{data[service.toLowerCase()]['title']}
 					</Label>
@@ -71,8 +71,9 @@ export default class GettingAround extends Component {
 			<Segment basic>
 				<Header size='huge'>Getting Around</Header>
 				<Segment basic centered>
-					<Header size='medium'>Available mode of getting around</Header>
-					<br/> {options}
+					<Header size='medium'>Available modes of getting around</Header>
+					<br/>
+					{options}
 				</Segment>
 				<Segment basic>
 					<div style={{
