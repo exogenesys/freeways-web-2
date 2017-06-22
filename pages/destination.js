@@ -105,7 +105,7 @@ class Index extends React.Component {
 					{/*						<Trips trips={z.destination}/>                */}
 					<div ref='guide'>
 						<MustKnow must_know={z.destination.must_know}/>
-						<MustCarry must_carry={z.destination.must_carry}/> {/*						<Languages/> */}
+						<MustCarry must_carry={z.must_carry}/> {/*						<Languages/> */}
 						<HowToReach car={z.destination.how_to_reach_by_car} train={z.destination.how_to_reach_by_train} bus={z.destination.how_to_reach_by_bus} plane={z.destination.how_to_reach_by_plane}/>
 
 						<GettingAround gtaround={z.destination.getting_around} gtoptions={z.destination.getting_around_options}/>

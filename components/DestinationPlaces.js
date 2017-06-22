@@ -94,95 +94,94 @@ export default class Places extends Component {
 
 		const {activeItem, value, isLoading} = this.state
 
-		return (
-			<Segment basic style={{
-				marginLeft: '-8px',
-				marginRight: '-8px'
-			}}>
-				<Header size='huge' id="places">Places</Header>
-				<Grid>
-					<Grid.Row only="computer">
-						<Grid.Column width={16}>
-							<br/>
-							<Menu inverted style={{
-								background: '#FFF',
-								border: '0.5px solid rgba(34,36,38,.1)',
-								borderRadius: '.28571429rem'
-							}}>
-								<Menu.Item style={{
-									color: 'rgba(0,0,0,.87)'
-								}} color={'red'} name='adventurous' active={activeItem === 'adventurous'} content='Adventurous' onClick={this.handleItemClick}/>
-								<Menu.Item style={{
-									color: 'rgba(0,0,0,.87)'
-								}} color={'blue'} name='relaxing' active={activeItem === 'relaxing'} content='Relaxing' onClick={this.handleItemClick}/>
-								<Menu.Item style={{
-									color: 'rgba(0,0,0,.87)'
-								}} color={'orange'} name='cultural' active={activeItem === 'cultural'} content='Cultural' onClick={this.handleItemClick}/>
-								<Menu.Item style={{
-									color: 'rgba(0,0,0,.87)'
-								}} color={'pink'} name='food & drinks' active={activeItem === 'food & drinks'} content='Food & Drinks' onClick={this.handleItemClick}/>
-								<Menu.Item style={{
-									color: 'rgba(0,0,0,.87)'
-								}} color={'green'} name='spiritual' active={activeItem === 'spiritual'} content='Spiritual' onClick={this.handleItemClick}/>
-								<Menu.Item style={{
-									color: 'rgba(0,0,0,.87)'
-								}} color={'red'} name='offbeat' active={activeItem === 'offbeat'} content='Offbeat' onClick={this.handleItemClick}/>
-								<Menu.Item style={{
-									color: 'rgba(0,0,0,.87)'
-								}} color={'purple'} name='nightlife' active={activeItem === 'nightlife'} content='Nightlife' onClick={this.handleItemClick}/>
-								<Menu.Menu position='right'>
-									<div className='ui right aligned category search item'>
-										<div className='ui transparent icon input'>
-											<Search loading={isLoading} onSearchChange={this.handleSearchChange} placeholder='Search trips in Manali...' value={value} open={false}/>
-										</div>
-										<div className='results'></div>
-									</div>
-								</Menu.Menu>
-							</Menu>
-						</Grid.Column>
-					</Grid.Row>
-					<Grid.Row only="mobile tablet">
+		let items = [
+			{
+				'title': 'adventurous',
+				color: 'red'
+			}, {
+				'title': 'relaxing',
+				color: 'blue'
+			}, {
+				'title': 'cultural',
+				color: 'orange'
+			}, {
+				'title': 'food & drinks',
+				color: 'pink'
+			}, {
+				'title': 'spritual',
+				color: 'green'
+			}, {
+				'title': 'offbeat',
+				color: 'red'
+			}, {
+				'title': 'nightlife',
+				color: 'purple'
+			}
+		];
+
+		let menuItems = items.map((item) => {
+			let itemIcon = (activeItem === item.title) ? <Icon style={{ paddingLeft: '10px' }} name='close' color='white'/> : null ;
+			return (
+				<Menu.Item style={{
+					color: 'rgba(0,0,0,.87)',
+					textTransform: 'capitalize'
+				}} color={'red'} name={item.title} active={activeItem === item.title} onClick={this.handleItemClick}>
+					{item.title}
+					{itemIcon}
+				</Menu.Item>
+			);
+		});
+
+
+	return (
+		<Segment basic style={{
+			marginLeft: '-8px',
+			marginRight: '-8px'
+		}}>
+			<Header size='huge' id="places">Places</Header>
+			<Grid>
+				<Grid.Row only="computer">
+					<Grid.Column width={16}>
+						<br/>
 						<Menu inverted style={{
 							background: '#FFF',
 							border: '0.5px solid rgba(34,36,38,.1)',
-							borderRadius: '.28571429rem',
-							overflowX: 'auto',
-							marginLeft: '-8px',
-							marginRight: '-8px',
-							marginBottom: '-20px',
-							minHeight: '4em'
+							borderRadius: '.28571429rem'
 						}}>
-							<Menu.Item style={{
-								color: 'rgba(0,0,0,.87)'
-							}} color={'red'} name='adventurous' active={activeItem === 'adventurous'} content='Adventurous' onClick={this.handleItemClick}/>
-							<Menu.Item style={{
-								color: 'rgba(0,0,0,.87)'
-							}} color={'blue'} name='relaxing' active={activeItem === 'relaxing'} content='Relaxing' onClick={this.handleItemClick}/>
-							<Menu.Item style={{
-								color: 'rgba(0,0,0,.87)'
-							}} color={'orange'} name='cultural' active={activeItem === 'cultural'} content='Cultural' onClick={this.handleItemClick}/>
-							<Menu.Item style={{
-								color: 'rgba(0,0,0,.87)'
-							}} color={'pink'} name='foodndrink' active={activeItem === 'foodndrink'} content='Food & Drinks' onClick={this.handleItemClick}/>
-							<Menu.Item style={{
-								color: 'rgba(0,0,0,.87)'
-							}} color={'green'} name='spritual' active={activeItem === 'spritual'} content='Spiritual' onClick={this.handleItemClick}/>
-							<Menu.Item style={{
-								color: 'rgba(0,0,0,.87)'
-							}} color={'red'} name='offbeat' active={activeItem === 'offbeat'} content='Offbeat' onClick={this.handleItemClick}/>
-							<Menu.Item style={{
-								color: 'rgba(0,0,0,.87)'
-							}} color={'purple'} name='nightlife' active={activeItem === 'nightlife'} content='Nightlife' onClick={this.handleItemClick}/>
+							{menuItems}
+							<Menu.Menu position='right'>
+								<div className='ui right aligned category search item'>
+									<div className='ui transparent icon input'>
+										<Search loading={isLoading} onSearchChange={this.handleSearchChange} placeholder='Search trips in Manali...' value={value} open={false}/>
+									</div>
+									<div className='results'></div>
+								</div>
+							</Menu.Menu>
 						</Menu>
-					</Grid.Row>
-				</Grid>
-				<Grid>
-					{rows}
-				</Grid>
-				<br/>
-				<br/>
-			</Segment>
+					</Grid.Column>
+				</Grid.Row>
+				<Grid.Row only="mobile tablet">
+					<Menu inverted style={{
+						background: '#FFF',
+						border: '0.5px solid rgba(34,36,38,.1)',
+						borderRadius: '.28571429rem',
+						overflowX: 'auto',
+						marginLeft: '-8px',
+						marginRight: '-8px',
+						marginBottom: '-20px',
+						minHeight: '4em'
+					}}>
+					{menuItems}
+					</Menu>
+				</Grid.Row>
+			</Grid>
+			<Grid>
+				{rows}
+			</Grid>
+			<br/>
+			<br/>
+		</Segment>
 
-		)
-	}
+	)
+}
 }

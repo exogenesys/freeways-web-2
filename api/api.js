@@ -133,13 +133,22 @@ Router.get("/destination/:slug", (req, res, next) => {
 							if (err) {
 								console.error(err);
 							} else {
-								const obj = {
-									destination: data,
-									places: _places,
-									experiences: _experiences,
-									weather: Math.round(weather.main.temp - 273.15)
-								}
-								res.send(obj);
+								mustCarry.find({
+									"slug": data.must_carry
+								}).select('slug title source information').exec(function(err, _must_carry) {
+									if (err) {
+										console.error(err);
+									} else {
+										const obj = {
+											destination: data,
+											places: _places,
+											experiences: _experiences,
+											weather: Math.round(weather.main.temp - 273.15),
+											must_carry : _must_carry
+										}
+										res.send(obj);
+									}
+								});
 							}
 						});
 					}
