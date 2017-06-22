@@ -55,7 +55,7 @@ export default class Experiences extends Component {
 	componentWillReceiveProps(nextProps) {
 		if (this.props.exp == nextProps.exp)
 			return;
-		this.setState({activeItem: '', items: nextProps.places, value: '', isLoading: false});
+		this.setState({activeItem: '', items: nextProps.exp, value: '', isLoading: false});
 	}
 
 	render() {
