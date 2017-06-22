@@ -45,7 +45,6 @@ export default class Experiences extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			// activeItem :  this.props.places,
 			activeItem: '',
 			items: this.props.exp,
 			value: '',
@@ -124,7 +123,7 @@ export default class Experiences extends Component {
 				<Menu.Item style={{
 					color: 'rgba(0,0,0,.87)',
 					textTransform: 'capitalize'
-				}} color={'red'} name={item.title} active={activeItem === item.title} onClick={this.handleItemClick}>
+				}} color={item.color} name={item.title} active={activeItem === item.title} onClick={this.handleItemClick}>
 					{item.title}
 					{itemIcon}
 				</Menu.Item>

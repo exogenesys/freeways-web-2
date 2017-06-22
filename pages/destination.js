@@ -100,7 +100,7 @@ class Index extends React.Component {
 						<Places places={z.places}/>
 					</div>
 					<div ref='exp'>
-						<Experiences exp={z.experiences}/>
+					<Experiences exp={z.experiences}/>
 					</div>
 					{/*						<Trips trips={z.destination}/>                */}
 					<div ref='guide'>
