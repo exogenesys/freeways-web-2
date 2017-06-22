@@ -15,8 +15,8 @@ export default class MustCarry extends Component {
 
 	render() {
 
-		let items = this.props.items
-		
+		let items = this.props.must_carry
+
 		let mobileCols = [],
 			mobileRows = [],
 			computerCols = [],
