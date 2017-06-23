@@ -108,7 +108,7 @@ export default class Places extends Component {
 				'title': 'food & drinks',
 				color: 'pink'
 			}, {
-				'title': 'spritual',
+				'title': 'spiritual',
 				color: 'green'
 			}, {
 				'title': 'offbeat',
@@ -152,7 +152,7 @@ export default class Places extends Component {
 							<Menu.Menu position='right'>
 								<div className='ui right aligned category search item'>
 									<div className='ui transparent icon input'>
-										<Search loading={isLoading} onSearchChange={this.handleSearchChange} placeholder='Search trips in Manali...' value={value} open={false}/>
+										<Search loading={isLoading} onSearchChange={this.handleSearchChange} placeholder='Search' value={value} open={false}/>
 									</div>
 									<div className='results'></div>
 								</div>
