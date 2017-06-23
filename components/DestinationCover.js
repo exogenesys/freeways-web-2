@@ -6,9 +6,7 @@ import constants from '../utils/constants'
 
 const Cover = (props) => {
 
-	if (props.img == ''){
-		props.img = 'static/img/shimla.jpg'
-	}
+	const img = (props.img)?props.img:'static/img/shimla.jpg'
 
 	var imgurl = helper.buildImgUrl(props.img,
 		constants.IMG_HEIGHT_DC,

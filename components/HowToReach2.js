@@ -13,7 +13,7 @@ import renderHTML from 'react-render-html'
 
 export default class HowToReach extends Component {
 	render() {
-		if(this.props.how_to_reach != ''){
+		if(this.props.how_to_reach){
 			return (
 
 				<Segment basic>

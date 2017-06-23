@@ -3,7 +3,7 @@ import {Header, Segment, List} from 'semantic-ui-react'
 import renderHTML from 'react-render-html'
 
 const MustCarry = (props) => {
-	if (props.must_know != '') {
+	if (props.must_know) {
 		return (
 
 			<Segment basic>

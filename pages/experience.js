@@ -54,7 +54,8 @@ class Index extends React.Component {
 					<Introduction intro={z.experiences.information}/>
 					<MustKnow must_know={z.experiences.must_know}/>
 					<MustCarry must_carry={z.experiences.must_carry}/>
-					<HowToReach how_to_reach={z.experiences.how_to_reach}/> {/*		<Trips trips = {z.trips}/>
+					<HowToReach how_to_reach={z.experiences.how_to_reach}/>
+					{/*		<Trips trips = {z.trips}/>
 							<Comments />
 						*/}
 					<br/>
