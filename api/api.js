@@ -161,16 +161,17 @@ Router.get("/place/:slug", (req, res) => {
 			next(Error("this place does not exist"));
 		} else {
 			let noLocationData = true
-			let lat = 0, lon = 0
-			if(data.latitude && data.longitude){
-				noLocationData = !noLocationData
-				lat = Number(data.latitude)
-				lon = Number(data.longitude)
-			}
-			console.log('lat', data.latitude);
-			console.log('lon', data.longitude);
-			// rp('http://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + lon + '&appid=e6c33eefa2e93035fbc5bb2964d35603').then((response) => {
-			// 	const weather = JSON.parse(response)
+				let lat = 0,
+					lon = 0
+				if (data.latitude && data.longitude) {
+					noLocationData = !noLocationData
+					lat = Number(data.latitude)
+					lon = Number(data.longitude)
+				}
+				console.log('lat', data.latitude);
+				console.log('lon', data.longitude);
+				// rp('http://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + lon + '&appid=e6c33eefa2e93035fbc5bb2964d35603').then((response) => {
+				// 	const weather = JSON.parse(response)
 
 				experiences.find({"slug": data.experiences}).select('slug title name caption tags img').exec(function(err, _experiences) {
 					if (err) {
@@ -187,14 +188,14 @@ Router.get("/place/:slug", (req, res) => {
 						var obj = {
 							place: x,
 							experiences: _experiences,
-							weather: w,
+							weather: w
 						}
 						res.send(obj);
 					}
 				});
-			});
-			}});
-	});
+			}
+		})
+	})
 
 	Router.get("/experience/:slug", (req, res, next) => {
 		experiences.findOne({
