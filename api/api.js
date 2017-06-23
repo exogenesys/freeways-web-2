@@ -136,7 +136,6 @@ Router.get("/destination/:slug", (req, res, next) => {
 											places: _places,
 											experiences: _experiences,
 											weather: Math.round(weather.main.temp - 273.15),
-											weather: Math.round(290 - 273.15),
 											must_carry: _must_carry
 										}
 										res.send(obj);
@@ -146,7 +145,7 @@ Router.get("/destination/:slug", (req, res, next) => {
 						});
 					}
 				});
-			// });
+			});
 
 		}
 	});
@@ -162,14 +161,16 @@ Router.get("/place/:slug", (req, res) => {
 			next(Error("this place does not exist"));
 		} else {
 			let noLocationData = true
-			let lat = data.latitude, lon = data.longitude
-			if(typeof(let) != 'number'){
-				noLocationData = false
-				let = 0
-				lon = 0
+			let lat = 0, lon = 0
+			if(data.latitude && data.longitude){
+				noLocationData = !noLocationData
+				lat = Number(data.latitude)
+				lon = Number(data.longitude)
 			}
-			rp('http://api.openweathermap.org/data/2.5/weather?lat=' + Number(let) + '&lon=' + Number(lon) + '&appid=e6c33eefa2e93035fbc5bb2964d35603').then((response) => {
-				const weather = JSON.parse(response)
+			console.log('lat', data.latitude);
+			console.log('lon', data.longitude);
+			// rp('http://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + lon + '&appid=e6c33eefa2e93035fbc5bb2964d35603').then((response) => {
+			// 	const weather = JSON.parse(response)
 
 				experiences.find({"slug": data.experiences}).select('slug title name caption tags img').exec(function(err, _experiences) {
 					if (err) {
@@ -181,7 +182,8 @@ Router.get("/place/:slug", (req, res) => {
 						delete x.how_to_reach_by_car;
 						delete x.how_to_reach_by_airplane;
 						delete x.how_to_reach_by_train;
-						const w = (noLocationData)?Math.round(weather.main.temp - 273.15):0
+						// const w = (noLocationData)?Math.round(weather.main.temp - 273.15):0
+						const w = 23;
 						var obj = {
 							place: x,
 							experiences: _experiences,
