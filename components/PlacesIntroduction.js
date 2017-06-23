@@ -22,20 +22,20 @@ export default class PlacesIntroduction extends React.Component {
 				<br/>
 				<br/>
 
-				<Grid columns={4}>
+				<Grid>
 					<Grid.Row centered>
-						<Grid.Column>
-							<Popup trigger={< Statistic size = "small" value = 'OCT - FEB' label = 'Best Time to Visit' />} hideOnScroll inverted wide position='bottom center'>
+						<Grid.Column mobile={8} computer={4} tablet={4}>
+							<Popup trigger={< Statistic style = {{margin:'20px'}} size = "tiny" value ={this.props.best_time} label = 'Best Time to Visit' />} hideOnScroll inverted wide position='bottom center'>
 								<Popup.Header>
 									Best time to visit
 								</Popup.Header>
 								<Popup.Content>
-									Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+									{renderHTML(this.props.best_time_more_info)}
 								</Popup.Content>
 							</Popup>
 						</Grid.Column>
-						<Grid.Column>
-							<Popup trigger={< Statistic size = "small" value = '2-3 Days' label = 'Time to explore' />} hideOnScroll inverted wide position='bottom center'>
+						<Grid.Column mobile={8} computer={4} tablet={4}>
+							<Popup trigger={< Statistic style = {{margin:'20px'}} size = "tiny" value={this.props.time_to_explore} label = 'Time to explore' />} hideOnScroll inverted wide position='bottom center'>
 								<Popup.Header>
 									Time to explore
 								</Popup.Header>
@@ -44,18 +44,8 @@ export default class PlacesIntroduction extends React.Component {
 								</Popup.Content>
 							</Popup>
 						</Grid.Column>
-						<Grid.Column>
-							<Popup trigger={< Statistic size = "small" value = '₹400' label = 'AEnter Fee per person' />} hideOnScroll inverted wide position='bottom center'>
-								<Popup.Header>
-									Entry Free
-								</Popup.Header>
-								<Popup.Content>
-									Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-								</Popup.Content>
-							</Popup>
-						</Grid.Column>
-						<Grid.Column>
-							<Popup trigger={< Statistic size = "small" value = '23°C' label = 'Weather' />} hideOnScroll inverted wide position='bottom center'>
+						<Grid.Column mobile={8} computer={4} tablet={4}>
+							<Popup trigger={< Statistic style = {{margin:'20px'}} size = "tiny" value = '23°C' label = 'Weather' />} hideOnScroll inverted wide position='bottom center'>
 								<Popup.Header>
 									Weather
 								</Popup.Header>

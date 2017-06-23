@@ -48,20 +48,16 @@ class Index extends React.Component {
 		return (
 			<Layout>
 				<TopBar root={false}/>
-				<Container fluid>
-					<Cover caption={z.places.caption} title={z.places.title} img={z.places.img}/>
+					<Cover caption={z.place.caption} title={z.place.title} img={z.place.img}/>
 					<Container>
-						<Sticky innerZ={99999999999}>
-							<Menu/>
-						</Sticky>
-						<Introduction intro={z.places.introduction}/>
+						<Menu/>
+						<Introduction intro={z.place.introduction} best_time={z.place.best_time_to_visit} best_time_more_info={z.place.best_time_to_visit_more_information} time_to_explore={z.place.time_to_explore} weather={z.weather}/>
 						<Experiences exp={z.experiences}/>
-						<MustKnow must_know={z.places.must_know} />
-						<MustCarry must_carry={z.places.must_carry} />
-						<HowToReach how_to_reach={z.places.how_to_reach} />
+						<MustKnow must_know={z.place.must_know}/>
+						<MustCarry must_carry={z.place.must_carry}/>
+						<HowToReach how_to_reach={z.place.how_to_reach}/>
 					</Container>
 					<Footer/>
-				</Container>
 			</Layout>
 		);
 	}

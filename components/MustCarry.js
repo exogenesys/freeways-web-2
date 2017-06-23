@@ -102,19 +102,23 @@ export default class MustCarry extends Component {
 				computerCols = []
 			}
 
-			return (
+			if(items.length > 0){
+				return (
 
-				<Segment basic>
+					<Segment basic>
 					<Header size='huge'>Things You Gotto Carry</Header>
 					<br/>
-					<Grid padded relaxed>
-						{computerRows}
+					<Grid padded relaxed textAlign='center'>
+					{computerRows}
 					</Grid>
 					<Grid padded relaxed>
-						{mobileRows}
+					{mobileRows}
 					</Grid>
 					<br/>
-				</Segment>
-			)
+					</Segment>
+				)
+			} else {
+				return null;
+			}
 		}
 	}

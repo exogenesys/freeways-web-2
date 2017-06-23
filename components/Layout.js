@@ -4,6 +4,7 @@ import Router from 'next/router'
 import {initGA, logPageView} from '../utils/analytics.js'
 import NProgress from 'nprogress';
 
+NProgress.configure({ showSpinner: false });
 
 Router.onRouteChangeStart = (url) => {
 	console.log(`Loading: ${url}`)

@@ -13,21 +13,25 @@ import renderHTML from 'react-render-html'
 
 export default class HowToReach extends Component {
 	render() {
-		return (
+		if(this.props.how_to_reach != ''){
+			return (
 
-			<Segment basic>
+				<Segment basic>
 				<Header size='huge'>How To Reach</Header>
 				<br/>
-								<div style={{
-									fontSize: '18px',
-									color: '#333',
-									marginTop: '-27px'
-								}}>
+				<div style={{
+					fontSize: '18px',
+					color: '#333',
+					marginTop: '-27px'
+				}}>
 
-									{renderHTML(this.props.how_to_reach)}
-								</div>
-			</Segment>
+				{renderHTML(this.props.how_to_reach)}
+				</div>
+				</Segment>
 
-		)
+			)
+		} else {
+			return null;
+		}
 	}
 }

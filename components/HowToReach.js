@@ -14,6 +14,7 @@ export default class HowToReach extends Component {
 	state = {
 		activeItem: 'car'
 	}
+
 	handleItemClick = (e, {name}) => this.setState({activeItem: name})
 
 	render() {

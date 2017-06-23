@@ -130,7 +130,7 @@ export default class Experiences extends Component {
 			);
 		});
 
-
+		if(this.props.exp.length > 0){
 		return (
 			<Segment basic style={{
 				marginLeft: '-8px',
@@ -180,6 +180,8 @@ export default class Experiences extends Component {
 				<br/>
 			</Segment>
 
-		)
+		)} else {
+			return null;
+		}
 	}
 }

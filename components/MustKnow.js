@@ -3,29 +3,33 @@ import {Header, Segment, List} from 'semantic-ui-react'
 import renderHTML from 'react-render-html'
 
 const MustCarry = (props) => {
+	console.log('must_know', props.must_know);
+	if (props.must_know != '') {
+		return (
 
-	return(
+			<Segment basic>
+				<Header size='huge' id="guide">Things You Gotto Know</Header>
+				<br/>
 
-	<Segment basic>
-		<Header size='huge' id="guide">Things You Gotto Know</Header>
-		<br/>
+				<List divided inverted relaxed>
+					<List.Item>
+						<List.Content>
+							<p style={{
+								fontSize: '20px',
+								color: '#333'
+							}}>
 
-		<List divided inverted relaxed>
-			<List.Item>
-				<List.Content>
-					<p style={{
-						fontSize: '20px',
-						color: '#333'
-					}}>
+								{renderHTML(props.must_know)}
 
-						{renderHTML(props.must_know)}
+							</p>
+						</List.Content>
+					</List.Item>
+				</List>
+			</Segment>
 
-					</p>
-				</List.Content>
-			</List.Item>
-		</List>
-	</Segment>
-
-)}
-
+		)
+	} else {
+		return null;
+	}
+}
 export default MustCarry
