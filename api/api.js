@@ -117,8 +117,8 @@ Router.get("/destination/:slug", (req, res, next) => {
 			console.error("error looking up destination data ");
 			next(err)
 		} else {
-			// rp('http://api.openweathermap.org/data/2.5/weather?lat=' + data.latitude + '&lon=' + data.longitude + '&appid=e6c33eefa2e93035fbc5bb2964d35603').then((response) => {
-			// 	const weather = JSON.parse(response)
+			rp('http://api.openweathermap.org/data/2.5/weather?lat=' + data.latitude + '&lon=' + data.longitude + '&appid=e6c33eefa2e93035fbc5bb2964d35603').then((response) => {
+				const weather = JSON.parse(response)
 				places.find({"slug": data.places}).select('slug title name caption tags img').exec(function(err, _places) {
 					if (err) {
 						console.error(err);
@@ -135,7 +135,7 @@ Router.get("/destination/:slug", (req, res, next) => {
 											destination: data,
 											places: _places,
 											experiences: _experiences,
-											// weather: Math.round(weather.main.temp - 273.15),
+											weather: Math.round(weather.main.temp - 273.15),
 											weather: Math.round(290 - 273.15),
 											must_carry: _must_carry
 										}
@@ -168,7 +168,7 @@ Router.get("/place/:slug", (req, res) => {
 				let = 0
 				lon = 0
 			}
-			rp('http://api.openweathermap.org/data/2.5/weather?lat=' + data.latitude + '&lon=' + data.longitude + '&appid=e6c33eefa2e93035fbc5bb2964d35603').then((response) => {
+			rp('http://api.openweathermap.org/data/2.5/weather?lat=' + Number(let) + '&lon=' + Number(lon) + '&appid=e6c33eefa2e93035fbc5bb2964d35603').then((response) => {
 				const weather = JSON.parse(response)
 
 				experiences.find({"slug": data.experiences}).select('slug title name caption tags img').exec(function(err, _experiences) {
