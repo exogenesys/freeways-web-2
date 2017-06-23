@@ -36,7 +36,7 @@ const Cover = (props) => {
 						textAlign: 'center',
 						fontSize: '88px',
             textShadow: 'rgb(0, 0, 0) 2px 2px 10px'
-					}}>{props.title}</Header>
+					}}>{props.title || ''}</Header>
 				</Grid.Column>
 			</Grid.Row>
 			<Grid.Row>
@@ -49,7 +49,7 @@ const Cover = (props) => {
 						color: 'rgba(255,255,255,0.95)',
             fontSize: '24px',
 						fontWeight: '900',
-					}}>{props.caption}</em>
+					}}>{props.caption || ''}</em>
 				</Grid.Column>
 			</Grid.Row>
 		</Grid>

@@ -5,6 +5,71 @@ import renderHTML from 'react-render-html'
 export default class PlacesIntroduction extends React.Component {
 
 	render() {
+
+		let intro = null
+		if(this.props.intro){
+			intro = renderHTML(this.props.intro)
+		}
+
+		let time_to_explore = null
+		if (this.props.time_to_explore) {
+			time_to_explore = (
+				<Grid.Column mobile={8} computer={4} tablet={4}>
+					<Popup trigger={< Statistic style = {{margin:'20px'}}size = "tiny" value = {
+						this.props.time_to_explore
+					}
+					label = 'Time to explore' />} hideOnScroll inverted wide position='bottom center'>
+						<Popup.Header>
+							Know More
+						</Popup.Header>
+						<Popup.Content>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+						</Popup.Content>
+					</Popup>
+				</Grid.Column>
+			);
+		}
+
+		let weather = null
+		if (this.props.weather) {
+			weather = (
+				<Statistic style = {{margin:'20px'}}size = "tiny" value = {
+					this.props.weather + '°'
+				}
+				label = 'Weather' />
+
+				// <Grid.Column mobile={8} computer={4} tablet={4}>
+				// 	<Popup trigger={<Statistic style = {{margin:'20px'}}size = "tiny" value = {
+				// 		this.props.weather + '°'
+				// 	}
+				// 	label = 'Weather' />} hideOnScroll inverted wide position='bottom center'>
+				// 		<Popup.Header></Popup.Header>
+				// 		<Popup.Content></Popup.Content>
+				// 	</Popup>
+				// </Grid.Column>
+			);
+		}
+
+		let best_time = null
+		if (this.props.best_time) {
+			best_time = (
+				<Grid.Column mobile={8} computer={4} tablet={4}>
+					<Popup trigger={< Statistic style = {{margin:'20px'}}size = "tiny" value = {
+						this.props.best_time
+					}
+					label = 'Best Time to visit' />} hideOnScroll inverted wide position='bottom center'>
+						<Popup.Header>
+							Know More
+						</Popup.Header>
+						<Popup.Content>
+						{this.props.best_time_more_info}
+						</Popup.Content>
+					</Popup>
+				</Grid.Column>
+			);
+		}
+
+
 		return (
 
 			<Segment basic>
@@ -16,7 +81,7 @@ export default class PlacesIntroduction extends React.Component {
 					textAlign: 'center',
 					color: '#333'
 				}}>
-					{renderHTML(this.props.intro)}
+					{intro}
 				</p>
 				<br/>
 				<br/>
@@ -24,36 +89,11 @@ export default class PlacesIntroduction extends React.Component {
 
 				<Grid>
 					<Grid.Row centered>
-						<Grid.Column mobile={8} computer={4} tablet={4}>
-							<Popup trigger={< Statistic style = {{margin:'20px'}} size = "tiny" value ={this.props.best_time} label = 'Best Time to Visit' />} hideOnScroll inverted wide position='bottom center'>
-								<Popup.Header>
-									Best time to visit
-								</Popup.Header>
-								<Popup.Content>
-									{renderHTML(this.props.best_time_more_info)}
-								</Popup.Content>
-							</Popup>
-						</Grid.Column>
-						<Grid.Column mobile={8} computer={4} tablet={4}>
-							<Popup trigger={< Statistic style = {{margin:'20px'}} size = "tiny" value={this.props.time_to_explore} label = 'Time to explore' />} hideOnScroll inverted wide position='bottom center'>
-								<Popup.Header>
-									Time to explore
-								</Popup.Header>
-								<Popup.Content>
-									Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-								</Popup.Content>
-							</Popup>
-						</Grid.Column>
-						<Grid.Column mobile={8} computer={4} tablet={4}>
-							<Popup trigger={< Statistic style = {{margin:'20px'}} size = "tiny" value = '23°C' label = 'Weather' />} hideOnScroll inverted wide position='bottom center'>
-								<Popup.Header>
-									Weather
-								</Popup.Header>
-								<Popup.Content>
-								</Popup.Content>
-							</Popup>
-						</Grid.Column>
+						{time_to_explore}
+						{weather}
+						{best_time}
 					</Grid.Row>
+
 				</Grid>
 				<br/>
 				<br/>

@@ -3,15 +3,11 @@ import {Menu, Segment, Grid} from 'semantic-ui-react'
 import Sticky from 'react-stickynode';
 
 export default class DestinationMenu extends Component {
-	// Not needed? -hashcode55
-	// constructor(props) {
-	// 	super(props);
-	// 	this.state = {
-	// 		activeItem: this.props.activeItem
-	// 	};
-	// }
-	// // <Menu.Item name='trips' active={activeItem === 'trips'} onClick={this.handleItemClick} href="#trips"/>
-	// handleItemClick = (e, {name}) => this.setState({activeItem: name})
+	state = {
+		activeItem: 'about'
+	}
+	// <Menu.Item name='trips' active={activeItem === 'trips'} onClick={this.handleItemClick} href="#trips"/>
+	handleItemClick = (e, {name}) => this.setState({activeItem: name})
 
 	render() {
 		// console.log('DestinationMenu[DEBUG: ]: ' + this.props.activeItem);

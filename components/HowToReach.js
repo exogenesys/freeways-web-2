@@ -40,7 +40,7 @@ export default class HowToReach extends Component {
 
 		var items = [];
 
-		if (this.props.car !== '') {
+		if (this.props.car != '') {
 			items.push(
 				<Menu.Item name='car' active={activeItem === 'car'} onClick={this.handleItemClick}>
 					<div style={{
@@ -52,7 +52,7 @@ export default class HowToReach extends Component {
 				</Menu.Item>
 			);
 		}
-		if (this.props.bus !== '') {
+		if (this.props.bus != '') {
 			items.push(
 				<Menu.Item name='bus' active={activeItem === 'bus'} onClick={this.handleItemClick}>
 					<div style={{
@@ -64,7 +64,7 @@ export default class HowToReach extends Component {
 				</Menu.Item>
 			);
 		}
-		if (this.props.train !== '') {
+		if (this.props.train != '') {
 			items.push(
 				<Menu.Item name='train' active={activeItem === 'train'} onClick={this.handleItemClick}>
 					<div style={{
@@ -76,7 +76,7 @@ export default class HowToReach extends Component {
 				</Menu.Item>
 			);
 		}
-		if (this.props.plane !== '') {
+		if (this.props.plane != '') {
 			items.push(
 				<Menu.Item name='plane' active={activeItem === 'plane'} onClick={this.handleItemClick}>
 					<div style={{

@@ -94,7 +94,7 @@ class Index extends React.Component {
 						margin: '0px'
 					}}/>
 					<div ref='about'>
-						<Introduction intro={z.destination.introduction} best_time={z.destination.best_time_to_visit} best_time_more_info={z.destination.best_time_to_visit_more_information} time_to_explore={z.destination.time_to_explore} weather={z.weather} average_budget_per_person={z.destination.average_budget_per_person}/>
+						<Introduction intro={z.destination.introduction}  best_time={z.destination.best_time_to_visit} best_time_more_info={z.destination.best_time_to_visit_more_information} time_to_explore={z.destination.time_to_explore} weather={z.weather} average_budget_per_person={z.destination.average_budget_per_person}/>
 					</div>
 					<div ref='places'>
 						<Places places={z.places}/>
