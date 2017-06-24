@@ -18,6 +18,7 @@ export default class SearchHome extends Component {
 
 	handleResultSelect = (e, result) => {
 		this.setState({value: result.title})
+		this.handleDimmerHide()
 		Router.push({
 			pathname: '/' + result.type,
 			query: {
@@ -28,7 +29,7 @@ export default class SearchHome extends Component {
 
 	handleSearchChange = (e, value) => {
 		this.setState({isLoading: true, value})
-
+		this.handleDimmerShow()
 		if (value.length < 1)
 			return this.resetComponent()
 		axios.get(source + value).then((res) => {
@@ -36,6 +37,9 @@ export default class SearchHome extends Component {
 		});
 
 	}
+
+	handleDimmerShow = () => this.props.handleDimmer(true)
+	handleDimmerHide = () => this.props.handleDimmer(false)
 
 	render() {
 		const {isLoading, value, results} = this.state
@@ -51,17 +55,8 @@ export default class SearchHome extends Component {
 			type: PropTypes.string
 		}
 
-		return (<Search
-			placeholder='Search'
-			loading={isLoading}
-			resultRenderer={resultRenderer}
-			onResultSelect={this.handleResultSelect}
-			onSearchChange={this.handleSearchChange}
-			results={results}
-			size='small'
-			value={value}
-			fluid={true}
-			style={SearchHomeStyle} { ...this.props }
-		/>)
+		return (
+			<Search placeholder='Search' loading={isLoading} resultRenderer={resultRenderer} onResultSelect={this.handleResultSelect} onSearchChange={this.handleSearchChange} onBlur={this.handleDimmerHide} onFocus={this.handleDimmerShow} results={results} size='small' value={value} fluid={true} style={SearchHomeStyle} { ...this.props }></Search>
+		)
 	}
 }

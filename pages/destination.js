@@ -13,6 +13,7 @@ import {
 	Statistic,
 	Grid,
 	Label,
+	Dimmer,
 	List
 } from 'semantic-ui-react'
 
@@ -41,7 +42,8 @@ class Index extends React.Component {
 		// state maintains the height of elements
 		// as well as the activeitem to pass on to 'Menu'
 		this.state = {
-			activeItem: 'about'
+			activeItem: 'about',
+			dimmer: false
 		};
 
 		this.handleScroll = this.handleScroll.bind(this);
@@ -81,41 +83,47 @@ class Index extends React.Component {
 		window.addEventListener('scroll', this.handleScroll);
 	}
 
+	handleDimmer = (toDimOrNotToDim) => this.setState({dimmer: toDimOrNotToDim})
+
 	render() {
 
 		const z = this.props.data;
 		return (
 
 			<Layout>
-				<TopBar root={false}/>
-				<Cover caption={z.destination.caption} title={z.destination.title} img={z.destination.img}/>
-				<Container>
-					<Menu activeItem={this.state.activeItem} style={{
-						margin: '0px'
-					}}/>
-					<div ref='about'>
-						<Introduction intro={z.destination.introduction}  best_time={z.destination.best_time_to_visit} best_time_more_info={z.destination.best_time_to_visit_more_information} time_to_explore={z.destination.time_to_explore} weather={z.weather} average_budget_per_person={z.destination.average_budget_per_person}/>
-					</div>
-					<div ref='places'>
-						<Places places={z.places}/>
-					</div>
-					<div ref='exp'>
-					<Experiences exp={z.experiences}/>
-					</div>
-					{/*						<Trips trips={z.destination}/>                */}
-					<div ref='guide'>
-						<MustKnow must_know={z.destination.must_know}/>
-						<MustCarry must_carry={z.must_carry}/> {/*						<Languages/> */}
-						<HowToReach car={z.destination.how_to_reach_by_car} train={z.destination.how_to_reach_by_train} bus={z.destination.how_to_reach_by_bus} plane={z.destination.how_to_reach_by_plane}/>
+				<TopBar handleDimmer={e => this.handleDimmer(e)} root={false}/>
+				<Dimmer.Dimmable blurring dimmed={this.state.dimmer}>
+				<Dimmer active={this.state.dimmer} onClickOutside={this.handleDimmerHide}></Dimmer>
+					<Cover caption={z.destination.caption} title={z.destination.title} img={z.destination.img}/>
+					<Container>
+						<Menu activeItem={this.state.activeItem} style={{
+							margin: '0px'
+						}}/>
+						<div ref='about'>
+							<Introduction intro={z.destination.introduction} best_time={z.destination.best_time_to_visit} best_time_more_info={z.destination.best_time_to_visit_more_information} time_to_explore={z.destination.time_to_explore} weather={z.weather} average_budget_per_person={z.destination.average_budget_per_person}/>
+						</div>
+						<div ref='places'>
+							<Places places={z.places}/>
+						</div>
+						<div ref='exp'>
+							<Experiences exp={z.experiences}/>
+						</div>
+						{/*						<Trips trips={z.destination}/>                */}
+						<div ref='guide'>
+							<MustKnow must_know={z.destination.must_know}/>
+							<MustCarry must_carry={z.must_carry}/> {/*						<Languages/> */}
+							<HowToReach car={z.destination.how_to_reach_by_car} train={z.destination.how_to_reach_by_train} bus={z.destination.how_to_reach_by_bus} plane={z.destination.how_to_reach_by_plane}/>
 
-						<GettingAround gtaround={z.destination.getting_around} gtoptions={z.destination.getting_around_options}/>
-					</div>
-					{/*					<NearByDestinations/>*/}
-					<br/>
-					<br/>
-				</Container>
-				<Footer/>
+							<GettingAround gtaround={z.destination.getting_around} gtoptions={z.destination.getting_around_options}/>
+						</div>
+						{/*					<NearByDestinations/>*/}
+						<br/>
+						<br/>
+					</Container>
+					<Footer/>
+				</Dimmer.Dimmable>
 			</Layout>
+
 		);
 	}
 }

@@ -14,6 +14,8 @@ export default class TopBar extends Component {
 		Router.push('/' + name)
 	}
 
+	handleDimmer = (toDimOrNotToDim) => this.props.handleDimmer(toDimOrNotToDim)
+
 	render() {
 		const {activeItem} = this.state;
 
@@ -21,9 +23,9 @@ export default class TopBar extends Component {
 
 		if (!this.props.root) {
 			bar = <Menu.Item position='right'>
-					<div className='ui transparent input'>
-						<NavSearch/>
-					</div>
+				<div className='ui transparent input'>
+					<NavSearch handleDimmer={e => this.handleDimmer(e)}/>
+				</div>
 			</Menu.Item>
 		}
 

@@ -14,7 +14,8 @@ import {
 	Statistic,
 	Grid,
 	Label,
-	List
+	List,
+	Dimmer
 } from 'semantic-ui-react'
 
 import Layout from '../components/Layout'
@@ -35,11 +36,54 @@ import initStore from '../utils/store'
 const ifRoot = 'false';
 
 class Index extends React.Component {
+
+	constructor(props) {
+		super(props);
+		// state maintains the height of elements
+		// as well as the activeitem to pass on to 'Menu'
+		this.state = {
+			activeItem: 'about',
+			dimmer: false
+		};
+
+		this.handleScroll = this.handleScroll.bind(this);
+	}
+
 	static async getInitialProps({query}) {
 		const res = await axios.get('http://www.freeways.in/api/place/' + query.slug);
 		const data = res.data;
 		return {data};
 	}
+
+	handleScroll() {
+		// console.log(this.refs.guide.getBoundingClientRect());
+		// handle the scoll event to set the active link
+		// max neg is active
+		const items = ['about', 'places', 'exp', 'guide']
+		var topheights = [this.refs.about, this.refs.places, this.refs.exp, this.refs.guide].map((ref) => ref.getBoundingClientRect().top);
+		// get the maximum negative
+		var max = -2000,
+			ind = -1;
+		for (var i = 0; i < 4; i++) {
+			if (topheights[i] < 0 && topheights[i] > max) {
+				// update max
+				max = topheights[i];
+				ind = i;
+			}
+		}
+		if (ind > -1)
+			this.setState({activeItem: items[ind]});
+		}
+
+	componentWillUnmount() {
+		window.removeEventListener('scroll', this.handleScroll);
+	}
+
+	componentDidMount() {
+		window.addEventListener('scroll', this.handleScroll);
+	}
+
+	handleDimmer = (toDimOrNotToDim) => this.setState({dimmer: toDimOrNotToDim})
 
 	render() {
 
@@ -47,7 +91,9 @@ class Index extends React.Component {
 
 		return (
 			<Layout>
-				<TopBar root={false}/>
+				<TopBar handleDimmer={e => this.handleDimmer(e)} root={false}/>
+				<Dimmer.Dimmable blurring dimmed={this.state.dimmer}>
+					<Dimmer active={this.state.dimmer} onClickOutside={this.handleDimmerHide}></Dimmer>
 					<Cover caption={z.place.caption} title={z.place.title} img={z.place.img}/>
 					<Container>
 						<Menu/>
@@ -58,6 +104,7 @@ class Index extends React.Component {
 						<HowToReach how_to_reach={z.place.how_to_reach}/>
 					</Container>
 					<Footer/>
+				</Dimmer.Dimmable>
 			</Layout>
 		);
 	}
