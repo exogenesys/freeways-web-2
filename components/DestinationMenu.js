@@ -12,7 +12,7 @@ export default class DestinationMenu extends Component {
 	render() {
 		// console.log('DestinationMenu[DEBUG: ]: ' + this.props.activeItem);
 		// get the active item
-		const {activeItem} = this.props.activeItem;
+		const {activeItem} = this.state;
 		return (
 			<Grid>
 				<Grid.Row>

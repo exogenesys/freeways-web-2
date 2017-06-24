@@ -21,6 +21,61 @@ mongoose.connect("mongodb://saulgoodman:hackerman@ds163561.mlab.com:63561/freewa
 
 console.log("hello from api");
 
+// Router.get('/deleteAllPlacesExceptJaiBhai', (req, res) => {
+// 	let x = []
+// 	destinations.find({
+// 		'slug': {
+// 			$in: [
+// 				'shimla2', 'ladakh', 'jaipur', 'andaman-and-nicobar-islands'
+// 				// 'manali',
+// 				// 'coorg',
+// 				// 'dharamshala',
+// 				// 'ooty',
+// 				// 'Kasol',
+// 				// 'agra',
+// 				// 'dehradun',
+// 				// 'goa',
+// 				// 'jaisalmer'
+// 			]
+// 		}
+// 	}).select('experiences slug').exec((err, _destinations) => {
+// 		for (var i = 0; i < _destinations.length; i++) {
+// 			for (var j = 0; j < _destinations[i].experiences.length; j++) {
+// 				x.push(_destinations[i].experiences[j])
+// 			}
+// 		}
+// 		experiences.remove({
+// 			slug: {
+// 				$nin: x
+// 			}
+// 		}).exec((err, docs) => {
+// 			if (err)
+// 				res.send(err);
+// 			else
+// 				res.send({'Papu': docs})
+// 		})
+// 	});
+// });
+//
+// Router.get('/AddVarinderPrahDaData', (req, res) => {
+// 	// let count = 0
+// 	// let d = []
+// 	// for (var i = 0; i < y.length; i++) {
+// 	// 	for (var j = 0; j < y.length; j++) {
+// 	// 		if(y[i].slug == y[j].slug && i != j){
+// 	// 			d.push(y[i].slug)
+// 	// 		}
+// 	// 	}
+// 	// }
+// 	// res.send({'count':count, 'i':i, 'j':j, 'd':d});
+// 		experiences.insertMany(y, (err)=>{
+// 			if(err)
+// 			res.send(err)
+// 			else res.send('God is dead.')
+// 		});
+// });
+
+
 Router.get('/home', (req, res) => {
 	console.log('hello from home');
 	var obj = {};

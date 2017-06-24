@@ -5,14 +5,12 @@ import Router from 'next/router'
 import {Search, Grid, Header, Label} from 'semantic-ui-react'
 
 const source = '/api/search/'
-const SearchHomeStyle = {
-	marginLeft: '0px!important'
-}
 
 export default class SearchHome extends Component {
 	componentWillMount() {
 		this.resetComponent()
 	}
+
 
 	resetComponent = () => this.setState({isLoading: false, results: [], value: ''})
 
@@ -56,7 +54,7 @@ export default class SearchHome extends Component {
 		}
 
 		return (
-			<Search placeholder='Search' loading={isLoading} resultRenderer={resultRenderer} onResultSelect={this.handleResultSelect} onSearchChange={this.handleSearchChange} onBlur={this.handleDimmerHide} onFocus={this.handleDimmerShow} results={results} size='small' value={value} fluid={true} style={SearchHomeStyle} { ...this.props }></Search>
+			<Search loading={isLoading} selectFirstResult={true} resultRenderer={resultRenderer} onResultSelect={this.handleResultSelect} onSearchChange={this.handleSearchChange} onBlur={this.handleDimmerHide} onFocus={this.handleDimmerShow} results={results} size='small' value={value} fluid={true} className='NavSearchStyle' { ...this.props }></Search>
 		)
 	}
 }

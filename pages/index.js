@@ -56,9 +56,9 @@ class Index extends React.Component {
 
 			<Layout>
 				<TopBar root={true}/>
-				<Cover handleDimmer={e => this.handleDimmer(e)}/>
 				<Dimmer.Dimmable blurring dimmed={false}>
-					<Dimmer active={false} onClickOutside={this.handleDimmerHide}></Dimmer>
+				<Dimmer active={false} page onClickOutside={this.handleDimmerHide}></Dimmer>
+				<Cover handleDimmer={e => this.handleDimmer(e)}/>
 					<Container >
 						<br/><br/>
 						<Header size='huge'>Trending Destinations</Header>

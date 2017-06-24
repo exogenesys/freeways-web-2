@@ -30,15 +30,13 @@ export default class TopBar extends Component {
 		}
 
 		return (
-			<div>
-				<Menu>
+				<Menu borderless style={{minHeight:'60px', marginBottom: '0px'}}>
 					<Menu.Item header onClick={this.handleItemClick} name='' style={{
-						Size: 'small',
+						fontSize: '1.3em',
 						color: '#F2711C'
 					}}>freeways</Menu.Item>
 					{bar}
 				</Menu>
-			</div>
 		)
 	}
 }
