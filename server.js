@@ -10,6 +10,8 @@ const handle = app.getRequestHandler();
 
 const PORT = process.env.PORT || 3000;
 
+console.log(process.browser);
+
 app.prepare().then(_ => {
 	const server = express()
 
@@ -27,30 +29,29 @@ app.prepare().then(_ => {
 
 	console.log('first')
 
+	server.get('/destination/:slug', (req, res) => {
+  	const params = { slug: req.params.slug }
+  	return app.render(req, res, '/destination', params);
+	});
 
-	// server.get('/destination/:slug', (req, res) => {
-  // 	const params = { slug: req.params.slug }
-  // 	return app.render(req, res, '/destination', params);
-	// });
-	//
-	// server.get('/place/:slug', (req, res) => {
-	// 	const params = { slug: req.params.slug }
-	// 	return app.render(req, res, '/place', params);
-	// });
-	//
-	// server.get('/experience/:slug', (req, res) => {
-  // 	const params = { slug: req.params.slug }
-  // 	return app.render(req, res, '/experience', params);
-	// });
-	//
-	// server.get('/trip/:slug', (req, res) => {
-  // 	const params = { slug: req.params.slug }
-  // 	return app.render(req, res, '/trip', params);
-	// });
+	server.get('/place/:slug', (req, res) => {
+		const params = { slug: req.params.slug }
+		return app.render(req, res, '/place', params);
+	});
+
+	server.get('/experience/:slug', (req, res) => {
+  	const params = { slug: req.params.slug }
+  	return app.render(req, res, '/experience', params);
+	});
+
+	server.get('/trip/:slug', (req, res) => {
+  	const params = { slug: req.params.slug }
+  	return app.render(req, res, '/trip', params);
+	});
 
 	server.get('*', (req, res) => {
-		// return app.render(req, res, '/');
-		return handle(req, res);
+		return app.render(req, res, '/');
+		// return handle(req, res);
 	});
 
 	server.listen(PORT, err => {

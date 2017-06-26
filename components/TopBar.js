@@ -9,10 +9,10 @@ export default class TopBar extends Component {
 
 	state = {}
 
-	handleItemClick = (e, {name}) => {
-		this.setState({activeItem: name})
-		Router.push('/' + name)
-	}
+	// handleItemClick = (e, {name}) => {
+	// 	this.setState({activeItem: name})
+	// 	Router.push('/' + name)
+	// }
 
 	handleDimmer = (toDimOrNotToDim) => this.props.handleDimmer(toDimOrNotToDim)
 
@@ -31,9 +31,7 @@ export default class TopBar extends Component {
 
 		return (
 				<Menu borderless style={{minHeight:'60px', marginBottom: '0px'}}>
-					<Menu.Item header onClick={this.handleItemClick} name='' style={{
-						fontSize: '1.3em',
-						color: '#F2711C'
+					<Menu.Item header onClick={this.handleItemClick} name='' className='LogoHeader' style={{
 					}}>freeways</Menu.Item>
 					{bar}
 				</Menu>

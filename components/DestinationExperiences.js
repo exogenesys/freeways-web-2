@@ -150,7 +150,7 @@ export default class Experiences extends Component {
 								<Menu.Menu position='right'>
 									<div className='ui right aligned category search item'>
 										<div className='ui transparent icon input'>
-											<Search loading={isLoading} onSearchChange={this.handleSearchChange} placeholder='Search' value={value} open={false}/>
+											<Search loading={isLoading} onSearchChange={this.handleSearchChange} placeholder='Search' value={value} open={false}  className='GridSearch'/>
 										</div>
 										<div className='results'></div>
 									</div>

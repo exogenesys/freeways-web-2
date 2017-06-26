@@ -80,13 +80,22 @@
 		}
 }
 
+.GridSearch div input {
+	border-radius: 0rem!important;
+}
 
-.NavSearchStyle div input{
-    border-radius: 0rem!important;
+.NavSearchStyle div input {
+		border-radius: 0rem!important;
 }
 
 .NavSearchStyle {
-    font-size: 1.2em!important;
-    /*font-size: 2em!important;*/
+		font-size: 1.2em!important;
+		/*font-size: 2em!important;*/
 		z-index: 1001!important;
+}
+
+.LogoHeader {
+		/*font-family: 'freeways-sans', sans-serif!important;*/
+		font-size: 1.3em!important;
+		color: #F2711C!important;
 }

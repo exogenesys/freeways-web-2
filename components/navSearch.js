@@ -17,12 +17,9 @@ export default class SearchHome extends Component {
 	handleResultSelect = (e, result) => {
 		this.setState({value: result.title})
 		this.handleDimmerHide()
-		Router.push({
-			pathname: '/' + result.type,
-			query: {
-				slug: result.slug
-			}
-		})
+		const url = '/' + result.type + '?slug=' + result.slug
+		const as  = '/' + result.type + '/' + result.slug
+		Router.push(url, as)
 	}
 
 	handleSearchChange = (e, value) => {
@@ -54,7 +51,9 @@ export default class SearchHome extends Component {
 		}
 
 		return (
-			<Search loading={isLoading} selectFirstResult={true} resultRenderer={resultRenderer} onResultSelect={this.handleResultSelect} onSearchChange={this.handleSearchChange} onBlur={this.handleDimmerHide} onFocus={this.handleDimmerShow} results={results} size='small' value={value} fluid={true} className='NavSearchStyle' { ...this.props }></Search>
+			<Search showNoResults={!isLoading}
+			// loading={isLoading}
+			selectFirstResult={true} resultRenderer={resultRenderer} onResultSelect={this.handleResultSelect} onSearchChange={this.handleSearchChange} onBlur={this.handleDimmerHide} onFocus={this.handleDimmerShow} results={results} size='small' value={value} fluid={true} className='NavSearchStyle' { ...this.props }></Search>
 		)
 	}
 }

@@ -38,8 +38,10 @@ export default class Places extends Component {
 			return ((place.title.toLowerCase()).includes(value.toLowerCase()))
 		})
 		this.setState({value, items: list, isLoading: false})
-
 	}
+
+	handleFocus = () => this.setState({placeholder : ''});
+	handleBlur = () => this.setState({placeholder : 'Search'});
 
 	constructor(props) {
 		super(props);
@@ -48,7 +50,8 @@ export default class Places extends Component {
 			activeItem: '',
 			items: this.props.places,
 			value: '',
-			isLoading: false
+			isLoading: false,
+			placeholder: 'Search'
 		}
 	}
 
@@ -57,7 +60,7 @@ export default class Places extends Component {
 	componentWillReceiveProps(nextProps) {
 		if (this.props.places == nextProps.places)
 			return;
-		this.setState({activeItem: '', items: nextProps.places, value: '', isLoading: false});
+		this.setState({activeItem: '', items: nextProps.places, value: '', isLoading: false, placeholder: 'Search'});
 	}
 
 	render() {
@@ -92,7 +95,7 @@ export default class Places extends Component {
 			}
 		}
 
-		const {activeItem, value, isLoading} = this.state
+		const {activeItem, value, isLoading, placeholder} = this.state
 
 		let items = [
 			{
@@ -152,7 +155,7 @@ export default class Places extends Component {
 							<Menu.Menu position='right'>
 								<div className='ui right aligned category search item'>
 									<div className='ui transparent icon input'>
-										<Search loading={isLoading} onSearchChange={this.handleSearchChange} placeholder='Search' value={value} open={false}/>
+										<Search loading={isLoading} onSearchChange={this.handleSearchChange} placeholder={placeholder} value={value} open={false} onFocus={this.handleFocus} onBlue={this.handleBlur} className='GridSearch'/>
 									</div>
 									<div className='results'></div>
 								</div>

@@ -26,12 +26,9 @@ export default class SearchHome extends Component {
 	handleResultSelect = (e, result) => {
 		this.setState({value: result.title})
 		this.handleDimmerHide()
-		Router.push({
-			pathname: '/' + result.type,
-			query: {
-				slug: result.slug
-			}
-		})
+		const url = '/' + result.type + '?slug=' + result.slug
+		const as  = '/' + result.type + '/' + result.slug
+		Router.push(url, as)
 	}
 
 	handleSearchChange = (e, value) => {
@@ -101,7 +98,7 @@ export default class SearchHome extends Component {
 								display: 'flex',
 								justifyContent: 'center'
 							}}>
-								<Search loading={isLoading} onFocus={this.handleDimmerShow} onBlur={this.handleDimmerHide} selectFirstResult={true} resultRenderer={resultRenderer} onResultSelect={this.handleResultSelect} onSearchChange={this.handleSearchChange} results={results} value={value} size={'huge'} style={SearchHomeStyle} { ...this.props } fluid/>
+								<Search showNoResults={false} loading={isLoading} onFocus={this.handleDimmerShow} onBlur={this.handleDimmerHide} selectFirstResult={true} resultRenderer={resultRenderer} onResultSelect={this.handleResultSelect} onSearchChange={this.handleSearchChange} results={results} value={value} size={'huge'} style={SearchHomeStyle} { ...this.props } fluid/>
 							</div>
 						</Grid.Column>
 					</Grid.Row>
