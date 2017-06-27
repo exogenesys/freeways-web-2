@@ -11,7 +11,7 @@ export default class Brick extends React.Component {
 							constants.IMG_HEIGHT_RB,
 							constants.IMG_QUALITY_RB);
 		return (
-			<Link href={{ pathname: '/' + this.props.type, query: { slug: this.props.data.slug }}} as={`/${this.props.type}/${this.props.data.slug}`}>
+			<Link prefetch href={{ pathname: '/' + this.props.type, query: { slug: this.props.data.slug }}} as={`/${this.props.type}/${this.props.data.slug}`}>
 
 				<Card fluid style={{
 					backgroundImage: "linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.2)), url(\'" + imgurl + "\')",

@@ -11,7 +11,7 @@ export default class TopBar extends Component {
 
 	// handleItemClick = (e, {name}) => {
 	// 	this.setState({activeItem: name})
-	// 	Router.push('/' + name)
+	// 	Router.prefetch('/' + name)
 	// }
 
 	handleDimmer = (toDimOrNotToDim) => this.props.handleDimmer(toDimOrNotToDim)

@@ -11,7 +11,7 @@ const extra = (
 
 const RecommendationCard = (props) => {
 	return (
-		<Link href={{ pathname: '/' + props.type, query: { slug: props.data.slug }}} as={`/${this.props.type}/${this.props.data.slug}`}>
+		<Link prefetch href={{ pathname: '/' + props.type, query: { slug: props.data.slug }}} as={`/${this.props.type}/${this.props.data.slug}`}>
 			<Card>
 				<Image src={props.data.img == null ? "https://placeimg.com/400/300/nature" : props.data.img }/>
 				<Card.Content>

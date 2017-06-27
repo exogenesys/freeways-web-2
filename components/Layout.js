@@ -28,7 +28,7 @@ export default class Layout extends React.Component {
 		return (
 			<div>
 			<Head>
-				<meta name="viewport" content="width=device-width"/>
+				<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
 				<meta name="theme-color" content="#F2711C"/>
 				<link rel="manifest" href="static/manifest.json"/>
 				<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.css"></link>

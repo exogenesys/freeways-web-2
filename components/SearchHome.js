@@ -28,7 +28,7 @@ export default class SearchHome extends Component {
 		this.handleDimmerHide()
 		const url = '/' + result.type + '?slug=' + result.slug
 		const as  = '/' + result.type + '/' + result.slug
-		Router.push(url, as)
+		Router.prefetch(url, as)
 	}
 
 	handleSearchChange = (e, value) => {
