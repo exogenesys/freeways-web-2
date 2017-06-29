@@ -2,15 +2,20 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import axios from 'axios';
 import Router from 'next/router'
-import {Search, Grid, Header, Label} from 'semantic-ui-react'
+import {
+	Search,
+	Grid,
+	Header,
+	Label,
+	Segment,
+} from 'semantic-ui-react'
 
 const source = '/api/search/'
 
-export default class SearchHome extends Component {
+export default class HomeCover extends Component {
 	componentWillMount() {
 		this.resetComponent()
 	}
-
 
 	resetComponent = () => this.setState({isLoading: false, results: [], value: ''})
 
@@ -18,13 +23,14 @@ export default class SearchHome extends Component {
 		this.setState({value: result.title})
 		this.handleDimmerHide()
 		const url = '/' + result.type + '?slug=' + result.slug
-		const as  = '/' + result.type + '/' + result.slug
+		const as = '/' + result.type + '/' + result.slug
 		Router.prefetch(url, as)
 	}
 
 	handleSearchChange = (e, value) => {
 		this.setState({isLoading: true, value})
 		this.handleDimmerShow()
+
 		if (value.length < 1)
 			return this.resetComponent()
 		axios.get(source + value).then((res) => {
@@ -33,11 +39,8 @@ export default class SearchHome extends Component {
 
 	}
 
-	handleDimmerShow = () => this.props.handleDimmer(true)
-	handleDimmerHide = () => this.props.handleDimmer(false)
-
 	render() {
-		const {isLoading, value, results} = this.state
+		const {isLoading, value, results, active} = this.state
 		const resultRenderer = ({slug, title, type}) => (
 			<div>
 				{title}
@@ -51,9 +54,22 @@ export default class SearchHome extends Component {
 		}
 
 		return (
-			<Search showNoResults={!isLoading}
-			// loading={isLoading}
-			selectFirstResult={true} resultRenderer={resultRenderer} onResultSelect={this.handleResultSelect} onSearchChange={this.handleSearchChange} onBlur={this.handleDimmerHide} onFocus={this.handleDimmerShow} results={results} size='small' value={value} fluid={true} className='NavSearchStyle' { ...this.props }></Search>
+			<Segment basic vertical className='CoverStyle'>
+				<Grid stretched style={{
+					margin: '0px'
+				}}>
+					<Grid.Row>
+						<Grid.Column>
+							<Header size='huge' style={{
+								color: '#FFF',
+								textAlign: 'center',
+								fontSize: '38px'
+							}}>Our planet is waiting for you.</Header>
+						</Grid.Column>
+					</Grid.Row>
+				</Grid>
+			</Segment>
+
 		)
 	}
 }

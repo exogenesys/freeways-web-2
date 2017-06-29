@@ -41,11 +41,8 @@ class Index extends React.Component {
 
 	constructor(props) {
 		super(props);
-		// state maintains the height of elements
-		// as well as the activeitem to pass on to 'Menu'
 		this.state = {
 			dimmer: false,
-			sidebar: false
 		};
 
 	}
@@ -64,8 +61,10 @@ class Index extends React.Component {
 		return (
 
 			<Layout>
-				<TopBar handleDimmer={e => this.handleDimmer(e)} root={false}/>
-				<Dimmer.Dimmable blurring dimmed={this.state.dimmer}>
+				<TopBar handleDimmer={e => this.handleDimmer(e)} root={true}/>
+				<Dimmer.Dimmable blurring dimmed={this.state.dimmer} style={{
+					marginTop: '-15vh'
+				}}>
 					<Dimmer active={this.state.dimmer} onClickOutside={this.handleDimmerHide}></Dimmer>
 					<Cover caption={z.destination.caption} title={z.destination.title} img={z.destination.img}/>
 					<Container>

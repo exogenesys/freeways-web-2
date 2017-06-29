@@ -1,6 +1,5 @@
 import React from 'react'
 import {Segment, Header, Grid} from 'semantic-ui-react'
-import SearchHome from '../components/SearchHome'
 import helper from '../utils/helper'
 import constants from '../utils/constants'
 
@@ -13,7 +12,7 @@ const Cover = (props) => {
 		constants.IMG_QUALITY_DC);
 
 	const CoverStyle = {
-		height: "600px",
+		height: "85hv",
 		backgroundImage: "url('" +  imgurl   + "')",
 		backgroundSize: "cover",
 		backgroundRepeat: 'no-repeat',

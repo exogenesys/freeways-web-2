@@ -12,17 +12,13 @@ import {
 	Dimmer
 } from 'semantic-ui-react'
 
-import Layout from '../components/Layout'
-
-import TopBar from '../components/TopBar'
-
-import RecommendationCards from '../components/RecommendationCards'
 // import RecommendationBricks from '../components/RecommendationBricks'
 
-import Cover from '../components/SearchHome'
-
+import Layout from '../components/Layout'
+import TopBar from '../components/TopBar'
+import RecommendationCards from '../components/RecommendationCards'
+import Cover from '../components/HomeCoverFork'
 import Footer from '../components/Footer'
-
 import initStore from '../utils/store';
 
 class Index extends React.Component {
@@ -45,20 +41,13 @@ class Index extends React.Component {
 	render() {
 
 		const home = this.props.data;
-
-		// <Header size='huge'>Trending Trips</Header>
-		// <br/><br/>
-		// <RecommendationCards data={home.trips} type='trip'/>
-		// <br/><br/>
-		// <br/><br/>
-
 		return (
 
 			<Layout>
-				<TopBar root={true}/>
-				<Dimmer.Dimmable blurring dimmed={false}>
-				<Dimmer active={false} page onClickOutside={this.handleDimmerHide}></Dimmer>
-				<Cover handleDimmer={e => this.handleDimmer(e)}/>
+				<TopBar handleDimmer={e => this.handleDimmer(e)} root={true}/>
+				<Dimmer.Dimmable blurring dimmed={this.state.dimmer}>
+					<Dimmer active={this.state.dimmer} onClickOutside={this.handleDimmerHide}></Dimmer>
+					<Cover toSlideOrNot={!this.state.dimmer}/>
 					<Container >
 						<br/><br/>
 						<Header size='huge'>Trending Destinations</Header>

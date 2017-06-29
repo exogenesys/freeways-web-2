@@ -1,47 +1,93 @@
 import React, {Component} from 'react';
-import {Menu, Button, Grid} from 'semantic-ui-react';
-import Router from 'next/router';
+import {Grid, Icon, Container, Divider} from 'semantic-ui-react';
+import Link from 'next/link'
 import {browserHistory} from 'react-router';
 
-import NavSearch from './navSearch';
+import NavSearch from './NavSearch';
 
 export default class TopBar extends Component {
 
-	state = {}
+	state = {
+		focus: false
+	}
 
-	// handleItemClick = (e, {name}) => {
-	// 	this.setState({activeItem: name})
-	// 	Router.prefetch('/' + name)
-	// }
-
-	handleDimmer = (toDimOrNotToDim) => this.props.handleDimmer(toDimOrNotToDim)
+	handleDimmer = (toDimOrNotToDim) => {
+		this.props.handleDimmer(toDimOrNotToDim)
+		this.setState({focus: toDimOrNotToDim})
+	}
 
 	render() {
-		const {activeItem} = this.state;
+		const {focus} = this.state;
 
-		let bar = null;
-
-		if (!this.props.root) {
-			bar = <Menu.Item position='right'>
-				<div className='ui transparent input'>
-					<NavSearch handleDimmer={e => this.handleDimmer(e)}/>
-				</div>
-			</Menu.Item>
+		let NavContainerStyle = {
+			transition: 'background-color .4s',
+			marginBottom: '-12vh',
+			zIndex: '1011',
+			position: 'relative',
 		}
 
+		let NavGridStyle = {
+			margin: '0rem',
+			height: '12vh'
+		}
+
+
+		let Header = (
+			<Grid.Column textAlign='center' only='computer tablet'>
+				<Link href="/">
+					<a className='LogoHeader'>freeways</a>
+				</Link>
+			</Grid.Column>
+		)
+
+		// let Links = (
+		// 	<Grid.Column textAlign='right' only='computer tablet'>
+		// 		<Link href="/">
+		// 			<a href="/about" className='NavLink'>About Us</a>
+		// 		</Link>
+		// 	</Grid.Column>
+		// )
+
+		let EmptyCol = (
+			<Grid.Column></Grid.Column>
+		)
+
+		let numberOfColumns = 3
+
+		if (focus) {
+			console.log('focus');
+			NavContainerStyle.backgroundColor = '#FFF'
+			numberOfColumns = 1
+			Header = null
+			// Links = null
+			EmptyCol = null
+		}
+		// {Links}
+
 		return (
-				<Menu borderless style={{minHeight:'60px', marginBottom: '0px'}}>
-					<Menu.Item header onClick={this.handleItemClick} name='' className='LogoHeader' style={{
-					}}>freeways</Menu.Item>
-					{bar}
-				</Menu>
+			<Container fluid style={NavContainerStyle} className={focus?null:'HeadShadow'}>
+				<Container>
+					<Grid verticalAlign='middle' columns={numberOfColumns} stretched style={NavGridStyle}>
+						<Grid.Row>
+							<Grid.Column textAlign='center'>
+								<div className='ui transparent input'>
+									<Icon style={{margin:'6px'}} name="search" fitted inverted={!focus} size="large"></Icon>
+									<NavSearch handleDimmer={e => this.handleDimmer(e)}/>
+								</div>
+							</Grid.Column>
+							{Header}
+						</Grid.Row>
+					</Grid>
+					<Divider inverted fitted/>
+				</Container>
+			</Container>
 		)
 	}
 }
 
 //Add these when auth and trips ready
 
-// <Menu.Item className="widescreen computer only row" name='trips' active={activeItem === 'trips'} onClick={this.handleItemClick}/>
+// <Menu.Item className="widescreen computer only row" name='trips' active={activeItem === 'trips'}/>
 // <Menu.Item className="widescreen computer only row" name='profile' active={activeItem === 'profile'} onClick={this.handleItemClick}/>
 //
 // <Menu.Menu position='right'>
