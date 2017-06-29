@@ -2,6 +2,16 @@ const path = require('path');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 
 module.exports = {
+
+	distDir: 'build',
+	exportPathMap: () => {
+		return {
+			"/": {
+				page: "/"
+			}
+		}
+	},
+	
 	webpack: (config, {dev}) => {
 		/**
      * Install and Update our Service worker
@@ -13,7 +23,7 @@ module.exports = {
 			delete config.resolve.alias['react']
 			delete config.resolve.alias['react-dom']
 		}
-		
+
 		const oldEntry = config.entry;
 
 		config.entry = () => oldEntry().then(entry => {
