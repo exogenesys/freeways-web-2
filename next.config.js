@@ -11,18 +11,16 @@ module.exports = {
 			}
 		}
 	},
-	
-	webpack: (config, {dev}) => {
-		/**
-     * Install and Update our Service worker
-     * on our main entry file :)
-     * Reason: https://github.com/ooade/NextSimpleStarter/issues/32
-     */
 
-		if (config.resolve.alias) {
-			delete config.resolve.alias['react']
-			delete config.resolve.alias['react-dom']
-		}
+	webpack: (config, {
+		dev
+	}) => {
+		/**
+		 * Install and Update our Service worker
+		 * on our main entry file :)
+		 * Reason: https://github.com/ooade/NextSimpleStarter/issues/32
+		 */
+
 
 		const oldEntry = config.entry;
 
