@@ -12,7 +12,7 @@ const Cover = (props) => {
 		constants.IMG_QUALITY_DC);
 
 	const CoverStyle = {
-		height: "85hv",
+		height: "100vh",
 		backgroundImage: "url('" +  imgurl   + "')",
 		backgroundSize: "cover",
 		backgroundRepeat: 'no-repeat',

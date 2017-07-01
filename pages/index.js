@@ -17,7 +17,7 @@ import {
 import Layout from '../components/Layout'
 import TopBar from '../components/TopBar'
 import RecommendationCards from '../components/RecommendationCards'
-import Cover from '../components/HomeCoverFork'
+import Cover from '../components/HomeCover'
 import Footer from '../components/Footer'
 import initStore from '../utils/store';
 

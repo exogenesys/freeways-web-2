@@ -62,9 +62,7 @@ class Index extends React.Component {
 
 			<Layout>
 				<TopBar handleDimmer={e => this.handleDimmer(e)} root={true}/>
-				<Dimmer.Dimmable blurring dimmed={this.state.dimmer} style={{
-					marginTop: '-15vh'
-				}}>
+				<Dimmer.Dimmable blurring dimmed={this.state.dimmer}>
 					<Dimmer active={this.state.dimmer} onClickOutside={this.handleDimmerHide}></Dimmer>
 					<Cover caption={z.destination.caption} title={z.destination.title} img={z.destination.img}/>
 					<Container>

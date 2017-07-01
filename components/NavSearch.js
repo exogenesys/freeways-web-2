@@ -14,10 +14,10 @@ export default class NavSearch extends Component {
 	resetComponent = () => this.setState({isLoading: false, results: [], value: '', placeholder: 'Search freeways', searchStyle:'NavSearchStyle'})
 
 	handleResultSelect = (e, result) => {
-		this.setState({value: result.title})
 		const url = '/' + result.type + '?slug=' + result.slug
 		const as  = '/' + result.type + '/' + result.slug
-		Router.prefetch(url, as)
+		this.setState({value: result.title})
+		Router.push(url, as)
 		this.handleDimmerHide()
 	}
 
