@@ -3,14 +3,6 @@ const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 
 module.exports = {
 
-	distDir: 'build',
-	exportPathMap: () => {
-		return {
-			"/": {
-				page: "/"
-			}
-		}
-	},
 
 	webpack: (config, {
 		dev
