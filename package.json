@@ -10,7 +10,7 @@
     "express": "^4.14.0",
     "faker": "^4.1.0",
     "jsonwebtoken": "^7.4.1",
-    "mongoose": "^4.10.5",
+    "mongoose": "^4.10.8",
     "next": "^2.4.0",
     "next-redux-wrapper": "^1.1.2",
     "nprogress": "^0.2.0",
