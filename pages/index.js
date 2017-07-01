@@ -39,6 +39,11 @@ class Index extends React.Component {
 	handleDimmer = (toDimOrNotToDim) => this.setState({dimmer: toDimOrNotToDim})
 
 	render() {
+		
+		// <Header size='huge'>Trending Destinations</Header>
+		// <RecommendationCards data={home.destinations} type='destination'/>
+		// <Header size='huge'>Trending Experiences</Header>
+		// <RecommendationCards data={home.experiences} type='experience'/>
 
 		const home = this.props.data;
 		return (
@@ -49,17 +54,6 @@ class Index extends React.Component {
 					<Dimmer active={this.state.dimmer} onClickOutside={this.handleDimmerHide}></Dimmer>
 					<Cover toSlideOrNot={!this.state.dimmer}/>
 					<Container >
-						<br/><br/>
-						<Header size='huge'>Trending Destinations</Header>
-						<br/><br/>
-						<RecommendationCards data={home.destinations} type='destination'/>
-						<br/><br/>
-						<br/><br/>
-						<Header size='huge'>Trending Experiences</Header>
-						<br/><br/>
-						<RecommendationCards data={home.experiences} type='experience'/>
-						<br/><br/>
-						<br/><br/>
 					</Container>
 					<Footer/>
 				</Dimmer.Dimmable>

@@ -94,17 +94,16 @@ export default class HomeCover extends Component {
 						})
 					}
 				}
-			}, 9000)
+			}, ((this.state.first)?1:9000))
 		}
 	}
 
 	render() {
 
 		const slideData = [
-			// {
-			// 	className: 'core slide-1'
-			// },
 			{
+				className: 'core'
+			}, {
 				img: 'http://res.cloudinary.com/freeways/image/upload/ONER.jpg',
 				className: 'core',
 				text: 'Feel the marine life, up close: Scuba diving at Havelock Islands',
@@ -139,11 +138,13 @@ export default class HomeCover extends Component {
 				marginLeft: '0px',
 				marginRight: '0px'
 			}}>
-				<Deck className="deck" {...this.state} onSwitching={this.onSwitching} onSwitchDone={this.onSwitchDone} onSwitchStarted={this.onSwitchStarted}>
+				<Deck className="deck" {...this.state} dura={this.state.current==0?0:1400} onSwitching={this.onSwitching} onSwitchDone={this.onSwitchDone} onSwitchStarted={this.onSwitchStarted}>
 					{slideData.map((slide, i) => {
 						return (
 							<Deck.Slide className='slide' key={slide}>
-								<div className={slideData[i].className + ((i == this.state.current) ? ' coreActive' : '')} 				 style={{
+								<div className={slideData[i].className + ((i == this.state.current)
+									? ' coreActive'
+									: '')} style={{
 									backgroundImage: "linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.1)), url(\'" + slide.img + "\')"
 								}}></div>
 							</Deck.Slide>
@@ -174,9 +175,6 @@ export default class HomeCover extends Component {
 							<Grid.Row>
 								<Grid.Column>
 									<Menu pointing secondary inverted size='large' fluid widths={4} className='SliderMenu'>
-										<Menu.Item active={this.state.current === 0} onClick={() => this.goToSlide(0)}>
-											<div className='SliderNav'>{slideData[0].place}</div>
-										</Menu.Item>
 										<Menu.Item active={this.state.current === 1} onClick={() => this.goToSlide(1)}>
 											<div className='SliderNav'>{slideData[1].place}</div>
 										</Menu.Item>
@@ -185,6 +183,9 @@ export default class HomeCover extends Component {
 										</Menu.Item>
 										<Menu.Item active={this.state.current === 3} onClick={() => this.goToSlide(3)}>
 											<div className='SliderNav'>{slideData[3].place}</div>
+										</Menu.Item>
+										<Menu.Item active={this.state.current === 4} onClick={() => this.goToSlide(4)}>
+											<div className='SliderNav'>{slideData[4].place}</div>
 										</Menu.Item>
 									</Menu>
 								</Grid.Column>
