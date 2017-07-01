@@ -55,7 +55,6 @@ export default class TopBar extends Component {
 		let numberOfColumns = 3
 
 		if (focus) {
-			console.log('focus');
 			NavContainerStyle.backgroundColor = '#FFF'
 			numberOfColumns = 1
 			Header = null
