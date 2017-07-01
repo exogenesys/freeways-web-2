@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import NoSSR from 'react-no-ssr'
 import axios from 'axios';
 import Link from 'next/link'
 import {
@@ -143,7 +142,6 @@ export default class HomeCover extends Component {
 				marginLeft: '0px',
 				marginRight: '0px'
 			}}>
-				<NoSSR>
 					<Deck className="deck" {...this.state} onSwitching={this.onSwitching} onSwitchDone={this.onSwitchDone} onSwitchStarted={this.onSwitchStarted}>
 						{slideData.map((slide, i) => {
 							return (
@@ -155,7 +153,6 @@ export default class HomeCover extends Component {
 							)
 						})}
 					</Deck>
-				</NoSSR>
 				<Container className='hands'>
 					<div style={{
 						position: 'absolute',
