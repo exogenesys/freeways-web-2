@@ -55,10 +55,6 @@ export default class HomeCover extends Component {
 		}
 	}
 
-	quickfix() {
-		this.setState({current: 1})
-	}
-
 	//When a user clicks on the search, the slideshow stops and cycle breaks,
 	//this is to reignite the fire within the slideshow on changing props e.i. blurring of search bar
 	componentWillReceiveProps(nextProps) {
@@ -76,9 +72,8 @@ export default class HomeCover extends Component {
 		// console.log(progress, deck.state.distance);
 	}
 
-	onSwitchDone({prev, current}) {
+	onSwitchDone({prev, current}) {}
 
-	}
 	goToSlide(slideNumber) {
 		this.setState({current: slideNumber, destroyTimer: true})
 	}
@@ -86,8 +81,9 @@ export default class HomeCover extends Component {
 	changeSlide() {
 		if (this.state.rounds < 4) {
 			setTimeout(() => {
-				//To check if the search bar is focused, in which case slideshow should cancel
+				//To check if the user has taken comments, in which case slideshow should cancel
 				if (!this.state.destroyTimer) {
+					//To check if the search bar is focused, in which case slideshow should cancel
 					if (this.props.toSlideOrNot) {
 						this.setState((prevState) => {
 							return {
@@ -143,19 +139,17 @@ export default class HomeCover extends Component {
 				marginLeft: '0px',
 				marginRight: '0px'
 			}}>
-				<NoSSR>
-					<Deck className="deck" {...this.state} onSwitching={this.onSwitching} onSwitchDone={this.onSwitchDone} onSwitchStarted={this.onSwitchStarted}>
-						{slideData.map((slide, i) => {
-							return (
-								<Deck.Slide className='slide' key={slide}>
-									<div className={slideData[i].className} style={{
-										backgroundImage: "linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.1)), url(\'" + slide.img + "\')"
-									}}></div>
-								</Deck.Slide>
-							)
-						})}
-					</Deck>
-				</NoSSR>
+				<Deck className="deck" {...this.state} onSwitching={this.onSwitching} onSwitchDone={this.onSwitchDone} onSwitchStarted={this.onSwitchStarted}>
+					{slideData.map((slide, i) => {
+						return (
+							<Deck.Slide className='slide' key={slide}>
+								<div className={slideData[i].className + ((i == this.state.current) ? ' coreActive' : '')} 				 style={{
+									backgroundImage: "linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.1)), url(\'" + slide.img + "\')"
+								}}></div>
+							</Deck.Slide>
+						)
+					})}
+				</Deck>
 				<Container className='hands'>
 					<div style={{
 						position: 'absolute',
