@@ -44,5 +44,9 @@
     "heroku-postbuild": "next build",
     "start": "NODE_ENV=production node server"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "engines": {
+    "node": "6.10.0",
+     "npm": "3.10.10"
+  },
 }
