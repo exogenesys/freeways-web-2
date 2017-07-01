@@ -10,7 +10,7 @@ const handle = app.getRequestHandler();
 
 const PORT = process.env.PORT || 3000;
 
-console.log(process.browser);
+console.log(PORT);
 
 app.prepare().then(_ => {
 	const server = express()
