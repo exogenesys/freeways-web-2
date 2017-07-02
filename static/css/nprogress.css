@@ -121,7 +121,7 @@
 		font-size: 1.8rem;
 		font-weight: 100;
 		margin-left: 0.8rem!important;
-		cursor:pointer!important;
+		cursor: pointer!important;
 		/*width: 40vw;*/
 }
 
@@ -142,6 +142,18 @@
 		text-align: left !important;
 		font-size: 1.2rem;
 		margin: -10px;
+}
+
+.InterestItem {
+		color: rgba(0, 0, 0, 0.8)!important;
+		-webkit-transition: transform .5s;
+		-moz-transition: transform .5s;
+		-o-transition: transform .5s;
+		transition: transform .5s;
+}
+
+.InterestItem:hover {
+	transform: scale(1.1);
 }
 
 .NavLink {

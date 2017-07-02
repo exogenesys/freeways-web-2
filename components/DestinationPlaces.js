@@ -128,7 +128,7 @@ export default class Places extends Component {
 				<Menu.Item style={{
 					color: 'rgba(0,0,0,.87)',
 					textTransform: 'capitalize'
-				}} color={item.color} name={item.title} active={activeItem === item.title} onClick={this.handleItemClick}>
+				}} className='InterestItem' color={item.color} name={item.title} active={activeItem === item.title} onClick={this.handleItemClick}>
 					{item.title}
 					{itemIcon}
 				</Menu.Item>
