@@ -142,10 +142,16 @@
 }
 
 .deck {
+		opacity: 1!important;
 		height: 100vh!important;
 		margin-bottom: -100vh !important;
 		overflow: hidden !important;
 		z-index: 801!important;
+		transition: opacity 1s ease-in-out!important;
+}
+
+.deckBlur {
+		opacity: 0.3!important;
 }
 
 .deck .slide {
@@ -154,6 +160,7 @@
 
 .core {
 		background-color: #FFF;
+		opacity: 1;
 		height: 100vh!important;
 		background-size: cover!important;
 		background-repeat: no-repeat!important;
@@ -161,10 +168,10 @@
 		/*display: flex!important;*/
 		/*justify-content: center!important;*/
 		align-items: center!important;
-		transition: all 10s ease-in-out;
+		transition: opacity 10s ease-in-out;
+		transition: transform 10s ease-in-out;
 		overflow: hidden !important;
 }
-
 
 .coreActive {
 		transform: scale(1.1);
@@ -214,10 +221,10 @@
 }
 
 .TopLevelFluid {
-	margin-left: 0em!important;
-	margin-right: 0em!important;
+		margin-left: 0em!important;
+		margin-right: 0em!important;
+		background-color: #444;
 }
-
 
 .HeadShadow {
 		background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.45) 20%, rgba(0, 0, 0, 0.25) 55%, rgba(0, 0, 0, 0.1) 75%, rgba(0, 0, 0, 0) 100%);

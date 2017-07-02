@@ -34,7 +34,13 @@ export default class HomeCover extends Component {
 			ToChangeOrNotToChange: false,
 			first: true,
 			destroyTimer: false,
-			rounds: 0
+			rounds: 0,
+			outerDeck: {
+				current: 0,
+				horizontal: true,
+				swipe: false,
+				loop: false
+			}
 			// wheel: true
 		};
 	}
@@ -79,7 +85,9 @@ export default class HomeCover extends Component {
 	}
 
 	changeSlide() {
-		if (this.state.rounds < 4) {
+		this.changeOuterSlide()
+		console.log(this.state.rounds);
+		if (this.state.rounds <= 4) {
 			setTimeout(() => {
 				//To check if the user has taken comments, in which case slideshow should cancel
 				if (!this.state.destroyTimer) {
@@ -87,23 +95,32 @@ export default class HomeCover extends Component {
 					if (this.props.toSlideOrNot) {
 						this.setState((prevState) => {
 							return {
-								current: ((prevState.current + 1) % 4),
+								current: (prevState.current + 1),
 								ToChangeOrNotToChange: true,
 								rounds: (prevState.rounds + 1)
 							}
 						})
 					}
 				}
-			}, ((this.state.first)?1:9000))
+			}, 9000)
 		}
+	}
+
+	changeOuterSlide() {
+		this.setState({
+			outerDeck: {
+				current: 1,
+				horizontal: true,
+				swipe: false,
+				loop: false
+			}
+		})
 	}
 
 	render() {
 
 		const slideData = [
 			{
-				className: 'core'
-			}, {
 				img: 'http://res.cloudinary.com/freeways/image/upload/ONER.jpg',
 				className: 'core',
 				text: 'Feel the marine life, up close: Scuba diving at Havelock Islands',
@@ -126,11 +143,25 @@ export default class HomeCover extends Component {
 			}
 		]
 
+		const slideClasses = {
+			// current: '', // will be concat to className for current slide when it finished entering
+			// entering: 'coreEnter', // will be concat to className for current slide during its entering
+			// prev: '', // ...
+			// leaving: 'coreLeave', //...
+			// before: '', //
+			// after: '' //
+		};
+
 		if (!this.state.deckLoaded)
 			return (
-				<div className='core' style={{
-					backgroundImage: "linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.6)), url('http://res.cloudinary.com/freeways/image/upload/ONER.jpg')"
-				}}></div>
+				<Container fluid className='TopLevelFluid' style={{
+					marginLeft: '0px',
+					marginRight: '0px'
+				}}>
+					<div className='core' style={{
+						backgroundImage: "linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.6)), url('http://res.cloudinary.com/freeways/image/upload/ONER.jpg')"
+					}}></div>
+				</Container>
 			);
 
 		return (
@@ -138,19 +169,27 @@ export default class HomeCover extends Component {
 				marginLeft: '0px',
 				marginRight: '0px'
 			}}>
-				<Deck className="deck" {...this.state} dura={this.state.current==0?0:1400} onSwitching={this.onSwitching} onSwitchDone={this.onSwitchDone} onSwitchStarted={this.onSwitchStarted}>
-					{slideData.map((slide, i) => {
-						return (
-							<Deck.Slide className='slide' key={slide}>
-								<div className={slideData[i].className + ((i == this.state.current)
-									? ' coreActive'
-									: '')} style={{
-									backgroundImage: "linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.1)), url(\'" + slide.img + "\')"
-								}}></div>
-							</Deck.Slide>
-						)
-					})}
+				<Deck dura={0} className={'deck' + (this.state.outerDeck.current == 0
+					? ' deckBlur'
+					: '')} {...this.state.outerDeck}>
+					<Deck.Slide className='deckBlur'></Deck.Slide>
+					<Deck.Slide>
+						<Deck className="deck" slideClasses={slideClasses} {...this.state} onSwitching={this.onSwitching} onSwitchDone={this.onSwitchDone} onSwitchStarted={this.onSwitchStarted}>
+							{slideData.map((slide, i) => {
+								return (
+									<Deck.Slide className='slide' key={slide}>
+										<div className={slideData[i].className + ((i == this.state.current && this.state.outerDeck.current == 1)
+											? ' coreActive'
+											: '')} style={{
+											backgroundImage: "linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.1)), url(\'" + slide.img + "\')"
+										}}></div>
+									</Deck.Slide>
+								)
+							})}
+						</Deck>
+					</Deck.Slide>
 				</Deck>
+
 				<Container className='hands'>
 					<div style={{
 						position: 'absolute',
@@ -175,6 +214,9 @@ export default class HomeCover extends Component {
 							<Grid.Row>
 								<Grid.Column>
 									<Menu pointing secondary inverted size='large' fluid widths={4} className='SliderMenu'>
+										<Menu.Item active={this.state.current === 0} onClick={() => this.goToSlide(0)}>
+											<div className='SliderNav'>{slideData[0].place}</div>
+										</Menu.Item>
 										<Menu.Item active={this.state.current === 1} onClick={() => this.goToSlide(1)}>
 											<div className='SliderNav'>{slideData[1].place}</div>
 										</Menu.Item>
@@ -183,9 +225,6 @@ export default class HomeCover extends Component {
 										</Menu.Item>
 										<Menu.Item active={this.state.current === 3} onClick={() => this.goToSlide(3)}>
 											<div className='SliderNav'>{slideData[3].place}</div>
-										</Menu.Item>
-										<Menu.Item active={this.state.current === 4} onClick={() => this.goToSlide(4)}>
-											<div className='SliderNav'>{slideData[4].place}</div>
 										</Menu.Item>
 									</Menu>
 								</Grid.Column>
