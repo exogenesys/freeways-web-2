@@ -158,8 +158,8 @@ export default class HomeCover extends Component {
 					marginLeft: '0px',
 					marginRight: '0px'
 				}}>
-					<div className='core' style={{
-						backgroundImage: "linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.6)), url('http://res.cloudinary.com/freeways/image/upload/ONER.jpg')"
+					<div className='core deckBlur' style={{
+						backgroundImage: "linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.1)), url('http://res.cloudinary.com/freeways/image/upload/ONER.jpg')"
 					}}></div>
 				</Container>
 			);
