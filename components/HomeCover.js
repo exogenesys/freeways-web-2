@@ -86,7 +86,6 @@ export default class HomeCover extends Component {
 
 	changeSlide() {
 		this.changeOuterSlide()
-		console.log(this.state.rounds);
 		if (this.state.rounds < 5) {
 			setTimeout(() => {
 				//To check if the user has taken comments, in which case slideshow should cancel

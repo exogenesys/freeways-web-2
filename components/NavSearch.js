@@ -8,10 +8,13 @@ const source = '/api/search/'
 
 export default class NavSearch extends Component {
 	componentWillMount() {
-		this.resetComponent()
+		this.resetComponent(false)
 	}
 
-	resetComponent = () => this.setState({isLoading: false, results: [], value: '', placeholder: 'Search freeways', searchStyle:'NavSearchStyle'})
+	resetComponent = (degree) => {
+		this.setState({isLoading: false, results: [], value:'', placeholder:(degree?'Search Destinations, Experiences & Trips':'Search freeways'), searchStyle:(degree?'NavSearchFocusStyle':'NavSearchStyle')})
+		console.log(this.state);
+	}
 
 	handleResultSelect = (e, result) => {
 		const url = '/' + result.type + '?slug=' + result.slug
@@ -24,10 +27,10 @@ export default class NavSearch extends Component {
 	// Judy Jetson's Easy bake oven
 
 	handleSearchChange = (e, value) => {
+		if (value.length < 1)
+		return this.resetComponent(true)
 		this.setState({isLoading: true, value})
 		this.handleDimmerShow()
-		if (value.length < 1)
-			return this.resetComponent()
 		axios.get(source + value).then((res) => {
 			this.setState({isLoading: false, results: res.data})
 		});
