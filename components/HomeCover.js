@@ -87,7 +87,7 @@ export default class HomeCover extends Component {
 	changeSlide() {
 		this.changeOuterSlide()
 		console.log(this.state.rounds);
-		if (this.state.rounds <= 4) {
+		if (this.state.rounds < 5) {
 			setTimeout(() => {
 				//To check if the user has taken comments, in which case slideshow should cancel
 				if (!this.state.destroyTimer) {
@@ -95,14 +95,14 @@ export default class HomeCover extends Component {
 					if (this.props.toSlideOrNot) {
 						this.setState((prevState) => {
 							return {
-								current: (prevState.current + 1),
+								current: ((prevState.current + 1) % 4),
 								ToChangeOrNotToChange: true,
 								rounds: (prevState.rounds + 1)
 							}
 						})
 					}
 				}
-			}, 9000)
+			}, 7000)
 		}
 	}
 

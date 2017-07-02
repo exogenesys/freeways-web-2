@@ -52,16 +52,34 @@ class Index extends React.Component {
 					<Container >
 					<br/>
 					<br/>
+					<br/>
+					<br/>
+					<br/>
+					<br/>
+					<br/>
+					<br/>
 					<Header size='huge'>Trending Destinations</Header>
 					<br/>
 					<br/>
 					<RecommendationCards data={home.destinations} type='destination'/>
 					<br/>
 					<br/>
+					<br/>
+					<br/>
+					<br/>
+					<br/>
+					<br/>
+					<br/>
 					<Header size='huge'>Trending Experiences</Header>
 					<br/>
 					<br/>
 					<RecommendationCards data={home.experiences} type='experience'/>
+					<br/>
+					<br/>
+					<br/>
+					<br/>
+					<br/>
+					<br/>
 					<br/>
 					<br/>
 					</Container>

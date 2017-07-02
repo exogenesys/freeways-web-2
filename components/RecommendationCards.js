@@ -16,14 +16,26 @@ var settings = {
 	speed: 500,
 	slidesToScroll: 2,
 	arrows: false,
-	autoplay: true,
+	autoplay: false,
 	autoplaySpeed: 100,
 	pauseOnHover: true,
+	centerMode: true,
+	centerPadding: '0px',
 	responsive: [
 		{
 			breakpoint: 768,
 			settings: {
+				slidesToShow: 3
+			}
+		}, {
+			breakpoint: 600,
+			settings: {
 				slidesToShow: 2
+			}
+		}, {
+			breakpoint: 400,
+			settings: {
+				slidesToShow: 1
 			}
 		}, {
 			breakpoint: 1950,

@@ -7,22 +7,29 @@ import constants from '../utils/constants'
 
 export default class Brick extends React.Component {
 	render() {
-		var imgurl = helper.buildImgUrl(this.props.data.img,
-							constants.IMG_HEIGHT_RB,
-							constants.IMG_QUALITY_RB);
+		var imgurl = helper.buildImgUrl(this.props.data.img, constants.IMG_HEIGHT_RB, constants.IMG_QUALITY_RB);
 		return (
-			<Link prefetch href={{ pathname: '/' + this.props.type, query: { slug: this.props.data.slug }}} as={`/${this.props.type}/${this.props.data.slug}`}>
+			<Link prefetch href={{
+				pathname: '/' + this.props.type,
+				query: {
+					slug: this.props.data.slug
+				}
+			}} as={`/${this.props.type}/${this.props.data.slug}`} style={{
+				marginLeft: '10px'
+			}}>
 
-				<Card fluid style={{
-					backgroundImage: "linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.2)), url(\'" + imgurl + "\')",
-					boxShadow: '3px 3px 5px 0px #D4D4D5, 0 0 1px 1px #D4D4D5',
-					backgroundSize: 'cover',
-					minHeight:"256px",
-				    backgroundPosition: 'center center'
-				}}>
-					<Card.Content>
+				<Card fluid id='carouselHome' style={{
+					// backgroundImage: "linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.2)), url(\'" + imgurl + "\')",
+					 backgroundImage: "url(\'" + imgurl + "\')",
+					 // boxShadow: '3px 3px 5px 0px #D4D4D5, 0 0 1px 1px #D4D4D5',
+					 backgroundSize: 'cover', minHeight: "400px",
+					 backgroundPosition: 'center center',
+					 boxShadow: '0px 0px 0px 0px',
+					 borderRadius: '0%', }}>
+					<Card.Content className='HeadShadowTile'>
 						<Card.Header style={{
-							color: 'white'
+							color: 'white',
+							textTransform: 'capitalize'
 						}}>
 							{this.props.data.title}
 							<br/>
@@ -33,17 +40,17 @@ export default class Brick extends React.Component {
 							<p style={{
 								fontSize: '16px'
 							}}>
-							{this.props.data.caption}
+								{this.props.data.caption}
 								<br/>
 							</p>
 						</Card.Description>
 						<Card.Meta style={{
 							color: 'white'
-						}}>
-						</Card.Meta>
+						}}></Card.Meta>
 					</Card.Content>
-					<Card.Content extra style={{
-						color: 'white'
+					<Card.Content extra className='BottomShadowTile' style={{
+						color: 'white',
+						borderTop: '0px!important'
 					}}>
 						<span className='days'>
 							2-5 Days
