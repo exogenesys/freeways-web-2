@@ -11,7 +11,7 @@ import {
 	Search
 } from 'semantic-ui-react'
 
-import RecommendationBrick from '../components/RecommendationBrick'
+import Brick from '../components/RecommendationBrick2'
 
 export default class Places extends Component {
 
@@ -80,7 +80,7 @@ export default class Places extends Component {
 							marginTop: '14px',
 							paddingLeft: '0.5em',
 							paddingRight: '0.5em'
-						}}><RecommendationBrick type='place' data={this.state.items[j * 4 + i]}/></Grid.Column>
+						}}><Brick type='place' data={this.state.items[j * 4 + i]}/></Grid.Column>
 					);
 					i++;
 				}

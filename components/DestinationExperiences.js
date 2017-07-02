@@ -11,7 +11,7 @@ import {
 	Search
 } from 'semantic-ui-react'
 
-import RecommendationBrick from '../components/RecommendationBrick'
+import Brick from '../components/RecommendationBrick2'
 
 export default class Experiences extends Component {
 	state = {}
@@ -75,7 +75,7 @@ export default class Experiences extends Component {
 							marginTop: '10px',
 							paddingLeft: '0.3em',
 							paddingRight: '0.3em'
-						}}><RecommendationBrick type='experience' data={this.state.items[j * 4 + i]}/></Grid.Column>
+						}}><Brick type='experience' data={this.state.items[j * 4 + i]}/></Grid.Column>
 					);
 					i++;
 				}

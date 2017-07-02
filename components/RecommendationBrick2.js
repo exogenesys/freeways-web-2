@@ -17,16 +17,14 @@ export default class Brick extends React.Component {
 				marginLeft: '10px'
 			}}>
 
-				<Card fluid id='carouselHome' style={{
-					// backgroundImage: "linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.2)), url(\'" + imgurl + "\')",
-					 backgroundImage: "url(\'" + imgurl + "\')",
-					 // boxShadow: '3px 3px 5px 0px #D4D4D5, 0 0 1px 1px #D4D4D5',
+				<Card fluid style={{
+					backgroundImage: "linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.2)), url(\'" + imgurl + "\')",
 					 backgroundSize: 'cover',
-					 height: '80vw',
-					 maxHeight: "400px",
+					 height: '15vw',
+					 minHeight: "240px",
 					 backgroundPosition: 'center center',
 					 boxShadow: '0px 0px 0px 0px',
-					 borderRadius: '0%' }}>
+					 borderRadius: '2%' }}>
 					<Card.Content className='HeadShadowTile'>
 						<Card.Header style={{
 							color: 'white',

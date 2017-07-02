@@ -59,7 +59,9 @@ return (
 	<div className='tallCarousel'>
 		{this.props.data.length > 0
 			? <Slider {...settings}>
-					{this.props.data.map((obj, i) => <div><RecommendationBrick type={this.props.type} data={obj}/></div>)}
+					{this.props.data.map((obj, i) => <div style={{
+						margin: '10px'
+					}}className='slideCarousel'><RecommendationBrick type={this.props.type} data={obj}/></div>)}
 				</Slider>
 			: null}
 	</div>
