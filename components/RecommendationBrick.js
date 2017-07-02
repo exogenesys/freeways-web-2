@@ -22,10 +22,12 @@ export default class Brick extends React.Component {
 					// backgroundImage: "linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.2)), url(\'" + imgurl + "\')",
 					 backgroundImage: "url(\'" + imgurl + "\')",
 					 // boxShadow: '3px 3px 5px 0px #D4D4D5, 0 0 1px 1px #D4D4D5',
-					 backgroundSize: 'cover', minHeight: "400px",
+					 backgroundSize: 'cover',
+					 height: '80vw',
+					 maxHeight: "400px",
 					 backgroundPosition: 'center center',
 					 boxShadow: '0px 0px 0px 0px',
-					 borderRadius: '0%', }}>
+					 borderRadius: '0%' }}>
 					<Card.Content className='HeadShadowTile'>
 						<Card.Header style={{
 							color: 'white',
@@ -50,7 +52,7 @@ export default class Brick extends React.Component {
 					</Card.Content>
 					<Card.Content extra className='BottomShadowTile' style={{
 						color: 'white',
-						borderTop: '0px!important'
+						borderTop: '0px !important'
 					}}>
 						<span className='days'>
 							2-5 Days

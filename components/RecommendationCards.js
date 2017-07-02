@@ -56,7 +56,7 @@ var settings = {
 	draggable: true
 }
 return (
-	<div>
+	<div className='tallCarousel'>
 		{this.props.data.length > 0
 			? <Slider {...settings}>
 					{this.props.data.map((obj, i) => <div><RecommendationBrick type={this.props.type} data={obj}/></div>)}
