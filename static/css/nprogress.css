@@ -6,7 +6,6 @@
 		transition: box-shadow 600ms ease, transform 600ms ease, z-index 600ms ease!important;
 		box-shadow: 0px 28px 81px -7px rgba(0, 0, 0, 0)!important;
 		z-index: 50!important;
-
 }
 
 #carouselHome:hover {
@@ -262,7 +261,7 @@
 
 .BottomShadowTile {
 		borderTop: 0px!important;
-		background: linear-gradient(to top, rgba(0, 0, 0, 0.17) 5%, rgba(0, 0, 0, 0.15) 10%, rgba(0, 0, 0, 0.05) 75%, rgba(0, 0, 0, 0.02) 100%)!important;
+		background: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.25) 5%, rgba(0, 0, 0, 0.08) 75%, rgba(0, 0, 0, 0.01) 100%)!important;
 		/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
 
