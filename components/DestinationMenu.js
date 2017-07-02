@@ -27,10 +27,10 @@ export default class DestinationMenu extends Component {
 								<Menu pointing secondary size='massive' widths={5} style={{
 									marginBottom: '-14px'
 								}}>
-									<Menu.Item name='about' active={activeItem === 'about'} onClick={this.handleItemClick} href="#intro"/>
-									<Menu.Item name='places' active={activeItem === 'places'} onClick={this.handleItemClick} href="#places"/>
-									<Menu.Item name='experiences' active={activeItem === 'exp'} onClick={this.handleItemClick} href="#exp"/>
-									<Menu.Item name='guide' active={activeItem === 'guide'} onClick={this.handleItemClick} href="#guide"/>
+									<Menu.Item name='about' content='About'  active={activeItem === 'about'} onClick={this.handleItemClick} href="#intro"/>
+									<Menu.Item name='places' content='Places'  active={activeItem === 'places'} onClick={this.handleItemClick} href="#places"/>
+									<Menu.Item name='exp' content='Experiences' active={activeItem === 'exp'} onClick={this.handleItemClick} href="#exp"/>
+									<Menu.Item name='guide' content='Guide'  active={activeItem === 'guide'} onClick={this.handleItemClick} href="#guide"/>
 								</Menu>
 							</Segment>
 						</Sticky>

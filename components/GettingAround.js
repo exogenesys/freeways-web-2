@@ -69,7 +69,9 @@ export default class GettingAround extends Component {
 		return (
 
 			<Segment basic>
-				<Header size='huge'>Getting Around</Header>
+				<Header size='huge' style={{
+					marginTop:'80px'
+				}}>Getting Around</Header>
 				<Segment basic centered>
 					<Header size='medium'>Available modes of getting around</Header>
 					<br/>

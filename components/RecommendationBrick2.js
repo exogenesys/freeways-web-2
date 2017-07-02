@@ -23,7 +23,6 @@ export default class Brick extends React.Component {
 					 height: '15vw',
 					 minHeight: "240px",
 					 backgroundPosition: 'center center',
-					 boxShadow: '0px 0px 0px 0px',
 					 borderRadius: '2%' }}>
 					<Card.Content className='HeadShadowTile'>
 						<Card.Header style={{

@@ -6,8 +6,10 @@ const MustCarry = (props) => {
 	if (props.must_know) {
 		return (
 
-			<Segment basic>
-				<Header size='huge' id="guide">Things You Gotto Know</Header>
+			<Segment basic id="guide">
+				<Header size='huge' style={{
+					marginTop:'80px'
+				}}>Things You Gotto Know</Header>
 				<br/>
 
 				<List divided inverted relaxed>

@@ -106,7 +106,9 @@ export default class MustCarry extends Component {
 				return (
 
 					<Segment basic>
-					<Header size='huge'>Things You Gotto Carry</Header>
+					<Header  style={{
+						marginTop:'80px'
+					}} size='huge'>Things You Gotto Carry</Header>
 					<br/>
 					<Grid padded relaxed textAlign='center'>
 					{computerRows}

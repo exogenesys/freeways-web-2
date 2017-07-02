@@ -137,11 +137,13 @@ export default class Places extends Component {
 
 
 	return (
-		<Segment basic style={{
+		<Segment basic id="places" style={{
 			marginLeft: '-8px',
 			marginRight: '-8px'
 		}}>
-			<Header size='huge' id="places">Places</Header>
+			<Header style={{
+				marginTop: '80px'
+			}} size='huge'>Places</Header>
 			<Grid>
 				<Grid.Row only="computer">
 					<Grid.Column width={16}>

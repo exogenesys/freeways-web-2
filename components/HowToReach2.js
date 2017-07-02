@@ -17,7 +17,9 @@ export default class HowToReach extends Component {
 			return (
 
 				<Segment basic>
-				<Header size='huge'>How To Reach</Header>
+				<Header size='huge' style={{
+					marginTop:'80px'
+				}}>How To Reach</Header>
 				<br/>
 				<div style={{
 					fontSize: '18px',

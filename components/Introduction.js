@@ -65,8 +65,10 @@ export default class Footer extends React.Component {
 		}
 
 		return (
-			<Segment basic>
-				<Header size='huge' id="intro">Introduction</Header>
+			<Segment id="intro" basic>
+				<Header size='huge' style={{
+					marginTop: '80px',
+				}}>Introduction</Header>
 				<br/>
 				<div style={{
 					fontSize: '20px',

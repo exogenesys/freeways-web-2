@@ -132,11 +132,13 @@ export default class Experiences extends Component {
 
 		if(this.props.exp.length > 0){
 		return (
-			<Segment basic style={{
+			<Segment id="exp" basic style={{
 				marginLeft: '-8px',
 				marginRight: '-8px'
 			}}>
-				<Header size='huge' id="exp">Experiences</Header>
+				<Header  style={{
+					marginTop: '80px'
+				}} size='huge'>Experiences</Header>
 				<Grid>
 					<Grid.Row only="computer">
 						<Grid.Column width={16}>
