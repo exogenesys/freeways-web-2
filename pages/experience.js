@@ -32,7 +32,7 @@ import Trips from '../components/DestinationTrips'
 import Comments from '../components/Comments'
 import initStore from '../utils/store'
 
-class Index extends React.Component {
+export default class Index extends React.Component {
 
 	constructor(props) {
 		super(props);
@@ -109,12 +109,7 @@ class Index extends React.Component {
 							<Grid.Row style={{
 								marginTop: '50px'
 							}}>
-								<Grid.Column computer={7} only='computer'>
-									<Sticky innerZ={99999999999}>
-										<Cover img={z.experiences.img}/>
-									</Sticky>
-								</Grid.Column>
-								<Grid.Column computer={9}>
+								<Grid.Column computer={9} tablet={16}>
 									<Segment basic>
 										<Header style={{
 											fontSize: '3.5rem'
@@ -125,15 +120,26 @@ class Index extends React.Component {
 											fontWeight: '100!important'
 										}} size='medium'>{z.experiences.caption}</Header>
 										{z.experiences.tags.map(tag => <Label color={colours[tag.toLowerCase()]} key={tag}>{tag}</Label>)}
-										<Cover img={z.experiences.img}/>
+										<Grid>
+											<Grid.Row>
+												<Grid.Column only='mobile tablet'>
+													<Cover img={z.experiences.img}/>
+												</Grid.Column>
+											</Grid.Row>
+										</Grid>
 									</Segment>
 									<Introduction intro={z.experiences.information} best_time={z.experiences.best_time_to_visit} best_time_more_info={z.experiences.best_time_to_visit_more_information} time_to_explore={z.experiences.time_to_explore} weather={z.weather}/>
 									<Divider inverted/>
 									<MustKnow must_know={z.experiences.must_know} why_should_you_go={z.experiences.why_should_you_go} why_should_you_try={z.experiences.why_should_you_try} what_should_you_know={z.experiences.what_should_you_know} things_to_care_about={z.experiences.things_to_care_about} speciality={z.experiences.speciality}/>
 									<MustCarry must_carry={z.experiences.must_carry}/>
 									<HowToReach how_to_reach={z.experiences.how_to_reach}/> {/*		<Trips trips = {z.trips}/>
-										<Comments />
-									*/}
+									<Comments />
+								*/}
+								</Grid.Column>
+								<Grid.Column computer={7} only='computer'>
+									<Sticky innerZ={99999999999}>
+										<Cover img={z.experiences.img}/>
+									</Sticky>
 								</Grid.Column>
 							</Grid.Row>
 						</Grid>
@@ -143,8 +149,6 @@ class Index extends React.Component {
 					<Footer/>
 				</Dimmer.Dimmable>
 			</Layout>
-		);
+		)
 	}
 }
-
-export default withRedux(initStore)(Index);
