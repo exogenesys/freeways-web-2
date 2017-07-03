@@ -94,28 +94,32 @@ export default class Experiences extends Component {
 
 		let items = [
 			{
-				'title': 'adventurous',
+				'title': 'adventure',
 				color: 'red'
 			}, {
-				'title': 'relaxing',
+				'title': 'nature',
 				color: 'blue'
 			}, {
-				'title': 'cultural',
+				'title': 'history & culture',
 				color: 'orange'
 			}, {
-				'title': 'food & drinks',
+				'title': 'food',
 				color: 'pink'
 			}, {
-				'title': 'spiritual',
+				'title': 'spirituality',
 				color: 'green'
 			}, {
 				'title': 'offbeat',
 				color: 'red'
 			}, {
-				'title': 'nightlife',
+				'title': 'drinks & nightlife',
 				color: 'purple'
+			}, {
+				'title': 'shopping',
+				color: 'yellow'
 			}
 		];
+
 
 		let menuItems = items.map((item) => {
 			let itemIcon = (activeItem === item.title) ? <Icon style={{ paddingLeft: '10px' }} name='close' color='white'/> : null ;

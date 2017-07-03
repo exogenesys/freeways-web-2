@@ -40,8 +40,8 @@ export default class Places extends Component {
 		this.setState({value, items: list, isLoading: false})
 	}
 
-	handleFocus = () => this.setState({placeholder : ''});
-	handleBlur = () => this.setState({placeholder : 'Search'});
+	handleFocus = () => this.setState({placeholder: ''});
+	handleBlur = () => this.setState({placeholder: 'Search'});
 
 	constructor(props) {
 		super(props);
@@ -99,31 +99,38 @@ export default class Places extends Component {
 
 		let items = [
 			{
-				'title': 'adventurous',
+				'title': 'adventure',
 				color: 'red'
 			}, {
-				'title': 'relaxing',
+				'title': 'nature',
 				color: 'blue'
 			}, {
-				'title': 'cultural',
+				'title': 'history & culture',
 				color: 'orange'
 			}, {
-				'title': 'food & drinks',
+				'title': 'food',
 				color: 'pink'
 			}, {
-				'title': 'spiritual',
+				'title': 'spirituality',
 				color: 'green'
 			}, {
 				'title': 'offbeat',
 				color: 'red'
 			}, {
-				'title': 'nightlife',
+				'title': 'drinks & nightlife',
 				color: 'purple'
+			}, {
+				'title': 'shopping',
+				color: 'yellow'
 			}
 		];
 
 		let menuItems = items.map((item) => {
-			let itemIcon = (activeItem === item.title) ? <Icon style={{ paddingLeft: '10px' }} name='close' color='white'/> : null ;
+			let itemIcon = (activeItem === item.title)
+				? <Icon style={{
+						paddingLeft: '10px'
+					}} name='close' color='white'/>
+				: null;
 			return (
 				<Menu.Item style={{
 					color: 'rgba(0,0,0,.87)',
@@ -135,58 +142,57 @@ export default class Places extends Component {
 			);
 		});
 
-
-	return (
-		<Segment basic id="places" style={{
-			marginLeft: '-8px',
-			marginRight: '-8px'
-		}}>
-			<Header style={{
-				marginTop: '80px'
-			}} size='huge'>Places</Header>
-			<Grid>
-				<Grid.Row only="computer">
-					<Grid.Column width={16}>
-						<br/>
+		return (
+			<Segment basic id="places" style={{
+				marginLeft: '-8px',
+				marginRight: '-8px'
+			}}>
+				<Header style={{
+					marginTop: '80px'
+				}} size='huge'>Places</Header>
+				<Grid>
+					<Grid.Row only="computer">
+						<Grid.Column width={16}>
+							<br/>
+							<Menu inverted style={{
+								background: '#FFF',
+								border: '0.5px solid rgba(34,36,38,.1)',
+								borderRadius: '.28571429rem'
+							}}>
+								{menuItems}
+								<Menu.Menu position='right'>
+									<div className='ui right aligned category search item'>
+										<div className='ui transparent icon input'>
+											<Search loading={isLoading} onSearchChange={this.handleSearchChange} placeholder={placeholder} value={value} open={false} onFocus={this.handleFocus} onBlue={this.handleBlur} className='GridSearch'/>
+										</div>
+										<div className='results'></div>
+									</div>
+								</Menu.Menu>
+							</Menu>
+						</Grid.Column>
+					</Grid.Row>
+					<Grid.Row only="mobile tablet">
 						<Menu inverted style={{
 							background: '#FFF',
 							border: '0.5px solid rgba(34,36,38,.1)',
-							borderRadius: '.28571429rem'
+							borderRadius: '.28571429rem',
+							overflowX: 'auto',
+							marginLeft: '-8px',
+							marginRight: '-8px',
+							marginBottom: '-20px',
+							minHeight: '4em'
 						}}>
 							{menuItems}
-							<Menu.Menu position='right'>
-								<div className='ui right aligned category search item'>
-									<div className='ui transparent icon input'>
-										<Search loading={isLoading} onSearchChange={this.handleSearchChange} placeholder={placeholder} value={value} open={false} onFocus={this.handleFocus} onBlue={this.handleBlur} className='GridSearch'/>
-									</div>
-									<div className='results'></div>
-								</div>
-							</Menu.Menu>
 						</Menu>
-					</Grid.Column>
-				</Grid.Row>
-				<Grid.Row only="mobile tablet">
-					<Menu inverted style={{
-						background: '#FFF',
-						border: '0.5px solid rgba(34,36,38,.1)',
-						borderRadius: '.28571429rem',
-						overflowX: 'auto',
-						marginLeft: '-8px',
-						marginRight: '-8px',
-						marginBottom: '-20px',
-						minHeight: '4em'
-					}}>
-					{menuItems}
-					</Menu>
-				</Grid.Row>
-			</Grid>
-			<Grid>
-				{rows}
-			</Grid>
-			<br/>
-			<br/>
-		</Segment>
+					</Grid.Row>
+				</Grid>
+				<Grid>
+					{rows}
+				</Grid>
+				<br/>
+				<br/>
+			</Segment>
 
-	)
-}
+		)
+	}
 }

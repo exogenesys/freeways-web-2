@@ -14,16 +14,17 @@ import {
 	Grid,
 	Label,
 	Dimmer,
-	List
+	List,
+	Divider
 } from 'semantic-ui-react'
 
 import Layout from '../components/Layout'
 import TopBar from '../components/TopBar'
-import Cover from '../components/DestinationCover'
+import Cover from '../components/ExperienceCover'
 import Menu from '../components/ExperienceMenu'
 import Languages from '../components/Languages'
 import Footer from '../components/Footer'
-import Introduction from '../components/PlacesIntroduction'
+import Introduction from '../components/ExperiencesIntroduction'
 import MustCarry from '../components/MustCarry'
 import HowToReach from '../components/HowToReach2'
 import MustKnow from '../components/MustKnow'
@@ -91,17 +92,37 @@ class Index extends React.Component {
 				<TopBar handleDimmer={e => this.handleDimmer(e)} root={false}/>
 				<Dimmer.Dimmable blurring dimmed={this.state.dimmer}>
 					<Dimmer active={this.state.dimmer} onClickOutside={this.handleDimmerHide}></Dimmer>
-					<Cover caption={z.experiences.caption} title={z.experiences.title} img={z.experiences.img}/>
-					<Container >
-						<Sticky innerZ={99999999999}>
-							<Menu/>
-						</Sticky>
-						<Introduction intro={z.experiences.information}/>
-						<MustKnow must_know={z.experiences.must_know}/>
-						<MustCarry must_carry={z.experiences.must_carry}/>
-						<HowToReach how_to_reach={z.experiences.how_to_reach}/> {/*		<Trips trips = {z.trips}/>
-							<Comments />
-						*/}
+					<Container>
+						<Grid columns={2}>
+							<Grid.Row style={{
+								marginTop: '50px',
+							}}>
+								<Grid.Column computer={9}>
+									<Segment basic>
+										{z.experiences.tags.map(tag => <Label color={'red'} key={tag}>{tag}</Label>)}
+										<Header  style={{
+											fontSize:'3.5rem',
+										}} size='huge'>{z.experiences.title}</Header>
+										<Header style={{
+											marginTop:'-5px',
+											color:'rgba(0,0,0,0.5)'
+										}} size='medium'>{z.experiences.caption}</Header>
+									</Segment>
+									<Introduction intro={z.experiences.information} best_time={z.experiences.best_time_to_visit} best_time_more_info={z.experiences.best_time_to_visit_more_information} time_to_explore={z.experiences.time_to_explore} weather={z.weather}/>
+									<Divider inverted/>
+									<MustKnow must_know={z.experiences.must_know} why_should_you_go={z.experiences.why_should_you_go} why_should_you_try={z.experiences.why_should_you_try} what_should_you_know={z.experiences.what_should_you_know} things_to_care_about={z.experiences.things_to_care_about} speciality={z.experiences.speciality}/>
+									<MustCarry must_carry={z.experiences.must_carry}/>
+									<HowToReach how_to_reach={z.experiences.how_to_reach}/> {/*		<Trips trips = {z.trips}/>
+										<Comments />
+									*/}
+								</Grid.Column>
+								<Grid.Column computer={7}>
+									<Sticky innerZ={99999999999}>
+										<Cover img={z.experiences.img}/>
+									</Sticky>
+								</Grid.Column>
+							</Grid.Row>
+						</Grid>
 						<br/>
 						<br/>
 					</Container>
