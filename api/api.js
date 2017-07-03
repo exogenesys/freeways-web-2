@@ -105,7 +105,14 @@ Router.get('/home', (req, res) => {
 							console.log('error finding experiences for home')
 						} else {
 							obj.experiences = experiences;
-							res.send(obj);
+							places.find().select('slug title caption time_to_explore img').limit(10).exec(function(err, places) {
+								if (err) {
+									console.log('error finding experiences for home')
+								} else {
+									obj.places = places;
+									res.send(obj);
+								}
+							})
 						}
 					})
 
@@ -246,23 +253,23 @@ Router.get("/place/:slug", (req, res) => {
 								console.error(err);
 							} else {
 
-						var x = data.toObject();
-						x.how_to_reach = isEmpty(x.how_to_reach_by_bus) + isEmpty(x.how_to_reach_by_car) + isEmpty(x.how_to_reach_by_airplane) + isEmpty(x.how_to_reach_by_train);
-						delete x.how_to_reach_by_bus;
-						delete x.how_to_reach_by_car;
-						delete x.how_to_reach_by_airplane;
-						delete x.how_to_reach_by_train;
-						// const w = (noLocationData)?Math.round(weather.main.temp - 273.15):0
-						const w = 23;
-						var obj = {
-							place: x,
-							experiences: _experiences,
-							must_carry: _must_carry,
-							weather: w
-						}
-						res.send(obj);
-					}
-				})
+								var x = data.toObject();
+								x.how_to_reach = isEmpty(x.how_to_reach_by_bus) + isEmpty(x.how_to_reach_by_car) + isEmpty(x.how_to_reach_by_airplane) + isEmpty(x.how_to_reach_by_train);
+								delete x.how_to_reach_by_bus;
+								delete x.how_to_reach_by_car;
+								delete x.how_to_reach_by_airplane;
+								delete x.how_to_reach_by_train;
+								// const w = (noLocationData)?Math.round(weather.main.temp - 273.15):0
+								const w = 23;
+								var obj = {
+									place: x,
+									experiences: _experiences,
+									must_carry: _must_carry,
+									weather: w
+								}
+								res.send(obj);
+							}
+						})
 					}
 				});
 			}
