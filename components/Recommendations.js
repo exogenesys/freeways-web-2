@@ -29,7 +29,7 @@ const Recommendations = () => {
 			type: 'destination',
 			data: {
 				img: 'http://res.cloudinary.com/freeways/image/upload/v1497243161/agra.png',
-				slug: 'Agra',
+				slug: 'agra',
 				title: 'Agra',
 				caption: 'Agra beyond Taj'
 			}

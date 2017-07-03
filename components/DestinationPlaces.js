@@ -142,6 +142,7 @@ export default class Places extends Component {
 			);
 		});
 
+		if(this.props.places.length > 0){
 		return (
 			<Segment basic id="places" style={{
 				marginLeft: '-8px',
@@ -193,6 +194,9 @@ export default class Places extends Component {
 				<br/>
 			</Segment>
 
-		)
+		)}
+		else{
+			return null
+		}
 	}
 }
