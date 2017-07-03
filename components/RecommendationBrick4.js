@@ -63,7 +63,8 @@ export default class Brick extends React.Component {
 									</Header>
 									<Header style={{
 										color: 'white',
-										textTransform: 'capitalize'
+										textTransform: 'capitalize',
+										marginTop: '-10px'
 									}} size={'medium'}>
 										{this.props.data.title}
 									</Header>
