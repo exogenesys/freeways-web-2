@@ -248,7 +248,7 @@ Router.get("/place/:slug", (req, res) => {
 						var obj = {
 							place: x,
 							experiences: _experiences,
-							must_carry: _must_carry
+							must_carry: _must_carry,
 							weather: w
 						}
 						res.send(obj);
