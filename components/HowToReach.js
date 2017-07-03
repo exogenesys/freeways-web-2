@@ -108,13 +108,13 @@ export default class HowToReach extends Component {
 						<Grid.Row>
 						<Grid.Column width={16}>
 							<Segment basic>
-								<div style={{
-									fontSize: '18px',
+								<p style={{
+									fontSize: '20px',
 									color: '#333',
 									marginTop: '-27px'
 								}}>
 									{renderHTML(text)}
-								</div>
+								</p>
 							</Segment>
 						</Grid.Column>
 

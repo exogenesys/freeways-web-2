@@ -78,14 +78,14 @@ export default class GettingAround extends Component {
 					{options}
 				</Segment>
 				<Segment basic>
-					<div style={{
-						fontSize: '18px',
+					<p style={{
+						fontSize: '20px',
 						color: '#333'
 					}}>
 
 						{renderHTML(this.props.gtaround)}
 
-					</div>
+					</p>
 
 				</Segment>
 			</Segment>

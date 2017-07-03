@@ -32,7 +32,7 @@ const Cover = (props) => {
 				}}>
 					<Grid.Row>
 						<Grid.Column textAlign='center'>
-							<Header size='huge' style={{
+							<Header style={{
 								color: 'rgba(255,255,255,0.95)',
 								textAlign: 'center',
 								fontSize: '8rem',
@@ -42,8 +42,8 @@ const Cover = (props) => {
 								textAlign: 'center',
 								color: 'rgba(255,255,255,0.95)',
 								marginTop: '-30px',
-								fontSize: '24px',
-								fontWeight: '900'
+								fontSize: '2em',
+								fontWeight: '400'
 							}}>{props.caption || ''}</em>
 						</Grid.Column>
 					</Grid.Row>

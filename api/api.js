@@ -75,6 +75,15 @@ console.log("hello from api");
 // 		});
 // });
 
+const recommendations = [
+	{
+		type: '',
+		img: '',
+		slug: '',
+		title: '',
+		caption: ''
+	}
+]
 
 Router.get('/home', (req, res) => {
 	console.log('hello from home');
