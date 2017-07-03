@@ -232,6 +232,11 @@ Router.get("/place/:slug", (req, res) => {
 					if (err) {
 						console.error(err);
 					} else {
+						mustCarry.find({"slug": data.must_carry}).select('slug title source information').exec(function(err, _must_carry) {
+							if (err) {
+								console.error(err);
+							} else {
+
 						var x = data.toObject();
 						x.how_to_reach = isEmpty(x.how_to_reach_by_bus) + isEmpty(x.how_to_reach_by_car) + isEmpty(x.how_to_reach_by_airplane) + isEmpty(x.how_to_reach_by_train);
 						delete x.how_to_reach_by_bus;
@@ -243,9 +248,12 @@ Router.get("/place/:slug", (req, res) => {
 						var obj = {
 							place: x,
 							experiences: _experiences,
+							must_carry: _must_carry
 							weather: w
 						}
 						res.send(obj);
+					}
+				})
 					}
 				});
 			}

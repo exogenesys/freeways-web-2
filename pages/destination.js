@@ -62,7 +62,9 @@ class Index extends React.Component {
 
 			<Layout>
 				<TopBar handleDimmer={e => this.handleDimmer(e)} root={true}/>
-				<Dimmer.Dimmable blurring dimmed={this.state.dimmer}>
+				<Dimmer.Dimmable blurring dimmed={this.state.dimmer} style={{
+					marginTop:'-12vh'
+				}}>
 					<Dimmer active={this.state.dimmer} onClickOutside={this.handleDimmerHide}></Dimmer>
 					<Cover caption={z.destination.caption} title={z.destination.title} img={z.destination.img}/>
 					<Container>
@@ -83,10 +85,8 @@ class Index extends React.Component {
 							<MustKnow must_know={z.destination.must_know}/>
 							<MustCarry must_carry={z.must_carry}/> {/*						<Languages/> */}
 							<HowToReach car={z.destination.how_to_reach_by_car} train={z.destination.how_to_reach_by_train} bus={z.destination.how_to_reach_by_bus} plane={z.destination.how_to_reach_by_plane}/>
-
 							<GettingAround gtaround={z.destination.getting_around} gtoptions={z.destination.getting_around_options}/>
 						</div>
-						{/*					<NearByDestinations/>*/}
 						<br/>
 						<br/>
 					</Container>

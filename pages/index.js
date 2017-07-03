@@ -12,11 +12,11 @@ import {
 	Dimmer
 } from 'semantic-ui-react'
 
-// import RecommendationBricks from '../components/RecommendationBricks'
 
 import Layout from '../components/Layout'
 import TopBar from '../components/TopBar'
 import RecommendationCards from '../components/RecommendationCards'
+import Recommendations from '../components/Recommendations'
 import Cover from '../components/HomeCover'
 import Footer from '../components/Footer'
 import initStore from '../utils/store';
@@ -46,10 +46,20 @@ class Index extends React.Component {
 
 			<Layout>
 				<TopBar handleDimmer={e => this.handleDimmer(e)} root={true}/>
-				<Dimmer.Dimmable blurring dimmed={this.state.dimmer}>
+				<Dimmer.Dimmable blurring dimmed={this.state.dimmer} style={{
+					marginTop:'-12vh'
+				}}>
 					<Dimmer active={this.state.dimmer} onClickOutside={this.handleDimmerHide}></Dimmer>
 					<Cover toSlideOrNot={!this.state.dimmer}/>
 					<Container >
+					<br/>
+					<br/>
+					<br/>
+					<br/>
+					<Header size='huge'>Recommendations</Header>
+					<br/>
+					<br/>
+					<Recommendations data={home.destinations} type='destination'/>
 					<br/>
 					<br/>
 					<br/>

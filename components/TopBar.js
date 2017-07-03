@@ -21,7 +21,6 @@ export default class TopBar extends Component {
 
 		let NavContainerStyle = {
 			transition: 'background-color .4s',
-			marginBottom: '-12vh',
 			zIndex: '1011',
 			position: 'relative',
 		}
@@ -35,7 +34,7 @@ export default class TopBar extends Component {
 		let Header = (
 			<Grid.Column textAlign='center' only='computer tablet'>
 				<Link href="/">
-					<a className='LogoHeader'>freeways</a>
+					<a className={this.props.root?'LogoHeaderRoot':'LogoHeader'}>freeways</a>
 				</Link>
 			</Grid.Column>
 		)
@@ -64,14 +63,14 @@ export default class TopBar extends Component {
 		// {Links}
 
 		return (
-			<Container fluid style={NavContainerStyle} className={focus?null:'HeadShadow'}>
+			<Container fluid style={NavContainerStyle} className={focus||!this.props.root?null:'HeadShadow'}>
 				<Container>
 					<Grid verticalAlign='middle' columns={numberOfColumns} stretched style={NavGridStyle}>
 						<Grid.Row>
 							<Grid.Column textAlign='center'>
 								<div className='ui transparent input'>
-									<Icon style={{margin:'6px'}} name="search" fitted inverted={!focus} size="large"></Icon>
-									<NavSearch handleDimmer={e => this.handleDimmer(e)}/>
+									<Icon style={{margin:'6px'}} name="search" fitted inverted={!((focus)||(!this.props.root))} size="large"></Icon>
+									<NavSearch root={this.props.root} handleDimmer={e => this.handleDimmer(e)}/>
 								</div>
 							</Grid.Column>
 							{Header}

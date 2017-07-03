@@ -12,8 +12,7 @@ export default class NavSearch extends Component {
 	}
 
 	resetComponent = (degree) => {
-		this.setState({isLoading: false, results: [], value:'', placeholder:(degree?'Search Destinations, Experiences & Trips':'Search freeways'), searchStyle:(degree?'NavSearchFocusStyle':'NavSearchStyle')})
-		console.log(this.state);
+		this.setState({isLoading: false, results: [], value:'', placeholder:(degree?'Search Destinations, Experiences & Trips':'Search freeways'), searchStyle:(degree?'NavSearchFocusStyle':(!this.props.root?'NavSearchStyle':'NavSearchStyleRoot'))})
 	}
 
 	handleResultSelect = (e, result) => {
@@ -44,7 +43,7 @@ export default class NavSearch extends Component {
 
 	handleDimmerHide = () => {
 		this.props.handleDimmer(false)
-		this.setState({placeholder: 'Search freeways', searchStyle:'NavSearchStyle'})
+		this.setState({placeholder: 'Search freeways', searchStyle:(!this.props.root?'NavSearchStyle':'NavSearchStyleRoot')})
 	}
 
 	render() {

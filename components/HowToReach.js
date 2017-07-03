@@ -91,7 +91,7 @@ export default class HowToReach extends Component {
 
 		return (
 
-			<Segment basic>
+			<Segment basic  id='guide'>
 				<Header size='huge' style={{
 					marginTop:'80px'
 				}}>How To Reach</Header>

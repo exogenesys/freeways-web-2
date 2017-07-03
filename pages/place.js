@@ -20,7 +20,7 @@ import {
 
 import Layout from '../components/Layout'
 import TopBar from '../components/TopBar'
-import Cover from '../components/DestinationCover'
+import Cover from '../components/PlaceCover'
 import Menu from '../components/PlacesMenu'
 import Languages from '../components/Languages'
 import Footer from '../components/Footer'
@@ -100,7 +100,7 @@ class Index extends React.Component {
 						<Introduction intro={z.place.introduction} best_time={z.place.best_time_to_visit} best_time_more_info={z.place.best_time_to_visit_more_information} time_to_explore={z.place.time_to_explore} weather={z.weather}/>
 						<Experiences exp={z.experiences}/>
 						<MustKnow must_know={z.place.must_know}/>
-						<MustCarry must_carry={z.place.must_carry}/>
+						<MustCarry must_carry={z.must_carry}/>
 						<HowToReach how_to_reach={z.place.how_to_reach}/>
 					</Container>
 					<Footer/>

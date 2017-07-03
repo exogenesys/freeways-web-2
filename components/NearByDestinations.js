@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import RecommendationCard from '../components/RecommendationCard'
 import Slider from 'react-slick'
 import {Segment, Header} from 'semantic-ui-react'
 
@@ -43,26 +42,6 @@ var settings = {
 return (
 	<Segment basic>
 	<Header size='huge'>Near By Destinations</Header>
-		<Slider {...settings}>
-			<div>
-				<RecommendationCard/>
-			</div>
-			<div>
-				<RecommendationCard/>
-			</div>
-			<div>
-				<RecommendationCard/>
-			</div>
-			<div>
-				<RecommendationCard/>
-			</div>
-			<div>
-				<RecommendationCard/>
-			</div>
-			<div>
-				<RecommendationCard/>
-			</div>
-		</Slider>
 	</Segment>
 );
 }

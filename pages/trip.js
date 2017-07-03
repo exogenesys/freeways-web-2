@@ -45,7 +45,6 @@ class Index extends React.Component {
 		const z = this.props.data;
 
 		// <Itinerary itin = {tripData} />
-		// <NearByDestinations nbydest = {tripData} />
 		// <Comments/>
 		// <Constituents cons = {z.items} />
 

@@ -105,7 +105,7 @@ export default class MustCarry extends Component {
 			if(items.length > 0){
 				return (
 
-					<Segment basic>
+					<Segment basic id='guide'>
 					<Header  style={{
 						marginTop:'80px'
 					}} size='huge'>Things You Gotto Carry</Header>
