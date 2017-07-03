@@ -21,13 +21,13 @@ export default class HowToReach extends Component {
 					}}>How To Reach</Header>
 					<br/>
 					<br/>
-					<div style={{
+					<p style={{
 						fontSize: '20px',
 						color: '#333',
 						marginTop: '-27px'
 					}}>
 						{renderHTML(this.props.how_to_reach)}
-					</div>
+					</p>
 				</Segment>
 
 			)

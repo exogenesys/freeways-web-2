@@ -14,7 +14,7 @@ const Cover = (props) => {
 	const CoverStyle = {
 		height: "70vh",
 		marginTop: '2em',
-		backgroundImage: "linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('" + imgurl + "')",
+		backgroundImage: "url('" + imgurl + "')",
 		backgroundSize: "cover",
 		backgroundRepeat: 'no-repeat',
 		backgroundPosition: 'center center',

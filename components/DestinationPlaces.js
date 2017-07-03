@@ -97,7 +97,7 @@ export default class Places extends Component {
 
 		const {activeItem, value, isLoading, placeholder} = this.state
 
-		let items = [
+		const items = [
 			{
 				'title': 'adventure',
 				color: 'red'

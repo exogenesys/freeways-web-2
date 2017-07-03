@@ -92,7 +92,7 @@ export default class Experiences extends Component {
 
 		const {activeItem, value, isLoading} = this.state
 
-		let items = [
+		const items = [
 			{
 				'title': 'adventure',
 				color: 'red'

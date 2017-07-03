@@ -20,6 +20,17 @@
 #HomeRecommendations {
 }
 
+.ui.huge.header {
+    min-height: 1em!important;
+    font-size: 2.5em!important;
+    font-weight: 100!important;
+}
+
+.ui.medium.header {
+    font-weight: 100!important;
+}
+
+
 /* Make clicks pass-through */
 
 #nprogress {

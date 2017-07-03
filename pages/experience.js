@@ -86,6 +86,18 @@ class Index extends React.Component {
 
 		const z = this.props.data;
 		console.log(z);
+
+		const colours = {
+			'adventure': 'red',
+			'nature': 'blue',
+			'history & culture': 'orange',
+			'food': 'pink',
+			'spirituality': 'green',
+			'offbeat': 'red',
+			'drinks & nightlife': 'purple',
+			'shopping': 'yellow'
+		};
+
 		return (
 
 			<Layout>
@@ -93,20 +105,27 @@ class Index extends React.Component {
 				<Dimmer.Dimmable blurring dimmed={this.state.dimmer}>
 					<Dimmer active={this.state.dimmer} onClickOutside={this.handleDimmerHide}></Dimmer>
 					<Container>
-						<Grid columns={2}>
+						<Grid stackable={true}>
 							<Grid.Row style={{
-								marginTop: '50px',
+								marginTop: '50px'
 							}}>
+								<Grid.Column computer={7} only='computer'>
+									<Sticky innerZ={99999999999}>
+										<Cover img={z.experiences.img}/>
+									</Sticky>
+								</Grid.Column>
 								<Grid.Column computer={9}>
 									<Segment basic>
-										{z.experiences.tags.map(tag => <Label color={'red'} key={tag}>{tag}</Label>)}
-										<Header  style={{
-											fontSize:'3.5rem',
+										<Header style={{
+											fontSize: '3.5rem'
 										}} size='huge'>{z.experiences.title}</Header>
 										<Header style={{
-											marginTop:'-5px',
-											color:'rgba(0,0,0,0.5)'
+											marginTop: '-5px',
+											color: 'rgba(0,0,0,0.8)',
+											fontWeight: '100!important'
 										}} size='medium'>{z.experiences.caption}</Header>
+										{z.experiences.tags.map(tag => <Label color={colours[tag.toLowerCase()]} key={tag}>{tag}</Label>)}
+										<Cover img={z.experiences.img}/>
 									</Segment>
 									<Introduction intro={z.experiences.information} best_time={z.experiences.best_time_to_visit} best_time_more_info={z.experiences.best_time_to_visit_more_information} time_to_explore={z.experiences.time_to_explore} weather={z.weather}/>
 									<Divider inverted/>
@@ -115,11 +134,6 @@ class Index extends React.Component {
 									<HowToReach how_to_reach={z.experiences.how_to_reach}/> {/*		<Trips trips = {z.trips}/>
 										<Comments />
 									*/}
-								</Grid.Column>
-								<Grid.Column computer={7}>
-									<Sticky innerZ={99999999999}>
-										<Cover img={z.experiences.img}/>
-									</Sticky>
 								</Grid.Column>
 							</Grid.Row>
 						</Grid>

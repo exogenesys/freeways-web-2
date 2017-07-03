@@ -70,7 +70,7 @@ export default class Footer extends React.Component {
 					marginTop: '80px',
 				}}>Introduction</Header>
 				<br/>
-				<div style={{
+				<p style={{
 					fontSize: '20px',
 					textAlign: 'center',
 					color: '#333'
@@ -78,7 +78,7 @@ export default class Footer extends React.Component {
 
 					{renderHTML(this.props.intro || '')}
 
-				</div>
+				</p>
 				<br/>
 				<br/>
 				<br/>

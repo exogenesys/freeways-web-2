@@ -68,12 +68,12 @@ export default class Footer extends React.Component {
 			<Segment id="intro" basic>
 				<Header size='huge'>Introduction</Header>
 				<br/>
-				<div style={{
+				<p style={{
 					fontSize: '20px',
 					color: '#333'
 				}}>
 					{renderHTML(this.props.intro || '')}
-				</div>
+				</p>
 				<br/>
 				<br/>
 				<br/>
