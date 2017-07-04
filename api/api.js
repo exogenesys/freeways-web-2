@@ -253,8 +253,19 @@ Router.get('/home', (req, res) => {
 				} else {
 					obj.destinations = destinations;
 					experiences.find({
-						'slug' : {
-							$in : ["biking-alongside-pangong-tso","buy-the-extremely-famous-ladakhi-pashmina","visit-the-serene-hatu-peak","skiing-at-kufri","beach-bumming","try-the-glass-bottom-boat-ride","canyoning-in-vashisht","rock-climbing-rangri-vashisht","hot-air-balloon-ride-jaipur","yoga-at-nature-cure-ooty"]
+						'slug': {
+							$in: [
+								"biking-alongside-pangong-tso",
+								"buy-the-extremely-famous-ladakhi-pashmina",
+								"visit-the-serene-hatu-peak",
+								"skiing-at-kufri",
+								"beach-bumming",
+								"try-the-glass-bottom-boat-ride",
+								"canyoning-in-vashisht",
+								"rock-climbing-rangri-vashisht",
+								"hot-air-balloon-ride-jaipur",
+								"yoga-at-nature-cure-ooty"
+							]
 						}
 					}).select('slug title caption time_to_explore img').limit(10).exec(function(err, experiences) {
 						if (err) {
@@ -262,8 +273,19 @@ Router.get('/home', (req, res) => {
 						} else {
 							obj.experiences = experiences;
 							places.find({
-								'slug' : {
-									$in : ["leh","pangong-tsol","agra-fort","sadar-bazaar","kargil","city-palace","cellular-jail","old-manali","neil-island","gadisar-lake"]
+								'slug': {
+									$in: [
+										"leh",
+										"pangong-tsol",
+										"agra-fort",
+										"sadar-bazaar",
+										"kargil",
+										"city-palace",
+										"cellular-jail",
+										"old-manali",
+										"neil-island",
+										"gadisar-lake"
+									]
 								}
 							}).select('slug title caption time_to_explore img').limit(10).exec(function(err, places) {
 								if (err) {
@@ -350,34 +372,32 @@ Router.get("/destination/:slug", (req, res, next) => {
 		} else {
 			// rp('http://api.openweathermap.org/data/2.5/weather?lat=' + data.latitude + '&lon=' + data.longitude + '&appid=e6c33eefa2e93035fbc5bb2964d35603').then((response) => {
 			// 	const weather = JSON.parse(response)
-				places.find({"slug": data.places}).select('slug title name caption tags img').exec(function(err, _places) {
-					if (err) {
-						console.error(err);
-					} else {
-						experiences.find({"slug": data.experiences}).select('slug title name caption tags img').exec(function(err, _experiences) {
-							if (err) {
-								console.error(err);
-							} else {
-								mustCarry.find({"slug": data.must_carry}).select('slug title source information').exec(function(err, _must_carry) {
-									if (err) {
-										console.error(err);
-									} else {
-										const obj = {
-											destination: data,
-											places: _places,
-											experiences: _experiences,
-											weather: '23',
-											must_carry: _must_carry
-										}
-										res.send(obj);
+			places.find({"slug": data.places}).select('slug title name caption tags img').exec(function(err, _places) {
+				if (err) {
+					console.error(err);
+				} else {
+					experiences.find({"slug": data.experiences}).select('slug title name caption tags img').exec(function(err, _experiences) {
+						if (err) {
+							console.error(err);
+						} else {
+							mustCarry.find({"slug": data.must_carry}).select('slug title source information').exec(function(err, _must_carry) {
+								if (err) {
+									console.error(err);
+								} else {
+									const obj = {
+										destination: data,
+										places: _places,
+										experiences: _experiences,
+										weather: '23',
+										must_carry: _must_carry
 									}
-								});
-							// }
-						});
-					}
-				});
+									res.send(obj);
+								}
+							});
+						}
+					});
+				}
 			});
-
 		}
 	});
 });
@@ -434,7 +454,6 @@ Router.get("/place/:slug", (req, res) => {
 			}
 		})
 	})
-
 
 	Router.get("/experience/:slug", (req, res, next) => {
 		experiences.findOne({
