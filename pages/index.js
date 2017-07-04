@@ -51,29 +51,21 @@ class Index extends React.Component {
 				}}>
 					<Dimmer active={this.state.dimmer} onClickOutside={this.handleDimmerHide}></Dimmer>
 					<Cover toSlideOrNot={!this.state.dimmer}/>
-					<Container >
-					<br/>
-					<br/>
+					<Container>
 					<br/>
 					<br/>
 					<Header size='huge'>Recommendations</Header>
-					<br/>
 					<Recommendations data={home.destinations} type='destination'/>
 					<br/>
-					<br/>
 					<Header size='huge'>Trending Destinations</Header>
-					<br/>
 					<RecommendationCards data={home.destinations} type='destination'/>
 					<br/>
-					<br/>
 					<Header size='huge'>Trending Experiences</Header>
-					<br/>
 					<RecommendationCards data={home.experiences} type='experience'/>
 					<br/>
-					<br/>
 					<Header size='huge'>Trending Places</Header>
-					<br/>
 					<RecommendationCards data={home.places} type='place'/>
+					<br/>
 					<br/>
 					<br/>
 					</Container>

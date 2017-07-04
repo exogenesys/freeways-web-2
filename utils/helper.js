@@ -8,7 +8,7 @@ module.exports = {
 	buildImgUrl: function(url, height, quality) {
 		// params: height, quality in percentage
 		//		   url as string
-		var s = String(url).split('upload');
-		return s[0] + 'upload/c_scale,h_' + height + ',q_' + quality + s[1];
+		// var s = String(url).split('upload');
+		return s;
 	}
 }
