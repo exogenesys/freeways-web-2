@@ -348,8 +348,8 @@ Router.get("/destination/:slug", (req, res, next) => {
 			console.error("error looking up destination data ");
 			next(err)
 		} else {
-			rp('http://api.openweathermap.org/data/2.5/weather?lat=' + data.latitude + '&lon=' + data.longitude + '&appid=e6c33eefa2e93035fbc5bb2964d35603').then((response) => {
-				const weather = JSON.parse(response)
+			// rp('http://api.openweathermap.org/data/2.5/weather?lat=' + data.latitude + '&lon=' + data.longitude + '&appid=e6c33eefa2e93035fbc5bb2964d35603').then((response) => {
+			// 	const weather = JSON.parse(response)
 				places.find({"slug": data.places}).select('slug title name caption tags img').exec(function(err, _places) {
 					if (err) {
 						console.error(err);
@@ -366,13 +366,13 @@ Router.get("/destination/:slug", (req, res, next) => {
 											destination: data,
 											places: _places,
 											experiences: _experiences,
-											weather: Math.round(weather.main.temp - 273.15),
+											weather: '23',
 											must_carry: _must_carry
 										}
 										res.send(obj);
 									}
 								});
-							}
+							// }
 						});
 					}
 				});
