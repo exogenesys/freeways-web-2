@@ -9,6 +9,6 @@ module.exports = {
 		// params: height, quality in percentage
 		//		   url as string
 		// var s = String(url).split('upload');
-		return s;
+		return url;
 	}
 }
