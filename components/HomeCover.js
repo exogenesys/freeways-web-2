@@ -101,7 +101,7 @@ export default class HomeCover extends Component {
 						})
 					}
 				}
-			}, 7000)
+			}, 8000)
 		}
 	}
 

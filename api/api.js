@@ -252,13 +252,20 @@ Router.get('/home', (req, res) => {
 					console.log('error finding destinations for home')
 				} else {
 					obj.destinations = destinations;
-
-					experiences.find().select('slug title caption time_to_explore img').limit(10).exec(function(err, experiences) {
+					experiences.find({
+						'slug' : {
+							$in : ["biking-alongside-pangong-tso","buy-the-extremely-famous-ladakhi-pashmina","visit-the-serene-hatu-peak","skiing-at-kufri","beach-bumming","try-the-glass-bottom-boat-ride","canyoning-in-vashisht","rock-climbing-rangri-vashisht","hot-air-balloon-ride-jaipur","yoga-at-nature-cure-ooty"]
+						}
+					}).select('slug title caption time_to_explore img').limit(10).exec(function(err, experiences) {
 						if (err) {
 							console.log('error finding experiences for home')
 						} else {
 							obj.experiences = experiences;
-							places.find().select('slug title caption time_to_explore img').limit(10).exec(function(err, places) {
+							places.find({
+								'slug' : {
+									$in : ["leh","pangong-tsol","agra-fort","sadar-bazaar","kargil","city-palace","cellular-jail","old-manali","neil-island","gadisar-lake"]
+								}
+							}).select('slug title caption time_to_explore img').limit(10).exec(function(err, places) {
 								if (err) {
 									console.log('error finding experiences for home')
 								} else {

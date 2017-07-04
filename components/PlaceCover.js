@@ -9,11 +9,11 @@ const Cover = (props) => {
 		? props.img
 		: 'static/img/shimla.jpg'
 
-	var imgurl = helper.buildImgUrl(props.img, constants.IMG_HEIGHT_DC, constants.IMG_QUALITY_DC);
+	// var imgurl = helper.buildImgUrl(props.img, constants.IMG_HEIGHT_DC, constants.IMG_QUALITY_DC);
 
 	const CoverStyle = {
 		height: "70vh",
-		backgroundImage: "linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('" + imgurl + "')",
+		backgroundImage: "linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('" + props.img + "')",
 		backgroundSize: "cover",
 		backgroundRepeat: 'no-repeat',
 		backgroundPosition: 'center center',
