@@ -14,8 +14,7 @@ import {
 	Grid,
 	Label,
 	Dimmer,
-	List,
-	Divider
+	List
 } from 'semantic-ui-react'
 
 import Layout from '../components/Layout'

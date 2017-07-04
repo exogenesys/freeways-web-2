@@ -1,5 +1,5 @@
 import React from 'react'
-import {Segment, Header, Grid, Statistic, Popup} from 'semantic-ui-react'
+import {Segment, Header, Grid, Statistic, Popup, Divider} from 'semantic-ui-react'
 import renderHTML from 'react-render-html'
 
 export default class Footer extends React.Component {
