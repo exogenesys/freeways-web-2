@@ -2,9 +2,7 @@ import React from 'react'
 import {Segment, Icon} from 'semantic-ui-react'
 import GoogleMapReact from 'google-map-react'
 
-const AnyReactComponent = ({text}) => <div><Icon style={{
-	fontSize:'4em',
-}} name='marker'/></div>;
+const AnyReactComponent = ({text}) => <div></div>;
 
 export default class Map extends React.Component {
 
@@ -18,7 +16,6 @@ export default class Map extends React.Component {
 
 	render() {
 
-
 		const MapOptions = {
 			panControl: true,
 			mapTypeControl: true,
@@ -26,19 +23,22 @@ export default class Map extends React.Component {
 			gestureHandling: 'greedy'
 		}
 
+		if (this.props.center.lat && this.props.center.lng) {
+			return (
+				<Segment basic style={{
+					height: '50vh',
+					padding: '0!important'
+				}}>
+					<GoogleMapReact bootstrapURLKeys={{
+						key: 'AIzaSyBMU7XiJw7ij5n7jzsfeXlGZYk9X9S - 8 hE'
+					}} defaultCenter={this.props.center} defaultZoom={this.props.zoom} options={MapOptions}>
+						<AnyReactComponent lat={this.props.center.lat} lng={this.props.center.lng} text={this.props.title}/>
+					</GoogleMapReact>
+				</Segment>
+			)
 
-		return (
-			<Segment basic style={{
-				height: '50vh',
-				padding: '0!important'
-			}}>
-				<GoogleMapReact bootstrapURLKeys={{
-					key: 'AIzaSyBMU7XiJw7ij5n7jzsfeXlGZYk9X9S - 8 hE'
-				}} defaultCenter={this.props.center} defaultZoom={this.props.zoom}
- 					options={MapOptions}>
-					<AnyReactComponent lat={this.props.center.lat} lng={this.props.center.lng} text={this.props.title}/>
-				</GoogleMapReact>
-			</Segment>
-		)
+		} else {
+			return null
+		}
 	}
 }

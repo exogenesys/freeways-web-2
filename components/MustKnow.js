@@ -10,7 +10,7 @@ class MustCarry extends React.Component {
 
 				<Segment basic id="guide">
 					<Header size='huge' style={{
-						marginTop: '40px'
+						marginTop: '0px'
 					}}>Why should you go</Header>
 					<br/>
 
@@ -41,7 +41,7 @@ class MustCarry extends React.Component {
 
 					<Segment basic id="guide">
 						<Header size='huge' style={{
-							marginTop: '40px'
+							marginTop: '0px'
 						}}>Why should you try</Header>
 						<br/>
 
@@ -73,7 +73,7 @@ class MustCarry extends React.Component {
 
 				<Segment basic id="guide">
 					<Header size='huge' style={{
-						marginTop: '40px'
+						marginTop: '0px'
 					}}>What should you know</Header>
 					<br/>
 
@@ -103,9 +103,7 @@ class MustCarry extends React.Component {
 			? (
 
 				<Segment basic id="guide">
-					<Header size='huge' style={{
-						marginTop: '40px'
-					}}>Things to care about</Header>
+					<Header size='huge'>Things to care about</Header>
 					<br/>
 
 					<List divided inverted relaxed>
@@ -135,7 +133,7 @@ class MustCarry extends React.Component {
 
 				<Segment basic id="guide">
 					<Header size='huge' style={{
-						marginTop: '40px'
+						marginTop: '0px'
 					}}>Speciality</Header>
 					<br/>
 

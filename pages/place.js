@@ -91,8 +91,8 @@ class Index extends React.Component {
 		const z = this.props.data;
 
 		const center = {
-			lat : z.place.latitude,
-			lng : z.place.longitude,
+			lat: z.place.latitude,
+			lng: z.place.longitude
 		}
 
 		const zoom = 15
@@ -107,14 +107,16 @@ class Index extends React.Component {
 						<Menu/>
 						<Introduction intro={z.place.introduction} best_time={z.place.best_time_to_visit} best_time_more_info={z.place.best_time_to_visit_more_information} time_to_explore={z.place.time_to_explore} weather={z.weather}/>
 						<Experiences exp={z.experiences}/>
-						<MustKnow must_know={z.place.must_know} why_should_you_go={z.place.why_should_you_go} what_should_you_know={z.place.what_should_you_know}  things_to_care_about={z.place.things_to_care_about} speciality={z.place.speciality}/>
+						<MustKnow must_know={z.place.must_know} why_should_you_go={z.place.why_should_you_go} what_should_you_know={z.place.what_should_you_know} things_to_care_about={z.place.things_to_care_about} speciality={z.place.speciality}/>
 						<MustCarry must_carry={z.must_carry}/>
-						<HowToReach how_to_reach={z.place.how_to_reach}/>
-						<br/>
-						<br/>
-						<br/>
 					</Container>
 					<Map center={center} zoom={zoom} title={z.place.title}/>
+					<Container>
+						<HowToReach how_to_reach={z.place.how_to_reach}/>
+					</Container>
+					<br/>
+					<br/>
+					<br/>
 					<Footer/>
 				</Dimmer.Dimmable>
 			</Layout>
