@@ -58,26 +58,22 @@ class Index extends React.Component {
 					<br/>
 					<Header size='huge'>Recommendations</Header>
 					<br/>
-					<br/>
 					<Recommendations data={home.destinations} type='destination'/>
-					<br/>
-					<br/>
 					<br/>
 					<br/>
 					<Header size='huge'>Trending Destinations</Header>
 					<br/>
-					<br/>
 					<RecommendationCards data={home.destinations} type='destination'/>
-					<br/>
-					<br/>
 					<br/>
 					<br/>
 					<Header size='huge'>Trending Experiences</Header>
 					<br/>
-					<br/>
 					<RecommendationCards data={home.experiences} type='experience'/>
 					<br/>
 					<br/>
+					<Header size='huge'>Trending Places</Header>
+					<br/>
+					<RecommendationCards data={home.places} type='place'/>
 					<br/>
 					<br/>
 					</Container>
