@@ -31,7 +31,7 @@ export default class Footer extends React.Component {
 				<Grid.Column mobile={8} computer={4} tablet={4}>
 					<Statistic style={{
 						margin: '20px'
-					}} size="tiny" value={this.props.time_to_explore} label='Days to explore'/>
+					}} size="tiny" value={this.props.time_to_explore} label='Time to explore'/>
 				</Grid.Column>
 			);
 		}

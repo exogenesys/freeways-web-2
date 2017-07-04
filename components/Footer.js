@@ -5,7 +5,7 @@ const Footer = (props) => {
   return (
 
   <Segment inverted color="orange" textAlign='center' style={props.style||{}} >
-    Copyrights @ Freeways 2016
+    Copyrights @ Freeways 2017
   </Segment>
 
   )
