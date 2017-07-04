@@ -4,3 +4,4 @@ package-lock.json
 npm-debug.log
 .DS_Store
 build
+api/freeways-memory

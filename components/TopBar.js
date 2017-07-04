@@ -23,6 +23,8 @@ export default class TopBar extends Component {
 			transition: 'background-color .4s',
 			zIndex: '1011',
 			position: 'relative',
+			marginLeft: '0!important',
+    	marginRight: '0!important'
 		}
 
 		let NavGridStyle = {

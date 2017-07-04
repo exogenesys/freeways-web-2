@@ -35,7 +35,7 @@ const Cover = (props) => {
 							<Header style={{
 								color: 'rgba(255,255,255,0.95)',
 								textAlign: 'center',
-								fontSize: '8rem',
+								fontSize: '6rem',
 								// textShadow: 'rgb(0, 0, 0) 1px 1px 2px'
 							}}>{props.title || ''}</Header>
 							<em size='huge' style={{

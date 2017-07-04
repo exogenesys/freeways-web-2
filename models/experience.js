@@ -3,72 +3,121 @@ var Schema = mongoose.Schema;
 
 var experienceSchema = new Schema({
 
-    slug:{
-      type:String, unique: true
-    },
+	slug: {
+		type: String,
+		unique: true
+	},
 
-    title:String,
+	title: {
+		type: String
+	},
 
-    img:{
-      type:String
-    },
+  destination: {
+    type: String
+  },
 
-    best_time_to_visit: {
-      type: String
-    },
+	img: {
+		type: String
+	},
 
-    best_time_to_visit_more_information: {
-      type: String
-    },
+	best_time_to_visit: {
+		type: String
+	},
 
-    time_to_explore: {
-  		type: String
-  	},
+	best_time_to_visit_more_information: {
+		type: String
+	},
 
-    tags : [String] ,
+	time_to_explore: {
+		type: String
+	},
 
-    caption: {
-      type: String
-    },
+	tags: [String],
 
-    information: {
-      type: String
-    },
+	caption: {
+		type: String
+	},
 
-    loc: {
-        type: Schema.Types.ObjectId, ref: 'NearByLoc'
-    },
+	information: {
+		type: String
+	},
 
-    must_know: {
-      type: String
-    },
+	loc: {
+		type: Schema.Types.ObjectId,
+		ref: 'NearByLoc'
+	},
 
-    how_to_reach_by_walk: {
-      type : String
-    },
+	why_should_you_try: {
+		type: String
+	},
 
-    must_carry: [String],
+	why_should_you_know: {
+		type: String
+	},
 
-    cover_photo: {
-      type : String
-    },
+  latitude: {
+    type: Number
+  },
 
-    usualTimings: {
-      type: String
-    },
+  longitude: {
+    type: Number
+  },
 
-    daysOff: {
-      type: String
-    },
+	things_to_care_about: {
+		type: String
+	},
 
-    keyWords: {
-      type : String
-    }
+	distance_from_city_centre: {
+		type: String
+	},
 
-  },{
-    timestamps: true
-});
+	speciality: {
+		type: String
+	},
 
+	price: {
+		type: String
+	},
+
+	must_know: {
+		type: String
+	},
+
+	how_to_reach_by_walk: {
+		type: String
+	},
+
+  how_to_reach_by_car: {
+    type: String
+  },
+
+  how_to_reach_by_train: {
+    type: String
+  },
+
+  how_to_reach_by_plane: {
+    type: String
+  },
+
+  usual_timings: {
+    type: String
+  },
+
+  timings_more_information: {
+    type: String
+  },
+
+  days_off: {
+    type: String
+  },
+
+	must_carry: [String],
+
+	keywords: {
+		type: String
+	}
+
+}, {timestamps: true});
 
 var experiences = mongoose.model('experiences', experienceSchema);
 

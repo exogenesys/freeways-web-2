@@ -11,12 +11,12 @@ var placeSchema = new Schema({
       type:String
     },
 
-    img:{
+    destination:{
       type:String
     },
 
-    name: {
-      type: String
+    img:{
+      type:String
     },
 
     time_to_explore: {
@@ -31,7 +31,31 @@ var placeSchema = new Schema({
       type: String
     },
 
+    why_should_you_go: {
+      type: String
+    },
+
+    why_should_you_know: {
+      type: String
+    },
+
+    things_to_care_about: {
+      type: String
+    },
+
+    speciality: {
+      type: String
+    },
+
+    distance_from_city_centre: {
+      type: String
+    },
+
     best_time_to_visit: {
+      type: String
+    },
+
+    price: {
       type: String
     },
 
@@ -39,17 +63,21 @@ var placeSchema = new Schema({
       type: String
     },
 
-    tags : [String] ,
+    tags : [String],
 
-    loc: [{
+    loc: {
         type: Schema.Types.ObjectId, ref: 'NearByLoc'
-    }],
-
-    how_to_reach_by_car: {
-      type: String
     },
 
-    how_to_reach_by_train: {
+    latitude: {
+      type: Number
+    },
+
+    longitude: {
+      type: Number
+    },
+
+    how_to_reach_by_car: {
       type: String
     },
 
@@ -65,15 +93,23 @@ var placeSchema = new Schema({
       type : String
     },
 
+    usual_timings: {
+      type: String
+    },
+
+    timings_more_information: {
+      type: String
+    },
+
+    days_off: {
+      type: String
+    },
+
     must_carry: [String],
 
     experiences: [String],
 
     trips: [String],
-
-    cover_photo: {
-      type : String
-    },
 
     must_know: {
       type : String

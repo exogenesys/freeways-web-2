@@ -206,7 +206,7 @@ export default class HomeCover extends Component {
 									height: '30vh'
 								}}>
 									<Link href="/">
-										<a className='LogoHeader'>freeways</a>
+										<a className='LogoHeaderRoot'>freeways</a>
 									</Link>
 								</Grid.Column>
 							</Grid.Row>
