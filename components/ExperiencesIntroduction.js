@@ -9,7 +9,7 @@ export default class Footer extends React.Component {
 		let best_time = null
 		if (this.props.best_time) {
 			best_time = (
-				<Grid.Column mobile={8} computer={4} tablet={4}>
+				<Grid.Column mobile={8} computer={8} tablet={8}>
 					<Popup trigger={< Statistic style = {{margin:'20px'}}size = "tiny" value = {
 						this.props.best_time
 					}
@@ -28,7 +28,7 @@ export default class Footer extends React.Component {
 		let days_to_explore = null
 		if (this.props.time_to_explore) {
 			days_to_explore = (
-				<Grid.Column mobile={8} computer={4} tablet={4}>
+				<Grid.Column mobile={8} computer={8} tablet={8}>
 					<Statistic style={{
 						margin: '20px'
 					}} size="tiny" value={this.props.time_to_explore} label='Time to explore'/>
@@ -50,7 +50,7 @@ export default class Footer extends React.Component {
 		let weather = null
 		if (this.props.weather) {
 			weather = (
-				<Grid.Column mobile={8} computer={4} tablet={4}>
+				<Grid.Column mobile={8} computer={8} tablet={8}>
 					<Popup trigger={< Statistic style = {{margin:'20px'}}size = "tiny" value = {
 						this.props.weather + '°'
 					}
