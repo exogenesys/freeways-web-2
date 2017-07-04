@@ -35,7 +35,11 @@ var placeSchema = new Schema({
       type: String
     },
 
-    why_should_you_know: {
+    address: {
+      type: String
+    },
+
+    what_should_you_know: {
       type: String
     },
 

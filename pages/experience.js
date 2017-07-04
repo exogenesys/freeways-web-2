@@ -25,6 +25,7 @@ import Menu from '../components/ExperienceMenu'
 import Languages from '../components/Languages'
 import Footer from '../components/Footer'
 import Introduction from '../components/ExperiencesIntroduction'
+import Pointers from '../components/ExperiencesPointers'
 import MustCarry from '../components/MustCarryEx'
 import HowToReach from '../components/HowToReach2'
 import MustKnow from '../components/MustKnow'
@@ -128,8 +129,7 @@ export default class Index extends React.Component {
 											</Grid.Row>
 										</Grid>
 									</Segment>
-									<Introduction intro={z.experiences.information} best_time={z.experiences.best_time_to_visit} best_time_more_info={z.experiences.best_time_to_visit_more_information} time_to_explore={z.experiences.time_to_explore} weather={z.weather}/>
-									<Divider inverted/>
+									<Introduction intro={z.experiences.information}/>
 									<MustKnow must_know={z.experiences.must_know} why_should_you_go={z.experiences.why_should_you_go} why_should_you_try={z.experiences.why_should_you_try} what_should_you_know={z.experiences.what_should_you_know} things_to_care_about={z.experiences.things_to_care_about} speciality={z.experiences.speciality}/>
 									<MustCarry must_carry={z.must_carry}/>
 									<HowToReach how_to_reach={z.experiences.how_to_reach}/> {/*		<Trips trips = {z.trips}/>
@@ -139,6 +139,7 @@ export default class Index extends React.Component {
 								<Grid.Column computer={7} only='computer'>
 									<Sticky innerZ={99999999999}>
 										<Cover img={z.experiences.img}/>
+										<Pointers best_time={z.experiences.best_time_to_visit} best_time_more_info={z.experiences.best_time_to_visit_more_information} time_to_explore={z.experiences.time_to_explore} weather={z.weather}/>
 									</Sticky>
 								</Grid.Column>
 							</Grid.Row>

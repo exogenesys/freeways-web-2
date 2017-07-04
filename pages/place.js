@@ -22,6 +22,7 @@ import Layout from '../components/Layout'
 import TopBar from '../components/TopBar'
 import Cover from '../components/PlaceCover'
 import Menu from '../components/PlacesMenu'
+import Map from '../components/Map'
 import Languages from '../components/Languages'
 import Footer from '../components/Footer'
 import Introduction from '../components/PlacesIntroduction'
@@ -89,6 +90,13 @@ class Index extends React.Component {
 
 		const z = this.props.data;
 
+		const center = {
+			lat : z.place.latitude,
+			lng : z.place.longitude,
+		}
+
+		const zoom = 15
+
 		return (
 			<Layout>
 				<TopBar handleDimmer={e => this.handleDimmer(e)} root={false}/>
@@ -106,6 +114,7 @@ class Index extends React.Component {
 						<br/>
 						<br/>
 					</Container>
+					<Map center={center} zoom={zoom} title={z.place.title}/>
 					<Footer/>
 				</Dimmer.Dimmable>
 			</Layout>

@@ -51,7 +51,7 @@ var experienceSchema = new Schema({
 		type: String
 	},
 
-	why_should_you_know: {
+	what_should_you_know: {
 		type: String
 	},
 
@@ -62,6 +62,10 @@ var experienceSchema = new Schema({
   longitude: {
     type: Number
   },
+
+	address: {
+		type: String
+	},
 
 	things_to_care_about: {
 		type: String

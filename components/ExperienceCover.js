@@ -12,7 +12,7 @@ const Cover = (props) => {
 	var imgurl = helper.buildImgUrl(props.img, constants.IMG_HEIGHT_DC, constants.IMG_QUALITY_DC);
 
 	const CoverStyle = {
-		height: "70vh",
+		height: "65vh",
 		marginTop: '2em',
 		backgroundImage: "url('" + imgurl + "')",
 		backgroundSize: "cover",
