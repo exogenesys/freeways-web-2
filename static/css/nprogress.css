@@ -313,6 +313,16 @@
 		transition: all .4s!important;
 }
 
+.GridMenu{
+	background: #FFF!important;
+	border: 0.5px solid rgba(34,36,38,.1)!important;
+	border-radius: .28571429rem!important;
+}
+
+.GridMenu .item::before{
+	background: rgba(0,0,0,.08)!important;
+}
+
 .SlideKnowMore:hover {
 		color: rgba(255, 255, 255, 1)!important;
 		padding-left: 0.2em!important;

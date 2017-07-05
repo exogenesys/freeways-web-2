@@ -155,11 +155,7 @@ export default class Places extends Component {
 					<Grid.Row only="computer">
 						<Grid.Column width={16}>
 							<br/>
-							<Menu inverted style={{
-								background: '#FFF',
-								border: '0.5px solid rgba(34,36,38,.1)',
-								borderRadius: '.28571429rem'
-							}}>
+							<Menu inverted className='GridMenu'>
 								{menuItems}
 								<Menu.Menu position='right'>
 									<div className='ui right aligned category search item'>
