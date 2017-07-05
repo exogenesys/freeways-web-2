@@ -51,7 +51,6 @@ export default class Brick extends React.Component {
 					</Card.Content>
 					<Card.Content extra className='BottomShadowTile' style={{
 						color: 'white',
-				    borderTop: '1px solid rgba(0,0,0,0)!important'
 					}}>
 						<span className='days'>
 							2-5 Days

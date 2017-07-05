@@ -30,6 +30,10 @@
     font-weight: 100!important;
 }
 
+.ui.card>.content, .ui.cards>.card>.content,.ui.card>.extra, .ui.cards>.card>.extra{
+	
+}
+
 
 /* Make clicks pass-through */
 
