@@ -11,7 +11,8 @@ import {
 	Segment,
 	Progress,
 	Container,
-	Menu
+	Menu,
+	Icon
 } from 'semantic-ui-react'
 
 let Deck; //Since Deck is a client-side only lib, this is a hack and I'm a hacker
@@ -119,26 +120,35 @@ export default class HomeCover extends Component {
 	render() {
 
 		const slideData = [
+
 			{
 				img: 'http://res.cloudinary.com/freeways/image/upload/ONER.jpg',
 				className: 'core',
 				text: 'Feel the marine life, up close: Scuba diving at Havelock Islands',
-				place: 'Havelock Islands'
+				place: 'Havelock Islands',
+				url: '/experience?slug=scuba-diving',
+				as: '/experience/scuba-diving'
 			}, {
 				img: 'http://res.cloudinary.com/freeways/image/upload/TWOR.jpg',
 				className: 'core',
 				text: 'Walk on a frozen river in Ladakh: Chadar Trek, Zanskar',
+				url: '/experience?slug=chadar-trek-walk-on-a-frozen-river',
+				as: '/experience/chadar-trek-walk-on-a-frozen-river',
 				place: 'Zanskar, Ladakh'
 			}, {
 				img: 'http://res.cloudinary.com/freeways/image/upload/v1498698032/piceditedthirdhomepage.jpg',
 				className: 'core',
 				text: 'A unique journey: The toy train, Shimla',
-				place: 'Shimla'
+				type: 'experience',
+				url: '/experience?slug=the-amazing-toy-train-journey',
+				as: '/experience/the-amazing-toy-train-journey'
 			}, {
 				img: 'http://res.cloudinary.com/freeways/image/upload/fourthhomepage.jpg',
 				className: 'core',
 				text: 'Shop for your souvenirs at: Sadar bazaar, Jaipur',
-				place: 'Sadar bazaar, Jaipur'
+				type: 'place',
+				url: '/experience?slug=sadar-bazaar',
+				as: '/experience/sadar-bazaar'
 			}
 		]
 
@@ -199,7 +209,15 @@ export default class HomeCover extends Component {
 							<Grid.Row>
 								<Grid.Column width={11} only='computer tablet'>
 									<div className='SlideText'>
-										{slideData[this.state.current].text}
+										<div className='SlideTextStyle'>
+											{slideData[this.state.current].text}
+										</div>
+										<Link href={slideData[this.state.current].url} as={slideData[this.state.current].as}>
+											<div className='SlideKnowMore'>
+												Know More
+												<Icon className='MoveRight' name='angle right'></Icon>
+											</div>
+										</Link>
 									</div>
 								</Grid.Column>
 								<Grid.Column width={16} textAlign='center' only='mobile' style={{
