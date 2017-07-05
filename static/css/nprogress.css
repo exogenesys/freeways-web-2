@@ -205,6 +205,15 @@
 		color: rgba(255, 255, 255, 0.7)!important;
 }
 
+.LogoHeaderFooter {
+		font-family: 'Josefin Sans', sans-serif !important;
+		font-weight: 900!important;
+		letter-spacing: 0.06rem !important;
+		font-size: 2.5rem!important;
+		color: rgba(0, 0, 0, 0.8)!important;
+}
+
+
 .LogoHeader {
 		font-family: 'Josefin Sans', sans-serif !important;
 		font-weight: 900!important;

@@ -85,7 +85,6 @@ export default class Index extends React.Component {
 	render() {
 
 		const z = this.props.data;
-		console.log(z);
 
 		const colours = {
 			'adventure': 'red',
@@ -136,7 +135,7 @@ export default class Index extends React.Component {
 								*/}
 								</Grid.Column>
 								<Grid.Column computer={7} only='computer'>
-									<Sticky innerZ={99999999999}>
+									<Sticky bottomBoundary={'#footer'}>
 										<Cover img={z.experiences.img}/>
 										<Pointers best_time={z.experiences.best_time_to_visit} best_time_more_info={z.experiences.best_time_to_visit_more_information} time_to_explore={z.experiences.time_to_explore} weather={z.weather}/>
 									</Sticky>
@@ -146,7 +145,7 @@ export default class Index extends React.Component {
 						<br/>
 						<br/>
 					</Container>
-					<Footer/>
+					<Footer id='footer'/>
 				</Dimmer.Dimmable>
 			</Layout>
 		)

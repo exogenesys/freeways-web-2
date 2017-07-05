@@ -11,14 +11,29 @@ export default class NavSearch extends Component {
 		this.resetComponent(false)
 	}
 
-
 	resetComponent = (degree) => {
-		this.setState({isLoading: false, results: [], value:(degree)?'':(this.props.title||''), placeholder:(degree?'Search Destinations, Experiences & Trips':'Search freeways'), searchStyle:(degree?'NavSearchFocusStyle':(!this.props.root?'NavSearchStyle':'NavSearchStyleRoot'))})
+		this.setState({
+			isLoading: false,
+			results: [],
+			value: (degree)
+				? ''
+				: ((((this.props.title || '').length) < 25)
+					? (this.props.title || '')
+					: (this.props.title.substring(0, 20) + '...')),
+			placeholder: (degree
+				? 'Search Destinations, Experiences & Trips'
+				: 'Search freeways'),
+			searchStyle: (degree
+				? 'NavSearchFocusStyle'
+				: (!this.props.root
+					? 'NavSearchStyle'
+					: 'NavSearchStyleRoot'))
+		})
 	}
 
 	handleResultSelect = (e, result) => {
 		const url = '/' + result.type + '?slug=' + result.slug
-		const as  = '/' + result.type + '/' + result.slug
+		const as = '/' + result.type + '/' + result.slug
 		this.setState({value: result.title})
 		Router.push(url, as)
 		this.handleDimmerHide()
@@ -28,7 +43,7 @@ export default class NavSearch extends Component {
 
 	handleSearchChange = (e, value) => {
 		if (value.length < 1)
-		return this.resetComponent(true)
+			return this.resetComponent(true)
 		this.setState({isLoading: true, value})
 		this.handleDimmerShow()
 		axios.get(source + value).then((res) => {
@@ -39,12 +54,17 @@ export default class NavSearch extends Component {
 
 	handleDimmerShow = () => {
 		this.props.handleDimmer(true)
-		this.setState({placeholder: 'Search Destinations, Experiences & Trips', searchStyle:'NavSearchFocusStyle'})
+		this.setState({placeholder: 'Search Destinations, Experiences & Trips', searchStyle: 'NavSearchFocusStyle'})
 	}
 
 	handleDimmerHide = () => {
 		this.props.handleDimmer(false)
-		this.setState({placeholder: 'Search freeways', searchStyle:(!this.props.root?'NavSearchStyle':'NavSearchStyleRoot')})
+		this.setState({
+			placeholder: 'Search freeways',
+			searchStyle: (!this.props.root
+				? 'NavSearchStyle'
+				: 'NavSearchStyleRoot')
+		})
 	}
 
 	render() {
@@ -62,23 +82,9 @@ export default class NavSearch extends Component {
 		}
 
 		return (
-			<Search showNoResults={!isLoading}
-			// loading={isLoading}
-			placeholder={this.state.placeholder}
-			size='massive'
-			selectFirstResult={true}
-			input={{icon:null}}
-			resultRenderer={resultRenderer}
-			onResultSelect={this.handleResultSelect}
-			onSearchChange={this.handleSearchChange}
-			onBlur={this.handleDimmerHide}
-			onFocus={this.handleDimmerShow}
-			results={results}
-			value={value}
-			fluid={true}
-			className={this.state.searchStyle}
-			{ ...this.props }>
-			</Search>
+			<Search showNoResults={!isLoading} placeholder={this.state.placeholder} size='massive' selectFirstResult={true} input={{
+				icon: null
+			}} resultRenderer={resultRenderer} onResultSelect={this.handleResultSelect} onSearchChange={this.handleSearchChange} onBlur={this.handleDimmerHide} onFocus={this.handleDimmerShow} results={results} value={value} fluid={true} className={this.state.searchStyle} { ...this.props }></Search>
 		)
 	}
 }
