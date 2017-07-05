@@ -72,7 +72,7 @@ export default class TopBar extends Component {
 							<Grid.Column textAlign='center'>
 								<div className='ui transparent input'>
 									<Icon style={{margin:'6px'}} name="search" fitted inverted={!((focus)||(!this.props.root))} size="large"></Icon>
-									<NavSearch root={this.props.root} handleDimmer={e => this.handleDimmer(e)}/>
+									<NavSearch root={this.props.root} handleDimmer={e => this.handleDimmer(e)} title={this.props.title}/>
 								</div>
 							</Grid.Column>
 							{Header}

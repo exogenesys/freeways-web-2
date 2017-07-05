@@ -101,7 +101,7 @@ export default class Index extends React.Component {
 		return (
 
 			<Layout>
-				<TopBar handleDimmer={e => this.handleDimmer(e)} root={false}/>
+				<TopBar handleDimmer={e => this.handleDimmer(e)} root={false} title={z.experiences.title}/>
 				<Dimmer.Dimmable blurring dimmed={this.state.dimmer}>
 					<Dimmer active={this.state.dimmer} onClickOutside={this.handleDimmerHide}></Dimmer>
 					<Container>

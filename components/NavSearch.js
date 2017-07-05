@@ -11,8 +11,9 @@ export default class NavSearch extends Component {
 		this.resetComponent(false)
 	}
 
+
 	resetComponent = (degree) => {
-		this.setState({isLoading: false, results: [], value:'', placeholder:(degree?'Search Destinations, Experiences & Trips':'Search freeways'), searchStyle:(degree?'NavSearchFocusStyle':(!this.props.root?'NavSearchStyle':'NavSearchStyleRoot'))})
+		this.setState({isLoading: false, results: [], value:this.props.title || '', placeholder:(degree?'Search Destinations, Experiences & Trips':'Search freeways'), searchStyle:(degree?'NavSearchFocusStyle':(!this.props.root?'NavSearchStyle':'NavSearchStyleRoot'))})
 	}
 
 	handleResultSelect = (e, result) => {
