@@ -139,6 +139,7 @@ export default class HomeCover extends Component {
 				img: 'http://res.cloudinary.com/freeways/image/upload/v1498698032/piceditedthirdhomepage.jpg',
 				className: 'core',
 				text: 'A unique journey: The toy train, Shimla',
+				place: 'Shimla',
 				type: 'experience',
 				url: '/experience?slug=the-amazing-toy-train-journey',
 				as: '/experience/the-amazing-toy-train-journey'
@@ -146,6 +147,7 @@ export default class HomeCover extends Component {
 				img: 'http://res.cloudinary.com/freeways/image/upload/fourthhomepage.jpg',
 				className: 'core',
 				text: 'Shop for your souvenirs at: Sadar bazaar, Jaipur',
+				place: 'Jaipur',
 				type: 'place',
 				url: '/experience?slug=sadar-bazaar',
 				as: '/experience/sadar-bazaar'
