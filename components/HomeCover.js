@@ -215,10 +215,10 @@ export default class HomeCover extends Component {
 											{slideData[this.state.current].text}
 										</div>
 										<Link href={slideData[this.state.current].url} as={slideData[this.state.current].as}>
-											<div className='SlideKnowMore'>
-												Know More
-												<Icon className='MoveRight' name='angle right'></Icon>
-											</div>
+												<a className='SlideKnowMore'>
+													Know More
+													<Icon className='MoveRight' name='angle right'></Icon>
+												</a>
 										</Link>
 									</div>
 								</Grid.Column>

@@ -46,8 +46,8 @@ export default class Brick extends React.Component {
 			}} as={`/${this.props.type}/${this.props.data.slug}`} style={{
 				marginLeft: '10px'
 			}}>
-
-				<Card fluid id='HomeRecommendations' style={HomeBrickStyle} onMouseMove={(e) => this.perspective(e)}>
+				<a>
+					<Card fluid id='HomeRecommendations' style={HomeBrickStyle} onMouseMove={(e) => this.perspective(e)}>
 						<Grid textAlign='center' style={{
 							margin: '0 auto',
 							height: '100%'
@@ -71,7 +71,8 @@ export default class Brick extends React.Component {
 								</Grid.Column>
 							</Grid.Row>
 						</Grid>
-				</Card>
+					</Card>
+				</a>
 			</Link>
 		);
 	}

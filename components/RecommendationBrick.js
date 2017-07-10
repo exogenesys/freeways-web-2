@@ -16,7 +16,7 @@ export default class Brick extends React.Component {
 			}} as={`/${this.props.type}/${this.props.data.slug}`} style={{
 				marginLeft: '10px'
 			}}>
-
+			<a>
 				<Card fluid id='carouselHome' style={{
 					// backgroundImage: "linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.2)), url(\'" + imgurl + "\')",
 					 backgroundImage: "url(\'" + imgurl + "\')",
@@ -50,6 +50,7 @@ export default class Brick extends React.Component {
 						}}></Card.Meta>
 					</Card.Content>
 				</Card>
+				</a>
 			</Link>
 		);
 	}

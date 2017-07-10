@@ -6,19 +6,22 @@ import helper from '../utils/helper';
 import constants from '../utils/constants'
 
 const Brick = (props) => {
-		const { item, index, itemsLength } = props;
-		// image height and wuality reduced to x percent
-		var imgurl = helper.buildImgUrl(this.props.data.img,
-							constants.IMG_HEIGHT_RB,
-							constants.IMG_QUALITY_RB);
-		return (
-			<Link prefetch href={{ pathname: '/' + item.type, query: { slug: item.slug }}} as={`/${this.props.type}/${this.props.data.slug}`}>
-
+	const {item, index, itemsLength} = props;
+	// image height and wuality reduced to x percent
+	var imgurl = helper.buildImgUrl(this.props.data.img, constants.IMG_HEIGHT_RB, constants.IMG_QUALITY_RB);
+	return (
+		<Link prefetch href={{
+			pathname: '/' + item.type,
+			query: {
+				slug: item.slug
+			}
+		}} as={`/${this.props.type}/${this.props.data.slug}`}>
+			<a>
 				<Card fluid style={{
 					backgroundImage: "linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.2)), url(\'" + imgurl + "\')",
 					boxShadow: '3px 3px 5px 0px #D4D4D5, 0 0 1px 1px #D4D4D5',
 					backgroundSize: 'cover',
-				    backgroundPosition: 'center center'
+					backgroundPosition: 'center center'
 				}}>
 					<Card.Content>
 						<Card.Header style={{
@@ -33,7 +36,7 @@ const Brick = (props) => {
 							<p style={{
 								fontSize: '16px'
 							}}>
-							{item.caption}
+								{item.caption}
 								<br/>
 								<br/>
 								<br/>
@@ -42,8 +45,7 @@ const Brick = (props) => {
 						</Card.Description>
 						<Card.Meta style={{
 							color: 'white'
-						}}>
-						</Card.Meta>
+						}}></Card.Meta>
 					</Card.Content>
 					<Card.Content extra style={{
 						color: 'white'
@@ -53,8 +55,9 @@ const Brick = (props) => {
 						</span>
 					</Card.Content>
 				</Card>
-			</Link>
-		);
+			</a>
+		</Link>
+	);
 }
 
 export default Brick
