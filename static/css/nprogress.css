@@ -176,19 +176,13 @@
 		padding-left: 0rem !important;
 }
 
-.searchResultItem {
-		font-weight: 400;
-		text-align: left !important;
-		font-size: 1.2rem;
-		margin: -10px;
-}
-
 .InterestItem {
 		color: rgba(0, 0, 0, 0.8)!important;
 		-webkit-transition: transform .5s;
 		-moz-transition: transform .5s;
 		-o-transition: transform .5s;
 		transition: transform .5s;
+		font-size: 1.1em!important;
 }
 
 .InterestItem:hover {

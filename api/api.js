@@ -223,6 +223,42 @@ console.log("hello from api");
 // 	});
 // });
 
+// Router.get('/crawlHDFY', (req, res) => {
+// 	var counter = 0;
+// 	console.log('go');
+// 	setInterval(function() {
+// 		console.log("Starting again bruh");
+// 		var promises = [];
+// 		if (counter < 2) {
+// 			for (var i = 7001 ; i < 7053; i++) {
+// 				console.log("fetching ", i , "th object");
+// 				var promise = rp('https://www.holidify.com/rest/utility/getAllSearchResults.hdfy?query=Attraction' + i).then((body) => {
+// 					var a = JSON.parse(body)
+// 					return a.autocompleteList[0];
+// 				}).catch((err) => {
+// 					console.log(err);
+// 				});
+// 				promises.push(promise)
+// 			}
+// 			counter++;
+//
+// 				Promise.all(promises).then((results) => {
+// 					fs.appendFile('holidify_nu11ed.txt', JSON.stringify(results), function(err) {
+// 						if (err) {
+// 							console.log('Whoops!');
+// 							res.send(err)
+// 						} else {
+// 							console.log('Saved!');
+// 						}
+// 					});
+// 				})
+// 		} else {
+// 			res.send('done man')
+// 		}
+// 	}, 1000 * 5);
+//
+// });
+
 Router.get('/ImgUrlGen', (req, res) => {
 	experiences.find().select('slug').exec((err, _experiences) => {
 		let x = [];

@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const next = require('next');
 const api = require("./api/api.js");
+const img = require("./api/img.js");
 const cors = require('cors')
 
 const dev = process.env.NODE_ENV !== 'production';
@@ -21,6 +22,7 @@ app.prepare().then(_ => {
 	server.use(cors())
 
 	server.use('/api', api);
+	server.use('/debord', img);
 
 	server.use((err,req,res,next)=>{
 		console.log("error has happened something broke");
