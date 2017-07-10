@@ -17,8 +17,7 @@ export default class Brick extends React.Component {
 				marginLeft: '10px'
 			}}>
 				<a>
-
-					<Card fluid style={{
+					<Card id='HomeRecommendations' fluid style={{
 						backgroundImage: "linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.2)), url(\'" + imgurl + "\')",
 						backgroundSize: 'cover',
 						height: '15vw',
