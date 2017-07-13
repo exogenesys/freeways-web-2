@@ -19,7 +19,7 @@ const Recommendations = () => {
 		{
 			type: 'destination',
 			data: {
-				img: 'http://res.cloudinary.com/freeways/image/upload/v1497251754/ladakh2.jpg',
+				img_thumb: 'http://res.cloudinary.com/freeways/image/upload/v1497251754/ladakh2.jpg',
 				slug: 'ladakh',
 				title: 'Ladakh',
 				caption: 'The land of lamas, Ladakh'
@@ -28,7 +28,7 @@ const Recommendations = () => {
 		}, {
 			type: 'destination',
 			data: {
-				img: 'http://res.cloudinary.com/freeways/image/upload/v1497243161/agra.png',
+				img_thumb: 'http://res.cloudinary.com/freeways/image/upload/v1497243161/agra.png',
 				slug: 'agra',
 				title: 'Agra',
 				caption: 'Agra beyond Taj'
@@ -37,7 +37,7 @@ const Recommendations = () => {
 		}, {
 			type: 'place',
 			data: {
-				img: 'http://res.cloudinary.com/freeways/image/upload/v1497242648/zanskar-valley_npmhcm.jpg',
+				img_thumb: 'http://res.cloudinary.com/freeways/image/upload/v1497242648/zanskar-valley_npmhcm.jpg',
 				slug: 'zanskar-valley',
 				title: 'Zanskar Valley',
 				caption: 'The bold & the beautiful Zanskar'
@@ -46,14 +46,14 @@ const Recommendations = () => {
 			type: 'experience',
 			data: {
 				slug: 'parasailing-at-havelock-island',
-				img: 'http://res.cloudinary.com/freeways/image/upload/v1498042951/parasailing-at-havelock-island.jpg',
+				img_thumb: 'http://res.cloudinary.com/freeways/image/upload/v1498042951/parasailing-at-havelock-island.jpg',
 				title: 'Parasailing at Havelock Island',
 				caption: 'Fly over water at Havelock'
 			}
 		}, {
 			type: 'place',
 			data: {
-				img: 'http://res.cloudinary.com/freeways/image/upload/v1497961884/elephant-beach.jpg',
+				img_thumb: 'http://res.cloudinary.com/freeways/image/upload/v1497961884/elephant-beach.jpg',
 				slug: 'elephant-beach',
 				title: 'Elephant beach',
 				caption: 'The Elephant beach '
@@ -62,7 +62,7 @@ const Recommendations = () => {
 		}, {
 			type: 'place',
 			data: {
-				img: 'http://res.cloudinary.com/freeways/image/upload/v1497699585/amer-fort.png',
+				img_thumb: 'http://res.cloudinary.com/freeways/image/upload/v1497699585/amer-fort.png',
 				slug: 'amer-fort',
 				title: 'Amer fort',
 				caption: 'Amer fort, when Jaipur was a kingdom'
@@ -71,7 +71,7 @@ const Recommendations = () => {
 		}, {
 			type: 'place',
 			data: {
-				img: 'http://res.cloudinary.com/freeways/image/upload/v1497676483/akshardham-temple-jaipur.png',
+				img_thumb: 'http://res.cloudinary.com/freeways/image/upload/v1497676483/akshardham-temple-jaipur.png',
 				slug: 'akshardham-temple-jaipur ',
 				title: 'Akshardham temple Jaipur',
 				caption: 'Akshardham temple Jaipur'

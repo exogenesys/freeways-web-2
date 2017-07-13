@@ -284,7 +284,7 @@ Router.get('/home', (req, res) => {
 		} else {
 			obj.trips = trips;
 
-			destinations.find().select('slug title caption time_to_explore img').limit(10).exec(function(err, destinations) {
+			destinations.find().select('slug title caption time_to_explore img_thumb').limit(10).exec(function(err, destinations) {
 				if (err) {
 					console.log('error finding destinations for home')
 				} else {
@@ -304,7 +304,7 @@ Router.get('/home', (req, res) => {
 								"yoga-at-nature-cure-ooty"
 							]
 						}
-					}).select('slug title caption time_to_explore img').limit(10).exec(function(err, experiences) {
+					}).select('slug title caption time_to_explore img_thumb').limit(10).exec(function(err, experiences) {
 						if (err) {
 							console.log('error finding experiences for home')
 						} else {
