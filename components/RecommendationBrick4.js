@@ -20,7 +20,7 @@ export default class Brick extends React.Component {
 	}
 
 	render() {
-		var imgurl = helper.buildImgUrl(this.props.data.img, constants.IMG_HEIGHT_RB, constants.IMG_QUALITY_RB);
+		var imgurl = helper.buildImgUrl(this.props.data.img_thumb, constants.IMG_HEIGHT_RB, constants.IMG_QUALITY_RB);
 
 		const HomeBrickStyle = {
 			// backgroundImage: "linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.2)), url(\'" + imgurl + "\')",

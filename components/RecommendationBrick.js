@@ -6,7 +6,7 @@ import constants from '../utils/constants'
 
 export default class Brick extends React.Component {
 	render() {
-		var imgurl = helper.buildImgUrl(this.props.data.img, constants.IMG_HEIGHT_RB, constants.IMG_QUALITY_RB);
+		var imgurl = helper.buildImgUrl(this.props.data.img_thumb, constants.IMG_HEIGHT_RB, constants.IMG_QUALITY_RB);
 		return (
 			<Link prefetch href={{
 				pathname: '/' + this.props.type,
