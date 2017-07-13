@@ -4,9 +4,9 @@ var Schema = mongoose.Schema;
 var searchSchema = new Schema({
 
   slug: {
-		type: String,
-		unique: true
-	},
+        type: String,
+        unique: true
+    },
 
   title: {
     type: String
