@@ -409,15 +409,15 @@ Router.get("/destination/:slug", (req, res, next) => {
 		} else {
 			// rp('http://api.openweathermap.org/data/2.5/weather?lat=' + data.latitude + '&lon=' + data.longitude + '&appid=e6c33eefa2e93035fbc5bb2964d35603').then((response) => {
 			// 	const weather = JSON.parse(response)
-			places.find({"slug": data.places}).select('slug title name caption tags img_thumb').exec(function(err, _places) {
+			places.find({"id": data.places}).select('slug title name caption tags img_thumb').exec(function(err, _places) {
 				if (err) {
 					console.error(err);
 				} else {
-					experiences.find({"slug": data.experiences}).select('slug title name caption tags img_thumb').exec(function(err, _experiences) {
+					experiences.find({"id": data.experiences}).select('slug title name caption tags img_thumb').exec(function(err, _experiences) {
 						if (err) {
 							console.error(err);
 						} else {
-							mustCarry.find({"slug": data.must_carry}).select('slug title source information').exec(function(err, _must_carry) {
+							mustCarry.find({"id": data.must_carry}).select('slug title source information').exec(function(err, _must_carry) {
 								if (err) {
 									console.error(err);
 								} else {
@@ -460,11 +460,11 @@ Router.get("/place/:slug", (req, res) => {
 				// rp('http://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + lon + '&appid=e6c33eefa2e93035fbc5bb2964d35603').then((response) => {
 				// 	const weather = JSON.parse(response)
 
-				experiences.find({"slug": data.experiences}).select('slug title name caption tags img img_thumb').exec(function(err, _experiences) {
+				experiences.find({"id": data.experiences}).select('slug title name caption tags img img_thumb').exec(function(err, _experiences) {
 					if (err) {
 						console.error(err);
 					} else {
-						mustCarry.find({"slug": data.must_carry}).select('slug title source information').exec(function(err, _must_carry) {
+						mustCarry.find({"id": data.must_carry}).select('slug title source information').exec(function(err, _must_carry) {
 							if (err) {
 								console.error(err);
 							} else {
@@ -500,7 +500,7 @@ Router.get("/place/:slug", (req, res) => {
 				console.error("error took place while looking up experiences");
 				next(err);
 			} else {
-				mustCarry.find({"slug": data.must_carry}).select('slug title source information').exec(function(err, _must_carry) {
+				mustCarry.find({"id": data.must_carry}).select('slug title source information').exec(function(err, _must_carry) {
 					if (err) {
 						console.error(err);
 					} else {
