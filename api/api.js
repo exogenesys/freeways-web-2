@@ -11,7 +11,7 @@ const trips = require('../models/trip.js');
 const experiences = require("../models/experience.js");
 const destinations = require("../models/destination.js");
 const languages = require("../models/languages.js");
-const searchKeys = require("../models/searchKeys.js");
+const searchKeys = require("../models/searchkeys.js");
 const mustCarry = require("../models/mustcarry.js");
 const nearByLoc = require("../models/nearBy.js");
 
