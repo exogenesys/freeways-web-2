@@ -19,6 +19,11 @@ var placeSchema = new Schema({
       type:String
     },
 
+    img_thumb:{
+      type:String
+    },
+
+
     time_to_explore: {
   		type: String
   	},

@@ -20,6 +20,11 @@ var searchSchema = new Schema({
     type: String
   },
 
+  img_thumb: {
+    type: String
+  },
+
+
   keywords: [String]
 
 

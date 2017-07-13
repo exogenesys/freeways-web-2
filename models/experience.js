@@ -20,6 +20,11 @@ var experienceSchema = new Schema({
 		type: String
 	},
 
+	img_thumb:{
+    type:String
+  },
+
+
 	best_time_to_visit: {
 		type: String
 	},
