@@ -114,11 +114,11 @@ var placeSchema = new Schema({
       type: String
     },
 
-    must_carry: [String],
+    must_carry: [{type: Number, ref: 'mustCarry'}],
 
-    experiences: [String],
+    experiences: [{type: Number, ref: 'experiences'}],
 
-    trips: [String],
+    trips: [{type: Number, ref: 'trips'}],
 
     must_know: {
       type : String

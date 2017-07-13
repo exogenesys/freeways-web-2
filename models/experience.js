@@ -120,7 +120,7 @@ var experienceSchema = new Schema({
     type: String
   },
 
-	must_carry: [String],
+	must_carry: [{type: Number, ref: 'mustCarry'}],
 
 	keywords: {
 		type: String

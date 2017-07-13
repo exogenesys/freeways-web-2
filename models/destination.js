@@ -72,15 +72,15 @@ var destinationSchema = new Schema({
 		type: String
 	},
 
-	must_carry: [String],
+	must_carry: [{type: Number, ref: 'mustCarry'}],
 
-	places: [String],
+	places: [{type: Number, ref: 'places'}],
 
-	experiences: [String],
+	experiences: [{type: Number, ref: 'experiences'}],
 
-	trips: [String],
+	trips: [{type: Number, ref: 'trips'}],
 
-	languages: [String],
+	languages: [{type: Number, ref: 'languages'}],
 
 	coverPhoto: {
 		type: String

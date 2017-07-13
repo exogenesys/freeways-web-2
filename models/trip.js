@@ -41,7 +41,7 @@ var tripSchema = new Schema({
       type: String
     },
 
-   must_carry: [String],
+   must_carry: [{type: Number, ref:"mustCarry"}],
 
    cover_photo: {
       type : String
@@ -57,11 +57,12 @@ var tripSchema = new Schema({
 
     tags: [String],
 
-    placesCovered: [String],
 
-    experiencesCovered: [String],
+    places: [{type:Number ,ref:"places"}],
 
-    destinationsCovered: [String],
+    experiences: [{type: Number, ref: 'experiences'}],
+
+    destinations: [{type: Number, ref: 'destinations'}],
 
     itinerary : [{
         day: Number,
