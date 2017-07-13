@@ -266,7 +266,8 @@ Router.get('/ImgUrlGen', (req, res) => {
 			experiences.update({
 				'slug': _experiences[i].slug
 			}, {
-				img: 'http://res.cloudinary.com/freeways/image/upload/' + _experiences[i].slug
+				// img: 'https://s3.amazonaws.com/society-of-the-spectacle/img/' + _experiences[i].slug + '.jpg',
+				img_thumb: 'https://s3.amazonaws.com/society-of-the-spectacle/img/thumbs/' + _experiences[i].slug + '.jpg'
 			}, function(err, number, rawRes) {
 				x.push(number)
 			})
@@ -408,11 +409,11 @@ Router.get("/destination/:slug", (req, res, next) => {
 		} else {
 			// rp('http://api.openweathermap.org/data/2.5/weather?lat=' + data.latitude + '&lon=' + data.longitude + '&appid=e6c33eefa2e93035fbc5bb2964d35603').then((response) => {
 			// 	const weather = JSON.parse(response)
-			places.find({"slug": data.places}).select('slug title name caption tags img').exec(function(err, _places) {
+			places.find({"slug": data.places}).select('slug title name caption tags img_thumb').exec(function(err, _places) {
 				if (err) {
 					console.error(err);
 				} else {
-					experiences.find({"slug": data.experiences}).select('slug title name caption tags img').exec(function(err, _experiences) {
+					experiences.find({"slug": data.experiences}).select('slug title name caption tags img_thumb').exec(function(err, _experiences) {
 						if (err) {
 							console.error(err);
 						} else {
@@ -459,7 +460,7 @@ Router.get("/place/:slug", (req, res) => {
 				// rp('http://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + lon + '&appid=e6c33eefa2e93035fbc5bb2964d35603').then((response) => {
 				// 	const weather = JSON.parse(response)
 
-				experiences.find({"slug": data.experiences}).select('slug title name caption tags img').exec(function(err, _experiences) {
+				experiences.find({"slug": data.experiences}).select('slug title name caption tags img img_thumb').exec(function(err, _experiences) {
 					if (err) {
 						console.error(err);
 					} else {
