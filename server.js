@@ -31,6 +31,29 @@ app.prepare().then(_ => {
 
 	console.log('first')
 
+		server.get('/destinations', (req, res) => {
+  	return app.render(req, res, '/destinations');
+	});
+
+			server.get('/trips', (req, res) => {
+  	return app.render(req, res, '/trips');
+	});
+
+			server.get('/experiences', (req, res) => {
+  	return app.render(req, res, '/experiences');
+	});
+
+			server.get('/roadtrips', (req, res) => {
+	  	return app.render(req, res, '/roadtrips');
+	});
+
+				server.get('/treks', (req, res) => {
+  	return app.render(req, res, '/treks');
+	});
+
+
+
+
 	server.get('/destination/:slug', (req, res) => {
   	const params = { slug: req.params.slug }
   	return app.render(req, res, '/destination', params);

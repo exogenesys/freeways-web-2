@@ -102,7 +102,7 @@ export default class HomeCover extends Component {
 						})
 					}
 				}
-			}, 8000)
+			}, 800000)
 		}
 	}
 
@@ -122,21 +122,21 @@ export default class HomeCover extends Component {
 		const slideData = [
 
 			{
-				img: 'http://res.cloudinary.com/freeways/image/upload/ONER.jpg',
+				img: 'https://s3.amazonaws.com/society-of-the-spectacle/img/scuba-diving.jpg',
 				className: 'core',
 				text: 'Feel the marine life, up close: Scuba diving at Havelock Islands',
 				place: 'Havelock Islands',
 				url: '/experience?slug=scuba-diving',
 				as: '/experience/scuba-diving'
 			}, {
-				img: 'http://res.cloudinary.com/freeways/image/upload/TWOR.jpg',
+				img: "https://s3.amazonaws.com/society-of-the-spectacle/img/chadar-trek-walk-on-a-frozen-river.jpg",
 				className: 'core',
 				text: 'Walk on a frozen river in Ladakh: Chadar Trek, Zanskar',
 				url: '/experience?slug=chadar-trek-walk-on-a-frozen-river',
 				as: '/experience/chadar-trek-walk-on-a-frozen-river',
 				place: 'Zanskar, Ladakh'
 			}, {
-				img: 'http://res.cloudinary.com/freeways/image/upload/v1498698032/piceditedthirdhomepage.jpg',
+				img: "https://s3.amazonaws.com/society-of-the-spectacle/img/the-amazing-toy-train-journey.jpg",
 				className: 'core',
 				text: 'A unique journey: The toy train, Shimla',
 				place: 'Shimla',
@@ -144,7 +144,7 @@ export default class HomeCover extends Component {
 				url: '/experience?slug=the-amazing-toy-train-journey',
 				as: '/experience/the-amazing-toy-train-journey'
 			}, {
-				img: 'http://res.cloudinary.com/freeways/image/upload/fourthhomepage.jpg',
+				img: "https://s3.amazonaws.com/society-of-the-spectacle/img/sadar-bazaar.jpg",
 				className: 'core',
 				text: 'Shop for your souvenirs at: Sadar bazaar, Jaipur',
 				place: 'Jaipur',
@@ -166,8 +166,7 @@ export default class HomeCover extends Component {
 		if (!this.state.deckLoaded)
 			return (
 				<Container fluid className='TopLevelFluid' style={{
-					marginLeft: '0px',
-					marginRight: '0px'
+					marginTop: '1.5vh'
 				}}>
 					<div className='core deckBlur' style={{
 						backgroundImage: "linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.1)), url('http://res.cloudinary.com/freeways/image/upload/ONER.jpg')"
@@ -177,8 +176,7 @@ export default class HomeCover extends Component {
 
 		return (
 			<Container fluid className='TopLevelFluid' style={{
-				marginLeft: '0px',
-				marginRight: '0px'
+				marginTop: '1.5vh'
 			}}>
 				<Deck dura={0} className={'deck' + (this.state.outerDeck.current == 0
 					? ' deckBlur'
@@ -201,7 +199,7 @@ export default class HomeCover extends Component {
 					</Deck.Slide>
 				</Deck>
 
-				<Container className='hands'>
+				<Container fluid className='hands'>
 					<div style={{
 						position: 'absolute',
 						bottom: '0',
@@ -209,7 +207,8 @@ export default class HomeCover extends Component {
 					}}>
 						<Grid>
 							<Grid.Row>
-								<Grid.Column width={11} only='computer tablet'>
+								<Grid.Column width={2}></Grid.Column>
+								<Grid.Column width={8} only='computer tablet'>
 									<div className='SlideText'>
 										<div className='SlideTextStyle'>
 											{slideData[this.state.current].text}
@@ -231,7 +230,8 @@ export default class HomeCover extends Component {
 								</Grid.Column>
 							</Grid.Row>
 							<Grid.Row>
-								<Grid.Column>
+								<Grid.Column width={2}></Grid.Column>
+								<Grid.Column width={12}>
 									<Menu pointing secondary inverted size='large' fluid widths={4} className='SliderMenu'>
 										<Menu.Item active={this.state.current === 0} onClick={() => this.goToSlide(0)}>
 											<div className='SliderNav'>{slideData[0].place}</div>
@@ -247,6 +247,7 @@ export default class HomeCover extends Component {
 										</Menu.Item>
 									</Menu>
 								</Grid.Column>
+								<Grid.Column width={2}></Grid.Column>
 							</Grid.Row>
 						</Grid>
 					</div>

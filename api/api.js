@@ -323,7 +323,7 @@ Router.get('/home', (req, res) => {
 										"gadisar-lake"
 									]
 								}
-							}).select('slug title caption time_to_explore img').limit(10).exec(function(err, places) {
+							}).select('slug title caption time_to_explore img_thumb').limit(10).exec(function(err, places) {
 								if (err) {
 									console.log('error finding experiences for home')
 								} else {

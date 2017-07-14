@@ -19,9 +19,9 @@ const RecommendationCard = (props) => {
 		}} as={`/${this.props.type}/${this.props.data.slug}`}>
 			<a>
 				<Card>
-					<Image src={props.data.img == null
+					<Image src={props.data.img_thumb == null
 						? "https://placeimg.com/400/300/nature"
-						: props.data.img}/>
+						: props.data.img_thumb}/>
 					<Card.Content>
 						<Card.Header>
 							{props.data.title}

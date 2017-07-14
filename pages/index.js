@@ -2,6 +2,8 @@ import 'isomorphic-fetch';
 import React from 'react';
 import axios from 'axios';
 import withRedux from 'next-redux-wrapper';
+import Sticky from 'react-stickynode';
+
 
 import {
 	Button,
@@ -9,12 +11,14 @@ import {
 	Image,
 	Header,
 	Container,
-	Dimmer
+	Dimmer,
+	Divider
 } from 'semantic-ui-react'
 
 
 import Layout from '../components/Layout'
 import TopBar from '../components/TopBar'
+import NavBar from '../components/NavBar'
 import RecommendationCards from '../components/RecommendationCards'
 import Recommendations from '../components/Recommendations'
 import Cover from '../components/HomeCover'
@@ -45,9 +49,12 @@ class Index extends React.Component {
 		return (
 
 			<Layout>
-				<TopBar handleDimmer={e => this.handleDimmer(e)} root={true}/>
+				<Sticky innerZ={99999999999}>
+					<TopBar handleDimmer={e => this.handleDimmer(e)} root={false}/>
+				</Sticky>
+
 				<Dimmer.Dimmable blurring dimmed={this.state.dimmer} style={{
-					marginTop:'-12vh'
+					marginTop:'-18vh'
 				}}>
 					<Dimmer active={this.state.dimmer} onClickOutside={this.handleDimmerHide}></Dimmer>
 					<Cover toSlideOrNot={!this.state.dimmer}/>

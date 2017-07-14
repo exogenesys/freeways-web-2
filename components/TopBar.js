@@ -1,14 +1,23 @@
 import React, {Component} from 'react';
-import {Grid, Icon, Container, Divider} from 'semantic-ui-react';
+import {Grid, Icon, Container, Divider, Menu} from 'semantic-ui-react';
 import Link from 'next/link'
+import Router from 'next/router'
 import {browserHistory} from 'react-router';
 
 import NavSearch from './NavSearch';
 
 export default class TopBar extends Component {
 
+	componentWillReceiveProps(nextProps) {
+		if (this.props.root == nextProps.root)
+			return;
+		this.setState({root: this.props.root});
+	}
+
 	state = {
-		focus: false
+		focus: false,
+		activeItem: 'home',
+		root: this.props.root
 	}
 
 	handleDimmer = (toDimOrNotToDim) => {
@@ -16,69 +25,112 @@ export default class TopBar extends Component {
 		this.setState({focus: toDimOrNotToDim})
 	}
 
+	handleItemClick = (name) => {
+		this.setState({activeItem: name})
+		Router.push('/' + name);
+	}
+
 	render() {
-		const {focus} = this.state;
+		const {focus, activeItem} = this.state;
 
 		let NavContainerStyle = {
-			transition: 'background-color .4s',
 			zIndex: '1011',
 			position: 'relative',
-			marginLeft: '0!important',
-    	marginRight: '0!important'
+			height: '18vh',
 		}
 
-		let NavGridStyle = {
-			margin: '0rem',
-			height: '12vh'
+		let NavGridStyleOne = {
+			paddingTop: '4vh',
+			paddingBottom: '2vh',
+			transition: 'background-color .4s',
+			backgroundColor: 'rgba(255,255,255,1)'
 		}
 
+		let NavGridStyleTwo = {
+			paddingBottom: '0.3rem',
+			paddingTop: '0.1rem',
+			transition: 'background-color .4s',
+			backgroundColor: 'rgba(255,255,255,1)'
+		}
+		
+		let SearchIconStyle = {
+			margin: '6px'
+		}
+
+		let NavLinkClass = 'NavLink'
+
+		if(this.state.root){
+			NavLinkClass = 'NavLinkRoot'
+		}
 
 		let Header = (
-			<Grid.Column textAlign='center' only='computer tablet'>
-				<Link href="/">
-					<a className={this.props.root?'LogoHeaderRoot':'LogoHeader'}>freeways</a>
-				</Link>
-			</Grid.Column>
+			<Link href="/">
+				<a className={this.props.root
+					? 'LogoHeaderRoot'
+					: 'LogoHeader'}>freeways</a>
+			</Link>
 		)
 
-		// let Links = (
-		// 	<Grid.Column textAlign='right' only='computer tablet'>
-		// 		<Link href="/">
-		// 			<a href="/about" className='NavLink'>About Us</a>
-		// 		</Link>
-		// 	</Grid.Column>
-		// )
-
-		let EmptyCol = (
-			<Grid.Column></Grid.Column>
+		let menu = (
+			<Grid.Row style={NavGridStyleTwo}>
+				<Grid.Column style={{
+					left: '40px'
+				}} only='computer tablet'>
+					<Menu inverted={this.props.root} secondary borderless fluid className='TopBarMenu'>
+						<Menu.Item className={NavLinkClass} active={activeItem === 'home'} onClick={() => this.handleItemClick('')}>home</Menu.Item>
+						<Menu.Item className={NavLinkClass} active={activeItem === 'destinations'} onClick={() => this.handleItemClick('destinations')}>destinations</Menu.Item>
+						<Menu.Item className={NavLinkClass} active={activeItem === 'experiences'} onClick={() => this.handleItemClick('experiences')}>experiences</Menu.Item>
+						<Menu.Item className={NavLinkClass} active={activeItem === 'trips'} onClick={() => this.handleItemClick('trips')}>trips</Menu.Item>
+						<Menu.Item className={NavLinkClass} active={activeItem === 'roadtrips'} onClick={() => this.handleItemClick('roadtrips')}>roadtrips</Menu.Item>
+						<Menu.Item className={NavLinkClass} active={activeItem === 'treks'} onClick={() => this.handleItemClick('treks')}>treks</Menu.Item>
+					</Menu>
+				</Grid.Column>
+			</Grid.Row>
 		)
 
-		let numberOfColumns = 3
+		let line = (
+			<Grid.Row style={{
+				paddingBottom: '0',
+				paddingTop: '0'
+			}}>
+				<Grid.Column>
+					 <Divider fitted/> 
+				</Grid.Column>
+			</Grid.Row>
+		)
 
 		if (focus) {
-			NavContainerStyle.backgroundColor = '#FFF'
-			numberOfColumns = 1
-			Header = null
-			// Links = null
-			EmptyCol = null
+			NavGridStyleOne.backgroundColor = '#FFF'
+			Header = null,
+			menu = null
+			line = null
 		}
 		// {Links}
 
 		return (
-			<Container fluid style={NavContainerStyle} className={focus||!this.props.root?null:'HeadShadow'}>
-				<Container>
-					<Grid verticalAlign='middle' columns={numberOfColumns} stretched style={NavGridStyle}>
-						<Grid.Row>
-							<Grid.Column textAlign='center'>
+			<Container fluid style={NavContainerStyle} className={focus || !this.props.root
+				? null
+				: 'HeadShadow'}>
+				<Container fluid>
+					<Grid verticalAlign='middle'>
+						<Grid.Row style={NavGridStyleOne}>
+							<Grid.Column style={{
+								left: '30px'
+							}} only='computer tablet' width={2}>
+								{Header}
+							</Grid.Column>
+							<Grid.Column width={8} style={{
+								left: '10x',
+							}}>
 								<div className='ui transparent input'>
-									<Icon style={{margin:'6px'}} name="search" fitted inverted={!((focus)||(!this.props.root))} size="large"></Icon>
+									<Icon style={SearchIconStyle} name="search" fitted inverted={!((focus) || (!this.props.root))} size="large"></Icon>
 									<NavSearch root={this.props.root} handleDimmer={e => this.handleDimmer(e)} title={this.props.title}/>
 								</div>
 							</Grid.Column>
-							{Header}
 						</Grid.Row>
+						{menu}
+						{line}
 					</Grid>
-					<Divider inverted fitted/>
 				</Container>
 			</Container>
 		)
