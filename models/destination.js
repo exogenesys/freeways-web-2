@@ -14,15 +14,15 @@ var destinationSchema = new Schema({
 		type: String
 	},
 
-    img_thumb:{
-      type:String
-    },
-
-	type : {
+	img_thumb: {
 		type: String
 	},
 
-	filter : {
+	type: {
+		type: String
+	},
+
+	filter: {
 		type: [String]
 	},
 
@@ -32,7 +32,7 @@ var destinationSchema = new Schema({
 		type: [[Number]]
 	},
 
-	type : {
+	type: {
 		type: String
 	},
 
@@ -61,9 +61,15 @@ var destinationSchema = new Schema({
 		type: String
 	},
 
+	score: Number,
+	solo_score: Number,
+	family_score: Number,
+	couple_score: Number,
+	friends_score: Number,
+
 	loc: [{
-      type: Schema.Types.ObjectId, ref: 'NearByLoc'
-  }],
+		type: Schema.Types.ObjectId, ref: 'NearByLoc'
+	}],
 
 	must_know: {
 		type: String
@@ -85,15 +91,15 @@ var destinationSchema = new Schema({
 		type: String
 	},
 
-	must_carry: [{type: Number, ref: 'mustCarry'}],
+	must_carry: [{ type: Number, ref: 'mustCarry' }],
 
-	places: [{type: Number, ref: 'places'}],
+	places: [{ type: Number, ref: 'places' }],
 
-	experiences: [{type: Number, ref: 'experiences'}],
+	experiences: [{ type: Number, ref: 'experiences' }],
 
-	trips: [{type: Number, ref: 'trips'}],
+	trips: [{ type: Number, ref: 'trips' }],
 
-	languages: [{type: Number, ref: 'languages'}],
+	languages: [{ type: Number, ref: 'languages' }],
 
 	coverPhoto: {
 		type: String
@@ -110,7 +116,7 @@ var destinationSchema = new Schema({
 	keywords: {
 		type: String
 	}
-}, {timestamps: true});
+}, { timestamps: true });
 
 var destination = mongoose.model('Destination', destinationSchema);
 
