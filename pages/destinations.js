@@ -51,16 +51,41 @@ class Index extends React.Component {
 		return { data };
 	}
 
+	componentWillReceiveProps(nextProps) {
+		console.log('recieved f props')
+		if (this.props.data == nextProps.data)
+			return;
+		let updatedList = nextProps.data.sort((a, b) => {
+			if (a.score < b.score)
+				return 1
+			else
+				return -1
+			return 0
+		});
+
+		updatedList = updatedList.map((item) => {
+			item.img_thumb = 'https://s3.amazonaws.com/society-of-the-spectacle/img/agra.jpg'
+			console.log(item.img_thumb)
+			return item
+		})
+
+		this.setState(items: updatedList);
+	}
+
+
 
 	handleDimmer = (toDimOrNotToDim) => this.setState({ dimmer: toDimOrNotToDim })
 	toggleVisibility = () => this.setState({ visible: !this.state.visible })
 
 	handleFilterClick = (e, { name }) => {
 		if (this.state.activeFilter === name) {
-			this.setState({ activeFilter: '', items: this.props.data, value: '' })
+			this.setState({ activeFilter: '', value: '' })
 		} else {
 			this.setState({ items: [], isLoading: true });
-			let updatedList = this.props.data;
+			let updatedList = this.state.items;
+			// if(this.state.activePeople != ''){
+				// updatedList = this.state.items
+			// }
 			updatedList = updatedList.filter(function (place) {
 				return (place.filter.map(function (filterium) {
 					return filterium.toLowerCase();
@@ -73,19 +98,55 @@ class Index extends React.Component {
 
 	handleRecommendForClick = (e, { name }) => {
 		if (this.state.activePeople === name) {
-			this.setState({ activePeople: '', items: this.props.data, value: '' })
+			this.setState({ activePeople: '', value: '' })
 		} else {
 			this.setState({ items: [], isLoading: true });
-			let updatedList = this.props.data;
-			updatedList = updatedList.filter(function (place) {
-				return (place.filter.map(function (filterium) {
-					return filterium.toLowerCase();
-				})).indexOf(name) != -1;
-			});
-			this.setState({ activeFilter: name, items: updatedList, isLoading: false, value: '' })
+			let updatedList = this.state.items;
+			updatedList = updatedList.sort(function (a, b) {
+				console.log(a.solo_score, b.solo_score)
+				switch (name) {
+					case 'solo':
+						if (a.solo_score < b.solo_score)
+							return 1
+						else
+							return -1
+						return 0
+						break;
+					case 'family':
+						if (a.family_score < b.family_score)
+							return 1
+						else
+							return -1
+						return 0
+						break;
+					case 'friends':
+						if (a.friends_score < b.friends_score)
+							return 1
+						else
+							return -1
+						return 0
+						break;
+					case 'couple':
+						if (a.couple_score < b.couple_score)
+							return 1
+						else
+							return -1
+						return 0
+						break;
+					default:
+						if (a.score < b.score)
+							return 1
+						else
+							return -1
+						return 0
+						break;
+				}
+				console.log(a.solo_score, b.solo_score)
+			})
+			this.setState({ activePeople: name, items: updatedList, isLoading: false, value: '' })
 		}
-
 	}
+
 
 
 	handleSearchChange = (e, value) => {
@@ -111,7 +172,8 @@ class Index extends React.Component {
 		const SidebarStyle = {
 			boxShadow: '0 0 0 0',
 			borderBottom: '0',
-			borderTop: '0'
+			borderTop: '0',
+			width: '15vw'
 		}
 
 		const PushableContainerStyle = {
@@ -174,8 +236,10 @@ class Index extends React.Component {
 					color: 'rgba(0,0,0,.87)',
 					textTransform: 'capitalize'
 				}} className='InterestItem' color={item.color} name={item.title} active={activeFilter === item.title} onClick={this.handleFilterClick}>
+					<Icon style={{
+						marginBottom: '10px'
+					}} size='large'><Image src={item.icon} /></Icon>
 					{item.title}
-					<Image size='mini' src={item.icon} />
 				</Menu.Item>
 			);
 		});
@@ -186,8 +250,10 @@ class Index extends React.Component {
 					color: 'rgba(0,0,0,.87)',
 					textTransform: 'capitalize'
 				}} className='InterestItem' color={item.color} name={item.title} active={activePeople === item.title} onClick={this.handleRecommendForClick}>
+					<Icon style={{
+						marginBottom: '10px'
+					}} size='large'><Image src={item.icon} /></Icon>
 					{item.title}
-					<Image size='mini' src={item.icon} />
 				</Menu.Item>
 			);
 		});
@@ -206,14 +272,14 @@ class Index extends React.Component {
 					<Dimmer active={dimmer} onClickOutside={this.handleDimmerHide}></Dimmer>
 					<Sidebar.Pushable as={Segment} style={PushableContainerStyle} >
 						<Container>
-							<Sidebar as={Segment} animation='overlay' width='wide' visible={visible} style={SidebarStyle}>
-								<Menu style={SideBarMenuStyle} vertical fluid pointing secondary>
+							<Sidebar as={Segment} animation='overlay' visible={visible} style={SidebarStyle}>
+								<Menu style={SideBarMenuStyle} vertical fluid text secondary>
 									<Header style={{
 										marginTop: '20px'
 									}} size='medium'>Filters</Header>
 									{filterItems}
 								</Menu>
-								<Menu style={SideBarMenuStyle} vertical fluid pointing secondary>
+								<Menu style={SideBarMenuStyle} vertical fluid text secondary>
 									<Header style={{
 										marginTop: '20px'
 									}} size='medium'>Recommended For</Header>
