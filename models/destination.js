@@ -18,8 +18,21 @@ var destinationSchema = new Schema({
       type:String
     },
 
+	type : {
+		type: String
+	},
 
-	destination : {
+	filter : {
+		type: [String]
+	},
+
+	zone: Number,
+
+	best_months_to_visit: [
+		type: [[Number]]
+	],
+
+	type : {
 		type: String
 	},
 
