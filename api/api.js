@@ -352,7 +352,7 @@ Router.get('/places', (req, res) => {
 });
 
 Router.get('/destinations', (req, res) => {
-	destinations.find().select('slug img_thumb title type best_month_to_visit latitude longitude id filter solo_score family_score friends_score couple_score').exec(function(err, destinations) {
+	destinations.find().select('slug img_thumb title type best_month_to_visit latitude longitude id filter solo_score family_score friends_score couple_score score').exec(function(err, destinations) {
 		if (err) {
 			console.log('error finding trips for home')
 		} else {
