@@ -411,7 +411,7 @@ Router.get("/destination/:slug", (req, res, next) => {
 	destinations.findOne({slug: req.params.slug}).lean().exec((err, data) => {
 		if (err || data == null) {
 			console.error("error looking up destination data ");
-			next(err)
+			// next(err)
 		} else {
 			// rp('http://api.openweathermap.org/data/2.5/weather?lat=' + data.latitude + '&lon=' + data.longitude + '&appid=e6c33eefa2e93035fbc5bb2964d35603').then((response) => {
 			// 	const weather = JSON.parse(response)
@@ -451,7 +451,7 @@ Router.get("/place/:slug", (req, res) => {
 	}, (err, data) => {
 		if (err || data == null) {
 			console.error("error took place while looking up places");
-			next(Error("this place does not exist"));
+			// next(Error("this place does not exist"));
 		} else {
 			let noLocationData = true
 				let lat = 0,
@@ -504,7 +504,7 @@ Router.get("/place/:slug", (req, res) => {
 		}, (err, data) => {
 			if (err || data == null) {
 				console.error("error took place while looking up experiences");
-				next(err);
+				// next(err);
 			} else {
 				mustCarry.find({"id":{$in:data.must_carry}}).select('slug title source information').exec(function(err, _must_carry) {
 					if (err) {
