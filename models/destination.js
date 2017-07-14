@@ -28,9 +28,9 @@ var destinationSchema = new Schema({
 
 	zone: Number,
 
-	best_months_to_visit: [
+	best_months_to_visit: {
 		type: [[Number]]
-	],
+	},
 
 	type : {
 		type: String
