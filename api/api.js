@@ -353,6 +353,18 @@ Router.get('/places', (req, res) => {
 	})
 });
 
+Router.get('/destinations', (req, res) => {
+	console.log('hello from home');
+	destinations.find().exec(function(err, destinations) {
+		if (err) {
+			console.log('error finding trips for home')
+		} else {
+			res.send(destinations)
+		}
+	})
+});
+
+
 Router.get('/experiences', (req, res) => {
 	console.log('hello from home');
 	experiences.find().select('slug img title caption information best_time_to_visit best_time_to_visit_more_information latitude longitude usual_timings days_off timing_more_information how_to_reach_by_bus how_to_reach_by_car how_to_reach_by_plane how_to_reach_by_train must_know how_to_reach_by_walk keywords').exec(function(err, experiences) {
