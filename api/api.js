@@ -276,7 +276,6 @@ Router.get('/ImgUrlGen', (req, res) => {
 })
 
 Router.get('/home', (req, res) => {
-	console.log('hello from home');
 	var obj = {};
 	trips.find().select('slug title caption time_to_explore img').limit(10).exec(function(err, trips) {
 		if (err) {
@@ -343,7 +342,6 @@ Router.get('/home', (req, res) => {
 });
 
 Router.get('/places', (req, res) => {
-	console.log('hello from home');
 	places.find().select('slug img title caption introduction best_time_to_visit best_time_to_visit_more_information latitude longitude how_to_reach_by_bus how_to_reach_by_car how_to_reach_by_plane how_to_reach_by_train must_know how_to_reach_by_walk keywords').exec(function(err, places) {
 		if (err) {
 			console.log('error finding trips for home')
@@ -354,8 +352,7 @@ Router.get('/places', (req, res) => {
 });
 
 Router.get('/destinations', (req, res) => {
-	console.log('hello from home');
-	destinations.find().exec(function(err, destinations) {
+	destinations.find().select('slug img_thumb title type best_month_to_visit latitude longitude id filters solo_score family_score friends_score couple_score').exec(function(err, destinations) {
 		if (err) {
 			console.log('error finding trips for home')
 		} else {
@@ -366,7 +363,6 @@ Router.get('/destinations', (req, res) => {
 
 
 Router.get('/experiences', (req, res) => {
-	console.log('hello from home');
 	experiences.find().select('slug img title caption information best_time_to_visit best_time_to_visit_more_information latitude longitude usual_timings days_off timing_more_information how_to_reach_by_bus how_to_reach_by_car how_to_reach_by_plane how_to_reach_by_train must_know how_to_reach_by_walk keywords').exec(function(err, experiences) {
 		if (err) {
 			console.log('error finding trips for home')
@@ -377,7 +373,6 @@ Router.get('/experiences', (req, res) => {
 });
 
 Router.get('/placesslug', (req, res) => {
-	console.log('hello from home');
 	var obj = {};
 	places.find().select('slug title').exec(function(err, places) {
 		if (err) {
@@ -389,7 +384,6 @@ Router.get('/placesslug', (req, res) => {
 });
 
 Router.get('/exslug', (req, res) => {
-	console.log('hello from home');
 	var obj = {};
 	experiences.find().select('slug title').exec(function(err, experiences) {
 		if (err) {
