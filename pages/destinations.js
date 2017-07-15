@@ -389,13 +389,12 @@ class Index extends React.Component {
 											</Grid.Column>
 											<Grid.Column computer={14} mobile={16} tablet={16}>
 												<Segment basic id="destinations" style={{
-													marginLeft: '-8px',
-													marginRight: '-8px'
+													    margin: '-1rem'
 												}}>
-
 													<div ref='places'>
 														<Header style={{
-															marginTop: '10px'
+															marginTop: '25px',
+															marginBottom: '20px'
 														}} size='huge'>Destinations</Header>
 														<Menu>
 															<Menu.Item>
