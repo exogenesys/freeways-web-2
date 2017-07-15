@@ -16,7 +16,8 @@ import {
 	List,
 	Sidebar,
 	Icon,
-	Menu
+	Menu,
+	Dropdown
 } from 'semantic-ui-react'
 
 import Layout from '../components/Layout'
@@ -36,6 +37,7 @@ class Index extends React.Component {
 			dimmer: false,
 			activeFilter: '',
 			activePeople: '',
+			activeZone: 10,
 			placeholder: 'Search Destinations',
 			value: '',
 			isLoading: false,
@@ -76,6 +78,17 @@ class Index extends React.Component {
 
 	handleDimmer = (toDimOrNotToDim) => this.setState({ dimmer: toDimOrNotToDim })
 	toggleVisibility = () => this.setState({ visible: !this.state.visible })
+
+
+	zone(list, name) {
+		if (name == 10)
+			return list
+		return list.filter(function (place) {
+			if (place.zone == name)
+				return true
+			else return false
+		});
+	}
 
 
 	filter(list, name) {
@@ -131,28 +144,35 @@ class Index extends React.Component {
 	}
 
 	handleFilterClick = (e, { name }) => {
+		let updatedList = this.props.data;
 		if (this.state.activeFilter === name) {
-			this.setState({ activeFilter: '', value: '' })
-		} else {
 			this.setState({ items: [], isLoading: true });
-			let updatedList = this.props.data;
-			updatedList = this.filter(updatedList, name)
-			if(this.state.activePeople){
+			if (this.state.activePeople) {
 				updatedList = this.sort(updatedList, this.state.activePeople)
 			}
-			this.setState({ activeFilter: name, items: updatedList, isLoading: false, value: '' })
+			name = ''
+		} else {
+			this.setState({ items: [], isLoading: true });
+			updatedList = this.filter(updatedList, name)
+			if (this.state.activePeople) {
+				updatedList = this.sort(updatedList, this.state.activePeople)
+			}
 		}
-
+		this.setState({ activeFilter: name, items: updatedList, isLoading: false, value: '' })
 	}
 
 	handleRecommendForClick = (e, { name }) => {
+		let updatedList = this.props.data;
 		if (this.state.activePeople === name) {
-			this.setState({ activePeople: '', value: '' })
+			this.setState({ items: [], isLoading: true });
+			if (this.state.activeFilter) {
+				updatedList = this.filter(updatedList, this.state.activeFilter)
+			}
+			name = ''
 		} else {
 			this.setState({ items: [], isLoading: true });
-			let updatedList = this.props.data;
 			updatedList = this.sort(updatedList, name)
-			if(this.state.activeFilter){
+			if (this.state.activeFilter) {
 				updatedList = this.filter(updatedList, this.state.activeFilter)
 			}
 			this.setState({ activePeople: name, items: updatedList, isLoading: false, value: '' })
@@ -169,6 +189,22 @@ class Index extends React.Component {
 		})
 		this.setState({ value, items: list, isLoading: false })
 	}
+
+	handleZoneChange = (e, { value }) => {
+		let updatedList = this.props.data;
+		this.setState({ items: [], isLoading: true });
+		if (this.state.activePeople) {
+			updatedList = this.sort(updatedList, this.state.activePeople)
+		}
+		if (this.state.activeFilter) {
+			updatedList = this.filter(updatedList, this.state.activeFilter)
+		}
+		// if (this.state.activeZone === value) {
+		updatedList = this.zone(updatedList, value)
+		// }
+		this.setState({ activeZone: value, items: updatedList, isLoading: false, value: '' })
+	}
+
 
 
 	render() {
@@ -242,6 +278,31 @@ class Index extends React.Component {
 			}
 		];
 
+
+		const zone = [
+			{
+				text: 'India',
+				value: 10,
+			},
+			{
+				text: 'South',
+				value: 2,
+			},
+			{
+				text: 'North',
+				value: 0,
+			},
+			{
+				text: 'West',
+				value: 3,
+			},
+			{
+				text: 'East',
+				value: 1,
+			}
+		]
+
+
 		let filterItems = filters.map((item) => {
 			return (
 				<Menu.Item style={{
@@ -269,7 +330,6 @@ class Index extends React.Component {
 				</Menu.Item>
 			);
 		});
-
 
 
 		return (
@@ -308,10 +368,40 @@ class Index extends React.Component {
 											<Grid.Column computer={2} only='computer'>
 											</Grid.Column>
 											<Grid.Column computer={14} mobile={16} tablet={16}>
-												<div ref='places'>
+												<Segment basic id="destinations" style={{
+													marginLeft: '-8px',
+													marginRight: '-8px'
+												}}>
+
+													<div ref='places'>
+														<Header style={{
+															marginTop: '10px'
+														}} size='huge'>Destinations</Header>
+														<span style={{
+															float: 'right'
+														}}>
+															Zone :
+														{' '}
+															<Dropdown inline options={zone} defaultValue={zone[0].value} style={{
+																zIndex: 53
+															}} onChange={this.handleZoneChange} />
+														</span>
+													</div>
+												</Segment>
+											</Grid.Column>
+										</Grid.Row>
+										<Grid.Row colums={2}>
+											<Grid.Column computer={2} only='computer'>
+											</Grid.Column>
+											<Grid.Column computer={14} mobile={16} tablet={16}>
+												<Segment basic id="destinations" style={{
+													marginLeft: '-8px',
+													marginRight: '-8px'
+												}}>
 													<Destinations data={this.state.items} />
-												</div>
-												<Button onClick={this.toggleVisibility}>Toggle Visibility</Button>
+													<br />
+													<br />
+												</Segment>
 											</Grid.Column>
 										</Grid.Row>
 									</Grid>

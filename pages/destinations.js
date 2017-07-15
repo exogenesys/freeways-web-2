@@ -17,7 +17,8 @@ import {
 	Sidebar,
 	Icon,
 	Menu,
-	Dropdown
+	Dropdown,
+	Search
 } from 'semantic-ui-react'
 
 import Layout from '../components/Layout'
@@ -37,12 +38,19 @@ class Index extends React.Component {
 			dimmer: false,
 			activeFilter: '',
 			activePeople: '',
-			activeZone: 10,
+			activeZone: 'All',
 			placeholder: 'Search Destinations',
 			value: '',
 			isLoading: false,
 			visible: true,
-			items: this.props.data
+			items: this.props.data,
+			zones: [
+				'All',
+				'North',
+				'East',
+				'South',
+				'West'
+			]
 		};
 	}
 
@@ -80,11 +88,12 @@ class Index extends React.Component {
 	toggleVisibility = () => this.setState({ visible: !this.state.visible })
 
 
-	zone(list, name) {
-		if (name == 10)
+	zone(list, index) {
+		console.log(index);
+		if (index == 0 || index == -1)
 			return list
 		return list.filter(function (place) {
-			if (place.zone == name)
+			if (place.zone == (index - 1))
 				return true
 			else return false
 		});
@@ -145,53 +154,38 @@ class Index extends React.Component {
 
 	handleFilterClick = (e, { name }) => {
 		let updatedList = this.props.data;
-		if (this.state.activeFilter === name) {
-			this.setState({ items: [], isLoading: true });
-			if (this.state.activePeople) {
-				updatedList = this.sort(updatedList, this.state.activePeople)
-			}
-			name = ''
-		} else {
-			this.setState({ items: [], isLoading: true });
-			updatedList = this.filter(updatedList, name)
-			if (this.state.activePeople) {
-				updatedList = this.sort(updatedList, this.state.activePeople)
-			}
+		this.setState({ items: [], isLoading: true });
+		if (this.state.activePeople) {
+			updatedList = this.sort(updatedList, this.state.activePeople)
 		}
+		if (this.state.activeZone) {
+			updatedList = this.zone(updatedList, this.state.zones.indexOf(this.state.activeZone))
+		}
+		if (this.state.activeFilter === name) {
+			name = ''
+		}
+		updatedList = this.filter(updatedList, name)
 		this.setState({ activeFilter: name, items: updatedList, isLoading: false, value: '' })
 	}
 
 	handleRecommendForClick = (e, { name }) => {
 		let updatedList = this.props.data;
-		if (this.state.activePeople === name) {
-			this.setState({ items: [], isLoading: true });
-			if (this.state.activeFilter) {
-				updatedList = this.filter(updatedList, this.state.activeFilter)
-			}
-			name = ''
-		} else {
-			this.setState({ items: [], isLoading: true });
-			updatedList = this.sort(updatedList, name)
-			if (this.state.activeFilter) {
-				updatedList = this.filter(updatedList, this.state.activeFilter)
-			}
-			this.setState({ activePeople: name, items: updatedList, isLoading: false, value: '' })
+		this.setState({ items: [], isLoading: true });
+		if (this.state.activeFilter) {
+			updatedList = this.filter(updatedList, this.state.activeFilter)
 		}
+		if (this.state.activeZone) {
+			updatedList = this.zone(updatedList, this.state.zones.indexOf(this.state.activeZone))
+		}
+		if (this.state.activePeople === name) {
+			name = ''
+		}
+		updatedList = this.sort(updatedList, name)
+		this.setState({ activePeople: name, items: updatedList, isLoading: false, value: '' })
 	}
 
 
-
-	handleSearchChange = (e, value) => {
-		this.setState({ items: [], isLoading: true, activeFilter: '' });
-		let list = this.props.data;
-		list = list.filter(function (place) {
-			return ((place.title.toLowerCase()).includes(value.toLowerCase()))
-		})
-		this.setState({ value, items: list, isLoading: false })
-	}
-
-	handleZoneChange = (e, { value }) => {
-		console.log(value)
+	handleZoneChange = (e, { name }) => {
 		let updatedList = this.props.data;
 		this.setState({ items: [], isLoading: true });
 		if (this.state.activePeople) {
@@ -200,10 +194,22 @@ class Index extends React.Component {
 		if (this.state.activeFilter) {
 			updatedList = this.filter(updatedList, this.state.activeFilter)
 		}
-		if (!this.state.activeZone === value) {
-			updatedList = this.zone(updatedList, value)
+		updatedList = this.zone(updatedList, this.state.zones.indexOf(name))
+		this.setState({ activeZone: name, items: updatedList, isLoading: false, value: '' })
+	}
+
+
+	handleSearchChange = (e, value) => {
+		this.setState({ items: [], isLoading: true, activeFilter: '', activePeople: '' });
+		let updatedList = this.props.data;
+		if (this.state.activeZone) {
+			updatedList = this.zone(updatedList, this.state.zones.indexOf(this.state.activeZone))
 		}
-		this.setState({ activeFilter: value, items: updatedList, isLoading: false, value: '' })
+
+		updatedList = updatedList.filter(function (place) {
+			return ((place.title.toLowerCase()).includes(value.toLowerCase()))
+		})
+		this.setState({ value, items: updatedList, isLoading: false })
 	}
 
 
@@ -230,6 +236,10 @@ class Index extends React.Component {
 			borderBottom: '0',
 			borderTop: '0',
 			marginTop: '0'
+		}
+
+		const ClearFilterStyle = {
+			textTransform: 'capitalize'
 		}
 
 		const filters = [
@@ -280,28 +290,6 @@ class Index extends React.Component {
 		];
 
 
-		const zone = [
-			{
-				text: 'india',
-				value: 10,
-			},
-			{
-				text: 'South India',
-				value: 2,
-			},
-			{
-				text: 'Montainous North',
-				value: 0,
-			},
-			{
-				text: 'Western Ghats',
-				value: 3,
-			},
-			{
-				text: 'North East',
-				value: 1,
-			}
-		]
 
 
 		let filterItems = filters.map((item) => {
@@ -334,12 +322,42 @@ class Index extends React.Component {
 
 
 
+		let zoneItems = this.state.zones.map((item) => {
+			return (
+				<Dropdown.Item name={item} onClick={this.handleZoneChange}>
+					{item}
+				</Dropdown.Item>
+			);
+		});
+
+		let clearfilters = []
+
+		if (this.state.activeFilter) {
+			clearfilters.push(
+				<Label color='orange' style={ClearFilterStyle} size='medium'>
+					<Icon name='remove' /> {this.state.activeFilter}
+				</Label>
+			)
+		}
+
+		if (this.state.activePeople) {
+			clearfilters.push(
+				<Label color='orange' style={ClearFilterStyle} size='medium'>
+					<Icon name='remove' /> {this.state.activePeople}
+				</Label>
+			)
+		}
+
+		if (clearfilters.length === 0) {
+			clearfilters = null
+		}
+
+
+
 		return (
 
 			<Layout>
-				<Sticky innerZ={99999999999}>
-					<TopBar handleDimmer={e => this.handleDimmer(e)} root={false} />
-				</Sticky>
+				<TopBar handleDimmer={e => this.handleDimmer(e)} root={false} />
 				<Dimmer.Dimmable blurring dimmed={dimmer} style={{
 					marginTop: '-5vh'
 				}}>
@@ -379,17 +397,26 @@ class Index extends React.Component {
 														<Header style={{
 															marginTop: '10px'
 														}} size='huge'>Destinations</Header>
-														<span style={{
-															float: 'right'
-														}}>
-															Zone :
-														{' '}
-															<Dropdown inline options={zone} defaultValue={zone[0].value} style={{
-																zIndex: 53
-															}} onChange={this.handleZoneChange} />
-														</span>
+														<Menu>
+															<Menu.Item>
+																<div className='ui transparent icon input'>
+																	<Search loading={isLoading} onSearchChange={this.handleSearchChange} placeholder={placeholder} value={value} open={false} onFocus={this.handleFocus} onBlue={this.handleBlur} className='GridSearch' />
+																</div>
+															</Menu.Item>
+															<Menu.Item className='ClearFilterItemStyle'>
+																{clearfilters}
+															</Menu.Item>
+															<Menu.Menu position='right'>
+																<Dropdown item text={this.state.activeZone} basic>
+																	<Dropdown.Menu style={{
+																		zIndex: 53
+																	}}>
+																		{zoneItems}
+																	</Dropdown.Menu>
+																</Dropdown>
+															</Menu.Menu>
+														</Menu>
 													</div>
-													<Button onClick={this.toggleVisibility}>Toggle Visibility</Button>
 												</Segment>
 											</Grid.Column>
 										</Grid.Row>
@@ -404,7 +431,6 @@ class Index extends React.Component {
 													<Destinations data={this.state.items} />
 													<br />
 													<br />
-													<Button onClick={this.toggleVisibility}>Toggle Visibility</Button>
 												</Segment>
 											</Grid.Column>
 										</Grid.Row>
@@ -415,9 +441,9 @@ class Index extends React.Component {
 							<br />
 						</Container>
 					</Sidebar.Pushable>
-				</Dimmer.Dimmable>
+				</Dimmer.Dimmable >
 				<Footer />
-			</Layout>
+			</Layout >
 
 		);
 	}
