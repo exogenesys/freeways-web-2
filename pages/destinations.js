@@ -220,6 +220,7 @@ class Index extends React.Component {
 
 		const SidebarStyle = {
 			boxShadow: '0 0 0 0',
+			borderRadius: '0',
 			paddingTop: '0',
 			borderTop: '0',
 			borderBottom: '0',
@@ -355,13 +356,12 @@ class Index extends React.Component {
 					<TopBar handleDimmer={e => this.handleDimmer(e)} root={false} />
 				</Sticky>
 				<Dimmer.Dimmable blurring dimmed={dimmer} style={{
-					marginTop: '-5vh'
 				}}>
 					<Dimmer active={dimmer} onClickOutside={this.handleDimmerHide}></Dimmer>
 					<Grid>
 						<Grid.Row columns={2}>
 							<Grid.Column width={3} as={Segment} width={3} style={SidebarStyle} id='Sidebar'>
-								<Sticky innerZ={99999999999} top={'#navbar'} bottomBoundary={'#Sidebar'}>
+								<Sticky innerZ={99999999999} top={'#topbar'} bottomBoundary={'#Sidebar'}>
 									<Segment basic>
 										<Menu style={SideBarMenuStyle} vertical fluid text secondary>
 											<Header style={{
