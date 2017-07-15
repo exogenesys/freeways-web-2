@@ -221,7 +221,9 @@ class Index extends React.Component {
 		const SidebarStyle = {
 			boxShadow: '0 0 0 0',
 			paddingTop: '0',
-			border: '0',
+			borderTop: '0',
+			borderBottom: '0',
+			borderLeft: '0',
 			width: '15vw'
 		}
 
@@ -357,18 +359,32 @@ class Index extends React.Component {
 				}}>
 					<Dimmer active={dimmer} onClickOutside={this.handleDimmerHide}></Dimmer>
 					<Grid>
-						<Grid.Row>
-							<Grid.Column>
-								<Sticky innerZ={99999999999} top={'#topbar'}>
-									<Segment basic id="destinations" style={{
-										backgroundColor: '#fff',
-										marginTop: '-1.2rem'
-									}}>
-										<Grid>
-											<Grid.Row columns={2}>
-												<Grid.Column width={3}>
-												</Grid.Column>
-												<Grid.Column width={13} >
+						<Grid.Row columns={2}>
+							<Grid.Column width={3} as={Segment} width={3} style={SidebarStyle} id='Sidebar'>
+								<Sticky innerZ={99999999999} top={'#navbar'} bottomBoundary={'#Sidebar'}>
+									<Segment basic>
+										<Menu style={SideBarMenuStyle} vertical fluid text secondary>
+											<Header style={{
+											}} size='medium'>Filters</Header>
+											{filterItems}
+										</Menu>
+										<Menu style={SideBarMenuStyle} vertical fluid text secondary>
+											<Header style={{
+											}} size='medium'>Recommended For</Header>
+											{recommendedForItems}
+										</Menu>
+									</Segment>
+								</Sticky>
+							</Grid.Column>
+							<Grid.Column width={13} >
+								<Grid>
+									<Grid.Row>
+										<Grid.Column>
+											<Sticky innerZ={99999999999} top={'#topbar'}>
+												<Segment basic id="destinations" style={{
+													backgroundColor: '#fff',
+													marginTop: '-1.2rem'
+												}}>
 													<div ref='places'>
 
 														<Menu style={{
@@ -393,52 +409,36 @@ class Index extends React.Component {
 															</Menu.Menu>
 														</Menu>
 													</div>
-												</Grid.Column>
-											</Grid.Row>
-										</Grid>
-									</Segment>
-								</Sticky>
+												</Segment>
+											</Sticky>
+										</Grid.Column>
+									</Grid.Row>
+									<Grid.Row>
+										<Grid.Column>
+											<Segment basic style={{
+												minHeight: '80vh',
+												padding: '0'
+											}}>
+												<Grid>
+													<Grid.Row>
+														<Grid.Column>
+															<Segment basic id="destinations" style={{
+															}}>
+																<Destinations data={this.state.items} />
+																<br />
+																<br />
+															</Segment>
+														</Grid.Column>
+													</Grid.Row>
+												</Grid>
+											</Segment>
+										</Grid.Column>
+									</Grid.Row>
+								</Grid >
 
 							</Grid.Column>
 						</Grid.Row>
-						<Grid.Row columns={2}>
-							<Grid.Column as={Segment} width={3} style={SidebarStyle} id='Sidebar'>
-								<Sticky innerZ={99999999999} top={'#navbar'} bottomBoundary={'#Sidebar'}>
-									<Segment basic>
-										<Menu style={SideBarMenuStyle} vertical fluid text secondary>
-											<Header style={{
-											}} size='medium'>Filters</Header>
-											{filterItems}
-										</Menu>
-										<Menu style={SideBarMenuStyle} vertical fluid text secondary>
-											<Header style={{
-											}} size='medium'>Recommended For</Header>
-											{recommendedForItems}
-										</Menu>
-									</Segment>
-								</Sticky>
-							</Grid.Column>
-							<Grid.Column width={13}>
-								<Segment basic style={{
-									minHeight: '80vh',
-									padding: '0'
-								}}>
-									<Grid>
-										<Grid.Row>
-											<Grid.Column>
-												<Segment basic id="destinations" style={{
-												}}>
-													<Destinations data={this.state.items} />
-													<br />
-													<br />
-												</Segment>
-											</Grid.Column>
-										</Grid.Row>
-									</Grid>
-								</Segment>
-							</Grid.Column>
-						</Grid.Row>
-					</Grid>
+					</Grid >
 				</Dimmer.Dimmable >
 				<Footer />
 			</Layout >

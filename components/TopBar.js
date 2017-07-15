@@ -36,7 +36,7 @@ export default class TopBar extends Component {
 		let NavContainerStyle = {
 			zIndex: '1011',
 			position: 'relative',
-			height: '20vh',
+			height: '15vh',
 		}
 
 		let NavGridStyleOne = {
