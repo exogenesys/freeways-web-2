@@ -216,20 +216,19 @@ class Index extends React.Component {
 		const SideBarMenuStyle = {
 			border: '0',
 			boxShadow: '0 0 0 0',
-			marginTop: '8px'
 		}
 
 		const SidebarStyle = {
 			boxShadow: '0 0 0 0',
-			borderBottom: '0',
-			borderTop: '0',
+			paddingTop: '0',
+			border: '0',
 			width: '15vw'
 		}
 
 		const PushableContainerStyle = {
 			boxShadow: '0 0 0 0',
 			borderBottom: '0',
-			borderTop: '0',
+			borderLeft: '1px',
 			marginTop: '0'
 		}
 
@@ -350,43 +349,28 @@ class Index extends React.Component {
 		return (
 
 			<Layout>
-				<TopBar handleDimmer={e => this.handleDimmer(e)} root={false} />
+				<Sticky innerZ={99999999999}>
+					<TopBar handleDimmer={e => this.handleDimmer(e)} root={false} />
+				</Sticky>
 				<Dimmer.Dimmable blurring dimmed={dimmer} style={{
 					marginTop: '-5vh'
 				}}>
 					<Dimmer active={dimmer} onClickOutside={this.handleDimmerHide}></Dimmer>
 					<Grid>
-						<Grid.Row columns={2}>
-							<Grid.Column as={Segment} width={3} style={SidebarStyle}>
-								<Segment basic>
-									<Menu style={SideBarMenuStyle} vertical fluid text secondary>
-										<Header style={{
-										}} size='medium'>Filters</Header>
-										{filterItems}
-									</Menu>
-									<Menu style={SideBarMenuStyle} vertical fluid text secondary>
-										<Header style={{
-											marginTop: '20px'
-										}} size='medium'>Recommended For</Header>
-										{recommendedForItems}
-									</Menu>
-								</Segment>
-							</Grid.Column>
-							<Grid.Column width={13}>
-								<Segment basic style={{
-									minHeight: '80vh'
-								}}>
-									<Grid>
-										<Grid.Row>
-											<Grid.Column>
-												<Segment basic id="destinations" style={{
-													margin: '-1rem'
-												}}>
+						<Grid.Row>
+							<Grid.Column>
+								<Sticky innerZ={99999999999} top={'#topbar'}>
+									<Segment basic id="destinations" style={{
+										backgroundColor: '#fff',
+										marginTop: '-1.2rem'
+									}}>
+										<Grid>
+											<Grid.Row columns={2}>
+												<Grid.Column width={3}>
+												</Grid.Column>
+												<Grid.Column width={13} >
 													<div ref='places'>
-														<Header style={{
-															marginTop: '25px',
-															marginBottom: '20px'
-														}} size='huge'>Destinations</Header>
+
 														<Menu style={{
 															height: '3em'
 														}} stackable>
@@ -409,14 +393,40 @@ class Index extends React.Component {
 															</Menu.Menu>
 														</Menu>
 													</div>
-												</Segment>
-											</Grid.Column>
-										</Grid.Row>
+												</Grid.Column>
+											</Grid.Row>
+										</Grid>
+									</Segment>
+								</Sticky>
+
+							</Grid.Column>
+						</Grid.Row>
+						<Grid.Row columns={2}>
+							<Grid.Column as={Segment} width={3} style={SidebarStyle} id='Sidebar'>
+								<Sticky innerZ={99999999999} top={'#navbar'} bottomBoundary={'#Sidebar'}>
+									<Segment basic>
+										<Menu style={SideBarMenuStyle} vertical fluid text secondary>
+											<Header style={{
+											}} size='medium'>Filters</Header>
+											{filterItems}
+										</Menu>
+										<Menu style={SideBarMenuStyle} vertical fluid text secondary>
+											<Header style={{
+											}} size='medium'>Recommended For</Header>
+											{recommendedForItems}
+										</Menu>
+									</Segment>
+								</Sticky>
+							</Grid.Column>
+							<Grid.Column width={13}>
+								<Segment basic style={{
+									minHeight: '80vh',
+									padding: '0'
+								}}>
+									<Grid>
 										<Grid.Row>
 											<Grid.Column>
 												<Segment basic id="destinations" style={{
-													marginLeft: '-8px',
-													marginRight: '-8px'
 												}}>
 													<Destinations data={this.state.items} />
 													<br />

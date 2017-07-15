@@ -11,7 +11,7 @@ import {
 
 const Footer = (props) => {
 	return (
-		<Segment style={{
+		<Segment id='footer' style={{
 			backgroundColor: 'rgba(240,240,240,0.8)'
 		}} className='Footer'>
 			<Container>

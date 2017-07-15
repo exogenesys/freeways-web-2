@@ -36,7 +36,7 @@ export default class TopBar extends Component {
 		let NavContainerStyle = {
 			zIndex: '1011',
 			position: 'relative',
-			height: '18vh',
+			height: '20vh',
 		}
 
 		let NavGridStyleOne = {
@@ -108,12 +108,12 @@ export default class TopBar extends Component {
 		// {Links}
 
 		return (
-			<Container fluid style={NavContainerStyle} className={focus || !this.props.root
+			<Container fluid style={NavContainerStyle}  id='navbar' className={focus || !this.props.root
 				? null
 				: 'HeadShadow'}>
 				<Container fluid>
-					<Grid verticalAlign='middle'>
-						<Grid.Row style={NavGridStyleOne}>
+					<Grid verticalAlign='middle' id='topbar'>
+						<Grid.Row style={NavGridStyleOne} >
 							<Grid.Column style={{
 								left: '30px'
 							}} only='computer tablet' width={2}>
