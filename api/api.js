@@ -352,7 +352,7 @@ Router.get('/places', (req, res) => {
 });
 
 Router.get('/destinations', (req, res) => {
-	destinations.find().select('slug img_thumb title type best_month_to_visit latitude longitude id filter solo_score family_score friends_score couple_score score').exec(function(err, destinations) {
+	destinations.find().select('slug img_thumb title type best_month_to_visit latitude longitude id filter solo_score family_score friends_score couple_score score zone recommended_for').exec(function(err, destinations) {
 		if (err) {
 			console.log('error finding trips for home')
 		} else {
@@ -363,7 +363,7 @@ Router.get('/destinations', (req, res) => {
 
 
 Router.get('/experiences', (req, res) => {
-	experiences.find().select('slug img title caption information best_time_to_visit best_time_to_visit_more_information latitude longitude usual_timings days_off timing_more_information how_to_reach_by_bus how_to_reach_by_car how_to_reach_by_plane how_to_reach_by_train must_know how_to_reach_by_walk keywords').exec(function(err, experiences) {
+	experiences.find().select('slug img_thumb title type best_time_to_visit best_month_to_visit latitude longitude filter zone').exec(function(err, experiences) {
 		if (err) {
 			console.log('error finding trips for home')
 		} else {

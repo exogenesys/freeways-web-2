@@ -68,20 +68,9 @@ export default class Places extends Component {
 
 
 		return (
-			<Segment basic id="destinations" style={{
-				marginLeft: '-8px',
-				marginRight: '-8px'
-			}}>
-				<Header style={{
-					marginTop: '10px'
-				}} size='huge'>Destinations</Header>
 				<Grid>
 					{rows}
 				</Grid>
-				<br />
-				<br />
-			</Segment>
-
 		)
 	}
 }
