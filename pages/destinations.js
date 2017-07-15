@@ -43,6 +43,7 @@ class Index extends React.Component {
 			value: '',
 			isLoading: false,
 			visible: true,
+			needsUpdate: false,
 			items: this.props.data,
 			zones: [
 				'All',
@@ -82,14 +83,39 @@ class Index extends React.Component {
 		this.setState(items: updatedList);
 	}
 
+	componentDidUpdate() {
+		if (this.state.needsUpdate) {
+			let updatedList = this.props.data;
+			if (this.state.value) {
+				updatedList = this.textSearch(updatedList, this.state.value)
+			}
+			updatedList = this.sort(updatedList, this.state.activePeople)
+			if (this.state.activeZone) {
+				updatedList = this.zone(updatedList, this.state.zones.indexOf(this.state.activeZone))
+			}
+			if (this.state.activeFilter) {
+				updatedList = this.filter(updatedList, this.state.activeFilter)
+			}
+			this.setState({ items: updatedList, isLoading: false, needsUpdate: false })
+		}
+	}
+
+
 
 
 	handleDimmer = (toDimOrNotToDim) => this.setState({ dimmer: toDimOrNotToDim })
 	toggleVisibility = () => this.setState({ visible: !this.state.visible })
 
+	clearRecommendedFor = () => {
+		this.setState({ activePeople: '', needsUpdate: true, items: [], isLoading: true })
+
+	}
+	clearFilters = () => {
+		this.setState({ activeFilter: '', needsUpdate: true, items: [], isLoading: true })
+	}
+
 
 	zone(list, index) {
-		console.log(index);
 		if (index == 0 || index == -1)
 			return list
 		return list.filter(function (place) {
@@ -108,9 +134,14 @@ class Index extends React.Component {
 		});
 	}
 
+	textSearch(list, name) {
+		return list.filter(function (place) {
+			return ((place.title.toLowerCase()).includes(name.toLowerCase()))
+		})
+	}
+
 	sort(list, name) {
 		return list.sort(function (a, b) {
-			console.log(a.solo_score, b.solo_score)
 			switch (name) {
 				case 'solo':
 					if (a.solo_score < b.solo_score)
@@ -148,68 +179,32 @@ class Index extends React.Component {
 					return 0
 					break;
 			}
-			console.log(a.solo_score, b.solo_score)
 		})
 	}
 
 	handleFilterClick = (e, { name }) => {
-		let updatedList = this.props.data;
-		this.setState({ items: [], isLoading: true });
-		if (this.state.activePeople) {
-			updatedList = this.sort(updatedList, this.state.activePeople)
-		}
-		if (this.state.activeZone) {
-			updatedList = this.zone(updatedList, this.state.zones.indexOf(this.state.activeZone))
-		}
 		if (this.state.activeFilter === name) {
 			name = ''
 		}
-		updatedList = this.filter(updatedList, name)
-		this.setState({ activeFilter: name, items: updatedList, isLoading: false, value: '' })
+		this.setState({ activeFilter: name, isLoading: true, needsUpdate: true, items: [] })
 	}
 
 	handleRecommendForClick = (e, { name }) => {
-		let updatedList = this.props.data;
-		this.setState({ items: [], isLoading: true });
-		if (this.state.activeFilter) {
-			updatedList = this.filter(updatedList, this.state.activeFilter)
-		}
-		if (this.state.activeZone) {
-			updatedList = this.zone(updatedList, this.state.zones.indexOf(this.state.activeZone))
-		}
 		if (this.state.activePeople === name) {
 			name = ''
 		}
-		updatedList = this.sort(updatedList, name)
-		this.setState({ activePeople: name, items: updatedList, isLoading: false, value: '' })
+		this.setState({ activePeople: name, isLoading: true, needsUpdate: true, items: [] })
+		console.log(this.state.activePeople)
 	}
 
 
 	handleZoneChange = (e, { name }) => {
-		let updatedList = this.props.data;
-		this.setState({ items: [], isLoading: true });
-		if (this.state.activePeople) {
-			updatedList = this.sort(updatedList, this.state.activePeople)
-		}
-		if (this.state.activeFilter) {
-			updatedList = this.filter(updatedList, this.state.activeFilter)
-		}
-		updatedList = this.zone(updatedList, this.state.zones.indexOf(name))
-		this.setState({ activeZone: name, items: updatedList, isLoading: false, value: '' })
+		this.setState({ activeZone: name, isLoading: true, needsUpdate: true, items: [] })
 	}
 
 
 	handleSearchChange = (e, value) => {
-		this.setState({ items: [], isLoading: true, activeFilter: '', activePeople: '' });
-		let updatedList = this.props.data;
-		if (this.state.activeZone) {
-			updatedList = this.zone(updatedList, this.state.zones.indexOf(this.state.activeZone))
-		}
-
-		updatedList = updatedList.filter(function (place) {
-			return ((place.title.toLowerCase()).includes(value.toLowerCase()))
-		})
-		this.setState({ value, items: updatedList, isLoading: false })
+		this.setState({ activeFilter: '', activePeople: '', value, isLoading: true, needsUpdate: true, items: [] });
 	}
 
 
@@ -334,7 +329,7 @@ class Index extends React.Component {
 
 		if (this.state.activeFilter) {
 			clearfilters.push(
-				<Label color='orange' style={ClearFilterStyle} size='medium'>
+				<Label color='orange' style={ClearFilterStyle} size='medium' onClick={this.clearFilters}>
 					<Icon name='remove' /> {this.state.activeFilter}
 				</Label>
 			)
@@ -342,7 +337,7 @@ class Index extends React.Component {
 
 		if (this.state.activePeople) {
 			clearfilters.push(
-				<Label color='orange' style={ClearFilterStyle} size='medium'>
+				<Label color='orange' style={ClearFilterStyle} size='medium' onClick={this.clearRecommendedFor}>
 					<Icon name='remove' /> {this.state.activePeople}
 				</Label>
 			)
@@ -352,8 +347,6 @@ class Index extends React.Component {
 			clearfilters = null
 		}
 
-
-
 		return (
 
 			<Layout>
@@ -362,41 +355,41 @@ class Index extends React.Component {
 					marginTop: '-5vh'
 				}}>
 					<Dimmer active={dimmer} onClickOutside={this.handleDimmerHide}></Dimmer>
-					<Sidebar.Pushable as={Segment} style={PushableContainerStyle} >
-						<Container>
-							<Sidebar as={Segment} animation='overlay' visible={visible} style={SidebarStyle}>
-								<Menu style={SideBarMenuStyle} vertical fluid text secondary>
-									<Header style={{
-										marginTop: '20px'
-									}} size='medium'>Filters</Header>
-									{filterItems}
-								</Menu>
-								<Menu style={SideBarMenuStyle} vertical fluid text secondary>
-									<Header style={{
-										marginTop: '20px'
-									}} size='medium'>Recommended For</Header>
-									{recommendedForItems}
-								</Menu>
-
-							</Sidebar>
-							<Sidebar.Pusher>
+					<Grid>
+						<Grid.Row columns={2}>
+							<Grid.Column as={Segment} width={3} style={SidebarStyle}>
+								<Segment basic>
+									<Menu style={SideBarMenuStyle} vertical fluid text secondary>
+										<Header style={{
+										}} size='medium'>Filters</Header>
+										{filterItems}
+									</Menu>
+									<Menu style={SideBarMenuStyle} vertical fluid text secondary>
+										<Header style={{
+											marginTop: '20px'
+										}} size='medium'>Recommended For</Header>
+										{recommendedForItems}
+									</Menu>
+								</Segment>
+							</Grid.Column>
+							<Grid.Column width={13}>
 								<Segment basic style={{
 									minHeight: '80vh'
 								}}>
 									<Grid>
-										<Grid.Row colums={2}>
-											<Grid.Column computer={2} only='computer'>
-											</Grid.Column>
-											<Grid.Column computer={14} mobile={16} tablet={16}>
+										<Grid.Row>
+											<Grid.Column>
 												<Segment basic id="destinations" style={{
-													    margin: '-1rem'
+													margin: '-1rem'
 												}}>
 													<div ref='places'>
 														<Header style={{
 															marginTop: '25px',
 															marginBottom: '20px'
 														}} size='huge'>Destinations</Header>
-														<Menu>
+														<Menu style={{
+															height: '3em'
+														}} stackable>
 															<Menu.Item>
 																<div className='ui transparent icon input'>
 																	<Search loading={isLoading} onSearchChange={this.handleSearchChange} placeholder={placeholder} value={value} open={false} onFocus={this.handleFocus} onBlue={this.handleBlur} className='GridSearch' />
@@ -419,10 +412,8 @@ class Index extends React.Component {
 												</Segment>
 											</Grid.Column>
 										</Grid.Row>
-										<Grid.Row colums={2}>
-											<Grid.Column computer={2} only='computer'>
-											</Grid.Column>
-											<Grid.Column computer={14} mobile={16} tablet={16}>
+										<Grid.Row>
+											<Grid.Column>
 												<Segment basic id="destinations" style={{
 													marginLeft: '-8px',
 													marginRight: '-8px'
@@ -435,11 +426,9 @@ class Index extends React.Component {
 										</Grid.Row>
 									</Grid>
 								</Segment>
-							</Sidebar.Pusher>
-							<br />
-							<br />
-						</Container>
-					</Sidebar.Pushable>
+							</Grid.Column>
+						</Grid.Row>
+					</Grid>
 				</Dimmer.Dimmable >
 				<Footer />
 			</Layout >
