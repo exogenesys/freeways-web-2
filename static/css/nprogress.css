@@ -438,5 +438,6 @@ a .NavLink .active {
 }
 
 .ClearFilterItemStyle::before {
+	text-transform: capitalize !important;
 	background: rgba(0, 0, 0, 0)!important;
 }

@@ -23,7 +23,6 @@ import {
 
 import Layout from '../components/Layout'
 import TopBar from '../components/TopBar'
-import Cover from '../components/DestinationCover'
 import Footer from '../components/Footer'
 import Destinations from '../components/Destinations'
 import Router from 'next/router'
@@ -399,7 +398,10 @@ class Index extends React.Component {
 																{clearfilters}
 															</Menu.Item>
 															<Menu.Menu position='right'>
-																<Dropdown item text={this.state.activeZone} basic>
+																<Menu.Item>
+																	Filter By Zone
+																</Menu.Item>
+																<Dropdown item text={this.state.activeZone} floating labeled className='ClearFilterItemStyle'>
 																	<Dropdown.Menu style={{
 																		zIndex: 53
 																	}}>
