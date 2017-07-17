@@ -1,78 +1,82 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+var mongoose = require('mongoose'),
+		autoIncrement = require('mongoose-auto-increment'),
+		Schema = mongoose.Schema;
+
+const connect = mongoose.connect("mongodb://saulgoodman:hackerman@ds163561.mlab.com:63561/freeways-memory");
+		autoIncrement.initialize(connect);
+
 
 var tripSchema = new Schema({
 
+	id: {
+	  type: Number,
+		unique:true
+	},
+
   slug:{
-    type:String, unique: true
+    type:String,
+		unique: true
   },
 
-  title:String,
+  name: {
+		type: String
+	},
 
-   best_time_to_visit: {
+	caption: {
+		type: String
+	},
+
+	intro: {
+		type: String
+	},
+
+	budget: {
+		type: String
+	},
+
+	recommended_for: [{type: String}],
+
+	filters: [{type: String}],
+
+	best_time_to_visit: [{
+    type: Number
+  }],
+
+  best_time_to_visit_more_information: {
       type: String
-    },
+  },
 
-   best_time_to_visit_more_information: {
-      type: String
-    },
+	duration: {
+		type: String
+	},
 
-   caption: {
-      type: String
-    },
+	how_to_reach: {
+		type: String
+	},
 
-   introduction: {
-      type: String
-    },
+	itinerary: [{type: String}],
 
-   timeToExplore: {
-      type: String
-    },
+	coordinates: [{
+    lat : Number,
+    long : Number
+  }],
 
-   average_budget_per_person: {
-      type: String
-    },
+	places: [{type:Number, ref:'places'}],
 
-    loc: [{
-        type: Schema.Types.ObjectId, ref: 'NearByLoc'
-    }],
-    
-   must_know: {
-      type: String
-    },
+	must_carry: [{type:Number, ref:'mustCarry'}],
 
-   must_carry: [{type: Number, ref:"mustCarry"}],
+	accommodation: {
+		type: String
+	},
 
-   cover_photo: {
-      type : String
-    },
+	Things_To_Know: {
+		type: String
+  }
+},
 
-   gettingAround: {
-      type : String
-    },
+{timestamps: true});
 
-   keyWords: {
-      type : String
-    },
+tripSchema.plugin(autoIncrement.plugin, {model:'Trip',field:'id',startAt:1,incrementBy:1});
+var trip = mongoose.model('Trip', tripSchema);
 
-    tags: [String],
-
-
-    places: [{type:Number ,ref:"places"}],
-
-    experiences: [{type: Number, ref: 'experiences'}],
-
-    destinations: [{type: Number, ref: 'destinations'}],
-
-    itinerary : [{
-        day: Number,
-        text: String
-    }]
-  },{
-    timestamps: true
-});
-
-
-var Trips = mongoose.model('Trips', tripSchema);
-
-module.exports = Trips;
+module.exports = trip;
