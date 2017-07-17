@@ -50,10 +50,10 @@ class Index extends React.Component {
 		this.handleScroll = this.handleScroll.bind(this);
 	}
 
-	static async getInitialProps({query}) {
+	static async getInitialProps({ query }) {
 		const res = await axios.get('http://www.freeways.in/api/place/' + query.slug);
 		const data = res.data;
-		return {data};
+		return { data };
 	}
 
 	handleScroll() {
@@ -73,8 +73,8 @@ class Index extends React.Component {
 			}
 		}
 		if (ind > -1)
-			this.setState({activeItem: items[ind]});
-		}
+			this.setState({ activeItem: items[ind] });
+	}
 
 	componentWillUnmount() {
 		window.removeEventListener('scroll', this.handleScroll);
@@ -84,7 +84,7 @@ class Index extends React.Component {
 		window.addEventListener('scroll', this.handleScroll);
 	}
 
-	handleDimmer = (toDimOrNotToDim) => this.setState({dimmer: toDimOrNotToDim})
+	handleDimmer = (toDimOrNotToDim) => this.setState({ dimmer: toDimOrNotToDim })
 
 	render() {
 
@@ -99,25 +99,25 @@ class Index extends React.Component {
 
 		return (
 			<Layout>
-				<TopBar handleDimmer={e => this.handleDimmer(e)} root={false} title={z.place.title}/>
+				<TopBar handleDimmer={e => this.handleDimmer(e)} root={false} title={z.place.title} />
 				<Dimmer.Dimmable blurring dimmed={this.state.dimmer}>
 					<Dimmer active={this.state.dimmer} onClickOutside={this.handleDimmerHide}></Dimmer>
-					<Cover caption={z.place.caption} title={z.place.title} img={z.place.img}/>
+					<Cover caption={z.place.caption} title={z.place.title} img={z.place.img} />
 					<Container>
-						<Menu/>
-						<Introduction intro={z.place.introduction} best_time={z.place.best_time_to_visit} best_time_more_info={z.place.best_time_to_visit_more_information} time_to_explore={z.place.time_to_explore} weather={z.weather}/>
-						<Experiences exp={z.experiences}/>
-						<MustKnow must_know={z.place.must_know} why_should_you_go={z.place.why_should_you_go} what_should_you_know={z.place.what_should_you_know} things_to_care_about={z.place.things_to_care_about} speciality={z.place.speciality}/>
-						<MustCarry must_carry={z.must_carry}/>
+						<Menu />
+						<Introduction intro={z.place.introduction} best_time={z.place.best_time_to_visit} best_time_more_info={z.place.best_time_to_visit_more_information} time_to_explore={z.place.time_to_explore} weather={z.weather} />
+						<Experiences exp={z.experiences} />
+						<MustKnow must_know={z.place.must_know} why_should_you_go={z.place.why_should_you_go} what_should_you_know={z.place.what_should_you_know} things_to_care_about={z.place.things_to_care_about} speciality={z.place.speciality} />
+						<MustCarry must_carry={z.must_carry} />
 					</Container>
-					<Map center={center} zoom={zoom} title={z.place.title}/>
+					<Map center={center} zoom={zoom} title={z.place.title} />
 					<Container>
-						<HowToReach how_to_reach={z.place.how_to_reach}/>
+						<HowToReach how_to_reach={z.place.how_to_reach} />
 					</Container>
-					<br/>
-					<br/>
-					<br/>
-					<Footer/>
+					<br />
+					<br />
+					<br />
+					<Footer />
 				</Dimmer.Dimmable>
 			</Layout>
 		);

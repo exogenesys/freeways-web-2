@@ -20,27 +20,27 @@ const Footer = (props) => {
 					<Grid.Row>
 						<Grid.Column verticalAlign='middle' textAlign='center' width={5} only='computer'>
 							<a className='LogoHeaderFooter'>freeways</a>
-              <br/>
-              <br/>
+							<br />
+							<br />
 							<List horizontal divided>
 								<List.Item>
-									<Icon size='large' name='facebook f'/>
+									<Icon size='large' name='facebook f' />
 								</List.Item>
 								<List.Item>
-									<Icon size='large' name='instagram'/>
+									<Icon size='large' name='instagram' />
 								</List.Item>
 								<List.Item>
-									<Icon size='large' name='twitter'/>
+									<Icon size='large' name='twitter' />
 								</List.Item>
 							</List>
 						</Grid.Column>
-            <Grid.Column width={2}>
-              <Header size='small'>Destinations</Header>
-              <List items={['Ladakh', 'Shimla', 'Manali','Jaipur', 'Jaisalmer', 'Agra']}/>
-            </Grid.Column>
+						<Grid.Column width={2}>
+							<Header size='small'>Destinations</Header>
+							<List items={['Ladakh', 'Shimla', 'Manali', 'Jaipur', 'Jaisalmer', 'Agra']} />
+						</Grid.Column>
 						<Grid.Column width={3}>
 							<Header size='small'>Know us better</Header>
-							<List items={['Work with us', 'About Us']}/>
+							<List items={['Work with us', 'About Us']} />
 						</Grid.Column>
 						<Grid.Column width={3}>
 							<Header size='small'>
@@ -53,14 +53,14 @@ const Footer = (props) => {
 								<List.Item>Mumbai 400036</List.Item>
 							</List>
 						</Grid.Column>
-            <Grid.Column width={3}>
-            <Header size='small'>Queries</Header>
-            <List.Item>support@freeways.in</List.Item>
-            </Grid.Column>
+						<Grid.Column width={3}>
+							<Header size='small'>Queries</Header>
+							<List.Item>support@freeways.in</List.Item>
+						</Grid.Column>
 
 					</Grid.Row>
 				</Grid>
-				<Divider inverted/>
+				<Divider inverted />
 				<Grid padded columns={3} stackable reversed='mobile'>
 					<Grid.Row>
 						<Grid.Column width={4} only='tablett mobile'>

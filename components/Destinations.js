@@ -51,7 +51,7 @@ export default class Places extends Component {
 							marginTop: '14px',
 							paddingLeft: '0.5em',
 							paddingRight: '0.5em'
-						}}><Brick type='place' data={this.state.filters[j * 4 + i]} /></Grid.Column>
+						}}><Brick type={this.props.type} data={this.state.filters[j * 4 + i]} /></Grid.Column>
 					);
 					i++;
 				}

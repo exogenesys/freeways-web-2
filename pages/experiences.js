@@ -111,7 +111,10 @@ class Index extends React.Component {
 				updatedList = this.textSearch(updatedList, this.state.value)
 			}
 			updatedList = this.sort(updatedList, this.state.activePeople)
-			if (this.state.activeZone) {
+			if (this.state.activeDestination && this.state.activeDestination.toLowerCase() !== 'all') {
+				updatedList = this.destination(updatedList, this.state.activeDestination)
+			}
+			if (this.state.activeZone && this.state.activeZone.toLowerCase() !== 'all') {
 				updatedList = this.zone(updatedList, this.state.zones.indexOf(this.state.activeZone))
 			}
 			if (this.state.activeFilter) {
@@ -147,12 +150,14 @@ class Index extends React.Component {
 	}
 
 	destination(list, name) {
-		if (name == 0 || name == -1)
+		if (name == 'all' || !name)
 			return list
 		return list.filter(function (experience) {
-			if (experience.destination && experience.destination == name)
+			if (experience.destination && experience.destination == name) {
+				console.log(experience.destination)
 				return true
-			else return false
+			} else
+				return false
 		});
 	}
 
@@ -238,7 +243,6 @@ class Index extends React.Component {
 		console.log(this.state.activePeople)
 	}
 
-
 	handleZoneChange = (e, { name }) => {
 		this.setState({ activeZone: name, activeDestination: 'all', isLoading: true, needsUpdate: true, items: [] })
 	}
@@ -246,8 +250,6 @@ class Index extends React.Component {
 	handleDestinationChange = (e, { name }) => {
 		this.setState({ activeDestination: name, activeZone: 'All', isLoading: true, needsUpdate: true, items: [] })
 	}
-
-
 
 	handleSearchChange = (e, value) => {
 		this.setState({ activeFilter: '', activePeople: '', value, isLoading: true, needsUpdate: true, items: [] });
@@ -515,7 +517,7 @@ class Index extends React.Component {
 														<Grid.Column>
 															<Segment basic id="experiences" style={{
 															}}>
-																<Experiences data={this.state.items} />
+																<Experiences data={this.state.items} type='experience' />
 																<br />
 																<br />
 															</Segment>

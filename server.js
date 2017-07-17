@@ -6,7 +6,7 @@ const img = require("./api/img.js");
 const cors = require('cors')
 
 const dev = process.env.NODE_ENV !== 'production';
-const app = next({dir: '.', dev});
+const app = next({ dir: '.', dev });
 const handle = app.getRequestHandler();
 
 const PORT = process.env.PORT || 3000;
@@ -24,39 +24,39 @@ app.prepare().then(_ => {
 	server.use('/api', api);
 	server.use('/debord', img);
 
-	server.use((err,req,res,next)=>{
+	server.use((err, req, res, next) => {
 		console.log("error has happened something broke");
 		res.status(500).send("something broke")
 	})
 
 	console.log('first')
 
-		server.get('/destinations', (req, res) => {
-  	return app.render(req, res, '/destinations');
+	server.get('/destinations', (req, res) => {
+		return app.render(req, res, '/destinations');
 	});
 
-			server.get('/trips', (req, res) => {
-  	return app.render(req, res, '/trips');
+	server.get('/trips', (req, res) => {
+		return app.render(req, res, '/trips');
 	});
 
-			server.get('/experiences', (req, res) => {
-  	return app.render(req, res, '/experiences');
+	server.get('/experiences', (req, res) => {
+		return app.render(req, res, '/experiences');
 	});
 
-			server.get('/roadtrips', (req, res) => {
-	  	return app.render(req, res, '/roadtrips');
+	server.get('/roadtrips', (req, res) => {
+		return app.render(req, res, '/roadtrips');
 	});
 
-				server.get('/treks', (req, res) => {
-  	return app.render(req, res, '/treks');
+	server.get('/treks', (req, res) => {
+		return app.render(req, res, '/treks');
 	});
 
 
 
 
 	server.get('/destination/:slug', (req, res) => {
-  	const params = { slug: req.params.slug }
-  	return app.render(req, res, '/destination', params);
+		const params = { slug: req.params.slug }
+		return app.render(req, res, '/destination', params);
 	});
 
 	server.get('/place/:slug', (req, res) => {
@@ -65,13 +65,13 @@ app.prepare().then(_ => {
 	});
 
 	server.get('/experience/:slug', (req, res) => {
-  	const params = { slug: req.params.slug }
-  	return app.render(req, res, '/experience', params);
+		const params = { slug: req.params.slug }
+		return app.render(req, res, '/experience', params);
 	});
 
 	server.get('/trip/:slug', (req, res) => {
-  	const params = { slug: req.params.slug }
-  	return app.render(req, res, '/trip', params);
+		const params = { slug: req.params.slug }
+		return app.render(req, res, '/trip', params);
 	});
 
 	server.get('*', (req, res) => {
@@ -85,7 +85,7 @@ app.prepare().then(_ => {
 
 		console.log(`> App running on port ${PORT}`);
 	});
-}).catch(function(){
+}).catch(function () {
 	console.log('promise not kept')
 })
 

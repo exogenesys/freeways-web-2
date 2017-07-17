@@ -21,13 +21,14 @@ import {
 	Search
 } from 'semantic-ui-react'
 
+
 import Layout from '../components/Layout'
 import TopBar from '../components/TopBar'
 import Footer from '../components/Footer'
+import Map from '../components/MapDad';
 import Destinations from '../components/Destinations'
 import Router from 'next/router'
 import Sticky from 'react-stickynode';
-
 
 class Index extends React.Component {
 
@@ -36,6 +37,7 @@ class Index extends React.Component {
 		this.state = {
 			dimmer: false,
 			activeFilter: '',
+			activeType: '',
 			activePeople: '',
 			activeZone: 'All',
 			placeholder: 'Search Destinations',
@@ -53,6 +55,8 @@ class Index extends React.Component {
 			]
 		};
 	}
+
+	
 
 
 	static async getInitialProps() {
@@ -109,10 +113,14 @@ class Index extends React.Component {
 		this.setState({ activePeople: '', needsUpdate: true, items: [], isLoading: true })
 
 	}
+
 	clearFilters = () => {
 		this.setState({ activeFilter: '', needsUpdate: true, items: [], isLoading: true })
 	}
 
+	clearType = () => {
+		this.setState({ activeType: '', needsUpdate: true, items: [], isLoading: true })
+	}
 
 	zone(list, index) {
 		if (index == 0 || index == -1)
@@ -123,7 +131,6 @@ class Index extends React.Component {
 			else return false
 		});
 	}
-
 
 	filter(list, name) {
 		return list.filter(function (place) {
@@ -265,6 +272,23 @@ class Index extends React.Component {
 				color: 'red'
 			}
 		];
+
+		const types = [
+			{
+				'title': 'Weekend Getaway',
+				icon: 'data:image/png;base64,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',
+				color: 'red'
+			}, {
+				'title': 'Weeklong Trip',
+				icon: 'data:image/png;base64,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',
+				color: 'blue'
+			}, {
+				'title': 'Long Trip',
+				icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAACjElEQVRoge2YsW4aQRCG/QhbWpoBIRLbCXbEGbIrIQvpdNem8BuER8gj+A3iN4A3sKtbCYqzUkSRC0OKFCmQSeHCiiOQbq1IaTZF7hJic9zusQcu9pemAY3u/2Zndg62tqysrKysrJaII7ocoBsADDmijCMMAN73AZy0vD6AwwG6HDFM8gKAYfyZW7jxPoAz//DUAOiGhJAkLySEBIhnmXmI4bICrCSO6AaIUwUTfysbEkJCQsiDk1qehzg1DtEHcHTMz0PomC8MIkC80DVhIEIj5jmiuwHzSbirAwD0NgYA0DMBMDJpKqyU5eeDXTlu7subVl1+PazJy71nqTO0OoAh44NySY6b+1L4bGHctRvy4271Ud6TABiUS/L2yEk1Px9XtR2zACZuoNujQyXzSXyoViRHlJ/2qiPh0a7w2LXwmYw8Oo18diZ89lYdAODdKuavajta5oXP5E2rvrTd/gQdCpdm74qQEMIRZ3kBvrFX2gCqEXl0+tN1KpkQHPEkL0BR5udPQqmV8l6nxQMwKTzayQSI30S1Ae7ajcIBIp+dK51CnoEev84aRjOzoAQQt5LWq8Xli+draSNlgBhCax5mbrPgGWATLYCQEKID8aX+suAToD0tAF2IsFIuFkBloS1SfDMpLbnChtmjp7nM60IMyqUCZiFH6ywS396uqLST2VkwZD6R6kz8aDd+rWo+8tiJUfPKEACj762DN7mN+3R277PjQsw/gHi87AB6yZ9dkc/O9atOL6TrkKznG1MAcJqYDwD+uymk65DIp7MnU/U0cYAOB+gs+u7eZ8cqg7rWqutK+LSX1i65l9M6JV2HCI9N/i0lNtlYu+SVcKkjPDZR+lFiZWVlZWWloN8miquO8rfpkAAAAABJRU5ErkJggg==',
+				color: 'orange'
+			}
+		];
+
 		const recommendedFor = [
 			{
 				'title': 'solo',
@@ -284,6 +308,7 @@ class Index extends React.Component {
 				color: 'pink'
 			}
 		];
+
 
 
 
@@ -316,6 +341,21 @@ class Index extends React.Component {
 			);
 		});
 
+		let typesItems = types.map((item) => {
+			return (
+				<Menu.Item style={{
+					color: 'rgba(0,0,0,.87)',
+					textTransform: 'capitalize'
+				}} className='InterestItem' color={item.color} name={item.title} active={activePeople === item.title} onClick={this.handleRecommendForClick}>
+					<Icon style={{
+						marginBottom: '10px'
+					}} size='large'><Image src={item.icon} /></Icon>
+					{item.title}
+				</Menu.Item>
+			);
+		});
+
+
 
 
 		let zoneItems = this.state.zones.map((item) => {
@@ -344,6 +384,15 @@ class Index extends React.Component {
 			)
 		}
 
+		if (this.state.activeType) {
+			clearfilters.push(
+				<Label color='orange' style={ClearFilterStyle} size='medium' onClick={this.clearType}>
+					<Icon name='remove' /> {this.state.activeType}
+				</Label>
+			)
+		}
+
+
 		if (clearfilters.length === 0) {
 			clearfilters = null
 		}
@@ -358,10 +407,15 @@ class Index extends React.Component {
 				}}>
 					<Dimmer active={dimmer} onClickOutside={this.handleDimmerHide}></Dimmer>
 					<Grid>
-						<Grid.Row columns={2}>
-							<Grid.Column width={3} as={Segment} width={3} style={SidebarStyle} id='Sidebar'>
+						<Grid.Row columns={3}>
+							<Grid.Column width={2} as={Segment} style={SidebarStyle} id='Sidebar'>
 								<Sticky innerZ={99999999999} top={'#topbar'} bottomBoundary={'#Sidebar'}>
 									<Segment basic>
+										<Menu style={SideBarMenuStyle} vertical fluid text secondary>
+											<Header style={{
+											}} size='medium'>Types</Header>
+											{typesItems}
+										</Menu>
 										<Menu style={SideBarMenuStyle} vertical fluid text secondary>
 											<Header style={{
 											}} size='medium'>Filters</Header>
@@ -372,10 +426,11 @@ class Index extends React.Component {
 											}} size='medium'>Recommended For</Header>
 											{recommendedForItems}
 										</Menu>
+
 									</Segment>
 								</Sticky>
 							</Grid.Column>
-							<Grid.Column width={13} >
+							<Grid.Column width={8}>
 								<Grid>
 									<Grid.Row>
 										<Grid.Column>
@@ -427,7 +482,7 @@ class Index extends React.Component {
 														<Grid.Column>
 															<Segment basic id="destinations" style={{
 															}}>
-																<Destinations data={this.state.items}  type='destination' />
+																<Destinations data={this.state.items} type='destination' />
 																<br />
 																<br />
 															</Segment>
@@ -440,8 +495,19 @@ class Index extends React.Component {
 								</Grid >
 
 							</Grid.Column>
+							<Grid.Column width={6} as={Segment} style={SidebarStyle} id='mapbar'>
+								<Sticky innerZ={99999999999} top={'#topbar'} bottomBoundary={'#mapbar'}>
+									<Segment basic style={{
+										height: '100%', width: '100%'
+									}}>
+										<Map markers={this.props.data} style={{
+											height: '100%', width: '100%'
+										}} />
+									</Segment>
+								</Sticky>
+							</Grid.Column>
 						</Grid.Row>
-					</Grid >
+					</Grid>
 				</Dimmer.Dimmable >
 				<Footer />
 			</Layout >
