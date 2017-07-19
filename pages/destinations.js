@@ -48,6 +48,7 @@ class Index extends React.Component {
 			items: this.props.data,
 			center: { lat: 20.5937, lng: 78.9629 },
 			zoom: 4,
+			hoveredIndex: -1,
 			zones: [
 				'All',
 				'North',
@@ -105,7 +106,7 @@ class Index extends React.Component {
 		}
 	}
 
-
+	_hoverCall = (id) => this.setState({hoveredIndex : id})
 
 
 	handleDimmer = (toDimOrNotToDim) => this.setState({ dimmer: toDimOrNotToDim })
@@ -449,7 +450,7 @@ class Index extends React.Component {
 														<Grid.Column>
 															<Segment basic id="destinations" style={{
 															}}>
-																<Destinations data={this.state.items} type='destination' />
+																<Destinations data={this.state.items} type='destination' hoverCall={this._hoverCall}/>
 																<br />
 																<br />
 															</Segment>
@@ -466,7 +467,7 @@ class Index extends React.Component {
 								<Sticky innerZ={99999999999} top={'#topbar'} bottomBoundary={'#mapbar'}>
 									<Segment basic style={{
 									}}>
-										<Map center={this.state.center} zoom={this.state.zoom} data={this.state.items} style={{
+										<Map center={this.state.center} zoom={this.state.zoom} data={this.state.items} hoveredIndex={this.state.hoveredIndex} style={{
 										}} />
 									</Segment>
 								</Sticky>

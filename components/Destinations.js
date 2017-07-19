@@ -11,13 +11,15 @@ import {
 	Search
 } from 'semantic-ui-react'
 
-import Brick from '../components/RecommendationBrick'
+import Brick from '../components/RecommendationBrick5'
 
 export default class Places extends Component {
 
 
 	handleFocus = () => this.setState({ placeholder: '' });
 	handleBlur = () => this.setState({ placeholder: 'Search Destinations' });
+
+	_hoverCall = (id) => this.props.hoverCall(id);
 
 	constructor(props) {
 		super(props);
@@ -51,7 +53,7 @@ export default class Places extends Component {
 							marginTop: '14px',
 							paddingLeft: '0.5em',
 							paddingRight: '0.5em'
-						}}><Brick type={this.props.type} data={this.state.filters[j * 3 + i]} /></Grid.Column>
+						}}><Brick type={this.props.type} hoverCall={this._hoverCall} data={this.state.filters[j * 3 + i]} /></Grid.Column>
 					);
 					i++;
 				}

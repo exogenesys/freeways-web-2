@@ -63,6 +63,10 @@ var tripSchema = new Schema({
 
 	places: [{type:Number, ref:'places'}],
 
+	destinations: [{type:Number, ref:'destinations'}],
+
+	experiences: [{type:Number, ref:'experiences'}],
+
 	must_carry: [{type:Number, ref:'mustCarry'}],
 
 	accommodation: {

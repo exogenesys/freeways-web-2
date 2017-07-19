@@ -10,15 +10,15 @@ export default class MapItem extends Component {
         // GoogleMap pass $hover props to hovered components
         // to detect hover it uses internal mechanism, explained in x_distance_hover example
         $hover: PropTypes.bool,
-        text: PropTypes.string
+        text: PropTypes.string,
     };
+
 
     static defaultProps = {};
 
     constructor(props) {
         super(props);
     }
-
 
 
     render() {
@@ -64,10 +64,13 @@ export default class MapItem extends Component {
         }
 
 
-        const style = this.props.$hover ? greatPlaceStyleHover : greatPlaceStyle;
+        const style = (this.props.$hover || this.props.hoverState) ? greatPlaceStyleHover : greatPlaceStyle;
+
+        console.log(this.props.hoverState)
+
 
         let label = null
-        if (this.props.$hover) {
+        if (this.props.$hover || this.props.hoverState) {
             label = <Label inverted color='orange' style={greatPlaceLabelStyle}>{this.props.text}</Label>
         }
 
