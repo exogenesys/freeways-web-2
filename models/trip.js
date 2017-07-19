@@ -1,26 +1,40 @@
 var mongoose = require('mongoose'),
-		autoIncrement = require('mongoose-auto-increment'),
-		Schema = mongoose.Schema;
+	autoIncrement = require('mongoose-auto-increment'),
+	Schema = mongoose.Schema;
 
 const connect = mongoose.connect("mongodb://saulgoodman:hackerman@ds163561.mlab.com:63561/freeways-memory");
-		autoIncrement.initialize(connect);
+autoIncrement.initialize(connect);
 
 
 var tripSchema = new Schema({
 
 	id: {
-	  type: Number,
-		unique:true
+		type: Number,
+		unique: true
 	},
 
-  slug:{
-    type:String,
+	slug: {
+		type: String,
 		unique: true
-  },
+	},
 
-  name: {
+	img: {
 		type: String
 	},
+
+	img_thumb: {
+		type: String
+	},
+
+	name: {
+		type: String
+	},
+
+	type : {
+		type: String
+	},
+
+
 
 	caption: {
 		type: String
@@ -34,17 +48,25 @@ var tripSchema = new Schema({
 		type: String
 	},
 
-	recommended_for: [{type: String}],
+	recommended_for: [{ type: String }],
 
-	filters: [{type: String}],
+	filters: [{ type: String }],
 
 	best_time_to_visit: [{
-    type: Number
-  }],
+		type: Number
+	}],
 
-  best_time_to_visit_more_information: {
-      type: String
-  },
+	latitude : Number,
+
+	longitude : Number,
+
+	filter: String,
+
+	zone : Number,
+
+	best_time_to_visit_more_information: {
+		type: String
+	},
 
 	duration: {
 		type: String
@@ -54,20 +76,15 @@ var tripSchema = new Schema({
 		type: String
 	},
 
-	itinerary: [{type: String}],
+	itinerary: [{ type: String }],
 
-	coordinates: [{
-    lat : Number,
-    long : Number
-  }],
+	places: [{ type: Number, ref: 'places' }],
 
-	places: [{type:Number, ref:'places'}],
+	destinations: [{ type: Number, ref: 'destinations' }],
 
-	destinations: [{type:Number, ref:'destinations'}],
+	experiences: [{ type: Number, ref: 'experiences' }],
 
-	experiences: [{type:Number, ref:'experiences'}],
-
-	must_carry: [{type:Number, ref:'mustCarry'}],
+	must_carry: [{ type: Number, ref: 'mustCarry' }],
 
 	accommodation: {
 		type: String
@@ -75,12 +92,12 @@ var tripSchema = new Schema({
 
 	Things_To_Know: {
 		type: String
-  }
+	}
 },
 
-{timestamps: true});
+	{ timestamps: true });
 
-tripSchema.plugin(autoIncrement.plugin, {model:'Trip',field:'id',startAt:1,incrementBy:1});
+tripSchema.plugin(autoIncrement.plugin, { model: 'Trip', field: 'id', startAt: 1, incrementBy: 1 });
 var trip = mongoose.model('Trip', tripSchema);
 
 module.exports = trip;

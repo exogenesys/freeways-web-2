@@ -48,6 +48,7 @@ class Index extends React.Component {
 			items: this.props.data,
 			center: { lat: 20.5937, lng: 78.9629 },
 			zoom: 4,
+			hoveredIndex: -1,
 			zones: [
 				'All',
 				'North',
@@ -62,7 +63,7 @@ class Index extends React.Component {
 
 
 	static async getInitialProps() {
-		const res = await axios.get('http://www.freeways.in/api/destinations');
+		const res = await axios.get('http://www.freeways.in/api/trips');
 		const data = res.data;
 		return { data };
 	}
@@ -105,7 +106,7 @@ class Index extends React.Component {
 		}
 	}
 
-
+	_hoverCall = (id) => this.setState({ hoveredIndex: id })
 
 
 	handleDimmer = (toDimOrNotToDim) => this.setState({ dimmer: toDimOrNotToDim })
@@ -202,7 +203,6 @@ class Index extends React.Component {
 			name = ''
 		}
 		this.setState({ activePeople: name, isLoading: true, needsUpdate: true, items: [] })
-		console.log(this.state.activePeople)
 	}
 
 
@@ -291,6 +291,7 @@ class Index extends React.Component {
 			}
 		];
 
+
 		const recommendedFor = [
 			{
 				'title': 'solo',
@@ -361,9 +362,6 @@ class Index extends React.Component {
 			);
 		});
 
-
-
-
 		let zoneItems = this.state.zones.map((item) => {
 			return (
 				<Dropdown.Item name={item} onClick={this.handleZoneChange}>
@@ -406,22 +404,21 @@ class Index extends React.Component {
 		return (
 
 			<Layout>
-				<Sticky innerZ={99999999999}>
-					<TopBar handleDimmer={e => this.handleDimmer(e)} root={false} />
-				</Sticky>
+				<TopBar handleDimmer={e => this.handleDimmer(e)} root={false} />
 				<Dimmer.Dimmable blurring dimmed={dimmer} style={{
 				}}>
 					<Dimmer active={dimmer} onClickOutside={this.handleDimmerHide}></Dimmer>
 					<Grid>
 						<Grid.Row columns={3}>
 							<Grid.Column width={2} as={Segment} style={SidebarStyle} id='Sidebar'>
-								<Sticky innerZ={99999999999} top={'#topbar'} bottomBoundary={'#Sidebar'}>
+								<Sticky innerZ={99999999999} bottomBoundary={'#Sidebar'}>
 									<Segment basic>
 										<Menu style={SideBarMenuStyle} vertical fluid text secondary>
 											<Header style={{
 											}} size='medium'>Types</Header>
 											{typesItems}
 										</Menu>
+
 										<Menu style={SideBarMenuStyle} vertical fluid text secondary>
 											<Header style={{
 											}} size='medium'>Filters</Header>
@@ -438,12 +435,13 @@ class Index extends React.Component {
 							</Grid.Column>
 							<Grid.Column width={8}>
 								<Grid>
-									<Grid.Row>
+									<Grid.Row style={{
+										paddingBottom: '0'
+									}}>
 										<Grid.Column>
-											<Sticky innerZ={99999999999} top={'#topbar'}>
-												<Segment basic id="destinations" style={{
+											<Sticky innerZ={99999999999}>
+												<Segment basic id="DestinationsMenu" style={{
 													backgroundColor: '#fff',
-													marginTop: '-1.2rem'
 												}}>
 													<div ref='places'>
 
@@ -477,7 +475,9 @@ class Index extends React.Component {
 											</Sticky>
 										</Grid.Column>
 									</Grid.Row>
-									<Grid.Row>
+									<Grid.Row style={{
+										paddingTop: '0'
+									}}>
 										<Grid.Column>
 											<Segment basic style={{
 												minHeight: '80vh',
@@ -488,7 +488,7 @@ class Index extends React.Component {
 														<Grid.Column>
 															<Segment basic id="destinations" style={{
 															}}>
-																<Destinations data={this.state.items} type='destination' />
+																<Destinations data={this.state.items} type='destination' hoverCall={this._hoverCall} />
 																<br />
 																<br />
 															</Segment>
@@ -502,11 +502,10 @@ class Index extends React.Component {
 
 							</Grid.Column>
 							<Grid.Column width={6} as={Segment} style={SidebarStyle} id='mapbar'>
-								<Sticky innerZ={99999999999} top={'#topbar'} bottomBoundary={'#mapbar'}>
-									<Segment basic style={{
-									}}>
-										<Map center={this.state.center} zoom={this.state.zoom} data={this.state.items} style={{
-										}} />
+								<Sticky innerZ={99999999999} top={'#TopBarMenu'} bottomBoundary={'#mapbar'}>
+									<Segment basic style={{}}>
+										<Map center={this.state.center} zoom={this.state.zoom} data={this.state.items} hoveredIndex={this.state.hoveredIndex} style={{
+										}} type='destination' />
 									</Segment>
 								</Sticky>
 							</Grid.Column>
