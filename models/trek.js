@@ -1,65 +1,78 @@
 var mongoose = require('mongoose'),
-		autoIncrement = require('mongoose-auto-increment'),
-		Schema = mongoose.Schema;
+  autoIncrement = require('mongoose-auto-increment'),
+  Schema = mongoose.Schema;
 
-		const connect = mongoose.connect("mongodb://saulgoodman:hackerman@ds163561.mlab.com:63561/freeways-memory");
-		autoIncrement.initialize(connect);
+const connect = mongoose.connect("mongodb://saulgoodman:hackerman@ds163561.mlab.com:63561/freeways-memory");
+autoIncrement.initialize(connect);
 
 var trekSchema = new Schema({
 
-	id: {
-		type: Number,
-		unique:Number
-	},
+  id: {
+    type: Number,
+    unique: Number
+  },
 
-	slug: {
-		type: String,
-		unique: true
-	},
+  slug: {
+    type: String,
+    unique: true
+  },
 
-	name: {
+  name: {
     type: String
   },
 
-	difficulty: {
-		type: String
-	},
+  difficulty: {
+    type: String
+  },
 
   duration: {
-		type: String
-	},
+    type: String
+  },
 
   max_altitude: {
-		type: Number
-	},
+    type: Number
+  },
 
   region: {
-		type: String
-	},
+    type: String
+  },
 
   base_camp_lat: {
-		type: Number
-	},
+    type: Number
+  },
 
-  base_camp_long: {
-		type: Number
-	},
+  base_camp_lng: {
+    type: Number
+  },
 
   base_camp_name: {
-		type: String
-	},
+    type: String
+  },
+
+  summit_lat: {
+    type: Number
+  },
+
+  summit_lng: {
+    type: Number
+  },
+
+  summit_name: {
+    type: String
+  },
+
 
   dist_from_nearest_major_city: {
-		type: Number
-	},
+    type: Number
+  },
 
   no_of_days_trekking: {
-		type: Number
-	},
+    type: Number
+  },
 
   coordinates: [{
-    lat : Number,
-    long : Number
+    lat: Number,
+    long: Number
   }],
 
   best_time_to_visit: [{
@@ -91,7 +104,7 @@ var trekSchema = new Schema({
     type: String
   },
 
-  Itinerary: [{type: String}],
+  Itinerary: [{ type: String }],
 
   Where_To_Eat: {
     type: String
@@ -113,7 +126,7 @@ var trekSchema = new Schema({
     type: String
   },
 
-  must_carry: [{type: Number, ref: 'mustCarry'}],
+  must_carry: [{ type: Number, ref: 'mustCarry' }],
 
   How_To_Reach: {
     type: String
@@ -121,10 +134,10 @@ var trekSchema = new Schema({
 
 },
 
-{timestamps: true});
+  { timestamps: true });
 
 // destinationSchema.plugin(autoIncrement.plugin, { model:'Destination', field: '_id', startAt: 1, incrementBy: 1 });
- trekSchema.plugin(autoIncrement.plugin, { model:'Trek', field: 'id', startAt: 1, incrementBy: 1 });
+trekSchema.plugin(autoIncrement.plugin, { model: 'Trek', field: 'id', startAt: 1, incrementBy: 1 });
 
 var trek = mongoose.model('Trek', trekSchema);
 

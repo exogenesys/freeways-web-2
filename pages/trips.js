@@ -25,7 +25,7 @@ import {
 import Layout from '../components/Layout'
 import TopBar from '../components/TopBar'
 import Footer from '../components/Footer'
-import Map from '../components/MapDad';
+import Map from '../components/Map';
 import Destinations from '../components/Destinations'
 import Router from 'next/router'
 import Sticky from 'react-stickynode';
@@ -46,6 +46,8 @@ class Index extends React.Component {
 			visible: true,
 			needsUpdate: false,
 			items: this.props.data,
+			center: { lat: 20.5937, lng: 78.9629 },
+			zoom: 4,
 			zones: [
 				'All',
 				'North',
@@ -56,7 +58,7 @@ class Index extends React.Component {
 		};
 	}
 
-	
+
 
 
 	static async getInitialProps() {
@@ -111,8 +113,8 @@ class Index extends React.Component {
 
 	clearRecommendedFor = () => {
 		this.setState({ activePeople: '', needsUpdate: true, items: [], isLoading: true })
-
 	}
+
 
 	clearFilters = () => {
 		this.setState({ activeFilter: '', needsUpdate: true, items: [], isLoading: true })
@@ -342,14 +344,18 @@ class Index extends React.Component {
 		});
 
 		let typesItems = types.map((item) => {
+			let icon = null
+			if (item.icon) {
+				icon = (<Icon style={{
+					marginBottom: '10px'
+				}} size='large'><Image src={item.icon} /></Icon>)
+			}
 			return (
 				<Menu.Item style={{
 					color: 'rgba(0,0,0,.87)',
 					textTransform: 'capitalize'
 				}} className='InterestItem' color={item.color} name={item.title} active={activePeople === item.title} onClick={this.handleRecommendForClick}>
-					<Icon style={{
-						marginBottom: '10px'
-					}} size='large'><Image src={item.icon} /></Icon>
+					{icon}
 					{item.title}
 				</Menu.Item>
 			);
@@ -498,10 +504,8 @@ class Index extends React.Component {
 							<Grid.Column width={6} as={Segment} style={SidebarStyle} id='mapbar'>
 								<Sticky innerZ={99999999999} top={'#topbar'} bottomBoundary={'#mapbar'}>
 									<Segment basic style={{
-										height: '100%', width: '100%'
 									}}>
-										<Map markers={this.props.data} style={{
-											height: '100%', width: '100%'
+										<Map center={this.state.center} zoom={this.state.zoom} data={this.state.items} style={{
 										}} />
 									</Segment>
 								</Sticky>

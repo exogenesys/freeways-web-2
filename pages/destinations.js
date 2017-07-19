@@ -21,13 +21,14 @@ import {
 	Search
 } from 'semantic-ui-react'
 
+
 import Layout from '../components/Layout'
 import TopBar from '../components/TopBar'
 import Footer from '../components/Footer'
+import Map from '../components/Map';
 import Destinations from '../components/Destinations'
 import Router from 'next/router'
 import Sticky from 'react-stickynode';
-
 
 class Index extends React.Component {
 
@@ -36,6 +37,7 @@ class Index extends React.Component {
 		this.state = {
 			dimmer: false,
 			activeFilter: '',
+			activeType: '',
 			activePeople: '',
 			activeZone: 'All',
 			placeholder: 'Search Destinations',
@@ -44,6 +46,8 @@ class Index extends React.Component {
 			visible: true,
 			needsUpdate: false,
 			items: this.props.data,
+			center: { lat: 20.5937, lng: 78.9629 },
+			zoom: 4,
 			zones: [
 				'All',
 				'North',
@@ -53,6 +57,8 @@ class Index extends React.Component {
 			]
 		};
 	}
+
+
 
 
 	static async getInitialProps() {
@@ -107,12 +113,16 @@ class Index extends React.Component {
 
 	clearRecommendedFor = () => {
 		this.setState({ activePeople: '', needsUpdate: true, items: [], isLoading: true })
-
 	}
+
+
 	clearFilters = () => {
 		this.setState({ activeFilter: '', needsUpdate: true, items: [], isLoading: true })
 	}
 
+	clearType = () => {
+		this.setState({ activeType: '', needsUpdate: true, items: [], isLoading: true })
+	}
 
 	zone(list, index) {
 		if (index == 0 || index == -1)
@@ -123,7 +133,6 @@ class Index extends React.Component {
 			else return false
 		});
 	}
-
 
 	filter(list, name) {
 		return list.filter(function (place) {
@@ -265,6 +274,7 @@ class Index extends React.Component {
 				color: 'red'
 			}
 		];
+
 		const recommendedFor = [
 			{
 				'title': 'solo',
@@ -284,6 +294,7 @@ class Index extends React.Component {
 				color: 'pink'
 			}
 		];
+
 
 
 
@@ -318,6 +329,7 @@ class Index extends React.Component {
 
 
 
+
 		let zoneItems = this.state.zones.map((item) => {
 			return (
 				<Dropdown.Item name={item} onClick={this.handleZoneChange}>
@@ -344,6 +356,15 @@ class Index extends React.Component {
 			)
 		}
 
+		if (this.state.activeType) {
+			clearfilters.push(
+				<Label color='orange' style={ClearFilterStyle} size='medium' onClick={this.clearType}>
+					<Icon name='remove' /> {this.state.activeType}
+				</Label>
+			)
+		}
+
+
 		if (clearfilters.length === 0) {
 			clearfilters = null
 		}
@@ -358,8 +379,8 @@ class Index extends React.Component {
 				}}>
 					<Dimmer active={dimmer} onClickOutside={this.handleDimmerHide}></Dimmer>
 					<Grid>
-						<Grid.Row columns={2}>
-							<Grid.Column width={3} as={Segment} width={3} style={SidebarStyle} id='Sidebar'>
+						<Grid.Row columns={3}>
+							<Grid.Column width={2} as={Segment} style={SidebarStyle} id='Sidebar'>
 								<Sticky innerZ={99999999999} top={'#topbar'} bottomBoundary={'#Sidebar'}>
 									<Segment basic>
 										<Menu style={SideBarMenuStyle} vertical fluid text secondary>
@@ -372,10 +393,11 @@ class Index extends React.Component {
 											}} size='medium'>Recommended For</Header>
 											{recommendedForItems}
 										</Menu>
+
 									</Segment>
 								</Sticky>
 							</Grid.Column>
-							<Grid.Column width={13} >
+							<Grid.Column width={8}>
 								<Grid>
 									<Grid.Row>
 										<Grid.Column>
@@ -427,7 +449,7 @@ class Index extends React.Component {
 														<Grid.Column>
 															<Segment basic id="destinations" style={{
 															}}>
-																<Destinations data={this.state.items}  type='destination' />
+																<Destinations data={this.state.items} type='destination' />
 																<br />
 																<br />
 															</Segment>
@@ -440,8 +462,17 @@ class Index extends React.Component {
 								</Grid >
 
 							</Grid.Column>
+							<Grid.Column width={6} as={Segment} style={SidebarStyle} id='mapbar'>
+								<Sticky innerZ={99999999999} top={'#topbar'} bottomBoundary={'#mapbar'}>
+									<Segment basic style={{
+									}}>
+										<Map center={this.state.center} zoom={this.state.zoom} data={this.state.items} style={{
+										}} />
+									</Segment>
+								</Sticky>
+							</Grid.Column>
 						</Grid.Row>
-					</Grid >
+					</Grid>
 				</Dimmer.Dimmable >
 				<Footer />
 			</Layout >

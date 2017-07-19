@@ -44,19 +44,19 @@ export default class Places extends Component {
 		} else {
 			let i = 0,
 				j = 0;
-			while (j * 4 + i < this.state.filters.length) {
-				while (i < 4 && j * 4 + i < this.state.filters.length) {
+			while (j * 3 + i < this.state.filters.length) {
+				while (i < 3 && j * 3 + i < this.state.filters.length) {
 					cols.push(
-						<Grid.Column computer={4} tablet={8} mobile={8} style={{
+						<Grid.Column style={{
 							marginTop: '14px',
 							paddingLeft: '0.5em',
 							paddingRight: '0.5em'
-						}}><Brick type={this.props.type} data={this.state.filters[j * 4 + i]} /></Grid.Column>
+						}}><Brick type={this.props.type} data={this.state.filters[j * 3 + i]} /></Grid.Column>
 					);
 					i++;
 				}
 				rows.push(
-					<Grid.Row style={{
+					<Grid.Row columns={'equal'} style={{
 						marginBottom: '-27px'
 					}}>{cols}</Grid.Row>
 				)
@@ -68,9 +68,9 @@ export default class Places extends Component {
 
 
 		return (
-				<Grid>
-					{rows}
-				</Grid>
+			<Grid>
+				{rows}
+			</Grid>
 		)
 	}
 }
