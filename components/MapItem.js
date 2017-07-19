@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import { Label } from 'semantic-ui-react'
+import Link from 'next/link'
 
 
 
@@ -72,12 +73,18 @@ export default class MapItem extends Component {
         }
 
         return (
-            <div style={{
-            }}>
-                {label}
-                <div style={style}>
+            <Link prefetch href={{
+                pathname: '/' + this.props.itemType,
+                query: {
+                    slug: this.props.slug
+                }
+            }} as={`/${this.props.itemType}/${this.props.slug}`}>
+                <div>
+                    {label}
+                    <div style={style}>
+                    </div>
                 </div>
-            </div>
+            </Link>
         );
     }
 }

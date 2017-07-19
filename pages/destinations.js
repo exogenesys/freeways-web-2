@@ -465,10 +465,9 @@ class Index extends React.Component {
 							</Grid.Column>
 							<Grid.Column width={6} as={Segment} style={SidebarStyle} id='mapbar'>
 								<Sticky innerZ={99999999999} top={'#TopBarMenu'} bottomBoundary={'#mapbar'}>
-									<Segment basic style={{
-									}}>
+									<Segment basic style={{}}>
 										<Map center={this.state.center} zoom={this.state.zoom} data={this.state.items} hoveredIndex={this.state.hoveredIndex} style={{
-										}} />
+										}} type='destination'/>
 									</Segment>
 								</Sticky>
 							</Grid.Column>
