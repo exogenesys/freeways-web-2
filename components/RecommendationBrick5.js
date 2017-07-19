@@ -7,6 +7,7 @@ import constants from '../utils/constants'
 export default class Brick extends React.Component {
 
 	_onhover = () => this.props.hoverCall(this.props.data.id);
+	_onLeave = () => this.props.hoverCall(-1);
 
 	render() {
 		var imgurl = helper.buildImgUrl(this.props.data.img_thumb, constants.IMG_HEIGHT_RB, constants.IMG_QUALITY_RB);
@@ -32,6 +33,8 @@ export default class Brick extends React.Component {
 						borderRadius: '0%'
 					}}
 						onMouseOver={this._onhover}
+						onMouseLeave={this._onLeave}
+
 					>
 						<Card.Content className='HeadShadowTile'>
 							<Card.Header style={{

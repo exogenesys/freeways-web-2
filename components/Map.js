@@ -9,7 +9,6 @@ export default class Map extends React.Component {
 		super(props);
 	}
 
-
 	_onBoundsChange = (center, zoom, bounds, marginBounds) => {
 		// console.log('center:', center)
 		// console.log('zoom:', zoom)
@@ -59,12 +58,14 @@ export default class Map extends React.Component {
 
 		let AnyReactComponents = []
 
-		AnyReactComponents = this.props.data.map((item) => {
-			if (!isNaN(item.latitude) && !isNaN(item.longitude)) {
-				const hoverState = (this.props.hoveredIndex === item.id)
-				return <MapItem lat={item.latitude} lng={item.longitude} text={item.name || item.title} id={item.id} hoverState={hoverState} />
-			}
-		})
+		if (this.props.data) {
+			AnyReactComponents = this.props.data.map((item) => {
+				if (!isNaN(item.latitude) && !isNaN(item.longitude)) {
+					const hoverState = (this.props.hoveredIndex === item.id)
+					return <MapItem lat={item.latitude} lng={item.longitude} text={item.name || item.title} id={item.id} hoverState={hoverState} />
+				}
+			})
+		}
 
 		const MapOptions = {
 			panControl: true,
@@ -76,7 +77,7 @@ export default class Map extends React.Component {
 		if (this.props.center.lat && this.props.center.lng) {
 			return (
 				<Segment basic style={{
-					height: '80vh',
+					height: '100vh',
 				}}>
 					<GoogleMapReact bootstrapURLKeys={{
 						key: 'AIzaSyBMU7XiJw7ij5n7jzsfeXlGZYk9X9S - 8 hE'

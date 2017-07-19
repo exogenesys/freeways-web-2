@@ -59,13 +59,11 @@ export default class MapItem extends Component {
             cursor: 'pointer',
             top: -$originY - $markerHeight + 10 + 'px',
             left: -$originX - $labelWidth + 'px',
-            zIndex: '100'
+            zIndex: 100 + this.props.id
         }
 
 
         const style = (this.props.$hover || this.props.hoverState) ? greatPlaceStyleHover : greatPlaceStyle;
-
-        console.log(this.props.hoverState)
 
 
         let label = null

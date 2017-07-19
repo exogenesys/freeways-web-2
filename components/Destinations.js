@@ -21,6 +21,8 @@ export default class Places extends Component {
 
 	_hoverCall = (id) => this.props.hoverCall(id);
 
+	
+
 	constructor(props) {
 		super(props);
 		this.state = {
