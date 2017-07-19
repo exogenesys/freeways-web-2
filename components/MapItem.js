@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
-import { Motion, spring } from 'react-motion';
 import { Label } from 'semantic-ui-react'
 
 
