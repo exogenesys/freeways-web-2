@@ -50,9 +50,9 @@ var tripSchema = new Schema({
 
 	filter: [{ type: String }],
 
-	best_time_to_visit: [{
+	best_time_to_visit: [[{
 		type: Number
-	}],
+	}]],
 
 	latitude: Number,
 
