@@ -30,11 +30,9 @@ var tripSchema = new Schema({
 		type: String
 	},
 
-	type : {
+	type: {
 		type: String
 	},
-
-
 
 	caption: {
 		type: String
@@ -50,19 +48,17 @@ var tripSchema = new Schema({
 
 	recommended_for: [{ type: String }],
 
-	filters: [{ type: String }],
+	filter: [{ type: String }],
 
 	best_time_to_visit: [{
 		type: Number
 	}],
 
-	latitude : Number,
+	latitude: Number,
 
-	longitude : Number,
+	longitude: Number,
 
-	filter: String,
-
-	zone : Number,
+	zone: Number,
 
 	best_time_to_visit_more_information: {
 		type: String
@@ -76,7 +72,11 @@ var tripSchema = new Schema({
 		type: String
 	},
 
-	itinerary: [{ type: String }],
+	itinerary: [{
+		places: [String],
+		title: String,
+		text: String
+	}],
 
 	places: [{ type: Number, ref: 'places' }],
 
@@ -90,7 +90,7 @@ var tripSchema = new Schema({
 		type: String
 	},
 
-	Things_To_Know: {
+	things_to_know: {
 		type: String
 	}
 },
