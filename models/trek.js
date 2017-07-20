@@ -21,8 +21,12 @@ var trekSchema = new Schema({
     type: String
   },
 
-  difficulty: {
+  caption: {
     type: String
+  },
+
+  difficulty: {
+    type: Number
   },
 
   duration: {
@@ -60,7 +64,6 @@ var trekSchema = new Schema({
   summit_name: {
     type: String
   },
-
 
   dist_from_nearest_major_city: {
     type: Number
@@ -104,31 +107,31 @@ var trekSchema = new Schema({
     type: String
   },
 
-  Itinerary: [{ type: String }],
+  itinerary: [{ type: String }],
 
-  Where_To_Eat: {
+  where_to_eat: {
     type: String
   },
 
-  Where_To_Stay: {
+  where_to_stay: {
     type: String
   },
 
-  Equip_Avail: {
+  equip_avail: {
     type: String
   },
 
-  What_You_Should_Know: {
+  what_you_should_know: {
     type: String
   },
 
-  Things_To_Care: {
+  things_to_care: {
     type: String
   },
 
   must_carry: [{ type: Number, ref: 'mustCarry' }],
 
-  How_To_Reach: {
+  how_to_reach: {
     type: String
   }
 
