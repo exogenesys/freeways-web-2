@@ -78,7 +78,7 @@ var trekSchema = new Schema({
     long: Number
   }],
 
-  best_time_to_visit: [{
+  weeks_open: [{
     type: Number
   }],
 
