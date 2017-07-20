@@ -379,7 +379,7 @@ Router.get('/trips', (req, res) => {
 		if (err) {
 			console.log('error finding trips for home')
 		} else {
-			res.send(experiences)
+			res.send(trips)
 		}
 	})
 });

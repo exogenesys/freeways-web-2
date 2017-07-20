@@ -21,6 +21,14 @@ var trekSchema = new Schema({
     type: String
   },
 
+  img: {
+    type: String
+  },
+
+  img_thumb: {
+    type: String
+  },
+
   caption: {
     type: String
   },
@@ -99,15 +107,20 @@ var trekSchema = new Schema({
   },
 
   highlights: [{
-    Url: String,
-    Text: String
+    img: String,
+    title: String,
+    text: String
   }],
 
   why: {
     type: String
   },
 
-  itinerary: [{ type: String }],
+  itinerary: [{
+    img: [String],
+    title: String,
+    text: String
+  }],
 
   where_to_eat: {
     type: String
