@@ -8,6 +8,7 @@ const backup = require('mongodb-backup');
 
 const places = require("../models/places.js");
 const trips = require('../models/trip.js');
+const treks = require('../models/trek.js');
 const roadtrips = require('../models/roadtrip.js');
 const experiences = require("../models/experience.js");
 const destinations = require("../models/destination.js");
@@ -401,7 +402,7 @@ Router.get('/roadtrips', (req, res) => {
 
 
 Router.get('/treks', (req, res) => {
-	trips.find().select('id slug name caption difficulty duration max_altitude region base_camp_lat bace_camp_lng bace_camp_name summit_lat summit_lng dist_from_nearest_major_city no_of_days_trekking best_time_to_visitbest_time_to_visit best_time_to_visit_more_informartion trek_distance budget for_whom highlights')
+	treks.find().select('id slug name caption difficulty duration max_altitude region base_camp_lat bace_camp_lng bace_camp_name summit_lat summit_lng dist_from_nearest_major_city no_of_days_trekking best_time_to_visitbest_time_to_visit best_time_to_visit_more_informartion trek_distance budget for_whom highlights')
 		.exec(function (err, treks) {
 			if (err) {
 				console.log('error finding treks for home', err)
