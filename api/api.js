@@ -8,6 +8,7 @@ const backup = require('mongodb-backup');
 
 const places = require("../models/places.js");
 const trips = require('../models/trip.js');
+const roadtrips = require('../models/roadtrip.js');
 const experiences = require("../models/experience.js");
 const destinations = require("../models/destination.js");
 const languages = require("../models/languages.js");
@@ -352,7 +353,9 @@ Router.get('/places', (req, res) => {
 });
 
 Router.get('/destinations', (req, res) => {
-	destinations.find().select('slug img_thumb title type best_month_to_visit latitude longitude id filter solo_score family_score friends_score couple_score score zone recommended_for').exec(function (err, destinations) {
+	destinations.find({
+		visible: true
+	}).select('slug img_thumb title type best_month_to_visit latitude longitude id filter solo_score family_score friends_score couple_score score zone recommended_for').exec(function (err, destinations) {
 		if (err) {
 			console.log('error finding trips for home')
 		} else {
@@ -375,14 +378,28 @@ Router.get('/experiences', (req, res) => {
 
 
 Router.get('/trips', (req, res) => {
-	trips.find().select('id slug name caption img_thumb type best_time_to_visit best_month_to_visit latitude longitude filter zone').exec(function (err, trips) {
-		if (err) {
-			console.log('error finding trips for home')
-		} else {
-			res.send(trips)
-		}
-	})
+	trips.find().select('id slug name caption img_thumb type best_time_to_visit best_month_to_visit latitude longitude filter zone destinations')
+		.exec(function (err, trips) {
+			if (err) {
+				console.log('error finding trips for home', err)
+			} else {
+				res.send(trips)
+			}
+		})
 });
+
+Router.get('/roadtrips', (req, res) => {
+	trips.find().select('id slug name caption img_thumb type best_time_to_visit filter zone items_covered')
+		.exec(function (err, trips) {
+			if (err) {
+				console.log('error finding trips for home', err)
+			} else {
+				res.send(trips)
+			}
+		})
+});
+
+
 
 
 Router.get('/placesslug', (req, res) => {

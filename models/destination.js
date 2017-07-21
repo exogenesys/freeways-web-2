@@ -14,6 +14,11 @@ var destinationSchema = new Schema({
 		type: String
 	},
 
+	visible: {
+		type: Boolean,
+		default: true
+	},
+
 	img_thumb: {
 		type: String
 	},

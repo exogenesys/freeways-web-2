@@ -2,22 +2,30 @@ import React from 'react'
 import { Segment, Icon } from 'semantic-ui-react'
 import GoogleMapReact from 'google-map-react'
 import MapItem from '../components/MapItem'
+import Polyline from '../components/Polylines'
 
 export default class Map extends React.Component {
 
 	constructor(props) {
 		super(props);
+		this.state = {
+			mapLoaded: false,
+			map: null,
+			maps: null
+		}
 	}
 
+
 	_onBoundsChange = (params) => {
-		console.log('params:', params)
+		// console.log('params:', params)
 		// if (this.props.onBoundsChange) {
-			// this.props.onBoundsChange({ center, zoom, bounds, marginBounds });
+		// this.props.onBoundsChange({ center, zoom, bounds, marginBounds });
 		// } else {
-			// this.props.onCenterChange(center);
-			// this.props.onZoomChange(zoom);
+		// this.props.onCenterChange(center);
+		// this.props.onZoomChange(zoom);
 		// }
 	}
+
 
 	render() {
 
@@ -34,11 +42,19 @@ export default class Map extends React.Component {
 		}
 
 		const MapOptions = {
-			panControl: true,
-			mapTypeControl: true,
-			scrollwheel: false,
-			gestureHandling: 'greedy'
+			// panControl: true,
+			// mapTypeControl: true,
+			// scrollwheel: true,
+			// gestureHandling: 'greedy',
+			// mapTypeId: 'terrain'
 		}
+
+		let polylines = null
+		if (this.state.mapLoaded)
+			polylines = (<Polyline map={this.state.map} maps={this.state.maps}
+				origin={{ lat: 28.7041, lng: 77.1025 }}
+				destination={{ lat: 34.1526, lng: 77.5771 }}
+			/>)
 
 		if (this.props.center.lat && this.props.center.lng) {
 			return (
@@ -47,17 +63,23 @@ export default class Map extends React.Component {
 				}}>
 					<GoogleMapReact bootstrapURLKeys={{
 						key: 'AIzaSyBMU7XiJw7ij5n7jzsfeXlGZYk9X9S - 8 hE'
+
 					}}
+						onGoogleApiLoaded={({ map, maps }) => this.setState({ map: map, maps: maps, mapLoaded: true })}
+						yesIWantToUseGoogleMapApiInternals
 						onChange={this._onBoundsChange}
-						//						margin={[K_MARGIN_TOP, K_MARGIN_RIGHT, K_MARGIN_BOTTOM, K_MARGIN_LEFT]}
+						//margin={[K_MARGIN_TOP, K_MARGIN_RIGHT, K_MARGIN_BOTTOM, K_MARGIN_LEFT]}
 						defaultCenter={this.props.center}
 						defaultZoom={this.props.zoom}
 						options={MapOptions}
 						hoverDistance={40}>
 						{AnyReactComponents}
 					</GoogleMapReact>
+					{polylines}
 				</Segment>
 			)
+
+
 
 		} else {
 			return null

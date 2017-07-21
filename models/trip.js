@@ -78,9 +78,9 @@ var tripSchema = new Schema({
 		text: String
 	}],
 
-	places: [{ type: Number, ref: 'places' }],
+	places: [{ type: Number, ref: 'Place' }],
 
-	destinations: [{ type: Number, ref: 'destinations' }],
+	destinations: [{ type: Number, ref: 'Destination' }],
 
 	experiences: [{ type: Number, ref: 'experiences' }],
 

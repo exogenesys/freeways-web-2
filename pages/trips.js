@@ -26,7 +26,7 @@ import Layout from '../components/Layout'
 import TopBar from '../components/TopBar'
 import Footer from '../components/Footer'
 import Map from '../components/Map';
-import Destinations from '../components/Destinations'
+import Trips from '../components/Trips'
 import Router from 'next/router'
 import Sticky from 'react-stickynode';
 
@@ -63,7 +63,7 @@ class Index extends React.Component {
 
 
 	static async getInitialProps() {
-		const res = await axios.get('http://www.freeways.in/api/trips');
+		const res = await axios.get('http://www.freeways.in/api/trips/');
 		const data = res.data;
 		return { data };
 	}
@@ -409,7 +409,7 @@ class Index extends React.Component {
 				}}>
 					<Dimmer active={dimmer} onClickOutside={this.handleDimmerHide}></Dimmer>
 					<Grid>
-						<Grid.Row columns={3}>
+						<Grid.Row columns={2}>
 							<Grid.Column width={2} as={Segment} style={SidebarStyle} id='Sidebar'>
 								<Sticky innerZ={99999999999} bottomBoundary={'#Sidebar'}>
 									<Segment basic>
@@ -433,7 +433,7 @@ class Index extends React.Component {
 									</Segment>
 								</Sticky>
 							</Grid.Column>
-							<Grid.Column width={8}>
+							<Grid.Column width={13}>
 								<Grid>
 									<Grid.Row style={{
 										paddingBottom: '0'
@@ -488,7 +488,7 @@ class Index extends React.Component {
 														<Grid.Column>
 															<Segment basic id="destinations" style={{
 															}}>
-																<Destinations data={this.state.items} type='destination' hoverCall={this._hoverCall} />
+																<Trips data={this.state.items} type='destination' hoverCall={this._hoverCall} />
 																<br />
 																<br />
 															</Segment>
@@ -500,14 +500,6 @@ class Index extends React.Component {
 									</Grid.Row>
 								</Grid >
 
-							</Grid.Column>
-							<Grid.Column width={6} as={Segment} style={SidebarStyle} id='mapbar'>
-								<Sticky innerZ={99999999999} top={'#TopBarMenu'} bottomBoundary={'#mapbar'}>
-									<Segment basic style={{}}>
-										<Map center={this.state.center} zoom={this.state.zoom} data={this.state.items} hoveredIndex={this.state.hoveredIndex} style={{
-										}} type='destination' />
-									</Segment>
-								</Sticky>
 							</Grid.Column>
 						</Grid.Row>
 					</Grid>

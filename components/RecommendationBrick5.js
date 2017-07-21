@@ -21,7 +21,7 @@ export default class Brick extends React.Component {
 				marginLeft: '10px'
 			}}>
 				<a>
-					<Card style={{
+					<Card fluid style={{
 						// backgroundImage: "linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.2)), url(\'" + imgurl + "\')",
 						backgroundImage: "url(\'" + imgurl + "\')",
 						// boxShadow: '3px 3px 5px 0px #D4D4D5, 0 0 1px 1px #D4D4D5',
