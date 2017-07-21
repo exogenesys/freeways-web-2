@@ -42,11 +42,12 @@ export default class Map extends React.Component {
 		}
 
 		const MapOptions = {
-			// panControl: true,
-			// mapTypeControl: true,
-			// scrollwheel: true,
-			// gestureHandling: 'greedy',
-			// mapTypeId: 'terrain'
+			panControl: true,
+			mapTypeControl: true,
+			scrollwheel: true,
+			gestureHandling: 'greedy',
+			mapTypeId: 'terrain',
+			streetViewControl: true
 		}
 
 		let polylines = null
