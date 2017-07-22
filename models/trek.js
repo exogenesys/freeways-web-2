@@ -90,7 +90,7 @@ var trekSchema = new Schema({
     type: Number
   }]],
 
-  best_time_to_visit_more_information: {
+  best_time_to_visit_more_info: {
     type: String
   },
 

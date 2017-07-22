@@ -40,7 +40,7 @@ class Index extends React.Component {
 			activeType: '',
 			activePeople: '',
 			activeZone: 'All',
-			placeholder: 'Search Destinations',
+			placeholder: 'Search Treks',
 			value: '',
 			isLoading: false,
 			visible: true,
@@ -63,7 +63,7 @@ class Index extends React.Component {
 
 
 	static async getInitialProps() {
-		const res = await axios.get('http://www.freeways.in/api/trips/');
+		const res = await axios.get('http://www.freeways.in/api/treks/');
 		const data = res.data;
 		return { data };
 	}
@@ -488,7 +488,7 @@ class Index extends React.Component {
 														<Grid.Column>
 															<Segment basic id="destinations" style={{
 															}}>
-																<Destinations data={this.state.items} type='destination' hoverCall={this._hoverCall} />
+																<Destinations data={this.state.items} type='trek' hoverCall={this._hoverCall} />
 																<br />
 																<br />
 															</Segment>
