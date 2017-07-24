@@ -143,12 +143,6 @@ class Index extends React.Component {
 			return 0
 		});
 
-		updatedList = updatedList.map((item) => {
-			item.img_thumb = 'https://s3.amazonaws.com/society-of-the-spectacle/img/agra.jpg'
-			console.log(item.img_thumb)
-			return item
-		})
-
 		this.setState(items: updatedList);
 	}
 
@@ -653,8 +647,6 @@ class Index extends React.Component {
 															<Segment basic id="destinations" style={{
 															}}>
 																<Treks data={this.state.items} type='trek' hoverCall={this._hoverCall} />
-																<br />
-																<br />
 															</Segment>
 														</Grid.Column>
 													</Grid.Row>

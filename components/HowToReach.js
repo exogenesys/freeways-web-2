@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import {
 	Menu,
 	Segment,
@@ -15,10 +15,10 @@ export default class HowToReach extends Component {
 		activeItem: 'car'
 	}
 
-	handleItemClick = (e, {name}) => this.setState({activeItem: name})
+	handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
 	render() {
-		const {activeItem} = this.state
+		const { activeItem } = this.state
 
 		var text = '';
 
@@ -46,7 +46,7 @@ export default class HowToReach extends Component {
 					<div style={{
 						float: 'left'
 					}}>
-						<Icon name='car'/>
+						<Icon name='car' />
 						&nbsp;&nbsp;Car
 					</div>
 				</Menu.Item>
@@ -58,7 +58,7 @@ export default class HowToReach extends Component {
 					<div style={{
 						float: 'left'
 					}}>
-						<Icon name='bus'/>
+						<Icon name='bus' />
 						&nbsp;&nbsp;Bus
 					</div>
 				</Menu.Item>
@@ -70,7 +70,7 @@ export default class HowToReach extends Component {
 					<div style={{
 						float: 'left'
 					}}>
-						<Icon name='train'/>
+						<Icon name='train' />
 						&nbsp;&nbsp;Train
 					</div>
 				</Menu.Item>
@@ -82,7 +82,7 @@ export default class HowToReach extends Component {
 					<div style={{
 						float: 'left'
 					}}>
-						<Icon name='plane'/>
+						<Icon name='plane' />
 						&nbsp;&nbsp;Plane
 					</div>
 				</Menu.Item>
@@ -91,11 +91,11 @@ export default class HowToReach extends Component {
 
 		return (
 
-			<Segment basic  id='guide'>
+			<Segment basic id='guide'>
 				<Header size='huge' style={{
-					marginTop:'80px'
+					marginTop: '80px'
 				}}>How To Reach</Header>
-				<br/>
+				<br />
 
 				<Grid columns={2}>
 					<Grid.Row>
@@ -104,23 +104,23 @@ export default class HowToReach extends Component {
 								{items}
 							</Menu>
 						</Grid.Column>
-						</Grid.Row>
-						<Grid.Row>
+					</Grid.Row>
+					<Grid.Row>
 						<Grid.Column width={16}>
 							<Segment basic>
 								<div className='PrimaryText' style={{
 									marginTop: '-27px'
 								}}>
 									{renderHTML(text)}
-								</p>
+								</div>
 							</Segment>
 						</Grid.Column>
 
 					</Grid.Row>
 
 				</Grid>
-				<br/>
-				<br/>
+				<br />
+				<br />
 			</Segment>
 
 		)

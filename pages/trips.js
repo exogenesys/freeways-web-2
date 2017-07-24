@@ -488,7 +488,7 @@ class Index extends React.Component {
 														<Grid.Column>
 															<Segment basic id="destinations" style={{
 															}}>
-																<Trips data={this.state.items} type='destination' hoverCall={this._hoverCall} />
+																<Trips data={this.state.items} type='trip' hoverCall={this._hoverCall} />
 																<br />
 																<br />
 															</Segment>

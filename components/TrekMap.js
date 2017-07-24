@@ -34,8 +34,9 @@ export default class Map extends React.Component {
 
 		if (this.props.data) {
 			AnyReactComponents = this.props.data.map((item) => {
+				let hoverState = null
 				if (!isNaN(item.latitude) && !isNaN(item.longitude) || !isNaN(item.summit_lat) && !isNaN(item.summit_lng)) {
-					const hoverState = (this.props.hoveredIndex === item.id)
+					hoverState = (this.props.hoveredIndex === item.id)
 				}
 				return <MapItem lat={item.latitude || item.summit_lat} lng={item.longitude || item.summit_lng} text={item.name || item.title} id={item.id} hoverState={hoverState} itemType={this.props.type} {...item} />
 			})
