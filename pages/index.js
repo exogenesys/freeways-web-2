@@ -50,7 +50,7 @@ class Index extends React.Component {
 
 			<Layout>
 				<Sticky innerZ={99999999999}>
-					<TopBar handleDimmer={e => this.handleDimmer(e)} root={false}/>
+					<TopBar handleDimmer={e => this.handleDimmer(e)} root={false} page='home'/>
 				</Sticky>
 
 				<Dimmer.Dimmable blurring dimmed={this.state.dimmer} style={{

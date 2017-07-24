@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import {Card, Header, Icon, Grid} from 'semantic-ui-react'
+import { Card, Header, Icon, Grid } from 'semantic-ui-react'
 import helper from '../utils/helper';
 import constants from '../utils/constants'
 
@@ -15,8 +15,7 @@ export default class Brick extends React.Component {
 	}
 
 	perspective(event) {
-		this.setState({x: event.clientX, y: event.clientY});
-		console.log(this.state);
+		this.setState({ x: event.clientX, y: event.clientY });
 	}
 
 	render() {

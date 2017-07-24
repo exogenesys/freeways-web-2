@@ -1,172 +1,73 @@
 import React from 'react'
-import {Header, Segment, List, Divider} from 'semantic-ui-react'
+import { Header, Segment, Divider, Grid } from 'semantic-ui-react'
 import renderHTML from 'react-render-html'
+import ShowMore from 'react-show-more'
 
 class MustCarry extends React.Component {
+
+
+
 	render() {
 
-		const why_should_you_go = ((this.props.why_should_you_go)
-			? (
+		let mustknow = [
+			{
+				data: (this.props.why_should_you_go) || null,
+				heading: 'Why should you go'
+			},
+			{
+				data: (this.props.why_should_you_try) || null,
+				heading: 'Why should you try'
+			},
+			{
+				data: (this.props.what_should_you_know) || null,
+				heading: 'What should you know'
+			},
+			{
+				data: (this.props.things_to_care_about) || null,
+				heading: 'Things to care about'
+			},
+			{
+				data: (this.props.speciality) || null,
+				heading: 'Specialiy'
+			}
+		]
 
-				<Segment basic id="guide">
-					<Header size='huge' style={{
-						marginTop: '0px'
-					}}>Why should you go</Header>
-					<br/>
 
-					<List divided inverted relaxed>
-						<List.Item>
-							<List.Content>
-								<p style={{
-									fontSize: '20px',
-									color: '#333'
+		let items = mustknow.map((item) => {
+			if (item.data)
+				return (
+					<Grid>
+						<Grid.Row>
+							<Grid.Column width={4}>
+								<Header size='massive' style={{
+									marginTop: '5px'
 								}}>
-
-									{renderHTML(this.props.why_should_you_go)}
-
-								</p>
-							</List.Content>
-						</List.Item>
-					</List>
-					<br/>
-					<br/>
-					<Divider inverted/>
-				</Segment>
-
-			)
-			: null)
-
-			const why_should_you_try = ((this.props.why_should_you_try)
-				? (
-
-					<Segment basic id="guide">
-						<Header size='huge' style={{
-							marginTop: '0px'
-						}}>Why should you try</Header>
-						<br/>
-
-						<List divided inverted relaxed>
-							<List.Item>
-								<List.Content>
-									<p style={{
-										fontSize: '20px',
-										color: '#333'
-									}}>
-
-										{renderHTML(this.props.why_should_you_try)}
-
-									</p>
-								</List.Content>
-							</List.Item>
-						</List>
-						<br/>
-						<br/>
-						<Divider inverted/>
-					</Segment>
-
+									{item.heading}
+								</Header>
+							</Grid.Column>
+							<Grid.Column width={12}>
+								<div className='PrimaryText'>
+									<ShowMore
+										lines={4}
+										more='More'
+										less={null}
+									>
+										{renderHTML(item.data)}
+									</ShowMore>
+								</div>
+							</Grid.Column>
+						</Grid.Row>
+						<Divider />
+					</Grid>
 				)
-				: null)
+			else return null
+		})
 
-
-		const what_should_you_know = ((this.props.what_should_you_know)
-			? (
-
-				<Segment basic id="guide">
-					<Header size='huge' style={{
-						marginTop: '0px'
-					}}>What should you know</Header>
-					<br/>
-
-					<List divided inverted relaxed>
-						<List.Item>
-							<List.Content>
-								<p style={{
-									fontSize: '20px',
-									color: '#333'
-								}}>
-
-									{renderHTML(this.props.what_should_you_know)}
-
-								</p>
-							</List.Content>
-						</List.Item>
-					</List>
-					<br/>
-					<br/>
-					<Divider inverted/>
-				</Segment>
-
-			)
-			: null)
-
-		const things_to_care_about = ((this.props.things_to_care_about)
-			? (
-
-				<Segment basic id="guide">
-					<Header size='huge'>Things to care about</Header>
-					<br/>
-
-					<List divided inverted relaxed>
-						<List.Item>
-							<List.Content>
-								<p style={{
-									fontSize: '20px',
-									color: '#333'
-								}}>
-
-									{renderHTML(this.props.things_to_care_about)}
-
-								</p>
-							</List.Content>
-						</List.Item>
-					</List>
-					<br/>
-					<br/>
-					<Divider inverted/>
-				</Segment>
-
-			)
-			: null)
-
-		const speciality = ((this.props.speciality)
-			? (
-
-				<Segment basic id="guide">
-					<Header size='huge' style={{
-						marginTop: '0px'
-					}}>Speciality</Header>
-					<br/>
-
-					<List divided inverted relaxed>
-						<List.Item>
-							<List.Content>
-								<p style={{
-									fontSize: '20px',
-									color: '#333'
-								}}>
-
-									{renderHTML(this.props.speciality)}
-
-								</p>
-							</List.Content>
-						</List.Item>
-					</List>
-					<br/>
-					<br/>
-					<Divider inverted/>
-				</Segment>
-
-			)
-			: null)
 
 		return (
-			<div>
-				{why_should_you_go}
-				{why_should_you_try}
-				{what_should_you_know}
-				{things_to_care_about}
-				{speciality}
-			</div>
+			<Segment basic>
+				{items}
+			</Segment>
 		);
 	}
 }

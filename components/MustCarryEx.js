@@ -62,18 +62,26 @@ export default class MustCarry extends Component {
 
 			if(items.length > 0){
 				return (
-
-					<Segment basic id='guide'>
-					<Header  style={{
-						marginTop:'80px'
-					}} size='huge'>Things You Gotto Carry</Header>
-					<br/>
-					<Grid padded relaxed>
-					{mobileRows}
+					<Segment basic>
+						<Grid>
+							<Grid.Row>
+								<Grid.Column width={4}>
+									<Header size='massive' style={{
+										marginTop: '5px'
+									}}>
+									Things You Gotta Carry
+								</Header>
+								</Grid.Column>
+							<Grid.Column width={12}>
+								<Grid padded relaxed>
+									{mobileRows}
+								</Grid>
+							</Grid.Column>
+						</Grid.Row>
 					</Grid>
-					<br/>
-					</Segment>
-				)
+				</Segment>
+
+			)
 			} else {
 				return null;
 			}

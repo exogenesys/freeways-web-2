@@ -404,7 +404,7 @@ class Index extends React.Component {
 		return (
 
 			<Layout>
-				<TopBar handleDimmer={e => this.handleDimmer(e)} root={false} />
+				<TopBar handleDimmer={e => this.handleDimmer(e)} root={false} page='trips'/>
 				<Dimmer.Dimmable blurring dimmed={dimmer} style={{
 				}}>
 					<Dimmer active={dimmer} onClickOutside={this.handleDimmerHide}></Dimmer>

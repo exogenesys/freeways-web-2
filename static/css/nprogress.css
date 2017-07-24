@@ -235,7 +235,7 @@
 		background: rgba(255, 255, 255, 0)!important;
 }
 
-a .NavLink .active {
+.NavLink .active {
     color: rgba(50,50,50,1) !important;
 	background: rgba(0, 0, 0, 0)!important;
 }
@@ -244,6 +244,18 @@ a .NavLink .active {
     color: rgba(50,50,50,1) !important;
 	background: rgba(0, 0, 0, 0)!important;
 	/*transform: scale(1.05)!important;*/
+}
+
+.NavLink a {
+	    color: rgba(50,50,50,0.7) !important;
+}
+
+.active.NavLink a {
+    color: rgba(50,50,50,1) !important;
+}
+
+.NavLink:hover a {
+    color: rgba(50,50,50,1) !important;
 }
 
 
@@ -440,4 +452,17 @@ a .NavLink .active {
 .ClearFilterItemStyle::before {
 	text-transform: capitalize !important;
 	background: rgba(0, 0, 0, 0)!important;
+}
+
+.PrimaryText {
+	color: rgb(51, 51, 51)!important;
+	display: block!important;
+	font-family: Lato, "Helvetica Neue", Arial, Helvetica, sans-serif!important;
+	font-size: 20px!important;
+	line-height: 28.57px!important;
+	margin-bottom: 0px!important;
+	margin-left: 0px!important;
+	margin-right: 0px!important;
+	margin-top: 0px!important;
+	text-size-adjust: 100%!important;
 }

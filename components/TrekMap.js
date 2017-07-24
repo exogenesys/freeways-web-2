@@ -36,8 +36,8 @@ export default class Map extends React.Component {
 			AnyReactComponents = this.props.data.map((item) => {
 				if (!isNaN(item.latitude) && !isNaN(item.longitude) || !isNaN(item.summit_lat) && !isNaN(item.summit_lng)) {
 					const hoverState = (this.props.hoveredIndex === item.id)
-					return <MapItem lat={item.latitude || item.summit_lat} lng={item.longitude || item.summit_lng} text={item.name || item.title} id={item.id} hoverState={hoverState} itemType={this.props.type} {...item} />
 				}
+				return <MapItem lat={item.latitude || item.summit_lat} lng={item.longitude || item.summit_lng} text={item.name || item.title} id={item.id} hoverState={hoverState} itemType={this.props.type} {...item} />
 			})
 		}
 
@@ -46,16 +46,16 @@ export default class Map extends React.Component {
 			mapTypeControl: true,
 			scrollwheel: true,
 			gestureHandling: 'greedy',
-			mapTypeId: 'terrain',
+			mapTypeId: 'roadmap',
 			streetViewControl: true
 		}
 
 		let polylines = null
-		if (this.state.mapLoaded)
-			polylines = (<Polyline map={this.state.map} maps={this.state.maps}
-				origin={{ lat: 28.7041, lng: 77.1025 }}
-				destination={{ lat: 34.1526, lng: 77.5771 }}
-			/>)
+		// if (this.state.mapLoaded)
+		// 	polylines = (<Polyline map={this.state.map} maps={this.state.maps}
+		// 		origin={{ lat: 28.7041, lng: 77.1025 }}
+		// 		destination={{ lat: 34.1526, lng: 77.5771 }}
+		// 	/>)
 
 		if (this.props.center.lat && this.props.center.lng) {
 			return (

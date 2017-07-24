@@ -48,19 +48,19 @@ export default class Places extends Component {
 		} else {
 			let i = 0,
 				j = 0;
-			while (j * 4 + i < this.state.filters.length) {
-				while (i < 4 && j * 4 + i < this.state.filters.length) {
+			while (j * 2 + i < this.state.filters.length) {
+				while (i < 2 && j * 2 + i < this.state.filters.length) {
 					cols.push(
 						<Grid.Column style={{
 							marginTop: '14px',
 							paddingLeft: '0.5em',
 							paddingRight: '0.5em'
-						}}><Brick type={this.props.type} hoverCall={this._hoverCall} data={this.state.filters[j * 4 + i]} /></Grid.Column>
+						}}><Brick type={this.props.type} hoverCall={this._hoverCall} data={this.state.filters[j * 2 + i]} /></Grid.Column>
 					);
 					i++;
 				}
 				rows.push(
-					<Grid.Row columns={4} style={{
+					<Grid.Row columns={'equal'} style={{
 						marginBottom: '-27px'
 					}}>{cols}</Grid.Row>
 				)

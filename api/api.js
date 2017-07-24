@@ -358,7 +358,7 @@ Router.get('/destinations', (req, res) => {
 		visible: {
 			$ne: false
 		}
-	}).select('slug img_thumb title type best_month_to_visit latitude longitude id filter solo_score family_score friends_score couple_score score zone recommended_for').exec(function (err, destinations) {
+	}).select('slug img_thumb title type best_month_to_visit latitude longitude id filter solo_score family_score friends_score couple_score score zone recommended_for visible').exec(function (err, destinations) {
 		if (err) {
 			console.log('error finding trips for home')
 		} else {
@@ -404,7 +404,7 @@ Router.get('/roadtrips', (req, res) => {
 
 
 Router.get('/treks', (req, res) => {
-	treks.find().select('id slug name caption difficulty duration max_altitude region base_camp_lat bace_camp_lng bace_camp_name summit_lat summit_lng dist_from_nearest_major_city no_of_days_trekking best_time_to_visitbest_time_to_visit best_time_to_visit_more_informartion trek_distance budget for_whom highlights')
+	treks.find().select('id slug name img_thumb caption difficulty duration max_altitude region base_camp_lat base_camp_lng base_camp_name summit_lat summit_lng summit_name dist_from_nearest_major_city no_of_days_trekking best_time_to_visit best_time_to_visit_more_informartion trek_distance budget for_whom highlights')
 		.exec(function (err, treks) {
 			if (err) {
 				console.log('error finding treks for home', err)

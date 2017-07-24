@@ -62,13 +62,11 @@ export default class PlacesIntroduction extends React.Component {
 				<Header size='huge'>Introduction</Header>
 				<br/>
 				<br/>
-				<p style={{
-					fontSize: '20px',
-					textAlign: 'center',
-					color: '#333'
+				<div className='PrimaryText' style={{
+					textAlign: 'center'
 				}}>
 					{intro}
-				</p>
+				</div>
 				<br/>
 				<br/>
 				<br/>

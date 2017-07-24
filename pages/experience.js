@@ -24,10 +24,10 @@ import Menu from '../components/ExperienceMenu'
 import Languages from '../components/Languages'
 import Footer from '../components/Footer'
 import Introduction from '../components/ExperiencesIntroduction'
+import MustKnow from '../components/MustKnow'
 import Pointers from '../components/ExperiencesPointers'
 import MustCarry from '../components/MustCarryEx'
 import HowToReach from '../components/HowToReach2'
-import MustKnow from '../components/MustKnow'
 import Trips from '../components/DestinationTrips'
 import Comments from '../components/Comments'
 import initStore from '../utils/store'
@@ -46,10 +46,10 @@ export default class Index extends React.Component {
 		this.handleScroll = this.handleScroll.bind(this);
 	}
 
-	static async getInitialProps({query}) {
+	static async getInitialProps({ query }) {
 		const res = await fetch('http://www.freeways.in/api/experience/' + query.slug);
 		const data = await res.json();
-		return {data};
+		return { data };
 	}
 
 	handleScroll() {
@@ -69,8 +69,8 @@ export default class Index extends React.Component {
 			}
 		}
 		if (ind > -1)
-			this.setState({activeItem: items[ind]});
-		}
+			this.setState({ activeItem: items[ind] });
+	}
 
 	componentWillUnmount() {
 		window.removeEventListener('scroll', this.handleScroll);
@@ -80,7 +80,7 @@ export default class Index extends React.Component {
 		window.addEventListener('scroll', this.handleScroll);
 	}
 
-	handleDimmer = (toDimOrNotToDim) => this.setState({dimmer: toDimOrNotToDim})
+	handleDimmer = (toDimOrNotToDim) => this.setState({ dimmer: toDimOrNotToDim })
 
 	render() {
 
@@ -100,7 +100,7 @@ export default class Index extends React.Component {
 		return (
 
 			<Layout>
-				<TopBar handleDimmer={e => this.handleDimmer(e)} root={false} title={z.experiences.title}/>
+				<TopBar handleDimmer={e => this.handleDimmer(e)} root={false} title={z.experiences.title} page='experiences' />
 				<Dimmer.Dimmable blurring dimmed={this.state.dimmer}>
 					<Dimmer active={this.state.dimmer} onClickOutside={this.handleDimmerHide}></Dimmer>
 					<Container>
@@ -108,7 +108,7 @@ export default class Index extends React.Component {
 							<Grid.Row style={{
 								marginTop: '50px'
 							}}>
-								<Grid.Column computer={9} tablet={16}>
+								<Grid.Column computer={9} tablet={16} id='infobar'>
 									<Segment basic>
 										<Header style={{
 											fontSize: '3.5rem'
@@ -122,30 +122,30 @@ export default class Index extends React.Component {
 										<Grid>
 											<Grid.Row>
 												<Grid.Column only='mobile tablet'>
-													<Cover img={z.experiences.img}/>
+													<Cover img={z.experiences.img} />
 												</Grid.Column>
 											</Grid.Row>
 										</Grid>
 									</Segment>
-									<Introduction intro={z.experiences.information}/>
-									<MustKnow must_know={z.experiences.must_know} why_should_you_go={z.experiences.why_should_you_go} why_should_you_try={z.experiences.why_should_you_try} what_should_you_know={z.experiences.what_should_you_know} things_to_care_about={z.experiences.things_to_care_about} speciality={z.experiences.speciality}/>
-									<MustCarry must_carry={z.must_carry}/>
-									<HowToReach how_to_reach={z.experiences.how_to_reach}/> {/*		<Trips trips = {z.trips}/>
+									<Introduction intro={z.experiences.information} />
+									<MustKnow must_know={z.experiences.must_know} why_should_you_go={z.experiences.why_should_you_go} why_should_you_try={z.experiences.why_should_you_try} what_should_you_know={z.experiences.what_should_you_know} things_to_care_about={z.experiences.things_to_care_about} speciality={z.experiences.speciality} />
+									<MustCarry must_carry={z.must_carry} />
+									<HowToReach how_to_reach={z.experiences.how_to_reach} /> {/*		<Trips trips = {z.trips}/>
 									<Comments />
 								*/}
 								</Grid.Column>
 								<Grid.Column computer={7} only='computer'>
-									<Sticky bottomBoundary={'#footer'}>
-										<Cover img={z.experiences.img}/>
-										<Pointers best_time={z.experiences.best_time_to_visit} best_time_more_info={z.experiences.best_time_to_visit_more_information} time_to_explore={z.experiences.time_to_explore} weather={z.weather}/>
+									<Sticky bottomBoundary={'#infobar'}>
+										<Cover img={z.experiences.img} />
+										<Pointers best_time={z.experiences.best_time_to_visit} best_time_more_info={z.experiences.best_time_to_visit_more_information} time_to_explore={z.experiences.time_to_explore} weather={z.weather} />
 									</Sticky>
 								</Grid.Column>
 							</Grid.Row>
 						</Grid>
-						<br/>
-						<br/>
+						<br />
+						<br />
 					</Container>
-					<Footer id='footer'/>
+					<Footer id='footer' />
 				</Dimmer.Dimmable>
 			</Layout>
 		)

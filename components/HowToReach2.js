@@ -1,12 +1,9 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import {
-	Menu,
-	Segment,
 	Header,
+	Segment,
 	Grid,
-	List,
-	Button,
-	Icon
+	Divider
 } from 'semantic-ui-react'
 import renderHTML from 'react-render-html'
 
@@ -14,25 +11,29 @@ export default class HowToReach extends Component {
 	render() {
 		if (this.props.how_to_reach) {
 			return (
-
 				<Segment basic>
-					<Header size='huge' style={{
-						marginTop: '80px'
-					}}>How To Reach</Header>
-					<br/>
-					<br/>
-					<p style={{
-						fontSize: '20px',
-						color: '#333',
-						marginTop: '-27px'
-					}}>
-						{renderHTML(this.props.how_to_reach)}
-					</p>
+					<Grid>
+						<Grid.Row>
+							<Grid.Column width={4}>
+								<Header size='massive' style={{
+									marginTop: '5px'
+								}}>
+									How To Reach
+							</Header>
+							</Grid.Column>
+							<Grid.Column width={12}>
+								<div className='PrimaryText'>
+									{renderHTML(this.props.how_to_reach)}
+								</div>
+							</Grid.Column>
+						</Grid.Row>
+					</Grid>
 				</Segment>
-
 			)
 		} else {
 			return null;
 		}
 	}
 }
+
+

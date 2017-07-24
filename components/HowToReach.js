@@ -108,9 +108,7 @@ export default class HowToReach extends Component {
 						<Grid.Row>
 						<Grid.Column width={16}>
 							<Segment basic>
-								<p style={{
-									fontSize: '20px',
-									color: '#333',
+								<div className='PrimaryText' style={{
 									marginTop: '-27px'
 								}}>
 									{renderHTML(text)}

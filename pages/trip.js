@@ -50,7 +50,7 @@ class Index extends React.Component {
 
 		return (
 			<Layout>
-				<TopBar root={false} />
+				<TopBar root={false} page='trips'/>
 				<Container fluid>
 					<Cover caption={z.caption} title={z.title} img={z.img} />
 					<Container >

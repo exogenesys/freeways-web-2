@@ -70,15 +70,11 @@ export default class Footer extends React.Component {
 					marginTop: '80px',
 				}}>Introduction</Header>
 				<br/>
-				<p style={{
-					fontSize: '20px',
-					textAlign: 'center',
-					color: '#333'
+				<div className='PrimaryText' style={{
+					textAlign: 'center'
 				}}>
-
 					{renderHTML(this.props.intro || '')}
-
-				</p>
+				</div>
 				<br/>
 				<br/>
 				<br/>

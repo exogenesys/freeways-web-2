@@ -26,7 +26,7 @@ import Layout from '../components/Layout'
 import TopBar from '../components/TopBar'
 import Footer from '../components/Footer'
 import Map from '../components/Map';
-import Destinations from '../components/Destinations'
+import Roadtrips from '../components/Roadtrips'
 import Router from 'next/router'
 import Sticky from 'react-stickynode';
 
@@ -488,7 +488,7 @@ class Index extends React.Component {
 														<Grid.Column>
 															<Segment basic id="destinations" style={{
 															}}>
-																<Destinations data={this.state.items} type='destination' hoverCall={this._hoverCall} />
+																<Roadtrips data={this.state.items} type='destination' hoverCall={this._hoverCall} />
 																<br />
 																<br />
 															</Segment>
