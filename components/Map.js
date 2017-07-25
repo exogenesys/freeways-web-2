@@ -46,21 +46,24 @@ export default class Map extends React.Component {
 			mapTypeControl: true,
 			scrollwheel: true,
 			gestureHandling: 'greedy',
-			mapTypeId: 'terrain',
+			mapTypeId: this.props.mapTypeId || 'roadmap',
 			streetViewControl: true
 		}
 
 		let polylines = null
-		if (this.state.mapLoaded)
+		if (this.state.mapLoaded) {
 			polylines = (<Polyline map={this.state.map} maps={this.state.maps}
 				origin={{ lat: 28.7041, lng: 77.1025 }}
 				destination={{ lat: 34.1526, lng: 77.5771 }}
 			/>)
+			if (this.props.tilt)
+				this.state.map.setTilt(45);
+		}
 
 		if (this.props.center.lat && this.props.center.lng) {
 			return (
 				<Segment basic style={{
-					height: '97vh',
+					height: '80vh',
 				}}>
 					<GoogleMapReact bootstrapURLKeys={{
 						key: 'AIzaSyBMU7XiJw7ij5n7jzsfeXlGZYk9X9S - 8 hE'
@@ -76,7 +79,7 @@ export default class Map extends React.Component {
 						hoverDistance={40}>
 						{AnyReactComponents}
 					</GoogleMapReact>
-					{polylines}
+					{/* {polylines} */}
 				</Segment>
 			)
 

@@ -31,6 +31,7 @@ import TopBar from '../components/TopBar'
 import Cover from '../components/TrekCover'
 import SideImage from '../components/SideImage'
 import Languages from '../components/Languages'
+import Map from '../components/Map';
 import Footer from '../components/Footer'
 import Introduction from '../components/ExperiencesIntroduction'
 import MustKnow from '../components/MustKnow'
@@ -58,7 +59,12 @@ export default class Index extends React.Component {
 			activeItem: 'about',
 			dimmer: false,
 			slideQueue: [],
-			roll: this.props.imgs
+			roll: this.props.imgs,
+			center: { lat: this.props.data.experiences.summit_lat, lng: this.props.data.experiences.summit_lng },
+			items: [{ latitude: this.props.data.experiences.summit_lat, longitude: this.props.data.experiences.summit_lng, name: this.props.data.experiences.summit_name }],
+			mapTypeId: 'hybrid',
+			zoom: 14,
+			hoveredIndex: -1
 		};
 
 	}
@@ -383,6 +389,14 @@ export default class Index extends React.Component {
 					</Grid.Column>
 					<Grid.Column computer={6} only='computer'>
 						<Sticky bottomBoundary={'#infobar'} top={'#topbar'}>
+							<Map
+								center={this.state.center}
+								mapTypeId={this.state.mapTypeId || 'hybrid'}
+								tilt={true}
+								zoom={this.state.zoom}
+								data={this.state.items}
+								hoveredIndex={this.state.hoveredIndex}
+								type='trek' />
 						</Sticky>
 					</Grid.Column>
 				</Grid.Row>

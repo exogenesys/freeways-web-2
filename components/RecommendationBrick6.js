@@ -41,7 +41,7 @@ export default class Brick extends React.Component {
 								color: 'white',
 								textTransform: 'capitalize'
 							}}>
-								{this.props.data.name}
+								{this.props.data.name || this.props.data.title}
 								<br />
 							</Card.Header>
 							<Card.Description style={{
