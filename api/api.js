@@ -374,7 +374,7 @@ Router.get('/destinations', (req, res) => {
 
 
 Router.get('/experiences', (req, res) => {
-	experiences.find().select('slug img_thumb title type best_time_to_visit best_month_to_visit latitude longitude filter zone').exec(function (err, experiences) {
+	experiences.find().select('slug img_thumb caption title type best_time_to_visit best_month_to_visit latitude longitude filter zone').exec(function (err, experiences) {
 		if (err) {
 			console.log('error finding trips for home')
 		} else {

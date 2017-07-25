@@ -6,10 +6,12 @@ import constants from '../utils/constants'
 
 export default class Brick extends React.Component {
 
+
 	_onhover = () => this.props.hoverCall(this.props.data.id);
 	_onLeave = () => this.props.hoverCall(-1);
 
 	render() {
+		console.log(this.props.data)
 		var imgurl = helper.buildImgUrl(this.props.data.img_thumb, constants.IMG_HEIGHT_RB, constants.IMG_QUALITY_RB);
 		return (
 			<Link prefetch href={{
@@ -51,7 +53,6 @@ export default class Brick extends React.Component {
 									fontSize: '16px'
 								}}>
 									{this.props.data.caption}
-									<br />
 								</p>
 							</Card.Description>
 							<Card.Meta style={{
