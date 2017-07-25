@@ -22,7 +22,7 @@ app.prepare().then(_ => {
 	server.use(cors())
 
 	server.use('/api', api);
-	server.use('/debord', img);
+	// server.use('/debord', img);
 
 	server.use((err, req, res, next) => {
 		console.log("error has happened something broke");
@@ -51,9 +51,6 @@ app.prepare().then(_ => {
 		return app.render(req, res, '/treks');
 	});
 
-
-
-
 	server.get('/destination/:slug', (req, res) => {
 		const params = { slug: req.params.slug }
 		return app.render(req, res, '/destination', params);
@@ -67,6 +64,16 @@ app.prepare().then(_ => {
 	server.get('/experience/:slug', (req, res) => {
 		const params = { slug: req.params.slug }
 		return app.render(req, res, '/experience', params);
+	});
+
+	server.get('/trek/:slug', (req, res) => {
+		const params = { slug: req.params.slug }
+		return app.render(req, res, '/trek', params);
+	});
+
+	server.get('/roadtrip/:slug', (req, res) => {
+		const params = { slug: req.params.slug }
+		return app.render(req, res, '/roadtrip', params);
 	});
 
 	server.get('/trip/:slug', (req, res) => {
@@ -85,8 +92,8 @@ app.prepare().then(_ => {
 
 		console.log(`> App running on port ${PORT}`);
 	});
-}).catch(function () {
-	console.log('promise not kept')
+}).catch(function (err) {
+	console.log(err)
 })
 
 // module.exports = auth;

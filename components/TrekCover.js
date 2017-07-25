@@ -1,5 +1,5 @@
 import React from 'react'
-import {Segment, Header, Grid, Container} from 'semantic-ui-react'
+import { Segment, Header, Grid, Container, Statistic } from 'semantic-ui-react'
 import helper from '../utils/helper'
 import constants from '../utils/constants'
 
@@ -8,6 +8,8 @@ const Cover = (props) => {
 	const img = (props.img)
 		? props.img
 		: 'static/img/shimla.jpg'
+
+	// let pointers = props.pointers
 
 	// var imgurl = helper.buildImgUrl(props.img, constants.IMG_HEIGHT_DC, constants.IMG_QUALITY_DC);
 
@@ -24,10 +26,10 @@ const Cover = (props) => {
 
 	return (
 		<Container style={{
-			width:'90vw'
+			width: '90vw'
 		}}>
 			<Segment basic vertical style={CoverStyle}>
-				<Grid verticalAlign='middle' style={{
+				<Grid verticalAlign='middle' verticalAlign='bottom' style={{
 					margin: '0px'
 				}}>
 					<Grid.Row>
@@ -46,6 +48,9 @@ const Cover = (props) => {
 								fontWeight: '400'
 							}}>{props.caption || ''}</em>
 						</Grid.Column>
+					</Grid.Row>
+					<Grid.Row columns='equal' textAlign='center' verticalAlign='bottom'>
+						{props.pointers}
 					</Grid.Row>
 				</Grid>
 			</Segment>

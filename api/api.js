@@ -285,7 +285,11 @@ Router.get('/home', (req, res) => {
 		} else {
 			obj.trips = trips;
 
-			destinations.find().select('slug title caption time_to_explore img_thumb').limit(10).exec(function (err, destinations) {
+			destinations.find({
+				visible: {
+					$ne: false
+				}
+			}).select('slug title caption time_to_explore img_thumb').limit(10).exec(function (err, destinations) {
 				if (err) {
 					console.log('error finding destinations for home')
 				} else {
@@ -544,6 +548,38 @@ Router.get("/place/:slug", (req, res) => {
 Router.get("/experience/:slug", (req, res, next) => {
 	experiences.findOne({
 		slug: req.params.slug
+	}).exec((err, data) => {
+		if (err || data == null) {
+			console.error("error took place while looking up experiences");
+			// next(err);
+		} else {
+			mustCarry.find({ "id": { $in: data.must_carry } }).select('slug title source information').exec(function (err, _must_carry) {
+				if (err) {
+					console.error(err);
+				} else {
+
+					var x = data.toObject();
+					x.how_to_reach = isEmpty(x.how_to_reach_by_bus) + isEmpty(x.how_to_reach_by_car) + isEmpty(x.how_to_reach_by_airplane) + isEmpty(x.how_to_reach_by_train) + isEmpty(x.how_to_reach);
+					delete x.how_to_reach_by_bus;
+					delete x.how_to_reach_by_car;
+					delete x.how_to_reach_by_airplane;
+					delete x.how_to_reach_by_train;
+					// const w = (noLocationData)?Math.round(weather.main.temp - 273.15):0
+					const w = 23;
+					var obj = {
+						experiences: data,
+						must_carry: _must_carry
+					}
+					res.send(obj);
+				}
+			})
+		}
+	});
+});
+
+Router.get("/trek/:slug", (req, res, next) => {
+	treks.findOne({
+		slug: req.params.slug
 	}, (err, data) => {
 		if (err || data == null) {
 			console.error("error took place while looking up experiences");
@@ -555,13 +591,6 @@ Router.get("/experience/:slug", (req, res, next) => {
 				} else {
 
 					var x = data.toObject();
-					x.how_to_reach = isEmpty(x.how_to_reach_by_bus) + isEmpty(x.how_to_reach_by_car) + isEmpty(x.how_to_reach_by_airplane) + isEmpty(x.how_to_reach_by_train);
-					delete x.how_to_reach_by_bus;
-					delete x.how_to_reach_by_car;
-					delete x.how_to_reach_by_airplane;
-					delete x.how_to_reach_by_train;
-					// const w = (noLocationData)?Math.round(weather.main.temp - 273.15):0
-					const w = 23;
 					var obj = {
 						experiences: data,
 						must_carry: _must_carry

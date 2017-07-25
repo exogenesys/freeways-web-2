@@ -1,3 +1,4 @@
+
 #carouselHome {
 		/*-webkit-transition: all 0.2s ease!important;
 		-moz-transition: all 0.2s ease!important;
@@ -465,4 +466,60 @@
 	margin-right: 0px!important;
 	margin-top: 0px!important;
 	text-size-adjust: 100%!important;
+}
+
+.demo4 {
+    display: flex!important;
+    display: -webkit-flex!important;
+    align-items: center!important;
+    /* height: 700px!important; */
+    position: relative!important;
+  }
+  .demo4-inner {
+    overflow: hidden!important;
+    position: relative!important;
+    margin: auto!important;
+  }
+  .demo4-photo {
+    position: absolute!important;
+    background-color: lightgray!important;
+  }
+
+  .RightLeftButton {
+	background-color: rgb(255, 255, 255)!important;
+    border: 0px!important;
+    border-radius: 50%!important;
+    cursor: pointer!important;
+    display: block!important;
+    font-size: 9px!important;
+    line-height: 1!important;
+    transition: color 400ms, box-shadow 400ms!important;
+    height: 4.44444em!important;
+    width: 4.44444em!important;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0.222222em 0.888889em!important;
+    position: absolute!important;
+    bottom: 0px!important;
+    margin-bottom: auto!important;
+    margin-top: auto!important;
+    top: 0px!important;
+    right: -2.22222em!important;
+	color: rgb(41, 124, 187)!important;
+	z-index: 400;
+}
+
+   .Righty {
+    right: -2.22222em!important;
+  }
+
+
+   .Lefty {
+    left: -2.22222em!important;
+  }
+
+.SideImageStyle{
+	transition: all 9s ease;
+}
+
+.SideImageStyle:hover {
+	transform: scale(1.05)
 }

@@ -130,7 +130,7 @@ export default class Index extends React.Component {
 									<Introduction intro={z.experiences.information} />
 									<MustKnow must_know={z.experiences.must_know} why_should_you_go={z.experiences.why_should_you_go} why_should_you_try={z.experiences.why_should_you_try} what_should_you_know={z.experiences.what_should_you_know} things_to_care_about={z.experiences.things_to_care_about} speciality={z.experiences.speciality} />
 									<MustCarry must_carry={z.must_carry} />
-									<HowToReach how_to_reach={z.experiences.how_to_reach} /> {/*		<Trips trips = {z.trips}/>
+									<HowToReach how_to_reach={(z.experiences.how_to_reach || '') + (z.experiences.how_to_reach_by_car || '') + (z.experiences.how_to_reach_by_train || '') + (z.experiences.how_to_reach_by_bus || '') + (z.experiences.how_to_reach_by_airplane || '')} /> {/*		<Trips trips = {z.trips}/>
 									<Comments />
 								*/}
 								</Grid.Column>

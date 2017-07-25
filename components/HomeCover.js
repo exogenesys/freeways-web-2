@@ -1,8 +1,9 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import NoSSR from 'react-no-ssr'
 import axios from 'axios';
 import Link from 'next/link'
+
 import {
 	Search,
 	Grid,
@@ -48,7 +49,7 @@ export default class HomeCover extends Component {
 
 	componentDidMount() {
 		Deck = require('react-slide-deck').default;
-		this.setState({deckLoaded: true})
+		this.setState({ deckLoaded: true })
 	}
 
 	componentDidUpdate() {
@@ -70,7 +71,7 @@ export default class HomeCover extends Component {
 		}
 	}
 
-	onSwitchStarted({prev: current, current: next}) {
+	onSwitchStarted({ prev: current, current: next }) {
 		// console.log(`started to switch from ${current} to ${next}`);
 	}
 
@@ -79,10 +80,10 @@ export default class HomeCover extends Component {
 		// console.log(progress, deck.state.distance);
 	}
 
-	onSwitchDone({prev, current}) {}
+	onSwitchDone({ prev, current }) { }
 
 	goToSlide(slideNumber) {
-		this.setState({current: slideNumber, destroyTimer: true})
+		this.setState({ current: slideNumber, destroyTimer: true })
 	}
 
 	changeSlide() {
@@ -190,8 +191,9 @@ export default class HomeCover extends Component {
 										<div className={slideData[i].className + ((i == this.state.current && this.state.outerDeck.current == 1)
 											? ' coreActive'
 											: '')} style={{
-											backgroundImage: "linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.1)), url(\'" + slide.img + "\')"
-										}}></div>
+												backgroundImage: "linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.1)), url(\'" + slide.img + "\')"
+											}}></div>
+
 									</Deck.Slide>
 								)
 							})}
@@ -214,10 +216,10 @@ export default class HomeCover extends Component {
 											{slideData[this.state.current].text}
 										</div>
 										<Link href={slideData[this.state.current].url} as={slideData[this.state.current].as}>
-												<a className='SlideKnowMore'>
-													Know More
+											<a className='SlideKnowMore'>
+												Know More
 													<Icon className='MoveRight' name='angle right'></Icon>
-												</a>
+											</a>
 										</Link>
 									</div>
 								</Grid.Column>

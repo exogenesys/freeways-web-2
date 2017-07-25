@@ -23,7 +23,7 @@ export default class DestinationMenu extends Component {
 								background: '#FFF',
 								zIndex: '999999999'
 							}}>
-								<Menu pointing secondary size='massive' widths={3} style={{
+								<Menu pointing secondary size='massive' style={{
 									marginBottom: '-14px'
 								}}>
 									<Menu.Item name='about' active={activeItem === 'about'} onClick={this.handleItemClick}/>
