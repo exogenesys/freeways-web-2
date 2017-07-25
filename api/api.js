@@ -396,7 +396,7 @@ Router.get('/trips', (req, res) => {
 });
 
 Router.get('/roadtrips', (req, res) => {
-	trips.find().select('id slug name caption img_thumb type best_time_to_visit filter zone items_covered')
+	roadtrips.find().select('id slug name caption img_thumb type best_time_to_visit filter zone items_covered')
 		.exec(function (err, trips) {
 			if (err) {
 				console.log('error finding trips for home', err)
