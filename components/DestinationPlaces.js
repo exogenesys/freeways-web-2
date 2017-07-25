@@ -148,9 +148,7 @@ export default class Places extends Component {
 				marginLeft: '-8px',
 				marginRight: '-8px'
 			}}>
-				<Header style={{
-					marginTop: '80px'
-				}} size='huge'>Places</Header>
+				<Header size='huge'>Places</Header>
 				<Grid>
 					<Grid.Row only="computer">
 						<Grid.Column width={16}>

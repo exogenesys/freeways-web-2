@@ -29,7 +29,12 @@ class MustCarry extends React.Component {
 			{
 				data: (this.props.speciality) || null,
 				heading: 'Specialiy'
+			},
+			{
+				data: (this.props.must_know) || null,
+				heading: 'Things you gotta know'
 			}
+
 		]
 
 
@@ -39,7 +44,7 @@ class MustCarry extends React.Component {
 					<Grid>
 						<Grid.Row>
 							<Grid.Column width={4}>
-								<Header size='massive' style={{
+								<Header style={{
 									marginTop: '5px'
 								}}>
 									{item.heading}

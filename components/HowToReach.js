@@ -6,9 +6,12 @@ import {
 	Grid,
 	List,
 	Button,
-	Icon
+	Icon,
+	Divider
 } from 'semantic-ui-react'
 import renderHTML from 'react-render-html'
+import ShowMore from 'react-show-more'
+
 
 export default class HowToReach extends Component {
 	state = {
@@ -91,38 +94,34 @@ export default class HowToReach extends Component {
 
 		return (
 
-			<Segment basic id='guide'>
-				<Header size='huge' style={{
-					marginTop: '80px'
-				}}>How To Reach</Header>
-				<br />
-
-				<Grid columns={2}>
-					<Grid.Row>
-						<Grid.Column width={16}>
-							<Menu pointing secondary>
+				<Segment basic>
+					<Grid>
+						<Grid.Row>
+							<Grid.Column width={4}>
+								<Header style={{
+									marginTop: '5px'
+								}}>
+									How To Reach
+								</Header>
+							</Grid.Column>
+							<Grid.Column width={12}>
+							<Menu secondary>
 								{items}
 							</Menu>
-						</Grid.Column>
-					</Grid.Row>
-					<Grid.Row>
-						<Grid.Column width={16}>
-							<Segment basic>
-								<div className='PrimaryText' style={{
-									marginTop: '-27px'
-								}}>
-									{renderHTML(text)}
+								<div className='PrimaryText'>
+									<ShowMore
+										lines={8}
+										more='More'
+										less={null}
+									>
+										{renderHTML(text)}
+									</ShowMore>
 								</div>
-							</Segment>
-						</Grid.Column>
-
-					</Grid.Row>
-
-				</Grid>
-				<br />
-				<br />
-			</Segment>
-
+							</Grid.Column>
+						</Grid.Row>
+					</Grid>
+					<Divider />
+				</Segment>
 		)
 	}
 }

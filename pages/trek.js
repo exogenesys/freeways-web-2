@@ -58,7 +58,6 @@ export default class Index extends React.Component {
 		this.state = {
 			activeItem: 'about',
 			dimmer: false,
-			slideQueue: [],
 			roll: this.props.imgs,
 			center: { lat: this.props.data.experiences.summit_lat, lng: this.props.data.experiences.summit_lng },
 			items: [{ latitude: this.props.data.experiences.summit_lat, longitude: this.props.data.experiences.summit_lng, name: this.props.data.experiences.summit_name }],

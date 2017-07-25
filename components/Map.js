@@ -67,7 +67,6 @@ export default class Map extends React.Component {
 				}}>
 					<GoogleMapReact bootstrapURLKeys={{
 						key: 'AIzaSyBMU7XiJw7ij5n7jzsfeXlGZYk9X9S - 8 hE'
-
 					}}
 						onGoogleApiLoaded={({ map, maps }) => this.setState({ map: map, maps: maps, mapLoaded: true })}
 						yesIWantToUseGoogleMapApiInternals

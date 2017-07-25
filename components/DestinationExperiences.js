@@ -140,9 +140,7 @@ export default class Experiences extends Component {
 				marginLeft: '-8px',
 				marginRight: '-8px'
 			}}>
-				<Header  style={{
-					marginTop: '80px'
-				}} size='huge'>Experiences</Header>
+				<Header size='huge'>Experiences</Header>
 				<Grid>
 					<Grid.Row only="computer">
 						<Grid.Column width={16}>

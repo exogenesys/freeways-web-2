@@ -66,7 +66,7 @@ export default class MustCarry extends Component {
 						<Grid>
 							<Grid.Row>
 								<Grid.Column width={4}>
-									<Header size='massive' style={{
+									<Header style={{
 										marginTop: '5px'
 									}}>
 									Things You Gotta Carry

@@ -6,9 +6,12 @@ import {
 	Grid,
 	List,
 	Label,
-	Icon
+	Icon,
+	Divider
 } from 'semantic-ui-react'
 import renderHTML from 'react-render-html'
+import ShowMore from 'react-show-more'
+
 
 export default class GettingAround extends Component {
 
@@ -67,24 +70,32 @@ export default class GettingAround extends Component {
 		});
 
 		return (
-
-			<Segment basic>
-				<Header size='huge' style={{
-					marginTop:'80px'
-				}}>Getting Around</Header>
-				<Segment basic centered>
-					<Header size='medium'>Available modes of getting around</Header>
-					<br/>
-					{options}
-				</Segment>
-				<Segment basic>
-					<div className='PrimaryText'>
-						{renderHTML(this.props.gtaround)}
-					</div>
-
-				</Segment>
-			</Segment>
-
+					<Grid>
+						<Grid.Row>
+							<Grid.Column width={4}>
+								<Header style={{
+									marginTop: '5px'
+								}}>
+									Getting Around
+								</Header>
+							</Grid.Column>
+							<Grid.Column width={12}>
+									{options}
+								<div className='PrimaryText'>
+									<br/>
+									<ShowMore
+										lines={4}
+										more='More'
+										less={null}
+									>
+										{renderHTML(this.props.gtaround)}
+									</ShowMore>
+								</div>
+							</Grid.Column>
+						</Grid.Row>
+					<br />
+					<br />
+					</Grid>
 		)
 	}
 }

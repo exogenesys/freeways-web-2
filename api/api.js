@@ -462,11 +462,11 @@ Router.get("/destination/:slug", (req, res, next) => {
 		} else {
 			// rp('http://api.openweathermap.org/data/2.5/weather?lat=' + data.latitude + '&lon=' + data.longitude + '&appid=e6c33eefa2e93035fbc5bb2964d35603').then((response) => {
 			// 	const weather = JSON.parse(response)
-			places.find({ "id": { $in: data.places } }).select('slug title name caption tags img_thumb').exec(function (err, _places) {
+			places.find({ "id": { $in: data.places } }).select('slug title name caption tags img_thumb latitude longitude').exec(function (err, _places) {
 				if (err) {
 					console.error(err);
 				} else {
-					experiences.find({ "id": { $in: data.experiences } }).select('slug title name caption tags img_thumb').exec(function (err, _experiences) {
+					experiences.find({ "id": { $in: data.experiences } }).select('slug title name caption tags img_thumb latitude longitude').exec(function (err, _experiences) {
 						if (err) {
 							console.error(err);
 						} else {
