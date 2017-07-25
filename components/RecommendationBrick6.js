@@ -12,7 +12,7 @@ export default class Brick extends React.Component {
 
 	render() {
 		console.log(this.props.data)
-		var imgurl = helper.buildImgUrl(this.props.data.img_thumb, constants.IMG_HEIGHT_RB, constants.IMG_QUALITY_RB);
+		var imgurl = 'https://s3.amazonaws.com/society-of-the-spectacle/img/thumbs/' + this.props.data.slug + '.jpg'
 		return (
 			<Link prefetch href={{
 				pathname: '/' + this.props.type,
