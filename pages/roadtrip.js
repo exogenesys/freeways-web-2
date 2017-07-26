@@ -82,8 +82,8 @@ export default class Index extends React.Component {
 
 		let pointer = [
 			{
-				value: z.budget,
-				label: 'Average Budget'
+				value: z.distance,
+				label: 'Distance'
 			},
 			{
 				value: z.duration,

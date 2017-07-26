@@ -58,7 +58,7 @@
   "scripts": {
     "dev": "node server",
     "build": "next build",
-    "heroku-postbuild": "next build",
+    "postinstall": "npm run build",
     "start": "NODE_ENV=production node server"
   },
   "devDependencies": {
