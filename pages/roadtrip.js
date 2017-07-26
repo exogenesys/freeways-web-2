@@ -44,11 +44,10 @@ export default class Index extends React.Component {
 		this.state = {
 			activeItem: 'guide',
 			dimmer: false,
-			// roll: this.props.imgs,
-			// center: { lat: this.props.data.experiences.summit_lat, lng: this.props.data.experiences.summit_lng },
-			// items: [{ latitude: this.props.data.experiences.summit_lat, longitude: this.props.data.experiences.summit_lng, name: this.props.data.experiences.summit_name }],
+			center: { lat: this.props.data.places[0].latitude, lng: this.props.data.places[0].longitude },
+			items: this.props.data.places,
 			mapTypeId: 'hybrid',
-			zoom: 14,
+			zoom: 10,
 			hoveredIndex: -1
 		};
 
@@ -82,8 +81,8 @@ export default class Index extends React.Component {
 
 		let pointer = [
 			{
-				value: z.distance,
-				label: 'Distance'
+				value: z.budget,
+				label: 'Average Budget'
 			},
 			{
 				value: z.duration,
@@ -94,19 +93,19 @@ export default class Index extends React.Component {
 
 		let aboutData = [
 			{
-				data: z.intro,
+				data: z.intro || '',
 				title: 'Introduction'
 			},
 			{
-				data: z.best_time_to_visit_more_information,
+				data: z.best_time_to_visit_more_information || '',
 				title: 'When should you take this'
 			},
 			{
-				data: z.things_to_know,
+				data: z.things_to_know || '',
 				title: 'Things you should know'
 			},
 			{
-				data: z.accommodation,
+				data: z.accommodation || '',
 				title: 'Where you\'re going to stay'
 			}
 		]
@@ -149,7 +148,7 @@ export default class Index extends React.Component {
 										more='More'
 										less={null}
 									>
-										{renderHTML(item.data)}
+										{renderHTML(item.data || '')}
 									</ShowMore>
 								</div>
 							</Grid.Column>
@@ -181,7 +180,7 @@ export default class Index extends React.Component {
 									more='More'
 									less={null}
 								>
-									{renderHTML(day.text)}
+									{renderHTML(day.text || '')}
 								</ShowMore>
 							</div>
 						</Grid.Column>
@@ -191,6 +190,9 @@ export default class Index extends React.Component {
 			)
 		})
 
+		let snap = ([].concat.apply([], (z.itinerary.map(slide => slide.places))))
+		snap = snap.filter(exist => exist).map((img) => 'http://society-of-the-spectacle.s3.amazonaws.com/img/' + img +'.jpg')
+
 		let about = (
 			<Grid stackable={true}>
 				<Grid.Row>
@@ -199,7 +201,7 @@ export default class Index extends React.Component {
 							<Grid>
 								<Grid.Row only='mobile tablet'>
 									<Grid.Column>
-										<Cover img={z.experiences.img} />
+										<Cover img={z.img} />
 									</Grid.Column>
 								</Grid.Row>
 							</Grid>
@@ -211,9 +213,9 @@ export default class Index extends React.Component {
 					</Grid.Column>
 					<Grid.Column computer={6} only='computer'>
 						<Sticky bottomBoundary={'#infobar'} top={'#topbar'}>
-							 {/* <Gallery
-								rolls={[]}
-							/>  */}
+							  <Gallery
+									roll={snap}
+								/>  
 						</Sticky>
 					</Grid.Column>
 				</Grid.Row>
@@ -228,14 +230,12 @@ export default class Index extends React.Component {
 					</Grid.Column>
 					<Grid.Column computer={6} only='computer'>
 						<Sticky bottomBoundary={'#infobar'} top={'#topbar'}>
-							{/* <Map
+							 <Map
 								center={this.state.center}
 								mapTypeId={this.state.mapTypeId || 'hybrid'}
-								tilt={true}
 								zoom={this.state.zoom}
 								data={this.state.items}
-								hoveredIndex={this.state.hoveredIndex}
-								type='trek' /> */}
+								type='trip' /> 
 						</Sticky>
 					</Grid.Column>
 				</Grid.Row>
