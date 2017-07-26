@@ -22,7 +22,7 @@ export default class GalleryWrap extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			roll : this.props.rolls.map((paper) => {
+			roll : this.props.roll.map((paper) => {
 				return {
 					original : paper
 				}
@@ -58,7 +58,6 @@ export default class GalleryWrap extends Component {
 			</button>
 		)
 	}
-
 
 	render() {
 		return (
