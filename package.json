@@ -57,7 +57,9 @@
   },
   "scripts": {
     "dev": "node server",
-    "start": "NODE_ENV=production next build"
+    "build": "next build",
+    "heroku-postbuild": "npm run build",
+    "start": "NODE_ENV=production node server"
   },
   "devDependencies": {
     "babel-plugin-transform-decorators-legacy": "^1.3.4"
