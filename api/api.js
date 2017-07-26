@@ -449,7 +449,41 @@ Router.get("/trip/:slug", (req, res) => {
 		if (err || data == null) {
 			console.error("error looking up trip data");
 		} else {
-			res.send(data);
+			places.find({ "id": { $in: data.places } }).select('slug title name img_thumb latitude longitude').exec(function (err, _places) {
+				if (err) {
+					console.error(err);
+				} else {
+					experiences.find({ "id": { $in: data.experiences } }).select('slug title name caption img_thumb latitude longitude').exec(function (err, _experiences) {
+						if (err) {
+							console.error(err);
+						} else {
+							mustCarry.find({ "id": { $in: data.must_carry } }).select('slug title source information').exec(function (err, _must_carry) {
+								if (err) {
+									console.error(err);
+								} else {
+									
+									destinations.find({ "id": { $in: data.destinations } }).select('slug title name caption img_thumb latitude longitude').exec(function (err, _destinations) {
+										if (err) {
+											console.error(err);
+										} else {
+									
+										const obj = {
+											trip: data,
+											places: _places,
+											experiences: _experiences,
+											must_carry: _must_carry,
+											destinations: _destinations
+										}
+										res.send(obj);
+									}
+								});
+								}
+							});
+						}
+					});
+				}
+			});
+
 		}
 	});
 });

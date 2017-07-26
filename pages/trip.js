@@ -44,18 +44,17 @@ export default class Index extends React.Component {
 		this.state = {
 			activeItem: 'guide',
 			dimmer: false,
-			// roll: this.props.imgs,
-			// center: { lat: this.props.data.experiences.summit_lat, lng: this.props.data.experiences.summit_lng },
-			// items: [{ latitude: this.props.data.experiences.summit_lat, longitude: this.props.data.experiences.summit_lng, name: this.props.data.experiences.summit_name }],
+			center: { lat: this.props.data.places[0].latitude, lng: this.props.data.places[0].longitude },
+			items: this.props.data.places,
 			mapTypeId: 'hybrid',
-			zoom: 14,
+			zoom: 10,
 			hoveredIndex: -1
 		};
 
 	}
 
 	static async getInitialProps({ query }) {
-		const res = await fetch('http://freeways.in/api/trip/' + query.slug);
+		const res = await fetch('http://localhost:3000/api/trip/' + query.slug);
 		const data = await res.json();
 		return { data };
 	}
@@ -82,11 +81,11 @@ export default class Index extends React.Component {
 
 		let pointer = [
 			{
-				value: z.budget,
+				value: z.trip.budget,
 				label: 'Average Budget'
 			},
 			{
-				value: z.duration,
+				value: z.trip.duration,
 				label: 'Duration'
 			}
 
@@ -94,19 +93,19 @@ export default class Index extends React.Component {
 
 		let aboutData = [
 			{
-				data: z.intro,
+				data: z.trip.intro || '',
 				title: 'Introduction'
 			},
 			{
-				data: z.best_time_to_visit_more_information,
+				data: z.trip.best_time_to_visit_more_information || '',
 				title: 'When should you take this'
 			},
 			{
-				data: z.things_to_know,
+				data: z.trip.things_to_know || '',
 				title: 'Things you should know'
 			},
 			{
-				data: z.accommodation,
+				data: z.trip.accommodation || '',
 				title: 'Where you\'re going to stay'
 			}
 		]
@@ -149,7 +148,7 @@ export default class Index extends React.Component {
 										more='More'
 										less={null}
 									>
-										{renderHTML(item.data)}
+										{renderHTML(item.data || '')}
 									</ShowMore>
 								</div>
 							</Grid.Column>
@@ -160,9 +159,9 @@ export default class Index extends React.Component {
 			else return null
 		})
 
-		let itineraryItems = z.itinerary.map((day, i) => {
+		let itineraryItems = z.trip.itinerary.map((day, i) => {
 			let divider = <Divider />
-			if (z.itinerary.length === i + 1)
+			if (z.trip.itinerary.length === i + 1)
 				divider = null
 			return (
 				<Grid>
@@ -181,7 +180,7 @@ export default class Index extends React.Component {
 									more='More'
 									less={null}
 								>
-									{renderHTML(day.text)}
+									{renderHTML(day.text || '')}
 								</ShowMore>
 							</div>
 						</Grid.Column>
@@ -191,6 +190,9 @@ export default class Index extends React.Component {
 			)
 		})
 
+		let snap = ([].concat.apply([], (z.trip.itinerary.map(slide => slide.places))))
+		snap = snap.filter(exist => exist).map((img) => 'http://society-of-the-spectacle.s3.amazonaws.com/img/' + img +'.jpg')
+
 		let about = (
 			<Grid stackable={true}>
 				<Grid.Row>
@@ -199,21 +201,21 @@ export default class Index extends React.Component {
 							<Grid>
 								<Grid.Row only='mobile tablet'>
 									<Grid.Column>
-										<Cover img={z.experiences.img} />
+										<Cover img={z.trip.experiences.img} />
 									</Grid.Column>
 								</Grid.Row>
 							</Grid>
 							{items}
 							<Divider />
 							<MustCarry must_carry={z.must_carry} />
-							<HowToReach how_to_reach={z.how_to_reach} />
+							<HowToReach how_to_reach={z.trip.how_to_reach} />
 						</Segment>
 					</Grid.Column>
 					<Grid.Column computer={6} only='computer'>
 						<Sticky bottomBoundary={'#infobar'} top={'#topbar'}>
-							 {/* <Gallery
-								rolls={[]}
-							/>  */}
+							  <Gallery
+									rolls={snap}
+								/>  
 						</Sticky>
 					</Grid.Column>
 				</Grid.Row>
@@ -228,14 +230,12 @@ export default class Index extends React.Component {
 					</Grid.Column>
 					<Grid.Column computer={6} only='computer'>
 						<Sticky bottomBoundary={'#infobar'} top={'#topbar'}>
-							{/* <Map
+							 <Map
 								center={this.state.center}
 								mapTypeId={this.state.mapTypeId || 'hybrid'}
-								tilt={true}
 								zoom={this.state.zoom}
 								data={this.state.items}
-								hoveredIndex={this.state.hoveredIndex}
-								type='trek' /> */}
+								type='trip' /> 
 						</Sticky>
 					</Grid.Column>
 				</Grid.Row>
@@ -261,10 +261,10 @@ export default class Index extends React.Component {
 		return (
 
 			<Layout>
-				<TopBar handleDimmer={e => this.handleDimmer(e)} root={false} title={z.title} page='trip' />
+				<TopBar handleDimmer={e => this.handleDimmer(e)} root={false} title={z.trip.title} page='trip' />
 				<Dimmer.Dimmable blurring dimmed={this.state.dimmer}>
 					<Dimmer active={this.state.dimmer} onClickOutside={this.handleDimmerHide}></Dimmer>
-					<Cover caption={z.caption} title={z.title || z.name} img={z.img} region={z.region} pointers={pointerRow} />
+					<Cover caption={z.trip.caption} title={z.trip.title || z.trip.name} img={z.trip.img} region={z.trip.region} pointers={pointerRow} />
 					<Container style={{
 						width: '80vw'
 					}}>

@@ -14,7 +14,6 @@ import {
 
 import Gallery from 'react-image-gallery';
 
-
 import SideImage from '../components/SideImage'
 
 
@@ -23,7 +22,7 @@ export default class GalleryWrap extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			roll : this.props.roll.map((paper) => {
+			roll : this.props.rolls.map((paper) => {
 				return {
 					original : paper
 				}
@@ -69,8 +68,9 @@ export default class GalleryWrap extends Component {
 				renderLeftNav={this._renderLeftNav}
 				renderRightNav={this._renderRightNav}
 				showFullscreenButton={true}
-				autoPlay={false}
-				slideInterval={4000}
+				autoPlay={true}
+				defaultImage={'http://society-of-the-spectacle.s3.amazonaws.com/img/generic.jpg'}
+				slideInterval={6000}
 				showPlayButton={false}
 				showThumbnails={false}
 			/>

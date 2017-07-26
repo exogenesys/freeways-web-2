@@ -10,7 +10,6 @@ export default class Brick extends React.Component {
 	_onLeave = () => this.props.hoverCall('');
 
 	render() {
-		console.log(this.props.data)
 		var imgurl = 'https://s3.amazonaws.com/society-of-the-spectacle/img/thumbs/' + this.props.data.slug + '.jpg'
 		return (
 			<Link prefetch href={{
