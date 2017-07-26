@@ -6,9 +6,8 @@ import constants from '../utils/constants'
 
 export default class Brick extends React.Component {
 
-
-	_onhover = () => this.props.hoverCall(this.props.data.id);
-	_onLeave = () => this.props.hoverCall(-1);
+	_onhover = () => this.props.hoverCall(this.props.data.slug);
+	_onLeave = () => this.props.hoverCall('');
 
 	render() {
 		console.log(this.props.data)

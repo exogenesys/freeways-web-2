@@ -1,32 +1,23 @@
 import React, { Component } from 'react'
 import {
-	Menu,
 	Segment,
-	Header,
 	Grid,
-	List,
 	Image,
 	Icon,
 	Card,
-	Search
 } from 'semantic-ui-react'
 
-import Brick from '../components/RecommendationBrick5'
+import Brick from '../components/RecommendationBrick6'
 
-export default class Places extends Component {
-
-
-	handleFocus = () => this.setState({ placeholder: '' });
-	handleBlur = () => this.setState({ placeholder: 'Search Destinations' });
+export default class Tray extends Component {
 
 	_hoverCall = (id) => this.props.hoverCall(id);
-
-
 
 	constructor(props) {
 		super(props);
 		this.state = {
 			filters: this.props.data,
+			line: this.props.rows || 3
 		}
 	}
 
@@ -35,27 +26,29 @@ export default class Places extends Component {
 	componentWillReceiveProps(nextProps) {
 		if (this.props.data == nextProps.data)
 			return;
-		this.setState({ activeItem: '', filters: nextProps.data, value: '', isLoading: false, placeholder: 'Search Destinations' });
+		this.setState({filters: nextProps.data});
 	}
 
 	render() {
 
+		const { filters, line } = this.state 
+
 		let cols = [],
 			rows = [];
 
-		if (this.state.filters.length < 1) {
+		if (filters.length < 1) {
 			// rows.push(<Image src="http://res.cloudinary.com/freeways/image/upload/c_scale,w_228/v1497606494/no_results_found.png" centered disabled />);
 		} else {
 			let i = 0,
 				j = 0;
-			while (j * 3 + i < this.state.filters.length) {
-				while (i < 3 && j * 3 + i < this.state.filters.length) {
+			while (j * line + i < filters.length) {
+				while (i < line && j * line + i < filters.length) {
 					cols.push(
 						<Grid.Column style={{
 							marginTop: '14px',
 							paddingLeft: '0.5em',
 							paddingRight: '0.5em'
-						}}><Brick type={this.props.type} hoverCall={this._hoverCall} data={this.state.filters[j * 3 + i]} /></Grid.Column>
+						}}><Brick type={this.props.type} hoverCall={this._hoverCall} data={filters[j * line + i]} /></Grid.Column>
 					);
 					i++;
 				}

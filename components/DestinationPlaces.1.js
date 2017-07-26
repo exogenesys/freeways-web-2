@@ -73,21 +73,21 @@ export default class Places extends Component {
 		} else {
 			let i = 0,
 				j = 0;
-			while (j * 4 + i < this.state.items.length) {
-				while (i < 4 && j * 4 + i < this.state.items.length) {
+			while (j * 3 + i < this.state.items.length) {
+				while (i < 3 && j * 3 + i < this.state.items.length) {
 					cols.push(
-						<Grid.Column computer={4} tablet={8} mobile={8} style={{
+						<Grid.Column  style={{
 							marginTop: '14px',
 							paddingLeft: '0.5em',
 							paddingRight: '0.5em'
-						}}><Brick type='place' data={this.state.items[j * 4 + i]}/></Grid.Column>
+						}}><Brick type='place' data={this.state.items[j * 3 + i]}/></Grid.Column>
 					);
 					i++;
 				}
 				rows.push(
 					<Grid.Row style={{
 						marginBottom: '-27px'
-					}}>{cols}</Grid.Row>
+					}} columns='equal'>{cols}</Grid.Row>
 				)
 				i = 0
 				cols = [];
@@ -148,39 +148,6 @@ export default class Places extends Component {
 				marginLeft: '-8px',
 				marginRight: '-8px'
 			}}>
-				<Header size='huge'>Places</Header>
-				<Grid>
-					<Grid.Row only="computer">
-						<Grid.Column width={16}>
-							<br/>
-							<Menu inverted className='GridMenu'>
-								{menuItems}
-								<Menu.Menu position='right'>
-									<div className='ui right aligned category search item'>
-										<div className='ui transparent icon input'>
-											<Search loading={isLoading} onSearchChange={this.handleSearchChange} placeholder={placeholder} value={value} open={false} onFocus={this.handleFocus} onBlue={this.handleBlur} className='GridSearch'/>
-										</div>
-										<div className='results'></div>
-									</div>
-								</Menu.Menu>
-							</Menu>
-						</Grid.Column>
-					</Grid.Row>
-					<Grid.Row only="mobile tablet">
-						<Menu inverted style={{
-							background: '#FFF',
-							border: '0.5px solid rgba(34,36,38,.1)',
-							borderRadius: '.28571429rem',
-							overflowX: 'auto',
-							marginLeft: '-8px',
-							marginRight: '-8px',
-							marginBottom: '-20px',
-							minHeight: '4em'
-						}}>
-							{menuItems}
-						</Menu>
-					</Grid.Row>
-				</Grid>
 				<Grid>
 					{rows}
 				</Grid>

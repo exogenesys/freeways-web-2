@@ -20,17 +20,12 @@ import {
 import Layout from '../components/Layout'
 import TopBar from '../components/TopBar'
 import Cover from '../components/ExperienceCover'
-import Menu from '../components/ExperienceMenu'
-import Languages from '../components/Languages'
 import Footer from '../components/Footer'
 import Introduction from '../components/ExperiencesIntroduction'
 import MustKnow from '../components/MustKnow'
 import Pointers from '../components/ExperiencesPointers'
 import MustCarry from '../components/MustCarryEx'
 import HowToReach from '../components/HowToReach2'
-import Trips from '../components/DestinationTrips'
-import Comments from '../components/Comments'
-import initStore from '../utils/store'
 
 export default class Index extends React.Component {
 

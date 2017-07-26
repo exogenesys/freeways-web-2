@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import Link from 'next/link'
-import { Motion, spring } from 'react-motion';
 import {
 	Search,
 	Grid,
@@ -14,84 +12,68 @@ import {
 	Icon
 } from 'semantic-ui-react'
 
+import Gallery from 'react-image-gallery';
 
 
-const springSettings = { stiffness: 150, damping: 35 };
-const NEXT = 'show-next';
+import SideImage from '../components/SideImage'
 
 
-export default class HomeCover extends Component {
+export default class GalleryWrap extends Component {
 
 	constructor(props) {
 		super(props);
 		this.state = {
-			currPhoto: 0,
-			urls: this.props.roll
+			roll : this.props.roll.map((paper) => {
+				return {
+					original : paper
+				}
+			})
 		};
 	};
 
-	handleChange = ({ target: { value } }) => {
-		this.setState({ currPhoto: value });
-	};
 
+	_renderItem(item) {
+		return (
+			<SideImage img={item.original} />
+		)
+	}
 
-	clickHandler = (btn) => {
-		let photoIndex = btn === NEXT ? this.state.currPhoto + 1 : this.state.currPhoto - 1;
+	_renderLeftNav(onClick, disabled) {
+		return (
+			<button
+				className='RightLeftButton Lefty'
+				disabled={disabled}
+				onClick={onClick}>
+				<Icon name='chevron left' />
+			</button>
+		)
+	}
 
-		photoIndex = photoIndex >= 0 ? photoIndex : this.state.urls.length - 1;
-		photoIndex = photoIndex >= this.state.urls.length ? 0 : photoIndex;
+	_renderRightNav(onClick, disabled) {
+		return (
+			<button
+				className='RightLeftButton Righty'
+				disabled={disabled}
+				onClick={onClick}>
+				<Icon name='chevron right' />
+			</button>
+		)
+	}
 
-		this.setState({
-			currPhoto: photoIndex
-		})
-	};
 
 	render() {
-		const { photos, currPhoto, urls } = this.state;
-		const [currWidth, currHeight] = urls[currPhoto];
-
-		const widths = urls.map(([origW, origH, urls]) => currHeight / origH * origW);
-
-
-		const leftStartCoords = widths
-			.slice(0, currPhoto)
-			.reduce((sum, width) => sum - width, 0);
-
-
-			
-		let configs = [];
-		urls.reduce((prevLeft, [origW, origH], i) => {
-			configs.push({
-				left: spring(prevLeft, springSettings),
-				height: spring(currHeight, springSettings),
-				width: spring(widths[i], springSettings),
-			});
-			return prevLeft + widths[i];
-		}, leftStartCoords);
-
-
 		return (
-			<div>
-				<Menu secondary borderless>
-					<Menu.Item name='Previous' onClick={this.clickHandler.bind(null, '')} />
-					<Menu.Item name='Next' position='right' onClick={this.clickHandler.bind(null, NEXT)} />
-				</Menu>
-				<div className="demo4">
-					<Motion style={{ height: spring(currHeight), width: spring(currWidth) }}>
-						{container =>
-							<div className="demo4-inner" style={container}>
-								{configs.map((style, i) =>
-									<Motion key={i} style={style}>
-										{style =>
-											<img className="demo4-photo" src={urls[i][2]} style={style} />
-										}
-									</Motion>
-								)}
-							</div>
-						}
-					</Motion>
-				</div>
-			</div>
+			<Gallery
+				items={this.state.roll}
+				renderItem={this._renderItem}
+				renderLeftNav={this._renderLeftNav}
+				renderRightNav={this._renderRightNav}
+				showFullscreenButton={true}
+				autoPlay={false}
+				slideInterval={4000}
+				showPlayButton={false}
+				showThumbnails={false}
+			/>
 		);
 	};
 }

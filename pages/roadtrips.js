@@ -26,7 +26,7 @@ import Layout from '../components/Layout'
 import TopBar from '../components/TopBar'
 import Footer from '../components/Footer'
 import Map from '../components/Map';
-import Roadtrips from '../components/Roadtrips'
+import Tray from '../components/Tray'
 import Router from 'next/router'
 import Sticky from 'react-stickynode';
 
@@ -486,9 +486,9 @@ class Index extends React.Component {
 												<Grid>
 													<Grid.Row>
 														<Grid.Column>
-															<Segment basic id="destinations" style={{
+															<Segment basic style={{
 															}}>
-																<Roadtrips data={this.state.items} type='destination' hoverCall={this._hoverCall} />
+																<Tray data={this.state.items} type='roadtrip' hoverCall={this._hoverCall} rows={3}/>
 																<br />
 																<br />
 															</Segment>
@@ -505,7 +505,7 @@ class Index extends React.Component {
 								<Sticky innerZ={99999999999} top={'#TopBarMenu'} bottomBoundary={'#mapbar'}>
 									<Segment basic style={{}}>
 										<Map center={this.state.center} zoom={this.state.zoom} data={this.state.items} hoveredIndex={this.state.hoveredIndex} style={{
-										}} type='destination' />
+										}} type='roadtrip' />
 									</Segment>
 								</Sticky>
 							</Grid.Column>

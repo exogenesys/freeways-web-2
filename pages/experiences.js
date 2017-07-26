@@ -24,7 +24,7 @@ import {
 import Layout from '../components/Layout'
 import TopBar from '../components/TopBar'
 import Footer from '../components/Footer'
-import Experiences from '../components/Trips'
+import Tray from '../components/Tray'
 import Router from 'next/router'
 import Sticky from 'react-stickynode';
 
@@ -444,7 +444,7 @@ class Index extends React.Component {
 					<Dimmer active={dimmer} onClickOutside={this.handleDimmerHide}></Dimmer>
 					<Grid>
 						<Grid.Row columns={2}>
-							<Grid.Column width={3} as={Segment} width={3} style={SidebarStyle} id='Sidebar'>
+							<Grid.Column width={2} as={Segment} style={SidebarStyle} id='Sidebar'>
 								<Sticky innerZ={99999999999} top={'#topbar'} bottomBoundary={'#Sidebar'}>
 									<Segment basic>
 										<Menu style={SideBarMenuStyle} vertical fluid text secondary>
@@ -455,7 +455,7 @@ class Index extends React.Component {
 									</Segment>
 								</Sticky>
 							</Grid.Column>
-							<Grid.Column width={13} >
+							<Grid.Column width={14} >
 								<Grid>
 									<Grid.Row>
 										<Grid.Column>
@@ -519,7 +519,7 @@ class Index extends React.Component {
 														<Grid.Column>
 															<Segment basic id="experiences" style={{
 															}}>
-																<Experiences data={this.state.items} type='experience' />
+																<Tray data={this.state.items} type='experience' rows={4}/>
 																<br />
 																<br />
 															</Segment>

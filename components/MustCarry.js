@@ -8,7 +8,8 @@ import {
 	Label,
 	Image,
 	Popup,
-	Grid
+	Grid,
+	Divider
 } from 'semantic-ui-react'
 
 export default class MustCarry extends Component {
@@ -117,6 +118,7 @@ export default class MustCarry extends Component {
 					{mobileRows}
 					</Grid>
 					<br/>
+					<Divider />
 					</Segment>
 				)
 			} else {

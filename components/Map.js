@@ -29,14 +29,13 @@ export default class Map extends React.Component {
 
 	render() {
 
-
 		let AnyReactComponents = []
 
 		if (this.props.data) {
 			AnyReactComponents = this.props.data.map((item) => {
 				if (!isNaN(item.latitude) && !isNaN(item.longitude) || !isNaN(item.summit_lat) && !isNaN(item.summit_lng)) {
-					const hoverState = (this.props.hoveredIndex === item.id)
-					return <MapItem lat={item.latitude || item.summit_lat} lng={item.longitude || item.summit_lng} text={item.name || item.title} id={item.id} hoverState={hoverState} itemType={this.props.type} {...item} />
+					const hoverState = (this.props.hoveredIndex == item.slug)
+					return <MapItem lat={item.latitude || item.summit_lat} lng={item.longitude || item.summit_lng} text={item.name || item.title} hoverState={hoverState} itemType={this.props.type} {...item} />
 				}
 			})
 		}
@@ -64,6 +63,7 @@ export default class Map extends React.Component {
 			return (
 				<Segment basic style={{
 					height: '80vh',
+					width: '100%'
 				}}>
 					<GoogleMapReact bootstrapURLKeys={{
 						key: 'AIzaSyBMU7XiJw7ij5n7jzsfeXlGZYk9X9S - 8 hE'

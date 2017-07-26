@@ -1,7 +1,7 @@
+import 'isomorphic-fetch';
 import React from 'react';
 import axios from 'axios';
 import Sticky from 'react-stickynode';
-import Gallery from 'react-image-gallery';
 import initStore from '../utils/store'
 import Router from 'next/router'
 
@@ -34,12 +34,10 @@ import HowToReach from '../components/HowToReach'
 import MustKnow from '../components/MustKnow'
 import NearByDestinations from '../components/NearByDestinations'
 import GettingAround from '../components/GettingAround'
-import Places from '../components/DestinationPlaces'
-import Experiences from '../components/DestinationExperiences'
-import Trips from '../components/DestinationTrips'
-import SideImage from '../components/SideImage'
+import Tray from '../components/Tray'
+import Filter from '../components/DestinationFilter'
 import Map from '../components/Map';
-
+import Gallery from '../components/Gallery'
 
 
 class Index extends React.Component {
@@ -48,16 +46,17 @@ class Index extends React.Component {
 		super(props);
 		this.state = {
 			dimmer: false,
-			activeItem: 'guide',
-			center: { lat: this.props.data.experiences.summit_lat, lng: this.props.data.experiences.summit_lng },
-			mapTypeId: 'hybrid',
+			activeView: 'guide',
+			activeFilter: '',
+			isLoading : false,
+			places : this.props.data.places,
+			experiences : this.props.data.experiences,
+			placeValue : '',
+			experienceValue : '',
+			center: { lat: this.props.data.destination.latitude, lng: this.props.data.destination.longitude },
+			mapTypeId: 'roadmap',
 			zoom: 14,
-			hoveredIndex: -1,
-			roll: this.props.data.experiences.map((ex) => {
-				return {
-					original: ex.img_thumb
-				}
-			})
+			hoveredIndex: -1
 		};
 
 	}
@@ -68,67 +67,91 @@ class Index extends React.Component {
 		return { data };
 	}
 
-	_renderItem(item) {
-		return (
-			<SideImage img={item.original} />
-		)
+
+	_hoverCall = (id) => {
+		console.log(id)
+		this.setState({ hoveredIndex: id })
 	}
-
-	_renderLeftNav(onClick, disabled) {
-		return (
-			<button
-				className='RightLeftButton Lefty'
-				disabled={disabled}
-				onClick={onClick}>
-				<Icon name='chevron left' />
-			</button>
-		)
-	}
-
-	_renderRightNav(onClick, disabled) {
-		return (
-			<button
-				className='RightLeftButton Righty'
-				disabled={disabled}
-				onClick={onClick}>
-				<Icon name='chevron right' />
-			</button>
-		)
-	}
-
-
 
 	handleDimmer = (toDimOrNotToDim) => this.setState({ dimmer: toDimOrNotToDim })
 
- 	handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+ 	handleItemClick = (e, {name}) => this.setState({ activeView: name })
+
+	_handleFilterClick = (name, type) => {
+		if (this.state.activeFilter === name) {
+			if(type == 'place')
+				this.setState({activeFilter: '', places: this.props.data.places, placeValue: ''})
+			else 
+				this.setState({activeFilter: '', experiences: this.props.data.experiences, experienceValue: ''})
+		} else {
+			let updatedList = null
+			if(type == 'place'){
+				this.setState({places: [], isLoading: true});
+				updatedList = this.props.data.places;
+			} else {
+				this.setState({experiences: [], isLoading: true});
+				updatedList = this.props.data.experiences;
+			}
+			updatedList = updatedList.filter(function(item) {
+				return (item.tags.map(function(tag) {
+					return tag.toLowerCase();
+				})).indexOf(name) != -1;
+			});
+			if(type == 'place')
+				this.setState({activeFilter: name, places: updatedList, isLoading: false, placeValue: ''})
+			else
+				this.setState({activeFilter: name, experiences: updatedList, isLoading: false, experienceValue: ''})
+				
+		}
+
+	}
+
+	_handleSearchChange = (placeValue) => {
+		this.setState({places: [], isLoading: true, activeFilter: ''});
+		let list = this.props.data.places;
+		list = list.filter(function(place) {
+			return ((place.title.toLowerCase()).includes(placeValue.toLowerCase()))
+		})
+		this.setState({placeValue, places: list, isLoading: false})
+	}
+
 
 
 	render() {
 
+
 		let pane = null
-		const { activeItem } = this.state
+		const { activeView, activeFilter, isLoading } = this.state
 		const z = this.props.data;
 
-		console.log(this.state.roll)
 
 		let experiences = (
 			<Grid>
 				<Grid.Row>
-				<Grid.Column width={10} id='sidecol'>
-					<Experiences exp={z.experiences} />
+					<Filter 
+						handleFilterClick={this._handleFilterClick} 
+						handleSearchChange={this._handleSearchChange}
+						activeFilter={activeFilter}
+						isLoading={isLoading}
+						type='experience'
+					/>
+				</Grid.Row>
+				<Grid.Row>
+				<Grid.Column computer={10} id='sidecol'>
+					<Tray data={this.state.experiences} rows={3} hoverCall={this._hoverCall} type='experience'/>
 				</Grid.Column>
-				<Grid.Column width={6}>
+				<Grid.Column computer={6}>
 						 <Sticky top={'#cover'} bottomBoundary={'#sidecol'}> 
-							 <br/>
-							 <br/>
-							 <br/>
-							 <br/>
+ 									<br/>
+									<br/>
+									<br/>
+									<br/>
 							<Map
 								center={this.state.center}
 								mapTypeId={this.state.mapTypeId || 'hybrid'}
 								tilt={true}
 								zoom={this.state.zoom}
-								data={z.experiences}
+								data={this.state.experiences}
 								hoveredIndex={this.state.hoveredIndex}
 								type='experience' />
 						 </Sticky> 
@@ -141,23 +164,27 @@ class Index extends React.Component {
 		let places = (
 			<Grid>
 				<Grid.Row>
-				<Grid.Column width={10} id='sidecol'>
-					<Places places={z.places} />
+					<Filter 
+						handleFilterClick={this._handleFilterClick} 
+						handleSearchChange={this._handleSearchChange}
+						activeFilter={activeFilter}
+						isLoading={isLoading}
+						type='place'
+					/>
+				</Grid.Row>
+				<Grid.Row>
+				<Grid.Column computer={10} id='sidecol'>
+					 <Tray data={this.state.places} rows={3} hoverCall={this._hoverCall} type='place'/> 
 				</Grid.Column>
-				<Grid.Column width={6}>
+				<Grid.Column computer={6}>
 						 <Sticky top={'#cover'} bottomBoundary={'#sidecol'}> 
-							 <br/>
-							 <br/>
-							 <br/>
-							 <br/>
-							<Map
+							<Map 
 							center={this.state.center}
 							mapTypeId={this.state.mapTypeId || 'hybrid'}
-							tilt={true}
 							zoom={this.state.zoom}
-							data={z.places}
+							data={this.state.places}
 							hoveredIndex={this.state.hoveredIndex}
-							type='place' />
+							type='place'/>
 						 </Sticky> 
 				</Grid.Column>
 				</Grid.Row>
@@ -181,17 +208,7 @@ class Index extends React.Component {
 							 <br/>
 							 <br/>
 							 <br/>
-							<Gallery
-								items={this.state.roll}
-								showPlayButton={false}
-								showFullscreenButton={true}
-								renderItem={this._renderItem}
-								autoPlay={false}
-								slideInterval={4000}
-								renderLeftNav={this._renderLeftNav}
-								renderRightNav={this._renderRightNav}
-								showThumbnails={false}
-							/>
+							<Gallery roll={z.experiences.map((ex) => ex.img_thumb)}/>
 						 </Sticky> 
 				</Grid.Column>
 				</Grid.Row>
@@ -200,7 +217,7 @@ class Index extends React.Component {
 
 
 
-		switch (activeItem) {
+		switch (activeView) {
 			case 'places':
 				pane = places
 				break;
@@ -224,7 +241,7 @@ class Index extends React.Component {
 					marginTop: '-15vh'
 				}}>
 					<Dimmer active={this.state.dimmer} onClickOutside={this.handleDimmerHide}></Dimmer>
-					<Cover caption={z.destination.caption} title={z.destination.title} img={z.destination.img} id='cover'/>
+					 <Cover caption={z.destination.caption} title={z.destination.title} img={z.destination.img} id='cover'/> 
 					<Container style={{
 						width:'80vw'
 					}}>
@@ -237,9 +254,9 @@ class Index extends React.Component {
 								<Menu pointing secondary size='massive' style={{
 									marginBottom: '-14px'
 								}}>
-									<Menu.Item name='guide' active={activeItem === 'guide'} onClick={this.handleItemClick} />
-									<Menu.Item name='places' active={activeItem === 'places'} onClick={this.handleItemClick} />
-									<Menu.Item name='experiences' active={activeItem === 'experiences'} onClick={this.handleItemClick} />
+									<Menu.Item name='guide' active={activeView === 'guide'} onClick={this.handleItemClick} />
+									<Menu.Item name='places' active={activeView === 'places'} onClick={this.handleItemClick} />
+									<Menu.Item name='experiences' active={activeView === 'experiences'} onClick={this.handleItemClick} />
 								</Menu>
 															</Segment>
 
