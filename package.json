@@ -58,7 +58,6 @@
   "scripts": {
     "dev": "node server",
     "build": "next build",
-    "prestart": "next build",
     "heroku-postbuild": "npm run build",
     "start": "NODE_ENV=production node server"
   },
