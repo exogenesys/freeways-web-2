@@ -72,14 +72,14 @@ export default class GettingAround extends Component {
 		return (
 					<Grid>
 						<Grid.Row>
-							<Grid.Column width={4}>
+							<Grid.Column computer={4} mobile={16}>
 								<Header style={{
 									marginTop: '5px'
 								}}>
 									Getting Around
 								</Header>
 							</Grid.Column>
-							<Grid.Column width={12}>
+							<Grid.Column computer={12} mobile={16}>
 									{options}
 								<div className='PrimaryText'>
 									<br/>

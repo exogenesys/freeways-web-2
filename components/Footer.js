@@ -63,7 +63,7 @@ const Footer = (props) => {
 				<Divider inverted />
 				<Grid padded columns={3} stackable reversed='mobile'>
 					<Grid.Row>
-						<Grid.Column width={4} only='tablett mobile'>
+						<Grid.Column width={4} only='tablet mobile'>
 							<List horizontal divided>
 								<List.Item>
 									Terms & Condition

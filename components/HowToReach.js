@@ -97,14 +97,15 @@ export default class HowToReach extends Component {
 				<Segment basic>
 					<Grid>
 						<Grid.Row>
-							<Grid.Column width={4}>
+							<Grid.Column computer={4} mobile={16}>
 								<Header style={{
-									marginTop: '5px'
+									marginTop: '5px',
+									marginBottom: '15px'
 								}}>
 									How To Reach
 								</Header>
 							</Grid.Column>
-							<Grid.Column width={12}>
+							<Grid.Column computer={12} mobile={16}>
 							<Menu secondary>
 								{items}
 							</Menu>

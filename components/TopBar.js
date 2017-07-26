@@ -101,9 +101,10 @@ export default class TopBar extends Component {
 		let menu = (
 			<Grid.Row style={NavGridStyleTwo}>
 				<Grid.Column style={{
-					left: '40px'
-				}} only='computer tablet'>
-					<Menu inverted={this.props.root} secondary borderless fluid className='TopBarMenu'>
+					left: '40px',
+					overflowX: 'auto'
+				}} only='computer tablet mobile'>
+					<Menu inverted={this.props.root} compact secondary borderless className='TopBarMenu'>
 						{menuItems}
 					</Menu>
 				</Grid.Column>

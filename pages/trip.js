@@ -134,14 +134,14 @@ export default class Index extends React.Component {
 				return (
 					<Grid>
 						<Grid.Row>
-							<Grid.Column width={4}>
+							<Grid.Column mobile={16} computer={4}>
 								<Header size='massive' style={{
 									marginTop: '5px'
 								}}>
 									{item.title}
 								</Header>
 							</Grid.Column>
-							<Grid.Column width={12}>
+							<Grid.Column mobile={16} computer={12}>
 								<div className='PrimaryText'>
 									<ShowMore
 										lines={6}
@@ -166,14 +166,14 @@ export default class Index extends React.Component {
 			return (
 				<Grid>
 					<Grid.Row>
-						<Grid.Column width={3}>
+						<Grid.Column mobile={16} computer={3}>
 							<Header size='massive' style={{
 								marginTop: '5px'
 							}}>
 								{day.title}
 							</Header>
 						</Grid.Column>
-						<Grid.Column width={13}>
+						<Grid.Column mobile={16} computer={13}>
 							<div className='PrimaryText'>
 								<ShowMore
 									lines={6}
@@ -214,7 +214,7 @@ export default class Index extends React.Component {
 					<Grid.Column computer={6} only='computer'>
 						<Sticky bottomBoundary={'#infobar'} top={'#topbar'}>
 							  <Gallery
-									rolls={snap}
+									roll={snap}
 								/>  
 						</Sticky>
 					</Grid.Column>

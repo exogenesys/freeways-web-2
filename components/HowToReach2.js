@@ -14,14 +14,14 @@ export default class HowToReach extends Component {
 				<Segment basic>
 					<Grid>
 						<Grid.Row>
-							<Grid.Column width={4}>
+							<Grid.Column mobile={16} computer={4}>
 								<Header size='massive' style={{
 									marginTop: '5px'
 								}}>
 									How To Reach
 							</Header>
 							</Grid.Column>
-							<Grid.Column width={12}>
+							<Grid.Column mobile={16} computer={12}>
 								<div className='PrimaryText'>
 									{renderHTML(this.props.how_to_reach)}
 								</div>

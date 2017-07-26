@@ -18,7 +18,7 @@ export default class Footer extends React.Component {
                 <Segment id="intro" basic>
                     <Grid>
                         <Grid.Row>
-                            <Grid.Column width={4}>
+                            <Grid.Column computer={4} mobile={16}>
                                 <Header
                                     style={{
                                     marginTop: '5px'
@@ -26,7 +26,7 @@ export default class Footer extends React.Component {
                                     Introduction
                                 </Header>
                             </Grid.Column>
-                            <Grid.Column width={12}>
+                            <Grid.Column computer={12} mobile={16}>
                                 <div className='PrimaryText'>
 
                                     <ShowMore lines={4} more='More' less={null}>

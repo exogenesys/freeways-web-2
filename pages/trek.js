@@ -8,7 +8,6 @@ import Scroll from 'react-scroll'
 import Gallery from 'react-image-gallery';
 import Waypoint from 'react-waypoint'
 
-
 import {
 	Button,
 	Card,
@@ -203,7 +202,7 @@ export default class Index extends React.Component {
 
 		for (let i = 0; i < pointer.length; i++) {
 			let col = (
-				<Grid.Column>
+				<Grid.Column only='computer'>
 					<Statistic size='tiny' inverted>
 						<Statistic.Value>{pointer[i].value}</Statistic.Value>
 						<Statistic.Label>{pointer[i].label}</Statistic.Label>
@@ -220,14 +219,14 @@ export default class Index extends React.Component {
 				return (
 					<Grid>
 						<Grid.Row>
-							<Grid.Column width={4}>
+							<Grid.Column computer={4} mobile={16}>
 								<Header size='massive' style={{
 									marginTop: '5px'
 								}}>
 									{item.title}
 								</Header>
 							</Grid.Column>
-							<Grid.Column width={12}>
+							<Grid.Column computer={12} mobile={16}>
 								<div className='PrimaryText'>
 									<ShowMore
 										lines={6}
@@ -253,14 +252,14 @@ export default class Index extends React.Component {
 				return (
 					<Grid>
 						<Grid.Row>
-							<Grid.Column width={4}>
+							<Grid.Column computer={4} mobile={16}>
 								<Header size='massive' style={{
 									marginTop: '5px'
 								}}>
 									{item.title}
 								</Header>
 							</Grid.Column>
-							<Grid.Column width={12}>
+							<Grid.Column computer={12} mobile={16}>
 								<div className='PrimaryText'>
 									<ShowMore
 										lines={6}
@@ -285,7 +284,7 @@ export default class Index extends React.Component {
 			return (
 				<Grid>
 					<Grid.Row>
-						<Grid.Column width={3}>
+						<Grid.Column computer={3} mobile={16}>
 							<Header size='massive' style={{
 								marginTop: '5px'
 							}}>
@@ -297,7 +296,7 @@ export default class Index extends React.Component {
 								scrollableAncestor='window'
 							/>
 						</Grid.Column>
-						<Grid.Column width={13}>
+						<Grid.Column computer={13} mobile={16}>
 							<div className='PrimaryText'>
 								<ShowMore
 									lines={6}
@@ -317,15 +316,8 @@ export default class Index extends React.Component {
 		let about = (
 			<Grid stackable={true}>
 				<Grid.Row>
-					<Grid.Column computer={10} tablet={16} id='infobar'>
+					<Grid.Column computer={10} mobile={16} id='infobar'>
 						<Segment basic>
-							<Grid>
-								<Grid.Row only='mobile tablet'>
-									<Grid.Column>
-										<Cover img={z.experiences.img} />
-									</Grid.Column>
-								</Grid.Row>
-							</Grid>
 							{poitems}
 						</Segment>
 					</Grid.Column>

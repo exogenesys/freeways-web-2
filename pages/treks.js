@@ -562,7 +562,7 @@ class Index extends React.Component {
 					<Dimmer active={dimmer} onClickOutside={this.handleDimmerHide}></Dimmer>
 					<Grid>
 						<Grid.Row columns={3}>
-							<Grid.Column width={3} as={Segment} style={SidebarStyle} id='Sidebar'>
+							<Grid.Column computer={3} only='computer' as={Segment} style={SidebarStyle} id='Sidebar'>
 								<Sticky innerZ={99999999999} bottomBoundary={'#Sidebar'}>
 									<Segment basic>
 										<Menu style={SideBarMenuStyle} vertical fluid text secondary>
@@ -578,12 +578,12 @@ class Index extends React.Component {
 									</Segment>
 								</Sticky>
 							</Grid.Column>
-							<Grid.Column width={7}>
+							<Grid.Column computer={7} mobile={16}>
 								<Grid>
 									<Grid.Row style={{
 										paddingBottom: '0'
 									}}>
-										<Grid.Column>
+										<Grid.Column only='computer'>
 											<Sticky innerZ={99999999999}>
 												<Segment basic id="DestinationsMenu" style={{
 													backgroundColor: '#fff',
@@ -657,7 +657,7 @@ class Index extends React.Component {
 								</Grid >
 
 							</Grid.Column>
-							<Grid.Column width={6} as={Segment} style={SidebarStyle} id='mapbar'>
+							<Grid.Column computer={6} only='computer' as={Segment} style={SidebarStyle} id='mapbar'>
 								<Sticky innerZ={99999999999} top={'#TopBarMenu'} bottomBoundary={'#mapbar'}>
 									<Segment basic style={{}}>
 										<Map center={this.state.center} zoom={this.state.zoom} data={this.state.items} hoveredIndex={this.state.hoveredIndex} style={{

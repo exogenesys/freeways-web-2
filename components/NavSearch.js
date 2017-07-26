@@ -21,8 +21,8 @@ export default class NavSearch extends Component {
 					? (this.props.title || '')
 					: (this.props.title.substring(0, 20) + '...')),
 			placeholder: (degree
-				? 'Search Destinations, Experiences & Trips'
-				: 'Search Destinations, Experiences & Trips'),
+				? 'Search freeways'
+				: 'Search freeways'),
 			searchStyle: (degree
 				? 'NavSearchFocusStyle'
 				: (!this.props.root
@@ -54,13 +54,13 @@ export default class NavSearch extends Component {
 
 	handleDimmerShow = () => {
 		this.props.handleDimmer(true)
-		this.setState({placeholder: 'Search Destinations, Experiences & Trips', searchStyle: 'NavSearchFocusStyle'})
+		this.setState({placeholder: 'Search freeways', searchStyle: 'NavSearchFocusStyle'})
 	}
 
 	handleDimmerHide = () => {
 		this.props.handleDimmer(false)
 		this.setState({
-			placeholder: 'Search Destinations, Experiences & Trips',
+			placeholder: 'Search freeways',
 			searchStyle: (!this.props.root
 				? 'NavSearchStyle'
 				: 'NavSearchStyleRoot')

@@ -17,7 +17,7 @@ export default class Tray extends Component {
 		super(props);
 		this.state = {
 			filters: this.props.data,
-			line: this.props.rows || 3
+			line: this.props.rows
 		}
 	}
 

@@ -43,14 +43,14 @@ class MustCarry extends React.Component {
 				return (
 					<Grid>
 						<Grid.Row>
-							<Grid.Column width={4}>
+							<Grid.Column computer={4} mobile={16}>
 								<Header style={{
 									marginTop: '5px'
 								}}>
 									{item.heading}
 								</Header>
 							</Grid.Column>
-							<Grid.Column width={12}>
+							<Grid.Column computer={12} mobile={16}>
 								<div className='PrimaryText'>
 									<ShowMore
 										lines={4}

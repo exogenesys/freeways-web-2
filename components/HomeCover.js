@@ -231,7 +231,7 @@ export default class HomeCover extends Component {
 									</Link>
 								</Grid.Column>
 							</Grid.Row>
-							<Grid.Row>
+							<Grid.Row only='computer tablet'>
 								<Grid.Column width={2}></Grid.Column>
 								<Grid.Column width={12}>
 									<Menu pointing secondary inverted size='large' fluid widths={4} className='SliderMenu'>

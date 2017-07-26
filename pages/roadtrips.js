@@ -59,9 +59,6 @@ class Index extends React.Component {
 		};
 	}
 
-
-
-
 	static async getInitialProps() {
 		const res = await axios.get('http://www.freeways.in/api/roadtrips/');
 		const data = res.data;
@@ -410,7 +407,7 @@ class Index extends React.Component {
 					<Dimmer active={dimmer} onClickOutside={this.handleDimmerHide}></Dimmer>
 					<Grid>
 						<Grid.Row columns={3}>
-							<Grid.Column width={2} as={Segment} style={SidebarStyle} id='Sidebar'>
+							<Grid.Column only='computer' computer={2} as={Segment} style={SidebarStyle} id='Sidebar'>
 								<Sticky innerZ={99999999999} bottomBoundary={'#Sidebar'}>
 									<Segment basic>
 										<Menu style={SideBarMenuStyle} vertical fluid text secondary>
@@ -433,11 +430,11 @@ class Index extends React.Component {
 									</Segment>
 								</Sticky>
 							</Grid.Column>
-							<Grid.Column width={8}>
+							<Grid.Column computer={8} mobile={16}>
 								<Grid>
 									<Grid.Row style={{
 										paddingBottom: '0'
-									}}>
+									}} only='computer'>
 										<Grid.Column>
 											<Sticky innerZ={99999999999}>
 												<Segment basic id="DestinationsMenu" style={{
@@ -484,11 +481,21 @@ class Index extends React.Component {
 												padding: '0'
 											}}>
 												<Grid>
-													<Grid.Row>
+													<Grid.Row only='computer'>
 														<Grid.Column>
 															<Segment basic style={{
 															}}>
 																<Tray data={this.state.items} type='roadtrip' hoverCall={this._hoverCall} rows={3}/>
+																<br />
+																<br />
+															</Segment>
+														</Grid.Column>
+													</Grid.Row>
+													<Grid.Row only='mobile'>
+														<Grid.Column>
+															<Segment basic style={{
+															}}>
+																<Tray data={this.state.items} type='roadtrip' hoverCall={this._hoverCall} rows={2}/>
 																<br />
 																<br />
 															</Segment>
@@ -499,9 +506,8 @@ class Index extends React.Component {
 										</Grid.Column>
 									</Grid.Row>
 								</Grid >
-
 							</Grid.Column>
-							<Grid.Column width={6} as={Segment} style={SidebarStyle} id='mapbar'>
+							<Grid.Column only='computer' computer={6} as={Segment} style={SidebarStyle} id='mapbar'>
 								<Sticky innerZ={99999999999} top={'#TopBarMenu'} bottomBoundary={'#mapbar'}>
 									<Segment basic style={{}}>
 										<Map center={this.state.center} zoom={this.state.zoom} data={this.state.items} hoveredIndex={this.state.hoveredIndex} style={{

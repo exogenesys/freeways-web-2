@@ -444,7 +444,7 @@ class Index extends React.Component {
 					<Dimmer active={dimmer} onClickOutside={this.handleDimmerHide}></Dimmer>
 					<Grid>
 						<Grid.Row columns={2}>
-							<Grid.Column width={2} as={Segment} style={SidebarStyle} id='Sidebar'>
+							<Grid.Column computer={2} as={Segment} style={SidebarStyle} id='Sidebar' only='computer'>
 								<Sticky innerZ={99999999999} top={'#topbar'} bottomBoundary={'#Sidebar'}>
 									<Segment basic>
 										<Menu style={SideBarMenuStyle} vertical fluid text secondary>
@@ -455,10 +455,10 @@ class Index extends React.Component {
 									</Segment>
 								</Sticky>
 							</Grid.Column>
-							<Grid.Column width={14} >
+							<Grid.Column computer={14} mobile={16}>
 								<Grid>
 									<Grid.Row>
-										<Grid.Column>
+										<Grid.Column only='computer'>
 											<Sticky innerZ={99999999999} top={'#topbar'}>
 												<Segment basic id="experiences" style={{
 													backgroundColor: '#fff',
@@ -515,11 +515,22 @@ class Index extends React.Component {
 												padding: '0'
 											}}>
 												<Grid>
-													<Grid.Row>
+													<Grid.Row only='computer'>
 														<Grid.Column>
 															<Segment basic id="experiences" style={{
 															}}>
 																<Tray data={this.state.items} type='experience' rows={4}/>
+																<br />
+																<br />
+															</Segment>
+														</Grid.Column>
+													</Grid.Row>
+
+													<Grid.Row  only='mobile'>
+														<Grid.Column>
+															<Segment basic id="experiences" style={{
+															}}>
+																<Tray data={this.state.items} type='experience' rows={2}/>
 																<br />
 																<br />
 															</Segment>

@@ -134,10 +134,13 @@ class Index extends React.Component {
 					/>
 				</Grid.Row>
 				<Grid.Row>
-				<Grid.Column computer={10} id='sidecol'>
+				<Grid.Column width={16} only='mobile' id='sidecol'>
+					<Tray data={this.state.experiences} rows={2} hoverCall={this._hoverCall} type='experience'/>
+				</Grid.Column>
+				<Grid.Column width={10} only='computer' id='sidecol'>
 					<Tray data={this.state.experiences} rows={3} hoverCall={this._hoverCall} type='experience'/>
 				</Grid.Column>
-				<Grid.Column computer={6}>
+				<Grid.Column width={6} only='computer'>
 						 <Sticky top={'#cover'} bottomBoundary={'#sidecol'}> 
  									<br/>
 									<br/>
@@ -170,10 +173,13 @@ class Index extends React.Component {
 					/>
 				</Grid.Row>
 				<Grid.Row>
-				<Grid.Column computer={10} id='sidecol'>
+				<Grid.Column computer={16} id='sidecol' only='mobile'>
+					 <Tray data={this.state.places} rows={2} hoverCall={this._hoverCall} type='place'/> 
+				</Grid.Column>
+				<Grid.Column width={10} id='sidecol' only='computer'>
 					 <Tray data={this.state.places} rows={3} hoverCall={this._hoverCall} type='place'/> 
 				</Grid.Column>
-				<Grid.Column computer={6}>
+				<Grid.Column width={6} only='computer'>
 						 <Sticky top={'#cover'} bottomBoundary={'#sidecol'}> 
 							<Map 
 							center={this.state.center}
@@ -192,14 +198,19 @@ class Index extends React.Component {
 		let guide = (
 			<Grid>
 				<Grid.Row>
-				<Grid.Column width={10} id='sidecol'>
+					<Grid.Column only='mobile'>
+							<Gallery roll={z.experiences.map((ex) => ex.img_thumb)}/>
+					</Grid.Column>
+				</Grid.Row>
+				<Grid.Row>
+				<Grid.Column computer={10} mobile={16} id='sidecol'>
 					<Introduction intro={z.destination.introduction}/>
 					<MustKnow must_know={z.destination.must_know} />
 					<MustCarry must_carry={z.must_carry} />
 					<HowToReach car={z.destination.how_to_reach_by_car} train={z.destination.how_to_reach_by_train} bus={z.destination.how_to_reach_by_bus} plane={z.destination.how_to_reach_by_plane} />
 					<GettingAround gtaround={z.destination.getting_around} gtoptions={z.destination.getting_around_options} />
 				</Grid.Column>
-				<Grid.Column width={6}>
+				<Grid.Column width={6} only='computer'>
 						 <Sticky top={'#cover'} bottomBoundary={'#sidecol'}> 
 							 <br/>
 							 <br/>
