@@ -58,7 +58,7 @@
   "scripts": {
     "dev": "node server",
     "build": "next build",
-    "postinstall": "npm run build",
+    "prestart": "next build",
     "start": "NODE_ENV=production node server"
   },
   "devDependencies": {
