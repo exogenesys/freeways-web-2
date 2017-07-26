@@ -1,12 +1,7 @@
-import 'isomorphic-fetch';
 import React from 'react';
-import withRedux from 'next-redux-wrapper';
 import Sticky from 'react-stickynode';
 import ShowMore from 'react-show-more'
 import renderHTML from 'react-render-html'
-import Scroll from 'react-scroll'
-import Gallery from 'react-image-gallery';
-import Waypoint from 'react-waypoint'
 
 
 import {
@@ -36,12 +31,8 @@ import Introduction from '../components/Introduction'
 import MustKnow from '../components/MustKnow'
 import MustCarry from '../components/MustCarry'
 import HowToReach from '../components/HowToReach2'
+import Gallery from '../components/Gallery'
 
-let Link = Scroll.Link;
-let Element = Scroll.Element;
-let Events = Scroll.Events;
-let scroll = Scroll.animateScroll;
-let scrollSpy = Scroll.scrollSpy;
 
 
 export default class Index extends React.Component {
@@ -51,11 +42,11 @@ export default class Index extends React.Component {
 		// state maintains the height of elements
 		// as well as the activeitem to pass on to 'Menu'
 		this.state = {
-			activeItem: 'about',
+			activeItem: 'guide',
 			dimmer: false,
-			roll: this.props.imgs,
-			center: { lat: this.props.data.experiences.summit_lat, lng: this.props.data.experiences.summit_lng },
-			items: [{ latitude: this.props.data.experiences.summit_lat, longitude: this.props.data.experiences.summit_lng, name: this.props.data.experiences.summit_name }],
+			// roll: this.props.imgs,
+			// center: { lat: this.props.data.experiences.summit_lat, lng: this.props.data.experiences.summit_lng },
+			// items: [{ latitude: this.props.data.experiences.summit_lat, longitude: this.props.data.experiences.summit_lng, name: this.props.data.experiences.summit_name }],
 			mapTypeId: 'hybrid',
 			zoom: 14,
 			hoveredIndex: -1
@@ -64,15 +55,9 @@ export default class Index extends React.Component {
 	}
 
 	static async getInitialProps({ query }) {
-		const res = await fetch('http://freeways.in/api/trek/' + query.slug);
+		const res = await fetch('http://freeways.in/api/trip/' + query.slug);
 		const data = await res.json();
-		const imgs = ([].concat.apply([], data.experiences.itinerary.map(slide => slide.img))).filter(img => img).map((img) => {
-			return {
-				original: img,
-				thumbnail: img
-			}
-		});
-		return { data, imgs };
+		return { data };
 	}
 
 
@@ -80,50 +65,9 @@ export default class Index extends React.Component {
 
 	handleDimmer = (toDimOrNotToDim) => this.setState({ dimmer: toDimOrNotToDim })
 
-	difficultyCalc = (level) => {
-		let str = null
-		switch (level) {
-			case 1:
-				str = 'Easy'
-				break;
-			case 2:
-				str = 'Easy - Intermediate'
-				break;
-			case 3:
-				str = 'Intermediate'
-				break;
-			case 4:
-				str = 'Intermediate - Hard'
-				break;
-			case 5:
-				str = 'Hard'
-				break;
-			default:
-				str = 'Easy'
-				break;
-
-		}
-		return str
-	}
-
-	handleDayScroll(slide, whichWay) {
-		let q = this.state.slideQueue
-		if (whichWay === 'leave') {
-			const i = q.indexOf(slide)
-			if (i > -1) {
-				q.splice(i, 1)
-			}
-		} else if (whichWay === 'enter') {
-			q.push(slide)
-		}
-		// console.log(q)
-		// this.setState({ slideQueue: q })
-	}
-
 	render() {
 
 		const z = this.props.data;
-		console.log(this.props.imgs)
 
 		const colours = {
 			'adventure': 'red',
@@ -138,63 +82,32 @@ export default class Index extends React.Component {
 
 		let pointer = [
 			{
-				value: this.difficultyCalc(z.experiences.difficulty),
-				label: 'Difficulty'
-			},
-			{
-				value: String(z.experiences.trek_distance) + ' KMs',
-				label: 'Trek Length'
-			},
-			{
-				value: '₹ ' + String(z.experiences.budget),
+				value: z.budget,
 				label: 'Average Budget'
 			},
 			{
-				value: z.experiences.duration,
+				value: z.duration,
 				label: 'Duration'
-			},
-			{
-				value: String(z.experiences.max_altitude) + ' M',
-				label: 'Altitude'
 			}
 
 		]
 
 		let aboutData = [
 			{
-				data: z.experiences.why,
+				data: z.intro,
 				title: 'Introduction'
 			},
 			{
-				data: z.experiences.best_time_to_visit_more_info,
-				title: 'Best time to visit'
+				data: z.best_time_to_visit_more_information,
+				title: 'When should you take this'
 			},
 			{
-				data: z.experiences.for_whom,
-				title: 'For Whom'
-			}
-			// {
-			// 	data: z.experiences.base_camp_name,
-			// 	title: 'Base Camp Name'
-			// },
-		]
-
-		let guideData = [
-			{
-				data: z.experiences.where_to_eat,
-				title: 'Where to Eat'
+				data: z.things_to_know,
+				title: 'Things you should know'
 			},
 			{
-				data: z.experiences.equip_avail,
-				title: 'Equipments'
-			},
-			{
-				data: z.experiences.what_you_should_know,
-				title: 'What you should know'
-			},
-			{
-				data: z.experiences.things_to_care,
-				title: 'Things to care about'
+				data: z.accommodation,
+				title: 'Where you\'re going to stay'
 			}
 		]
 
@@ -210,42 +123,11 @@ export default class Index extends React.Component {
 					</Statistic>
 				</Grid.Column>
 			)
-
-			pointerRow.push(col)
+			if(pointer[i].value)
+				pointerRow.push(col)
 		}
 
-
-		let items = guideData.map((item) => {
-			if (item.data)
-				return (
-					<Grid>
-						<Grid.Row>
-							<Grid.Column width={4}>
-								<Header size='massive' style={{
-									marginTop: '5px'
-								}}>
-									{item.title}
-								</Header>
-							</Grid.Column>
-							<Grid.Column width={12}>
-								<div className='PrimaryText'>
-									<ShowMore
-										lines={6}
-										more='More'
-										less={null}
-									>
-										{renderHTML(item.data)}
-									</ShowMore>
-								</div>
-							</Grid.Column>
-						</Grid.Row>
-						<Divider />
-					</Grid>
-				)
-			else return null
-		})
-
-		let poitems = aboutData.map((item, i) => {
+		let items = aboutData.map((item, i) => {
 			let divider = <Divider />
 			if (aboutData.length === i + 1)
 				divider = null
@@ -278,9 +160,9 @@ export default class Index extends React.Component {
 			else return null
 		})
 
-		let itineraryItems = z.experiences.itinerary.map((day, i) => {
+		let itineraryItems = z.itinerary.map((day, i) => {
 			let divider = <Divider />
-			if (z.experiences.itinerary.length === i + 1)
+			if (z.itinerary.length === i + 1)
 				divider = null
 			return (
 				<Grid>
@@ -291,11 +173,6 @@ export default class Index extends React.Component {
 							}}>
 								{day.title}
 							</Header>
-							<Waypoint
-								onEnter={() => this.handleDayScroll(i, 'enter')}
-								onLeave={() => this.handleDayScroll(i, 'leave')}
-								scrollableAncestor='window'
-							/>
 						</Grid.Column>
 						<Grid.Column width={13}>
 							<div className='PrimaryText'>
@@ -326,19 +203,17 @@ export default class Index extends React.Component {
 									</Grid.Column>
 								</Grid.Row>
 							</Grid>
-							{poitems}
+							{items}
+							<Divider />
+							<MustCarry must_carry={z.must_carry} />
+							<HowToReach how_to_reach={z.how_to_reach} />
 						</Segment>
 					</Grid.Column>
 					<Grid.Column computer={6} only='computer'>
 						<Sticky bottomBoundary={'#infobar'} top={'#topbar'}>
-							<Map
-								center={this.state.center}
-								mapTypeId={this.state.mapTypeId || 'hybrid'}
-								tilt={true}
-								zoom={this.state.zoom}
-								data={this.state.items}
-								hoveredIndex={this.state.hoveredIndex}
-								type='trek' />
+							 {/* <Gallery
+								rolls={[]}
+							/>  */}
 						</Sticky>
 					</Grid.Column>
 				</Grid.Row>
@@ -353,21 +228,18 @@ export default class Index extends React.Component {
 					</Grid.Column>
 					<Grid.Column computer={6} only='computer'>
 						<Sticky bottomBoundary={'#infobar'} top={'#topbar'}>
-							<Gallery
-								rolls={this.state.roll}
-							/>
+							{/* <Map
+								center={this.state.center}
+								mapTypeId={this.state.mapTypeId || 'hybrid'}
+								tilt={true}
+								zoom={this.state.zoom}
+								data={this.state.items}
+								hoveredIndex={this.state.hoveredIndex}
+								type='trek' /> */}
 						</Sticky>
 					</Grid.Column>
 				</Grid.Row>
 			</Grid>
-		)
-
-		let guide = (
-			<div>
-				{items}
-				<MustCarry must_carry={z.must_carry} />
-				<HowToReach how_to_reach={z.experiences.how_to_reach} />
-			</div>
 		)
 
 		let pane = null
@@ -376,7 +248,7 @@ export default class Index extends React.Component {
 				pane = itinerary
 				break;
 			case 'guide':
-				pane = guide
+				pane = about
 				break;
 			default:
 				pane = about
@@ -389,10 +261,10 @@ export default class Index extends React.Component {
 		return (
 
 			<Layout>
-				<TopBar handleDimmer={e => this.handleDimmer(e)} root={false} title={z.experiences.title} page='experiences' />
+				<TopBar handleDimmer={e => this.handleDimmer(e)} root={false} title={z.title} page='trip' />
 				<Dimmer.Dimmable blurring dimmed={this.state.dimmer}>
 					<Dimmer active={this.state.dimmer} onClickOutside={this.handleDimmerHide}></Dimmer>
-					<Cover caption={z.experiences.caption} title={z.experiences.title || z.experiences.name} img={z.experiences.img} region={z.experiences.region} pointers={pointerRow} />
+					<Cover caption={z.caption} title={z.title || z.name} img={z.img} region={z.region} pointers={pointerRow} />
 					<Container style={{
 						width: '80vw'
 					}}>
@@ -405,9 +277,8 @@ export default class Index extends React.Component {
 								<Menu pointing secondary size='massive' style={{
 									marginBottom: '-14px'
 								}}>
-									<Menu.Item name='about' active={activeItem === 'about'} onClick={this.handleItemClick} />
-									<Menu.Item name='itinerary' active={activeItem === 'itinerary'} onClick={this.handleItemClick} />
 									<Menu.Item name='guide' active={activeItem === 'guide'} onClick={this.handleItemClick} />
+									<Menu.Item name='itinerary' active={activeItem === 'itinerary'} onClick={this.handleItemClick} />
 								</Menu>
 							</Segment>
 						</Sticky>

@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Card, Icon} from 'semantic-ui-react'
-import RecommendationBrick from '../components/RecommendationBrick'
+import CardElevate from '../components/CardElevate'
 import Slider from 'react-slick'
 
 class RecommendationCards extends React.Component {
@@ -61,7 +61,7 @@ return (
 			? <Slider {...settings}>
 					{this.props.data.map((obj, i) => <div style={{
 						// margin: '10px'
-					}}className='slideCarousel'><RecommendationBrick type={this.props.type} data={obj}/></div>)}
+					}}className='slideCarousel'><CardElevate type={this.props.type} data={obj}/></div>)}
 				</Slider>
 			: null}
 	</div>

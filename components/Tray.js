@@ -7,7 +7,7 @@ import {
 	Card,
 } from 'semantic-ui-react'
 
-import Brick from '../components/RecommendationBrick6'
+import CardSolid from '../components/CardSolid'
 
 export default class Tray extends Component {
 
@@ -48,7 +48,7 @@ export default class Tray extends Component {
 							marginTop: '14px',
 							paddingLeft: '0.5em',
 							paddingRight: '0.5em'
-						}}><Brick type={this.props.type} hoverCall={this._hoverCall} data={filters[j * line + i]} /></Grid.Column>
+						}}><CardSolid type={this.props.type} hoverCall={this._hoverCall} data={filters[j * line + i]} /></Grid.Column>
 					);
 					i++;
 				}

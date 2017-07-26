@@ -5,7 +5,6 @@ import Sticky from 'react-stickynode';
 import initStore from '../utils/store'
 import Router from 'next/router'
 
-
 import {
 	Button,
 	Card,
@@ -26,13 +25,11 @@ import {
 import Layout from '../components/Layout'
 import TopBar from '../components/TopBar'
 import Cover from '../components/DestinationCover'
-import Languages from '../components/Languages'
 import Footer from '../components/Footer'
-import Introduction from '../components/ExperiencesIntroduction'
-import MustCarry from '../components/MustCarryEx'
+import Introduction from '../components/Introduction'
+import MustCarry from '../components/MustCarry'
 import HowToReach from '../components/HowToReach'
 import MustKnow from '../components/MustKnow'
-import NearByDestinations from '../components/NearByDestinations'
 import GettingAround from '../components/GettingAround'
 import Tray from '../components/Tray'
 import Filter from '../components/DestinationFilter'

@@ -18,8 +18,7 @@ import {
 
 import Layout from '../components/Layout'
 import TopBar from '../components/TopBar'
-import NavBar from '../components/NavBar'
-import RecommendationCards from '../components/RecommendationCards'
+import Carousel from '../components/Carousel'
 import Recommendations from '../components/Recommendations'
 import Cover from '../components/HomeCover'
 import Footer from '../components/Footer'
@@ -65,13 +64,13 @@ class Index extends React.Component {
 					<Recommendations data={home.destinations} type='destination'/>
 					<br/>
 					<Header size='huge'>Trending Destinations</Header>
-					<RecommendationCards data={home.destinations} type='destination'/>
+					<Carousel data={home.destinations} type='destination'/>
 					<br/>
 					<Header size='huge'>Trending Experiences</Header>
-					<RecommendationCards data={home.experiences} type='experience'/>
+					<Carousel data={home.experiences} type='experience'/>
 					<br/>
 					<Header size='huge'>Trending Places</Header>
-					<RecommendationCards data={home.places} type='place'/>
+					<Carousel data={home.places} type='place'/>
 					<br/>
 					<br/>
 					<br/>

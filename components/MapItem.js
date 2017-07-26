@@ -60,7 +60,7 @@ export default class MapItem extends Component {
             cursor: 'pointer',
             top: -$originY - $markerHeight + 10 + 'px',
             left: -$originX - $labelWidth + 'px',
-            zIndex: 100 + this.props.slug.length
+            zIndex: 100
         }
 
 

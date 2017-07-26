@@ -454,6 +454,20 @@ Router.get("/trip/:slug", (req, res) => {
 	});
 });
 
+Router.get("/roadtrip/:slug", (req, res) => {
+	console.log("hello from trips");
+	roadtrips.findOne({
+		slug: req.params.slug
+	}, (err, data) => {
+		if (err || data == null) {
+			console.error("error looking up trip data");
+		} else {
+			res.send(data);
+		}
+	});
+});
+
+
 Router.get("/destination/:slug", (req, res, next) => {
 	destinations.findOne({ slug: req.params.slug }).lean().exec((err, data) => {
 		if (err || data == null) {

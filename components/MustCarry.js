@@ -8,8 +8,7 @@ import {
 	Label,
 	Image,
 	Popup,
-	Grid,
-	Divider
+	Grid
 } from 'semantic-ui-react'
 
 export default class MustCarry extends Component {
@@ -19,9 +18,7 @@ export default class MustCarry extends Component {
 		let items = this.props.must_carry
 
 			let mobileCols = [],
-				mobileRows = [],
-				computerCols = [],
-				computerRows = []
+				mobileRows = []
 
 			for (var j = 0; j < items.length; j = j + 2) {
 				for (var i = 0; i < 2; i++) {
@@ -43,7 +40,7 @@ export default class MustCarry extends Component {
 					}
 				}
 				mobileRows.push(
-					<Grid.Row only='mobile tablet'>{mobileCols}</Grid.Row>
+					<Grid.Row>{mobileCols}</Grid.Row>
 				)
 				mobileCols = []
 				for (var k = 0; k < 2; k++) {
@@ -58,69 +55,33 @@ export default class MustCarry extends Component {
 					}
 				}
 				mobileRows.push(
-					<Grid.Row only='mobile tablet'>{mobileCols}</Grid.Row>
+					<Grid.Row>{mobileCols}</Grid.Row>
 				)
 				mobileCols = []
 			}
 
-			for (var j = 0; j < items.length; j = j + 8) {
-				for (var i = 0; i < 8; i++) {
-					if (i + j <= items.length - 1) {
-						computerCols.push(
-							<Grid.Column computer={2} textAlign="center">
-								<Popup style={{
-									boxShadow: '0 2px 4px 0 rgba(34,36,38,.8), 0 2px 10px 0 rgba(34,36,38,.11)'
-								}} trigger={< Label style = {{ marginTop:'10px'}} circular basic size = "huge" > <Image src={items[i + j].source}/> < /Label>} hideOnScroll inverted wide position='top center'>
-									<Popup.Header>
-										Know More
-									</Popup.Header>
-									<Popup.Content>
-										{items[i + j].information}
-									</Popup.Content>
-								</Popup>
-							</Grid.Column>
-						);
-					}
-				}
-				computerRows.push(
-					<Grid.Row only='computer'>{computerCols}</Grid.Row>
-				)
-				computerCols = []
-				for (var k = 0; k < 8; k++) {
-					if (k + j <= items.length - 1) {
-						computerCols.push(
-							<Grid.Column computer={2} textAlign="center" style={{
-								marginTop: '-5px'
-							}}>
-								<b>{items[k + j].title}</b>
-							</Grid.Column>
-						)
-					}
-				}
-				computerRows.push(
-					<Grid.Row only='computer'>{computerCols}</Grid.Row>
-				)
-				computerCols = []
-			}
-
 			if(items.length > 0){
 				return (
+					<Segment basic>
+						<Grid>
+							<Grid.Row>
+								<Grid.Column width={4}>
+									<Header style={{
+										marginTop: '5px'
+									}}>
+									Things You Gotta Carry
+								</Header>
+								</Grid.Column>
+							<Grid.Column width={12}>
+								<Grid padded relaxed>
+									{mobileRows}
+								</Grid>
+							</Grid.Column>
+						</Grid.Row>
+					</Grid>
+				</Segment>
 
-					<Segment basic id='guide'>
-					<Header  style={{
-						marginTop:'80px'
-					}} size='huge'>Things You Gotto Carry</Header>
-					<br/>
-					<Grid padded relaxed textAlign='center'>
-					{computerRows}
-					</Grid>
-					<Grid padded relaxed>
-					{mobileRows}
-					</Grid>
-					<br/>
-					<Divider />
-					</Segment>
-				)
+			)
 			} else {
 				return null;
 			}

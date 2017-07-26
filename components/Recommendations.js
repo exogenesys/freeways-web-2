@@ -11,7 +11,7 @@ import {
 	Search
 } from 'semantic-ui-react'
 
-import Brick from '../components/RecommendationBrick4'
+import CardPop from '../components/CardPop'
 
 const Recommendations = () => {
 
@@ -88,10 +88,10 @@ const Recommendations = () => {
 					marginBottom:'-1em'
 				}}>
 					<Grid.Column style={{marginTop:'1em', paddingRight:'0.5em', paddingLeft:'0.5em'}} computer={5} tablet={16} mobile={16}>
-						<Brick type={items[0].type} data={items[0].data}/>
+						<CardPop type={items[0].type} data={items[0].data}/>
 					</Grid.Column>
 					<Grid.Column style={{marginTop:'1em', paddingRight:'0.5em', paddingLeft:'0.5em'}} computer={11} tablet={16} mobile={16}>
-						<Brick type={items[1].type} data={items[1].data}/>
+						<CardPop type={items[1].type} data={items[1].data}/>
 					</Grid.Column>
 				</Grid.Row>
 				<Grid.Row style={{
@@ -99,13 +99,13 @@ const Recommendations = () => {
 					marginBottom:'-1em'
 				}}>
 					<Grid.Column style={{marginTop:'1em', paddingRight:'0.5em', paddingLeft:'0.5em'}} computer={5} tablet={16} mobile={16}>
-						<Brick type={items[5].type} data={items[5].data}/>
+						<CardPop type={items[5].type} data={items[5].data}/>
 					</Grid.Column>
 					<Grid.Column style={{marginTop:'1em', paddingRight:'0.5em', paddingLeft:'0.5em'}} computer={6} tablet={16} mobile={16}>
-						<Brick type={items[3].type} data={items[3].data}/>
+						<CardPop type={items[3].type} data={items[3].data}/>
 					</Grid.Column>
 					<Grid.Column style={{marginTop:'1em', paddingRight:'0.5em', paddingLeft:'0.5em'}} computer={5} tablet={16} mobile={16}>
-						<Brick type={items[4].type} data={items[4].data}/>
+						<CardPop type={items[4].type} data={items[4].data}/>
 					</Grid.Column>
 				</Grid.Row>
 				<Grid.Row style={{
@@ -113,10 +113,10 @@ const Recommendations = () => {
 					marginBottom:'-1em'
 				}}>
 					<Grid.Column style={{marginTop:'1em', paddingRight:'0.5em', paddingLeft:'0.5em'}} computer={11} tablet={16} mobile={16}>
-						<Brick type={items[2].type} data={items[2].data}/>
+						<CardPop type={items[2].type} data={items[2].data}/>
 					</Grid.Column>
 					<Grid.Column style={{marginTop:'1em', paddingRight:'0.5em', paddingLeft:'0.5em'}} computer={5} tablet={16} mobile={16}>
-						<Brick type={items[0].type} data={items[6].data}/>
+						<CardPop type={items[0].type} data={items[6].data}/>
 					</Grid.Column>
 				</Grid.Row>
 			</Grid>

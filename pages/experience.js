@@ -21,10 +21,10 @@ import Layout from '../components/Layout'
 import TopBar from '../components/TopBar'
 import Cover from '../components/ExperienceCover'
 import Footer from '../components/Footer'
-import Introduction from '../components/ExperiencesIntroduction'
+import Introduction from '../components/Introduction'
 import MustKnow from '../components/MustKnow'
 import Pointers from '../components/ExperiencesPointers'
-import MustCarry from '../components/MustCarryEx'
+import MustCarry from '../components/MustCarry'
 import HowToReach from '../components/HowToReach2'
 
 export default class Index extends React.Component {

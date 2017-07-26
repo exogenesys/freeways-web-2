@@ -5,8 +5,8 @@
 */
 
 module.exports = {
-	IMG_HEIGHT_DC: 0.75,     // height in percentage for DestinationCover.js
-	IMG_QUALITY_DC: 0.5,     // quality in %
-	IMG_HEIGHT_RB: 0.3,      // RecommendationBrick
+	IMG_HEIGHT_DC: 0.75,     
+	IMG_QUALITY_DC: 0.5,     
+	IMG_HEIGHT_RB: 0.3,      
 	IMG_QUALITY_RB: 0.3
 }

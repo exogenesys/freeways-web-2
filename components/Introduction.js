@@ -1,96 +1,47 @@
 import React from 'react'
-import {Segment, Header, Grid, Statistic, Popup} from 'semantic-ui-react'
+import {
+    Segment,
+    Header,
+    Grid,
+    Statistic,
+    Popup,
+    Divider
+} from 'semantic-ui-react'
 import renderHTML from 'react-render-html'
+import ShowMore from 'react-show-more'
 
 export default class Footer extends React.Component {
 
-	render() {
+    render() {
+        if (this.props.intro) {
+            return (
+                <Segment id="intro" basic>
+                    <Grid>
+                        <Grid.Row>
+                            <Grid.Column width={4}>
+                                <Header
+                                    style={{
+                                    marginTop: '5px'
+                                }}>
+                                    Introduction
+                                </Header>
+                            </Grid.Column>
+                            <Grid.Column width={12}>
+                                <div className='PrimaryText'>
 
-		let best_time = null
-		if (this.props.best_time) {
-			best_time = (
-				<Grid.Column mobile={8} computer={4} tablet={4}>
-					<Popup trigger={< Statistic style = {{margin:'20px'}}size = "tiny" value = {
-						this.props.best_time
-					}
-					label = 'Best time to visit' />} hideOnScroll inverted wide position='bottom center'>
-						<Popup.Header>
-							Best Time To Visit
-						</Popup.Header>
-						<Popup.Content>
-							{renderHTML(this.props.best_time_more_info || '')}
-						</Popup.Content>
-					</Popup>
-				</Grid.Column>
-			)
-		}
+                                    <ShowMore lines={4} more='More' less={null}>
+                                        {renderHTML(this.props.intro || '')}
+                                    </ShowMore>
+                                </div>
+                            </Grid.Column>
+                        </Grid.Row>
+                    </Grid>
 
-		let days_to_explore = null
-		if (this.props.time_to_explore) {
-			days_to_explore = (
-				<Grid.Column mobile={8} computer={4} tablet={4}>
-					<Statistic style={{
-						margin: '20px'
-					}} size="tiny" value={this.props.time_to_explore} label='Days to explore'/>
-				</Grid.Column>
-			);
-		}
-
-		let average_budget_per_person = null
-		if (this.props.average_budget_per_person) {
-			average_budget_per_person = (
-				<Grid.Column mobile={8} computer={4} tablet={4}>
-					<Statistic style={{
-						margin: '20px'
-					}} size="tiny" value={'₹ ' + this.props.average_budget_per_person} label='Average Budget Per Person'/>
-				</Grid.Column>
-			);
-		}
-
-		let weather = null
-		if (this.props.weather + '') {
-			weather = (
-				<Grid.Column mobile={8} computer={4} tablet={4}>
-					<Popup trigger={< Statistic style = {{margin:'20px'}}size = "tiny" value = {
-						this.props.weather + '°'
-					}
-					label = 'Weather' />} hideOnScroll inverted wide position='bottom center'>
-						<Popup.Header>
-							Weather
-						</Popup.Header>
-						<Popup.Content></Popup.Content>
-					</Popup>
-				</Grid.Column>
-			);
-		}
-
-		return (
-			<Segment id="intro" basic>
-				<Header size='huge' style={{
-					marginTop: '80px',
-				}}>Introduction</Header>
-				<br/>
-				<div className='PrimaryText' style={{
-					textAlign: 'center'
-				}}>
-					{renderHTML(this.props.intro || '')}
-				</div>
-				<br/>
-				<br/>
-				<br/>
-
-				<Grid>
-					<Grid.Row centered>
-						{best_time}
-						{days_to_explore}
-						{average_budget_per_person}
-						{weather}
-					</Grid.Row>
-				</Grid>
-				<br/>
-				<br/>
-				<br/>
-			</Segment>
-		);
-	}
+                    <Divider inverted/>
+                </Segment>
+            )
+        } else {
+            return null
+        }
+    }
 }
