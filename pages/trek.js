@@ -64,7 +64,7 @@ export default class Index extends React.Component {
 	}
 
 	static async getInitialProps({ query }) {
-		const res = await fetch('http://freeways.in/api/trek/' + query.slug);
+		const res = await fetch('http://localhost:3000/api/trek/' + query.slug);
 		const data = await res.json();
 		const imgs = ([].concat.apply([], data.experiences.itinerary.map(slide => slide.img))).filter(img => img).map((img) => {
 			return {

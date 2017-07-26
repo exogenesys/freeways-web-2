@@ -15,8 +15,6 @@ import Layout from '../components/Layout'
 
 import TopBar from '../components/TopBar'
 
-import BeenThereDoneThat from '../components/BeenThereDoneThat'
-
 import Footer from '../components/Footer'
 
 import initStore from '../utils/store';

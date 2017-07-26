@@ -78,7 +78,6 @@ export default class TopBar extends Component {
 			'destinations',
 			'experiences',
 			'trips',
-			'roadtrips',
 			'treks'
 		]
 

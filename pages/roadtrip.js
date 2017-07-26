@@ -55,7 +55,7 @@ export default class Index extends React.Component {
 	}
 
 	static async getInitialProps({ query }) {
-		const res = await fetch('http://freeways.in/api/roadtrip/' + query.slug);
+		const res = await fetch('http://localhost:3000/api/roadtrip/' + query.slug);
 		const data = await res.json();
 		return { data };
 	}
