@@ -27,7 +27,7 @@ import {
 
 import Layout from '../components/Layout'
 import TopBar from '../components/TopBar'
-import Cover from '../components/TrekCover'
+import Cover from '../components/PlaceCover'
 import SideImage from '../components/SideImage'
 import Map from '../components/Map';
 import Footer from '../components/Footer'

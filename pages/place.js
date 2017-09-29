@@ -103,15 +103,14 @@ export default class Place extends React.Component {
 					<Segment basic>
 					<Grid>
 						<Grid.Row>
-						<Grid.Column width={10} id='sidecol'>
+						<Grid.Column computer={10} mobile={16} id='sidecol'>
 							<Introduction intro={z.place.introduction} best_time={z.place.best_time_to_visit} best_time_more_info={z.place.best_time_to_visit_more_information} time_to_explore={z.place.time_to_explore} weather={z.weather} />
-							<Tray data={z.experiences} rows={4} type='experience'/>
 							<MustKnow must_know={z.place.must_know} why_should_you_go={z.place.why_should_you_go} what_should_you_know={z.place.what_should_you_know} things_to_care_about={z.place.things_to_care_about} speciality={z.place.speciality} />
 							<MustCarry must_carry={z.must_carry} />
 							<HowToReach how_to_reach={z.place.how_to_reach} />
 						</Grid.Column>
-						<Grid.Column width={6}>
-								<Sticky top={'#cover'} bottomBoundary={'#sidecol'}> 
+						<Grid.Column width={6} only='computer'>
+								<Sticky top={'#cover'} bottomBoundary={'#sidecol'}>
 									<br/>
 							<Map
 								center={this.state.center}
@@ -121,7 +120,7 @@ export default class Place extends React.Component {
 								data={this.state.experiences}
 								hoveredIndex={this.state.hoveredIndex}
 								type='experience' />
-								</Sticky> 
+								</Sticky>
 						</Grid.Column>
 						</Grid.Row>
 					</Grid>
@@ -133,4 +132,3 @@ export default class Place extends React.Component {
 		);
 	}
 }
-

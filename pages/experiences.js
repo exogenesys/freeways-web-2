@@ -465,7 +465,6 @@ class Index extends React.Component {
 													marginTop: '-1.2rem'
 												}}>
 													<div ref='places'>
-
 														<Menu style={{
 															height: '3em'
 														}} stackable>

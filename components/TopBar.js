@@ -133,7 +133,10 @@ export default class TopBar extends Component {
 			<Container fluid style={NavContainerStyle} id='navbar' className={focus || !this.props.root
 				? null
 				: 'HeadShadow'}>
-				<Container fluid>
+				<Container fluid style={{
+					marginLeft: '0em!important',
+					marginRight: '0em!important'
+				}}>
 					<Grid verticalAlign='middle' id='topbar'>
 						<Grid.Row style={NavGridStyleOne} >
 							<Grid.Column style={{

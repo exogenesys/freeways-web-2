@@ -57,7 +57,7 @@ class Index extends React.Component {
 				}}>
 					<Dimmer active={this.state.dimmer} onClickOutside={this.handleDimmerHide}></Dimmer>
 					<Cover toSlideOrNot={!this.state.dimmer}/>
-					<Container>
+					<Container fluid>
 					<br/>
 					<br/>
 					<Header size='huge'>Recommendations</Header>

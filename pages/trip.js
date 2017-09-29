@@ -23,7 +23,7 @@ import {
 
 import Layout from '../components/Layout'
 import TopBar from '../components/TopBar'
-import Cover from '../components/TrekCover'
+import Cover from '../components/PlaceCover'
 import SideImage from '../components/SideImage'
 import Map from '../components/Map';
 import Footer from '../components/Footer'
@@ -195,16 +195,14 @@ export default class Index extends React.Component {
 
 		let about = (
 			<Grid stackable={true}>
+				<Grid.Row only='mobile'>
+					<Gallery
+						roll={snap}
+				/>
+				</Grid.Row>
 				<Grid.Row>
 					<Grid.Column computer={10} tablet={16} id='infobar'>
 						<Segment basic>
-							<Grid>
-								<Grid.Row only='mobile tablet'>
-									<Grid.Column>
-										<Cover img={z.trip.experiences.img} />
-									</Grid.Column>
-								</Grid.Row>
-							</Grid>
 							{items}
 							<Divider />
 							<MustCarry must_carry={z.must_carry} />
@@ -215,7 +213,7 @@ export default class Index extends React.Component {
 						<Sticky bottomBoundary={'#infobar'} top={'#topbar'}>
 							  <Gallery
 									roll={snap}
-								/>  
+								/>
 						</Sticky>
 					</Grid.Column>
 				</Grid.Row>
@@ -235,7 +233,7 @@ export default class Index extends React.Component {
 								mapTypeId={this.state.mapTypeId || 'hybrid'}
 								zoom={this.state.zoom}
 								data={this.state.items}
-								type='trip' /> 
+								type='trip' />
 						</Sticky>
 					</Grid.Column>
 				</Grid.Row>

@@ -167,7 +167,9 @@ export default class HomeCover extends Component {
 		if (!this.state.deckLoaded)
 			return (
 				<Container fluid className='TopLevelFluid' style={{
-					marginTop: '1.5vh'
+					marginTop: '1.5vh',
+					marginLeft: '0em!important',
+					marginRight: '0em!important'
 				}}>
 					<div className='core deckBlur' style={{
 						backgroundImage: "linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.1)), url('http://res.cloudinary.com/freeways/image/upload/ONER.jpg')"
@@ -177,7 +179,9 @@ export default class HomeCover extends Component {
 
 		return (
 			<Container fluid className='TopLevelFluid' style={{
-				marginTop: '1.5vh'
+				marginTop: '1.5vh',
+				marginLeft: '0em!important',
+				marginRight: '0em!important'
 			}}>
 				<Deck dura={0} className={'deck' + (this.state.outerDeck.current == 0
 					? ' deckBlur'
