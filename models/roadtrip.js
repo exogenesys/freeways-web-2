@@ -1,36 +1,37 @@
-var mongoose = require('mongoose'),
-  autoIncrement = require('mongoose-auto-increment'),
-  Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+const autoIncrement = require('mongoose-auto-increment');
 
-const connect = mongoose.connect("mongodb://saulgoodman:hackerman@ds163561.mlab.com:63561/freeways-memory");
+const { Schema } = mongoose;
+
+const connect = mongoose.connect('mongodb://saulgoodman:hackerman@ds163561.mlab.com:63561/freeways-memory');
 autoIncrement.initialize(connect);
 
-var roadTripSchema = new Schema({
+const roadTripSchema = new Schema({
 
   id: {
     type: Number,
-    unique: true
+    unique: true,
   },
 
   slug: {
     type: String,
-    unique: true
+    unique: true,
   },
 
   name: {
-    type: String
+    type: String,
   },
 
   img: {
-    type: String
+    type: String,
   },
 
   img_thumb: {
-    type: String
+    type: String,
   },
 
   intro: {
-    type: String
+    type: String,
   },
 
   recommended_for: [{ type: String }],
@@ -38,32 +39,32 @@ var roadTripSchema = new Schema({
   filter: [{ type: String }],
 
   best_time_to_visit: [[{
-    type: Number
+    type: Number,
   }]],
 
   best_time_to_visit_more_information: {
-    type: String
+    type: String,
   },
 
   caption: {
-    type: String
+    type: String,
   },
 
   zone: Number,
 
 
   duration: {
-    type: String
+    type: String,
   },
 
   budget: {
-    type: String
+    type: String,
   },
 
   itinerary: [{
     places: [String],
     title: String,
-    text: String
+    text: String,
   }],
 
 
@@ -72,12 +73,12 @@ var roadTripSchema = new Schema({
       slug: { type: String },
       type: { type: String },
       name: { type: String },
-      img: { type: String }
-    }
+      img: { type: String },
+    },
   ],
 
   distance: {
-    type: Number
+    type: Number,
   },
 
   // coordinates: [{
@@ -86,26 +87,28 @@ var roadTripSchema = new Schema({
   // }],
 
   route_description: {
-    type: String
+    type: String,
   },
 
   accommodation: {
-    type: String
+    type: String,
   },
 
   things_to_know: {
-    type: String
+    type: String,
   },
 
   mode_of_transport: [{
     name: { type: String },
-    icon: { type: String }
-  }]
+    icon: { type: String },
+  }],
 },
 
-  { timestamps: true });
+{ timestamps: true });
 
-roadTripSchema.plugin(autoIncrement.plugin, { model: 'RoadTrip', field: 'id', startAt: 1, incrementBy: 1 });
-var roadtrips = mongoose.model('RoadTrip', roadTripSchema);
+roadTripSchema.plugin(autoIncrement.plugin, {
+  model: 'RoadTrip', field: 'id', startAt: 1, incrementBy: 1,
+});
+const roadtrips = mongoose.model('RoadTrip', roadTripSchema);
 
 module.exports = roadtrips;

@@ -1,9 +1,9 @@
 const express = require('express');
 const path = require('path');
 const next = require('next');
-const api = require("./api/api.js");
-const img = require("./api/img.js");
-const cors = require('cors')
+const cors = require('cors');
+const api = require('./api/api.js');
+const img = require('./api/img.js');
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dir: '.', dev });
@@ -13,88 +13,76 @@ const PORT = process.env.PORT || 3000;
 
 console.log(PORT);
 
-app.prepare().then(_ => {
-	const server = express()
+app.prepare().then((_) => {
+  const server = express();
 
-	// serve service worker
-	server.get('/sw.js', (req, res) => res.sendFile(path.resolve('./.next/sw.js')));
+  // serve service worker
+  server.get('/sw.js', (req, res) => res.sendFile(path.resolve('./.next/sw.js')));
 
-	server.use(cors())
+  server.use(cors());
 
-	server.use('/api', api);
-	// server.use('/debord', img);
+  server.use('/api', api);
+  // server.use('/debord', img);
 
-	server.use((err, req, res, next) => {
-		console.log("error has happened something broke");
-		res.status(500).send("something broke")
-	})
+  server.use((err, req, res, next) => {
+    console.log('error has happened something broke');
+    res.status(500).send('something broke');
+  });
 
-	console.log('first')
+  console.log('first');
 
-	server.get('/destinations', (req, res) => {
-		return app.render(req, res, '/destinations');
-	});
+  server.get('/destinations', (req, res) => app.render(req, res, '/destinations'));
 
-	server.get('/trips', (req, res) => {
-		return app.render(req, res, '/trips');
-	});
+  server.get('/trips', (req, res) => app.render(req, res, '/trips'));
 
-	server.get('/experiences', (req, res) => {
-		return app.render(req, res, '/experiences');
-	});
+  server.get('/experiences', (req, res) => app.render(req, res, '/experiences'));
 
-	server.get('/roadtrips', (req, res) => {
-		return app.render(req, res, '/roadtrips');
-	});
+  server.get('/roadtrips', (req, res) => app.render(req, res, '/roadtrips'));
 
-	server.get('/treks', (req, res) => {
-		return app.render(req, res, '/treks');
-	});
+  server.get('/treks', (req, res) => app.render(req, res, '/treks'));
 
-	server.get('/destination/:slug', (req, res) => {
-		const params = { slug: req.params.slug }
-		return app.render(req, res, '/destination', params);
-	});
+  server.get('/destination/:slug', (req, res) => {
+    const params = { slug: req.params.slug };
+    return app.render(req, res, '/destination', params);
+  });
 
-	server.get('/place/:slug', (req, res) => {
-		const params = { slug: req.params.slug }
-		return app.render(req, res, '/place', params);
-	});
+  server.get('/place/:slug', (req, res) => {
+    const params = { slug: req.params.slug };
+    return app.render(req, res, '/place', params);
+  });
 
-	server.get('/experience/:slug', (req, res) => {
-		const params = { slug: req.params.slug }
-		return app.render(req, res, '/experience', params);
-	});
+  server.get('/experience/:slug', (req, res) => {
+    const params = { slug: req.params.slug };
+    return app.render(req, res, '/experience', params);
+  });
 
-	server.get('/trek/:slug', (req, res) => {
-		const params = { slug: req.params.slug }
-		return app.render(req, res, '/trek', params);
-	});
+  server.get('/trek/:slug', (req, res) => {
+    const params = { slug: req.params.slug };
+    return app.render(req, res, '/trek', params);
+  });
 
-	server.get('/roadtrip/:slug', (req, res) => {
-		const params = { slug: req.params.slug }
-		return app.render(req, res, '/roadtrip', params);
-	});
+  server.get('/roadtrip/:slug', (req, res) => {
+    const params = { slug: req.params.slug };
+    return app.render(req, res, '/roadtrip', params);
+  });
 
-	server.get('/trip/:slug', (req, res) => {
-		const params = { slug: req.params.slug }
-		return app.render(req, res, '/trip', params);
-	});
+  server.get('/trip/:slug', (req, res) => {
+    const params = { slug: req.params.slug };
+    return app.render(req, res, '/trip', params);
+  });
 
-	server.get('*', (req, res) => {
-		return app.render(req, res, '/');
-		// return handle(req, res);
-	});
+  server.get('*', (req, res) => app.render(req, res, '/'),
+    // return handle(req, res);
+  );
 
-	server.listen(PORT, err => {
-		if (err)
-			throw err;
+  server.listen(PORT, (err) => {
+    if (err) throw err;
 
-		console.log(`> App running on port ${PORT}`);
-	});
-}).catch(function (err) {
-	console.log(err)
-})
+    console.log(`> App running on port ${PORT}`);
+  });
+}).catch((err) => {
+  console.log(err);
+});
 
 // module.exports = auth;
 

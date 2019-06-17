@@ -1,138 +1,139 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
 
-var placeSchema = new Schema({
+const { Schema } = mongoose;
 
-    slug:{
-      type:String, unique: true
-    },
+const placeSchema = new Schema({
 
-    title:{
-      type:String
-    },
+  slug: {
+    type: String, unique: true,
+  },
 
-    destination:{
-      type:String
-    },
+  title: {
+    type: String,
+  },
 
-    img:{
-      type:String
-    },
+  destination: {
+    type: String,
+  },
 
-    img_thumb:{
-      type:String
-    },
+  img: {
+    type: String,
+  },
+
+  img_thumb: {
+    type: String,
+  },
 
 
-    time_to_explore: {
-  		type: String
+  time_to_explore: {
+  		type: String,
   	},
 
-    caption: {
-      type: String
-    },
+  caption: {
+    type: String,
+  },
 
-    introduction: {
-      type: String
-    },
+  introduction: {
+    type: String,
+  },
 
-    why_should_you_go: {
-      type: String
-    },
+  why_should_you_go: {
+    type: String,
+  },
 
-    address: {
-      type: String
-    },
+  address: {
+    type: String,
+  },
 
-    what_should_you_know: {
-      type: String
-    },
+  what_should_you_know: {
+    type: String,
+  },
 
-    things_to_care_about: {
-      type: String
-    },
+  things_to_care_about: {
+    type: String,
+  },
 
-    speciality: {
-      type: String
-    },
+  speciality: {
+    type: String,
+  },
 
-    distance_from_city_centre: {
-      type: String
-    },
+  distance_from_city_centre: {
+    type: String,
+  },
 
-    best_time_to_visit: {
-      type: String
-    },
+  best_time_to_visit: {
+    type: String,
+  },
 
-    price: {
-      type: String
-    },
+  price: {
+    type: String,
+  },
 
-    best_time_to_visit_more_information: {
-      type: String
-    },
+  best_time_to_visit_more_information: {
+    type: String,
+  },
 
-    tags : [String],
+  tags: [String],
 
-    loc: {
-        type: Schema.Types.ObjectId, ref: 'NearByLoc'
-    },
+  loc: {
+    type: Schema.Types.ObjectId, ref: 'NearByLoc',
+  },
 
-    latitude: {
-      type: Number
-    },
+  latitude: {
+    type: Number,
+  },
 
-    longitude: {
-      type: Number
-    },
+  longitude: {
+    type: Number,
+  },
 
-    how_to_reach_by_car: {
-      type: String
-    },
+  how_to_reach_by_car: {
+    type: String,
+  },
 
-    how_to_reach_by_train: {
-      type: String
-    },
+  how_to_reach_by_train: {
+    type: String,
+  },
 
-    how_to_reach_by_plane: {
-      type: String
-    },
+  how_to_reach_by_plane: {
+    type: String,
+  },
 
-    how_to_reach_by_walk: {
-      type : String
-    },
+  how_to_reach_by_walk: {
+    type: String,
+  },
 
-    usual_timings: {
-      type: String
-    },
+  usual_timings: {
+    type: String,
+  },
 
-    timings_more_information: {
-      type: String
-    },
+  timings_more_information: {
+    type: String,
+  },
 
-    days_off: {
-      type: String
-    },
+  days_off: {
+    type: String,
+  },
 
-    must_carry: [{type: Number, ref: 'mustCarry'}],
+  must_carry: [{ type: Number, ref: 'mustCarry' }],
 
-    experiences: [{type: Number, ref: 'experiences'}],
+  experiences: [{ type: Number, ref: 'experiences' }],
 
-    trips: [{type: Number, ref: 'trips'}],
+  trips: [{ type: Number, ref: 'trips' }],
 
-    must_know: {
-      type : String
-    },
+  must_know: {
+    type: String,
+  },
 
-    keywords: {
-      type : String
-    }
+  keywords: {
+    type: String,
+  },
 
-  },{
-    timestamps: true
+}, {
+  timestamps: true,
 });
 
 
-var places = mongoose.model('Place', placeSchema);
+const places = mongoose.model('Place', placeSchema);
 
 module.exports = places;

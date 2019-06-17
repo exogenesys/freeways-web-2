@@ -1,128 +1,129 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
 
-var destinationSchema = new Schema({
+const { Schema } = mongoose;
 
-	slug: {
-		type: String,
-		unique: true
-	},
+const destinationSchema = new Schema({
 
-	title: String,
+  slug: {
+    type: String,
+    unique: true,
+  },
 
-	img: {
-		type: String
-	},
+  title: String,
 
-	visible: {
-		type: Boolean,
-		default: true
-	},
+  img: {
+    type: String,
+  },
 
-	img_thumb: {
-		type: String
-	},
+  visible: {
+    type: Boolean,
+    default: true,
+  },
 
-	type: {
-		type: String
-	},
+  img_thumb: {
+    type: String,
+  },
 
-	filter: {
-		type: [String]
-	},
+  type: {
+    type: String,
+  },
 
-	zone: Number,
+  filter: {
+    type: [String],
+  },
 
-	best_months_to_visit: {
-		type: [[Number]]
-	},
+  zone: Number,
 
-	type: {
-		type: String
-	},
+  best_months_to_visit: {
+    type: [[Number]],
+  },
+
+  type: {
+    type: String,
+  },
 
 
-	best_time_to_visit: {
-		type: String
-	},
+  best_time_to_visit: {
+    type: String,
+  },
 
-	best_time_to_visit_more_information: {
-		type: String
-	},
+  best_time_to_visit_more_information: {
+    type: String,
+  },
 
-	caption: {
-		type: String
-	},
+  caption: {
+    type: String,
+  },
 
-	introduction: {
-		type: String
-	},
+  introduction: {
+    type: String,
+  },
 
-	time_to_explore: {
-		type: String
-	},
+  time_to_explore: {
+    type: String,
+  },
 
-	average_budget_per_person: {
-		type: String
-	},
+  average_budget_per_person: {
+    type: String,
+  },
 
-	score: Number,
-	solo_score: Number,
-	family_score: Number,
-	couple_score: Number,
-	friends_score: Number,
+  score: Number,
+  solo_score: Number,
+  family_score: Number,
+  couple_score: Number,
+  friends_score: Number,
 
-	loc: [{
-		type: Schema.Types.ObjectId, ref: 'NearByLoc'
-	}],
+  loc: [{
+    type: Schema.Types.ObjectId, ref: 'NearByLoc',
+  }],
 
-	must_know: {
-		type: String
-	},
+  must_know: {
+    type: String,
+  },
 
-	how_to_reach_by_car: {
-		type: String
-	},
+  how_to_reach_by_car: {
+    type: String,
+  },
 
-	how_to_reach_by_bus: {
-		type: String
-	},
+  how_to_reach_by_bus: {
+    type: String,
+  },
 
-	how_to_reach_by_plane: {
-		type: String
-	},
+  how_to_reach_by_plane: {
+    type: String,
+  },
 
-	how_to_reach_by_train: {
-		type: String
-	},
+  how_to_reach_by_train: {
+    type: String,
+  },
 
-	must_carry: [{ type: Number, ref: 'mustCarry' }],
+  must_carry: [{ type: Number, ref: 'mustCarry' }],
 
-	places: [{ type: Number, ref: 'places' }],
+  places: [{ type: Number, ref: 'places' }],
 
-	experiences: [{ type: Number, ref: 'experiences' }],
+  experiences: [{ type: Number, ref: 'experiences' }],
 
-	trips: [{ type: Number, ref: 'trips' }],
+  trips: [{ type: Number, ref: 'trips' }],
 
-	languages: [{ type: Number, ref: 'languages' }],
+  languages: [{ type: Number, ref: 'languages' }],
 
-	coverPhoto: {
-		type: String
-	},
+  coverPhoto: {
+    type: String,
+  },
 
-	getting_around_options: {
-		type: [String]
-	},
+  getting_around_options: {
+    type: [String],
+  },
 
-	getting_around: {
-		type: String
-	},
+  getting_around: {
+    type: String,
+  },
 
-	keywords: {
-		type: String
-	}
+  keywords: {
+    type: String,
+  },
 }, { timestamps: true });
 
-var destination = mongoose.model('Destination', destinationSchema);
+const destination = mongoose.model('Destination', destinationSchema);
 
 module.exports = destination;

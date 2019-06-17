@@ -1,20 +1,21 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
 
-var commonphrasesSchema = new Schema({
+const { Schema } = mongoose;
 
-	slug: {
-		type: String,
-		unique: true
-	},
-	name: {
-		type: String
-	},
+const commonphrasesSchema = new Schema({
 
-	commonphrases: [String]
+  slug: {
+    type: String,
+    unique: true,
+  },
+  name: {
+    type: String,
+  },
 
-}, {timestamps: true});
+  commonphrases: [String],
 
-var cphrases = mongoose.model('CommonPhrases', commonphrasesSchema);
+}, { timestamps: true });
+
+const cphrases = mongoose.model('CommonPhrases', commonphrasesSchema);
 
 module.exports = cphrases;

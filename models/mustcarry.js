@@ -1,33 +1,34 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
 
-var mustCarrySchema = new Schema({
-    slug:{
-      type:String, unique: true
-      
-    },
+const { Schema } = mongoose;
 
-    title:{
-      type:String,
-    },
+const mustCarrySchema = new Schema({
+  slug: {
+    type: String, unique: true,
 
-    name: {
-      type: String
-    },
+  },
 
-    source: {
-      type: String
-    },
+  title: {
+    type: String,
+  },
 
-    information: {
-      type: String
-    }
+  name: {
+    type: String,
+  },
 
-  },{
-    timestamps: true
+  source: {
+    type: String,
+  },
+
+  information: {
+    type: String,
+  },
+
+}, {
+  timestamps: true,
 });
 
 
-var mustCarry = mongoose.model('mustCarry', mustCarrySchema);
+const mustCarry = mongoose.model('mustCarry', mustCarrySchema);
 
 module.exports = mustCarry;

@@ -1,132 +1,133 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
 
-var experienceSchema = new Schema({
+const { Schema } = mongoose;
 
-	slug: {
-		type: String,
-		unique: true
-	},
+const experienceSchema = new Schema({
 
-	title: {
-		type: String
-	},
+  slug: {
+    type: String,
+    unique: true,
+  },
+
+  title: {
+    type: String,
+  },
 
   destination: {
-    type: String
+    type: String,
   },
 
-	img: {
-		type: String
-	},
-
-	img_thumb:{
-    type:String
+  img: {
+    type: String,
   },
 
-	best_time_to_visit: {
-		type: String
-	},
+  img_thumb: {
+    type: String,
+  },
 
-	best_time_to_visit_more_information: {
-		type: String
-	},
+  best_time_to_visit: {
+    type: String,
+  },
 
-	time_to_explore: {
-		type: String
-	},
+  best_time_to_visit_more_information: {
+    type: String,
+  },
 
-	tags: [String],
+  time_to_explore: {
+    type: String,
+  },
 
-	caption: {
-		type: String
-	},
+  tags: [String],
 
-	information: {
-		type: String
-	},
+  caption: {
+    type: String,
+  },
 
-	loc: {
-		type: Schema.Types.ObjectId,
-		ref: 'NearByLoc'
-	},
+  information: {
+    type: String,
+  },
 
-	why_should_you_try: {
-		type: String
-	},
+  loc: {
+    type: Schema.Types.ObjectId,
+    ref: 'NearByLoc',
+  },
 
-	what_should_you_know: {
-		type: String
-	},
+  why_should_you_try: {
+    type: String,
+  },
+
+  what_should_you_know: {
+    type: String,
+  },
 
   latitude: {
-    type: Number
+    type: Number,
   },
 
   longitude: {
-    type: Number
+    type: Number,
   },
 
-	address: {
-		type: String
-	},
+  address: {
+    type: String,
+  },
 
-	things_to_care_about: {
-		type: String
-	},
+  things_to_care_about: {
+    type: String,
+  },
 
-	distance_from_city_centre: {
-		type: String
-	},
+  distance_from_city_centre: {
+    type: String,
+  },
 
-	speciality: {
-		type: String
-	},
+  speciality: {
+    type: String,
+  },
 
-	price: {
-		type: String
-	},
+  price: {
+    type: String,
+  },
 
-	must_know: {
-		type: String
-	},
+  must_know: {
+    type: String,
+  },
 
-	how_to_reach_by_walk: {
-		type: String
-	},
+  how_to_reach_by_walk: {
+    type: String,
+  },
 
   how_to_reach_by_car: {
-    type: String
+    type: String,
   },
 
   how_to_reach_by_train: {
-    type: String
+    type: String,
   },
 
   how_to_reach_by_plane: {
-    type: String
+    type: String,
   },
 
   usual_timings: {
-    type: String
+    type: String,
   },
 
   timings_more_information: {
-    type: String
+    type: String,
   },
 
   days_off: {
-    type: String
+    type: String,
   },
 
-	must_carry: [{type: Number, ref: 'mustCarry'}],
+  must_carry: [{ type: Number, ref: 'mustCarry' }],
 
-	keywords: {
-		type: String
-	}
+  keywords: {
+    type: String,
+  },
 
-}, {timestamps: true});
+}, { timestamps: true });
 
-var experiences = mongoose.model('experiences', experienceSchema);
+const experiences = mongoose.model('experiences', experienceSchema);
 
 module.exports = experiences;

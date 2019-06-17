@@ -1,48 +1,49 @@
-var mongoose = require('mongoose'),
-Schema = mongoose.Schema,
-passportLocalMongoose = require('passport-local-mongoose');
+const mongoose = require('mongoose');
 
-var UserSchema = new Schema({
+const { Schema } = mongoose;
+const passportLocalMongoose = require('passport-local-mongoose');
+
+const UserSchema = new Schema({
 
   slug: {
-    type:String, unique: true
+    type: String, unique: true,
   },
 
   username: {
-    type: String
+    type: String,
   },
 
   password: {
-    type: String
+    type: String,
   },
 
   image: {
-    type: String
+    type: String,
   },
 
   places: [{
-      type: Schema.Types.ObjectId, ref: 'Places'
-    }],
+    type: Schema.Types.ObjectId, ref: 'Places',
+  }],
 
   admin: {
-            type: Boolean,
-            default: false
+    type: Boolean,
+    default: false,
   },
 
   experiences: [{
-      type: Schema.Types.ObjectId, ref: 'Experiences'
-    }],
+    type: Schema.Types.ObjectId, ref: 'Experiences',
+  }],
 
   destinations: [{
-        type: Schema.Types.ObjectId, ref: 'Destinations'
-    }],
+    type: Schema.Types.ObjectId, ref: 'Destinations',
+  }],
 
   comments: [{
-          type: Schema.Types.ObjectId, ref: 'Comments'
-      }]
+    type: Schema.Types.ObjectId, ref: 'Comments',
+  }],
 
-    },{
-        timestamps: true
+}, {
+  timestamps: true,
 });
 
 

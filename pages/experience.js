@@ -42,7 +42,7 @@ export default class Index extends React.Component {
 	}
 
 	static async getInitialProps({ query }) {
-		const res = await fetch('http://www.freeways.in/api/experience/' + query.slug);
+		const res = await fetch('http://localhost:3000/api/experience/' + query.slug);
 		const data = await res.json();
 		return { data };
 	}

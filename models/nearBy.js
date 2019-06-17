@@ -1,22 +1,23 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
 
-var NearBySchema = new Schema({
+const { Schema } = mongoose;
 
-    slug: {
-      type:String
-    },
+const NearBySchema = new Schema({
 
+  slug: {
     type: String,
+  },
 
-    loc: {
-    type: [Number],  // [<longitude>, <latitude>]
-    index: '2d'      // create the geospatial index
-    }
+  type: String,
+
+  loc: {
+    type: [Number], // [<longitude>, <latitude>]
+    index: '2d', // create the geospatial index
+  },
 
 });
 
 
-var nearLoc = mongoose.model('NearByLoc', NearBySchema);
+const nearLoc = mongoose.model('NearByLoc', NearBySchema);
 
 module.exports = nearLoc;

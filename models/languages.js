@@ -1,21 +1,22 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
 
-var languageSchema = new Schema({
-    slug:{
-      type:String, unique: true
-    },
-    name : String,
-    commonPhrases : [{
-      phrase : String,
-      translation : String,
-      source : String,
-    }]
-  },{
-    timestamps: true
+const { Schema } = mongoose;
+
+const languageSchema = new Schema({
+  slug: {
+    type: String, unique: true,
+  },
+  name: String,
+  commonPhrases: [{
+    phrase: String,
+    translation: String,
+    source: String,
+  }],
+}, {
+  timestamps: true,
 });
 
 
-var languages = mongoose.model('languages', languageSchema);
+const languages = mongoose.model('languages', languageSchema);
 
-module.exports =languages ;
+module.exports = languages;

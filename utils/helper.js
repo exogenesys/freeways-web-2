@@ -5,10 +5,10 @@
 */
 
 module.exports = {
-	buildImgUrl: function(url, height, quality) {
-		// params: height, quality in percentage
-		//		   url as string
-		// var s = String(url).split('upload');
-		return url;
-	}
-}
+  buildImgUrl(url, height, quality) {
+    // params: height, quality in percentage
+    //		   url as string
+    // var s = String(url).split('upload');
+    return url;
+  },
+};

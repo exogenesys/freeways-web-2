@@ -1,37 +1,37 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-var Schema = mongoose.Schema;
-var searchSchema = new Schema({
+const { Schema } = mongoose;
+const searchSchema = new Schema({
 
   slug: {
-        type: String,
-        unique: true
-    },
+    type: String,
+    unique: true,
+  },
 
   title: {
-    type: String
+    type: String,
   },
 
   type: {
-    type: String
+    type: String,
   },
 
   img: {
-    type: String
+    type: String,
   },
 
   img_thumb: {
-    type: String
+    type: String,
   },
 
 
-  keywords: [String]
+  keywords: [String],
 
 
-}, {timestamps: true});
+}, { timestamps: true });
 
-searchSchema.index({keywords:'text', title:'text'});
+searchSchema.index({ keywords: 'text', title: 'text' });
 
-var search = mongoose.model('search', searchSchema);
+const search = mongoose.model('search', searchSchema);
 
 module.exports = search;
